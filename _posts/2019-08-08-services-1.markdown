@@ -1,0 +1,8 @@
+---
+layout: default
+img: ssc.png
+category: Services
+title: About
+description: |
+---
+  These pages summarise my principal GitHub repositories. Please visit my [website](https://sebastian-schwindt.org/) for more information on my [(scientific) work and achievements](https://sebastian-schwindt.org/publications.html).

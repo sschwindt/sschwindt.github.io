@@ -1,4 +1,31 @@
-theme: jekyll-theme-minimal
+# ----------------------- #
+#      Main Configs       #
+# ----------------------- #
+
+url: http://sschwindt.github.io
 title: Sebastian Schwindt
-description: GitHub Pages
-show_downloads: false
+email: sschwindt [at] ucdavis.edu
+author: Sebastian Schwindt
+description: Welcome to my GitHub pages
+copyright: 'Copyright &copy; 2019 Sebastian Schwindt. All Rights Reserved.'
+credits: 'Credits: Thanks to all supporters.'
+
+# ----------------------- #
+#    Jekyll & Plugins     #
+# ----------------------- #
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# ----------------------- #
+#   3rd Party Settings    #
+# ----------------------- #
+
+social:
+  - title: researchgate
+    url: https://www.researchgate.net/profile/Sebastian_Schwindt
+  - title: github
+    url: https://github.com/IronSummitMedia/startbootstrap
+  - title: linkedin
+    url: https://www.linkedin.com/in/sebastian-schwindt
