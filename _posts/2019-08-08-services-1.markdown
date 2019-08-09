@@ -1,6 +1,6 @@
 ---
 layout: default
-img: ssc.png
+img: naturet.jpg
 category: Services
 title: Welcome
 description: |
