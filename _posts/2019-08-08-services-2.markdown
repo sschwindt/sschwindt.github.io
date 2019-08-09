@@ -1,6 +1,6 @@
 ---
 layout: default
-img: naturet.jpg
+img: waterfall.jpg
 category: Services
 title: Welcome
 description: |
@@ -17,7 +17,7 @@ This is why I share my achievements on GitHub:
 
  - [`pydroscape`](https://sschwindt.github.io/pydroscape/) is a Python3 package for river-data analysis with open-source dependencies only.
  - [`River Architect`](https://riverarchitect.github.io/) is a sophisticated river analyses and design tool for ecomorphologically sustainable riverscape modifications. Little drawback: It has a commercial dependency, even though the codes are open-sourced.
- - [Open Science](https://sschwindt.github.io/OpenScience/) contains raw data and algorithms used to produce the results published in my papers.
+ - [`Open Science`](https://sschwindt.github.io/OpenScience/) contains raw data and algorithms used to produce the results published in my papers.
 
 
 
