@@ -1,9 +1,0 @@
----
-layout: default
-img: ssc.png
-category: Services
-title: About me
-description: |
----
-
-Since 2017, I am working on computational Ecomorphology with [Greg Pasternack](http://pasternack.ucdavis.edu/) at the University of California, Davis (USA). I got my PhD in Hydraulic Engineering from EPFL with prof. [Anton J. Schleiss](https://people.epfl.ch/anton.schleiss?lang=en) and [Mário Franca](https://www.un-ihe.org/m%C3%A1rio-franca). Find out more on my [website](https://sebastian-schwindt.org/education.html).
