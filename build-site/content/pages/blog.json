@@ -1,0 +1,11 @@
+{
+  "path": "/blog",
+  "title": "News",
+  "pageType": "list",
+  "listType": "post",
+  "hero": {
+    "image": "../images/sunset.JPG",
+    "large": true,
+    "overlay": true
+  }
+}
