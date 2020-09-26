@@ -19,6 +19,24 @@
       ]
     },
     {
+      "label": "Research",
+      "link": "/research",
+      "subMenu": [
+        {
+          "label": "Expertise",
+          "link": "/expertise"
+        },
+        {
+          "label": "Projects",
+          "link": "/projects"
+        },
+        {
+          "label": "Publcations",
+          "link": "/publications"
+        }
+      ]
+    },
+    {
       "label": "News",
       "link": "/news"
     },
