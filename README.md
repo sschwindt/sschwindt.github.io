@@ -2,25 +2,10 @@
 
 We will be back soon. Thank you for your patience.
 
-## go to build-site subfolder
+# Deploy
 
-yarn install
+1. Push changes
 
+1. Go to gatsby cloud  and trigger build
 
-working on it
-
-```
-gatsby develop
-```
-
-build website
-
-```
-gatsby build
-```
-
-## publish
-
-copy contents from build-site/public to sschwindt.github.io
-
-PUSH
+https://www.gatsbyjs.com/dashboard/
