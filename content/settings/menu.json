@@ -6,7 +6,7 @@
     },
     {
       "label": "Students",
-      "link": "/student-head",
+      "link": "/students",
       "subMenu": [
         {
           "label": "Teaching",
