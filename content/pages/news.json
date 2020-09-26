@@ -1,0 +1,11 @@
+{
+  "path": "/news",
+  "title": "News",
+  "pageType": "list",
+  "listType": "post",
+  "hero": {
+    "image": "../images/wilderness.jpg",
+    "large": true,
+    "overlay": true
+  }
+}
