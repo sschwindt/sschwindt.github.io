@@ -17,7 +17,7 @@
         "arrow": true
       },
       {
-        "label": "Contact Us",
+        "label": "Contact",
         "link": "/contact",
         "arrow": false,
         "primary": false
