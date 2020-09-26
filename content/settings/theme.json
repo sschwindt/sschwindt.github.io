@@ -26,7 +26,7 @@
     "large": false,
     "overlay": true,
     "overlap": "8rem",
-    "parallax": true
+    "parallax": false
   },
   "typography": {
     "uppercaseH2": false
