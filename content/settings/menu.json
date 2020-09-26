@@ -5,8 +5,18 @@
       "link": "/"
     },
     {
-      "label": "About",
-      "link": "/about"
+      "label": "Students",
+      "link": "/student-head",
+      "subMenu": [
+        {
+          "label": "Teaching",
+          "link": "/students-teaching"
+        },
+        {
+          "label": "Future students",
+          "link": "/students-future"
+        }
+      ]
     },
     {
       "label": "News",
