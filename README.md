@@ -15,6 +15,41 @@ npm install gh-pages --save-dev
 
 # Deploy 
 
+
+## with github pages
+
+[gatsby docs](https://www.gatsbyjs.com/docs/how-gatsby-works-with-github-pages/)
+
+* run `npm run deploy` to publish at gh-pages branch
+
+* the source files are in the master branch, so do not forget to `git push`
+
+control to what branch the pages is deployed in `package.json` > organization websites cannot use the gh-pages branch!
+
+### detailed explanation
+
+currently used for sschwindt: gh-pages (`package.json`):
+
+```
+{
+  "scripts": {
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+  }
+}
+```
+
+for switching to the amster branch use (`package.json`):
+
+```
+{
+  "scripts": {
+    "deploy": "gatsby build && gh-pages -d public -b master"
+  }
+}
+```
+
+then run `npm run deploy`
+
 ## with surge > .sh domain
 
 
@@ -43,8 +78,5 @@ result:
    Success! - Published to becreative2134.surge.sh
 ```
 
-## with github pages
-
-[gatsby docs](https://www.gatsbyjs.com/docs/how-gatsby-works-with-github-pages/)
 
 https://www.gatsbyjs.com/dashboard/
