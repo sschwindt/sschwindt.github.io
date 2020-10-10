@@ -8,13 +8,12 @@ const Header = props => (
     </div>
     <div className="content">
       <div className="inner">
-        <h1>Dimension</h1>
+        <h1>Sebastian Schwindt</h1>
         <p>
-          A fully responsive site template designed by{' '}
-          <a href="https://html5up.net">HTML5 UP</a> and released
+          hydro-morphodynamics and fluvial ecosystems{' '}
           <br />
-          for free under the{' '}
-          <a href="https://html5up.net/license">Creative Commons</a> license.
+          {' '}
+          <a href="https://orcid.org/0000-0002-7206-0542">ORCID</a>
         </p>
       </div>
     </div>
@@ -23,7 +22,7 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
-              props.onOpenArticle('intro')
+              props.onOpenArticle('about')
             }}
           >
             Intro
@@ -32,7 +31,7 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
-              props.onOpenArticle('work')
+              props.onOpenArticle('students')
             }}
           >
             Work
@@ -41,7 +40,7 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
-              props.onOpenArticle('about')
+              props.onOpenArticle('researchers')
             }}
           >
             About
