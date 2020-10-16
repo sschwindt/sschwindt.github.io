@@ -41,8 +41,8 @@ const Layout = ({ children, location }) => {
           <Helmet
             title={data.site.siteMetadata.title}
             meta={[
-              { name: 'description', content: 'Sample' },
-              { name: 'keywords', content: 'sample, something' },
+              { name: 'description', content: 'River restoration and fluvial ecosystem science' },
+              { name: 'keywords', content: 'hydraulics, teaching, warem, stuttgart, morphodynamics, python, qgis, numerical modelling, ecohydraulics, yuba, inn, drance, lausanne, davis, sebastian, schwindt' },
             ]}
           >
             <html lang="en" />

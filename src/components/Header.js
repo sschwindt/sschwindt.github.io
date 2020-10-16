@@ -3,9 +3,6 @@ import React from 'react'
 
 const Header = props => (
   <header id="header" style={props.timeout ? { display: 'none' } : {}}>
-    <div className="logo">
-      <span className="icon fa-diamond"></span>
-    </div>
     <div className="content">
       <div className="inner">
         <h1>Sebastian Schwindt</h1>
@@ -25,7 +22,7 @@ const Header = props => (
               props.onOpenArticle('about')
             }}
           >
-            Intro
+            About
           </button>
         </li>
         <li>
@@ -34,16 +31,16 @@ const Header = props => (
               props.onOpenArticle('students')
             }}
           >
-            Work
+            Students
           </button>
         </li>
         <li>
           <button
             onClick={() => {
-              props.onOpenArticle('researchers')
+              props.onOpenArticle('research')
             }}
           >
-            About
+            Research
           </button>
         </li>
         <li>
