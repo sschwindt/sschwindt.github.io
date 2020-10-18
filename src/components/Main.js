@@ -33,13 +33,13 @@ class Main extends React.Component {
             <img src={pic01} alt="" />
           </span>
           <p>
-          Dr. sc. Sebastian Schwindt is a researcher in the field of fluvial hydraulics and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">see institutional profile</a>). He leads the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">hydro-morphodynamic modelling group at the Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>.His research focuses on numerical analyses, sediment transport, ecohydraulics, and ecosystem design. The latest research focus is on the implementation of efficient data analyses and computational methods.
+          Dr. sc. Sebastian Schwindt is a researcher in the field of fluvial hydraulics and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">see institutional profile</a>). He leads the hydro-morphodynamic modelling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research focuses on numerical analyses, sediment transport, ecohydraulics, and ecosystem design. The latest research focus is on the implementation of efficient data analyses and computational methods.
           </p>
           <p>
             He completed his Bachelor (2010) and Master (2012) studies at the Technical University of Munich (Germany) in Environmental Engineering. After a short detour into the private sector, Sebastian Schwindt accomplished his doctorate at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca. His PhD thesis with, entitled <em>Hydro-morphological processes through permeable sediment traps at mountain rivers</em>, sheds light on hazardous morphodynamic processes in mountain rivers (<a href="https://infoscience.epfl.ch/record/231182" target="_blank" rel="noreferrer">download</a>).
           </p>
           <p>
-            Between 2017 and December 2019, Sebastian Schwindt pursued postdoctoral research at the University of California, Davis (USA) with Prof. Greg Pasternack. The emphasis of his postdoctoral research was on the ecohydraulic enhancement of Californias Yuba River.<br/><br/>Find out more about Sebastian Schwindt and his scientific career on <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a>.
+            Between 2017 and December 2019, Sebastian Schwindt pursued postdoctoral research at the University of California, Davis (USA) with Prof. Greg Pasternack. The emphasis of his postdoctoral research was on the ecohydraulic enhancement of the Yuba River (California, USA). Find out more about Sebastian Schwindt and his scientific career on <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a>.
           </p>
           {close}
         </article>
@@ -90,7 +90,20 @@ class Main extends React.Component {
             <img src={pic03} alt="" />
           </span>
           <p>
-            Sebastian Schwindt made several a fundamental contributions to flood and restoration science in ongoing and already accomplished projects. All projects involve a team of researchers and sometimes experts from industry. Find out more about current projects and the people involved:
+            Sebastian Schwindt made several a fundamental contributions to flood and restoration science in ongoing and already accomplished projects.
+            His full track of scientific papers is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is only a list of selected papers:
+            <ul>
+                <li>Moldenhauer (Roth), A., Piton, G., Schwindt, S., Schleiss, A. 2020. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research.</li>
+                <li><a href="https://doi.org/10.1016/j.softx.2020.100438" target="_blank">Schwindt, S., Larrieu, K., Pasternack G. B., Rabone, G.,  2020. River Architect. SoftwareX 11. doi: 10.1016/j.softx.2020.100438</a> | <a href="https://www.sciencedirect.com/science/article/pii/S235271101930281X/pdfft?md5=f9175d220a3b766b6a43a0b70f613e1f&amp;pid=1-s2.0-S235271101930281X-main.pdf" target="_blank">Download (open access)</a></li>
+                <li><a href="http://www.sciencedirect.com/science/article/pii/S0301479718312751" target="_blank">Schwindt, S., Pasternack G. B., Bratovich, P.  M., Rabone, G., Simodynes, D. , 2019. Hydro-morphological parameters generate lifespan maps for stream restoration management. Journal of Environmental Management 232, 475-489. doi: 10.1016/j.jenvman.2018.11.010</a></li>
+                <li><a href="https://doi.org/10.1080/00221686.2018.1454519" target="_blank">Schwindt, S., Franca, M. J., Schleiss, A. J., 2018. Bottom slope influence on flow and bedload transfer through contractions. Journal of Hydraulic Research 57(2), 197-210. doi: 10.1080/00221686.2018.1454519</a></li>
+                <li><a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.html" target="_blank">Schwindt, S., Franca, M. J., Reffo, A., Schleiss, A. J., 2018. Sediment traps with guiding channel and hybrid check dams improve controlled sediment retention. Natural Hazards and Earth System Science 18, 647-668. doi: 10.5194/nhess-18-647-2018</a> | <a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.pdf" target="_blank">Download  (open access)</a></li>
+                <li><a href="https://ascelibrary.org/doi/abs/10.1061/(ASCE)HY.1943-7900.0001389" target="_blank">Schwindt, S., Franca, M. J., Schleiss, A. J., 2017. Effects of lateral and vertical constrictions on flow in rough steep channels with bedload. Journal of Hydraulic Engineering 143 (12), 04017052-1-12. doi: 10.1061/(ASCE)HY.1943-7900.0001389</a></li>
+                <li><a href="http://www.sciencedirect.com/science/article/pii/S0169555X17302969" target="_blank">Schwindt, S., Franca, M. J., De Cesare, G., Schleiss, A. J., 2017. Analysis of mechanical-hydraulic deposition control measures. Geomorphology 295, 467–479. doi: 10.1016/j.geomorph.2017.07.020</a></li>
+            </ul>
+            </p>
+            <p>
+            All projects involve a team of researchers and sometimes experts from industry. Find out more about current projects and the people involved:
             <ul>
             <li><a href="https://riverarchitect.github.io/" target="_blank" rel="noreferrer">River Architect</a>: A Python-based back-end tool for river design and habitat enhancement with an extensive <a href="https://riverarchitect.github.io/RA_wiki/main_page" target="_blank" rel="noreferrer">Wiki</a>.</li>
             <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
@@ -100,9 +113,8 @@ class Main extends React.Component {
             <li><a href="https://sschwindt.github.io/pydroscape/" target="_blank" rel="noreferrer">Pydroscape</a>: Python3 tools primarily for (but not limited to) riverscape, sediment transport, geodata, and hydraulic analyses</li>
             <li><a href="https://sschwindt.github.io/OpenScience/" target="_blank" rel="noreferrer">Open Science</a>: A repository that links to data and codes of published research.</li>
             </ul>
-            <br/><br/>Find out more about Sebastian Schwindt and his scientific career on <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a>.
           </p>
-          <p> Finished scientific and engineering projects:
+          <p> Accomplished scientific and engineering projects:
           <ul>
             <li>Best available science analysis of Habitat Enhancement of the lower Yuba River (with University of California, Davis)</li>
             <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland (LCH – EPFL)</li>
