@@ -33,9 +33,13 @@ class Main extends React.Component {
             <img src={pic01} alt="" />
           </span>
           <p>
-            Dr. sc. Sebastian Schwindt is a researcher in the field of fluvial hydraulics and morphodynamics. His research focuses on numerical analyses, sediment transport, ecohydraulics, and ecosystem design. The latest research focus is on the implementation of efficient data analyses and computational methods.<br/>
-            He completed his Bachelor (2010) and Master (2012) studies at the Technical University of Munich (Germany) in Environmental Engineering. After a short detour into the private sector, Sebastian Schwindt accomplished his doctorate at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca. The title of his PhD thesis is <em>Hydro-morphological processes through permeable sediment traps at mountain rivers</em> that sheds light on hazardous morphodynamic processes in mountain rivers (<a href="https://infoscience.epfl.ch/record/231182">download</a>).<br/>
-            Between 2017 and December 2019, Sebastian Schwindt pursued postdoctoral research at the University of California, Davis (USA) with Prof. Greg Pasternack. The emphasis of his postdoctoral research was on the ecohydraulic enhancement of Californias Yuba River.<br/>More information about Sebastian Schwindt and his scientific career can be found on <a href="https://orcid.org/0000-0002-7206-0542">ORCID.org</a>.
+          Dr. sc. Sebastian Schwindt is a researcher in the field of fluvial hydraulics and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">see institutional profile</a>). He leads the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">hydro-morphodynamic modelling group at the Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>.His research focuses on numerical analyses, sediment transport, ecohydraulics, and ecosystem design. The latest research focus is on the implementation of efficient data analyses and computational methods.
+          </p>
+          <p>
+            He completed his Bachelor (2010) and Master (2012) studies at the Technical University of Munich (Germany) in Environmental Engineering. After a short detour into the private sector, Sebastian Schwindt accomplished his doctorate at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca. His PhD thesis with, entitled <em>Hydro-morphological processes through permeable sediment traps at mountain rivers</em>, sheds light on hazardous morphodynamic processes in mountain rivers (<a href="https://infoscience.epfl.ch/record/231182" target="_blank" rel="noreferrer">download</a>).
+          </p>
+          <p>
+            Between 2017 and December 2019, Sebastian Schwindt pursued postdoctoral research at the University of California, Davis (USA) with Prof. Greg Pasternack. The emphasis of his postdoctoral research was on the ecohydraulic enhancement of Californias Yuba River.<br/><br/>Find out more about Sebastian Schwindt and his scientific career on <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a>.
           </p>
           {close}
         </article>
@@ -47,14 +51,29 @@ class Main extends React.Component {
           }`}
           style={{ display: 'none' }}
         >
-          <h2 className="major">Students <span className="icon fa-graduation-cap"></span></h2>
+          <h2 className="major">Students & Teaching <span className="icon fa-graduation-cap"></span></h2>
           <span className="image main">
             <img src={pic02} alt="" />
           </span>
           <p>
-            Digital teaching is now and this is why our online learning website <b><a href="https://hydro-informatics.github.io/" title="https://hydro-informatics.github.io/">hydro-informatics.github.io</a></b> offers easily accessible e-textbook, materials (such as Python scripts), and interesting exercises. Get ready with virtual machines to leverage powerful numerical simulation tools, manage Python environments, and perform efficient geo-spatial analyses.<br/>
-            <b>Are you looking for an exciting Bachelor or Master Thesis?</b> Visit our <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/">team website</a> to apply for one of our anouncements in the fields of hydro-morphodynamic modelling, restoration science, and computational hydraulics. We also offer interdisciplinary theses with links to psychology (human recognition), agriculture, and statistical methods.<br/>
-            <b>You already have an idea for developing novel research or a practice (applied) project?</b> Use the contact page to write us a message and get your creativity started.
+             <b>Teaching</b> - Sebastian Schwindt offers classes, workshops and courses with respect to the following subjects:
+            <ul>
+            <li>Basics and advanced Python programming (including collaborative code design and documentation) for Water Resources Engineering, Ecohydraulic Research, and Spatial Data Analysis</li>
+            <li>Numerical Modelling, Sediment Transport and Morphodynamics for Hydraulic Engineers</li>
+            <li>Integrated Flood Protection Management and River Engineering</li>
+            </ul>
+            More details, tutorials (e-textbooks), materials (sample scripts and datasets), and practice-oriented exercises are available at <b><a href="https://hydro-informatics.github.io/" title="hydro-informatics.github.io/">hydro-informatics.github.io</a></b>.
+          </p>
+          <p>
+            <b>Graduation students: Are you looking for an exciting Bachelor or Master Thesis?</b> Visit our <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/">team website</a> to apply for one of our announcements. Currently, the following topics are waiting for motivated students:<br/>
+            <ul>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/MA_Banja_Reservoir_modelling_2D.PDF">Building the future: A two-dimensional (2D) numerical model of morphodynamic processes in a large reservoir</a> (coed with Kilian Mouris)</li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_BA_MA_Colmation.pdf">Colmation analysis across scales</a></li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_mesh_generators.pdf">Comparison of mesh generators for hydro-morphodynamic modelling</a> (coed with Maxiilian Kunz)</li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_was_ist_was_map_comparison_20200703_fin.pdf">Psychologie der Präzision: Subjektive Korrelation morphodynamischen Wandels</a> (coed with Beatriz Negreiros)<br/>Note: The English title is <em>Cognitive precision: Subjective correlation of morphodynamic change</em></li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_06_25_MA_sediment_replenishments.pdf">Make the Inn sustainable again – 2D Numerical Modelling of Sediment Replenishments in the River Inn</a> (coed with Maximilian Kunz)</li>
+            </ul><br/>
+            <b>You already have an idea for an innovative research or a practice (applied) project?</b> Use the contact page to write us a message and get your creativity started.
           </p>
           {close}
         </article>
@@ -71,7 +90,31 @@ class Main extends React.Component {
             <img src={pic03} alt="" />
           </span>
           <p>
-            Sebastian Schwindt made a fundamental contribution to restoration science with an algorithmic approach to the estimation of lifespans of river engineering features. The outcome is the software River Architect, which is freely available and thoroughly documented on <a href="https://riverarchitect.github.io/">riverarchitect.github.io</a>. 
+            Sebastian Schwindt made several a fundamental contributions to flood and restoration science in ongoing and already accomplished projects. All projects involve a team of researchers and sometimes experts from industry. Find out more about current projects and the people involved:
+            <ul>
+            <li><a href="https://riverarchitect.github.io/" target="_blank" rel="noreferrer">River Architect</a>: A Python-based back-end tool for river design and habitat enhancement with an extensive <a href="https://riverarchitect.github.io/RA_wiki/main_page" target="_blank" rel="noreferrer">Wiki</a>.</li>
+            <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
+            <li>Ecosystem Analysis and Restoration of the Inn River (Bavaria, Germany).</li>
+            <li><a href="https://github.com/hydro-informatics/geo-utils" target="_blank" rel="noreferrer">GEO-UTILS</a>: A Python3 package for geo-spatial analyses of fluvial ecosystems.</li>
+            <li><a href="https://github.com/sschwindt/hy2opt" target="_blank" rel="noreferrer">HY2OPT</a>: A Python3 interface for the optimization of numerical models including pre- and post-processing (early stage project).</li>
+            <li><a href="https://sschwindt.github.io/pydroscape/" target="_blank" rel="noreferrer">Pydroscape</a>: Python3 tools primarily for (but not limited to) riverscape, sediment transport, geodata, and hydraulic analyses</li>
+            <li><a href="https://sschwindt.github.io/OpenScience/" target="_blank" rel="noreferrer">Open Science</a>: A repository that links to data and codes of published research.</li>
+            </ul>
+            <br/><br/>Find out more about Sebastian Schwindt and his scientific career on <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a>.
+          </p>
+          <p> Finished scientific and engineering projects:
+          <ul>
+            <li>Best available science analysis of Habitat Enhancement of the lower Yuba River (with University of California, Davis)</li>
+            <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland (LCH – EPFL)</li>
+            <li>Physical modelling optimization of a filter check dam at the Drance, Martigny, VS, Switzerland (with LCH – EPFL)</li>
+            <li><a href="https://www.rivermanagement.ch/" target="_blank" rel="noreferrer">Rivermanagement</a>(Sediment and habitat dynamics) in Switzerland (LCH – EPFL)</li>
+            <li>Restoration of the pumped storage hydro power station Happurg, Germany (with Fichtner GmbH&amp;Co.KG)</li>
+            <li>Physical model of the Rhône at Massongex for the installation of a run-of-river hydro power plant (with LCH – EPFL)</li>
+            <li>Preparation of the feasibility study for the Isimba hydro power plant in Uganda (with Fichtner GmbH&amp;Co.KG)</li>
+          </ul>
+          </p>
+          <b>Get more information or start a new project by sending an inquiry on the Contact form.</b>
+          <p>
           </p>
           {close}
         </article>
@@ -108,22 +151,22 @@ class Main extends React.Component {
           </form>
           <ul className="icons">
             <li>
-              <a href="http://www.linkedin.com/in/sebastian-schwindt" target="_blank" className="icon fa-linkedin">
+              <a href="http://www.linkedin.com/in/sebastian-schwindt" target="_blank" rel="noreferrer" className="icon fa-linkedin">
                 <span className="label">Linkedin</span>
               </a>
             </li>
             <li>
-              <a href="https://scholar.google.ch/citations?user=GdmFKPgAAAAJ&hl=de&oi=ao" target="_blank" className="icon fa-google">
+              <a href="https://scholar.google.ch/citations?user=GdmFKPgAAAAJ&hl=de&oi=ao" target="_blank" rel="noreferrer" className="icon fa-google">
                 <span className="label">Google Scholar</span>
               </a>
             </li>
             <li>
-              <a href="https://www.researchgate.net/profile/Sebastian_Schwindt" target="_blank" className="data-icon fa-brands:researchgate">
+              <a href="https://www.researchgate.net/profile/Sebastian_Schwindt" target="_blank" rel="noreferrer" className="data-icon fa-brands:researchgate">
                 <span className="label">R<sup>G</sup></span>
               </a>
             </li>
             <li>
-              <a href="https://github.com/sschwindt" target="_blank" className="icon fa-github">
+              <a href="https://github.com/sschwindt" target="_blank" rel="noreferrer" className="icon fa-github">
                 <span className="label">GitHub</span>
               </a>
             </li>
