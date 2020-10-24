@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import pic01 from '../images/ssc.png'
 import pic02 from '../images/under-water.png'
-import pic03 from '../images/trout.jpg'
+import pic03 from '../images/lidar-wide.jpg'
 
 class Main extends React.Component {
   render() {
@@ -90,28 +90,32 @@ class Main extends React.Component {
             <img src={pic03} alt="" />
           </span>
           <p>
-            Sebastian Schwindt made several a fundamental contributions to flood and restoration science in ongoing and already accomplished projects.
-            His full track of scientific papers is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is only a list of selected papers:
+            The research of Sebastian Schwindt focuses on hyraulic engineering, restoration science, and the development of algorithms for spatial data analysis. The full record of his scientific papers is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of selected papers:
             <ul>
                 <li>Moldenhauer (Roth), A., Piton, G., Schwindt, S., Schleiss, A. 2020. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research.</li>
                 <li><a href="https://doi.org/10.1016/j.softx.2020.100438" target="_blank" rel="noreferrer">Schwindt, S., Larrieu, K., Pasternack G. B., Rabone, G.,  2020. River Architect. SoftwareX 11. doi: 10.1016/j.softx.2020.100438</a> | <a href="https://www.sciencedirect.com/science/article/pii/S235271101930281X/pdfft?md5=f9175d220a3b766b6a43a0b70f613e1f&amp;pid=1-s2.0-S235271101930281X-main.pdf" target="_blank" rel="noreferrer">Download (open access)</a></li>
                 <li><a href="http://www.sciencedirect.com/science/article/pii/S0301479718312751" target="_blank" rel="noreferrer">Schwindt, S., Pasternack G. B., Bratovich, P.  M., Rabone, G., Simodynes, D. , 2019. Hydro-morphological parameters generate lifespan maps for stream restoration management. Journal of Environmental Management 232, 475-489. doi: 10.1016/j.jenvman.2018.11.010</a></li>
-                <li><a href="https://doi.org/10.1080/00221686.2018.1454519" target="_blank" rel="noreferrer">Schwindt, S., Franca, M. J., Schleiss, A. J., 2018. Bottom slope influence on flow and bedload transfer through contractions. Journal of Hydraulic Research 57(2), 197-210. doi: 10.1080/00221686.2018.1454519</a></li>
                 <li><a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.html" target="_blank" rel="noreferrer">Schwindt, S., Franca, M. J., Reffo, A., Schleiss, A. J., 2018. Sediment traps with guiding channel and hybrid check dams improve controlled sediment retention. Natural Hazards and Earth System Science 18, 647-668. doi: 10.5194/nhess-18-647-2018</a> | <a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.pdf" target="_blank" rel="noreferrer">Download  (open access)</a></li>
                 <li><a href="https://ascelibrary.org/doi/abs/10.1061/(ASCE)HY.1943-7900.0001389" target="_blank" rel="noreferrer">Schwindt, S., Franca, M. J., Schleiss, A. J., 2017. Effects of lateral and vertical constrictions on flow in rough steep channels with bedload. Journal of Hydraulic Engineering 143 (12), 04017052-1-12. doi: 10.1061/(ASCE)HY.1943-7900.0001389</a></li>
                 <li><a href="http://www.sciencedirect.com/science/article/pii/S0169555X17302969" target="_blank" rel="noreferrer">Schwindt, S., Franca, M. J., De Cesare, G., Schleiss, A. J., 2017. Analysis of mechanical-hydraulic deposition control measures. Geomorphology 295, 467–479. doi: 10.1016/j.geomorph.2017.07.020</a></li>
             </ul>
             </p>
             <p>
-            All projects involve a team of researchers and sometimes experts from industry. Find out more about current projects and the people involved:
+            Codes, research algorithms, and Python packages of Sebastian Schwindt are hosted on GitHub, along with detailed documentations. The following programs are available:
             <ul>
+            <li><a href="https://hylas.readthedocs.io/" target="_blank" rel="noreferrer">HYLAS</a>: A Python3 package for extracting data from <em>las</em> files (lidar data) - for example to create digital elevation models (DEM) or waveform GeoTIFF rasters for extended landscape analyses (e.g., random forest applications).</li>
+            <li><a href="https://geo-utils.readthedocs.io/" target="_blank" rel="noreferrer">GEO-UTILS</a>: A Python3 package for geo-spatial analyses of fluvial ecosystems.</li>
             <li><a href="https://riverarchitect.github.io/" target="_blank" rel="noreferrer">River Architect</a>: A Python-based back-end tool for river design and habitat enhancement with an extensive <a href="https://riverarchitect.github.io/RA_wiki/main_page" target="_blank" rel="noreferrer">Wiki</a>.</li>
-            <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
-            <li>Ecosystem Analysis and Restoration of the Inn River (Bavaria, Germany).</li>
-            <li><a href="https://github.com/hydro-informatics/geo-utils" target="_blank" rel="noreferrer">GEO-UTILS</a>: A Python3 package for geo-spatial analyses of fluvial ecosystems.</li>
-            <li><a href="https://github.com/sschwindt/hy2opt" target="_blank" rel="noreferrer">HY2OPT</a>: A Python3 interface for the optimization of numerical models including pre- and post-processing (early stage project).</li>
-            <li><a href="https://sschwindt.github.io/pydroscape/" target="_blank" rel="noreferrer">Pydroscape</a>: Python3 tools primarily for (but not limited to) riverscape, sediment transport, geodata, and hydraulic analyses</li>
+            <li><a href="https://sschwindt.github.io/pydroscape/" target="_blank" rel="noreferrer">Pydroscape</a>: Basic Python3 tools primarily for (but not limited to) riverscape, sediment transport, geodata, and hydraulic analyses.</li>
             <li><a href="https://sschwindt.github.io/OpenScience/" target="_blank" rel="noreferrer">Open Science</a>: A repository that links to data and codes of published research.</li>
+            <li><a href="https://github.com/sschwindt/hy2opt" target="_blank" rel="noreferrer">HY2OPT</a>: A Python3 interface for the optimization of numerical models including pre- and post-processing (development stage - private access only - send an inquiry to learn more).</li>
+            </ul>
+            </p>
+            <p>
+            Currently ongoing projects of Sebastian Schwindt are:
+            <ul>
+            <li>Ecosystem Analysis and Restoration of the Inn River (Bavaria, Germany).</li>
+            <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
             </ul>
           </p>
           <p> Accomplished scientific and engineering projects:
