@@ -92,12 +92,12 @@ class Main extends React.Component {
           <p>
             The research of Sebastian Schwindt focuses on hyraulic engineering, restoration science, and the development of algorithms for spatial data analysis. The full record of his scientific papers is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of selected papers:
             <ul>
-                <li>Moldenhauer (Roth), A., Piton, G., Schwindt, S., Schleiss, A. 2020. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research.</li>
-                <li><a href="https://doi.org/10.1016/j.softx.2020.100438" target="_blank" rel="noreferrer">Schwindt, S., Larrieu, K., Pasternack G. B., Rabone, G.,  2020. River Architect. SoftwareX 11. doi: 10.1016/j.softx.2020.100438</a> | <a href="https://www.sciencedirect.com/science/article/pii/S235271101930281X/pdfft?md5=f9175d220a3b766b6a43a0b70f613e1f&amp;pid=1-s2.0-S235271101930281X-main.pdf" target="_blank" rel="noreferrer">Download (open access)</a></li>
-                <li><a href="http://www.sciencedirect.com/science/article/pii/S0301479718312751" target="_blank" rel="noreferrer">Schwindt, S., Pasternack G. B., Bratovich, P.  M., Rabone, G., Simodynes, D. , 2019. Hydro-morphological parameters generate lifespan maps for stream restoration management. Journal of Environmental Management 232, 475-489. doi: 10.1016/j.jenvman.2018.11.010</a></li>
-                <li><a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.html" target="_blank" rel="noreferrer">Schwindt, S., Franca, M. J., Reffo, A., Schleiss, A. J., 2018. Sediment traps with guiding channel and hybrid check dams improve controlled sediment retention. Natural Hazards and Earth System Science 18, 647-668. doi: 10.5194/nhess-18-647-2018</a> | <a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.pdf" target="_blank" rel="noreferrer">Download  (open access)</a></li>
-                <li><a href="https://ascelibrary.org/doi/abs/10.1061/(ASCE)HY.1943-7900.0001389" target="_blank" rel="noreferrer">Schwindt, S., Franca, M. J., Schleiss, A. J., 2017. Effects of lateral and vertical constrictions on flow in rough steep channels with bedload. Journal of Hydraulic Engineering 143 (12), 04017052-1-12. doi: 10.1061/(ASCE)HY.1943-7900.0001389</a></li>
-                <li><a href="http://www.sciencedirect.com/science/article/pii/S0169555X17302969" target="_blank" rel="noreferrer">Schwindt, S., Franca, M. J., De Cesare, G., Schleiss, A. J., 2017. Analysis of mechanical-hydraulic deposition control measures. Geomorphology 295, 467–479. doi: 10.1016/j.geomorph.2017.07.020</a></li>
+                <li>Moldenhauer (Roth), Piton, Schwindt, Jafarnejad, Schleiss, 2020. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research.</li>
+                <li><a href="https://doi.org/10.1016/j.softx.2020.100438" target="_blank" rel="noreferrer">Schwindt, Larrieu, Pasternack, Rabone, 2020. River Architect. SoftwareX 11. doi: 10.1016/j.softx.2020.100438</a> | <a href="https://www.sciencedirect.com/science/article/pii/S235271101930281X/pdfft?md5=f9175d220a3b766b6a43a0b70f613e1f&amp;pid=1-s2.0-S235271101930281X-main.pdf" target="_blank" rel="noreferrer">Download (open access)</a></li>
+                <li><a href="http://www.sciencedirect.com/science/article/pii/S0301479718312751" target="_blank" rel="noreferrer">Schwindt, Pasternack, Bratovich, Rabone, Simodynes, 2019. Hydro-morphological parameters generate lifespan maps for stream restoration management. Journal of Environmental Management 232, 475-489. doi: 10.1016/j.jenvman.2018.11.010</a></li>
+                <li><a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.html" target="_blank" rel="noreferrer">Schwindt, Franca, Reffo, Schleiss, 2018. Sediment traps with guiding channel and hybrid check dams improve controlled sediment retention. Natural Hazards and Earth System Science 18, 647-668. doi: 10.5194/nhess-18-647-2018</a> | <a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.pdf" target="_blank" rel="noreferrer">Download  (open access)</a></li>
+                <li><a href="https://ascelibrary.org/doi/abs/10.1061/(ASCE)HY.1943-7900.0001389" target="_blank" rel="noreferrer">Schwindt, Franca, Schleiss, 2017. Effects of lateral and vertical constrictions on flow in rough steep channels with bedload. Journal of Hydraulic Engineering 143 (12), 04017052-1-12. doi: 10.1061/(ASCE)HY.1943-7900.0001389</a></li>
+                <li><a href="http://www.sciencedirect.com/science/article/pii/S0169555X17302969" target="_blank" rel="noreferrer">Schwindt, Franca, De Cesare, Schleiss, 2017. Analysis of mechanical-hydraulic deposition control measures. Geomorphology 295, 467–479. doi: 10.1016/j.geomorph.2017.07.020</a></li>
             </ul>
             </p>
             <p>
@@ -121,12 +121,12 @@ class Main extends React.Component {
           <p> Accomplished scientific and engineering projects:
           <ul>
             <li>Best available science analysis of Habitat Enhancement of the lower Yuba River (with University of California, Davis)</li>
-            <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland (LCH – EPFL)</li>
-            <li>Physical modelling optimization of a filter check dam at the Drance, Martigny, VS, Switzerland (with LCH – EPFL)</li>
-            <li><a href="https://www.rivermanagement.ch/" target="_blank" rel="noreferrer">Rivermanagement</a>: Sediment and habitat dynamics in Switzerland (LCH – EPFL)</li>
-            <li>Restoration of the pumped storage hydro power station Happurg, Germany (with Fichtner GmbH&amp;Co.KG)</li>
-            <li>Physical model of the Rhône at Massongex for the installation of a run-of-river hydro power plant (with LCH – EPFL)</li>
-            <li>Preparation of the feasibility study for the Isimba hydro power plant in Uganda (with Fichtner GmbH&amp;Co.KG)</li>
+            <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland</li>
+            <li>Physical modelling optimization of a filter check dam at the Drance, Martigny, VS, Switzerland </li>
+            <li><a href="https://www.rivermanagement.ch/" target="_blank" rel="noreferrer">Rivermanagement</a>: Sediment and habitat dynamics in Switzerland </li>
+            <li>Restoration of the pumped storage hydro power station Happurg, Germany</li>
+            <li>Physical model of the Rhône at Massongex for the installation of a run-of-river hydro power plant</li>
+            <li>Preparation of the feasibility study for the Isimba hydro power plant in Uganda</li>
           </ul>
           </p>
           <b>Get more information or start a new project by sending an inquiry on the Contact form.</b>

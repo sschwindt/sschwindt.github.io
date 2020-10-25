@@ -1,8 +1,12 @@
 module.exports = {
   siteMetadata: {
     title: 'Sebastian Schwindt',
+    titleTemplate: "%s · Hydro-morphodynamics",
     author: 'Sebastian Schwindt',
     description: 'Hydraulic, Morphodymnamic and Fluvial Ecosystems Science',
+    url: 'https://www.sebastian-schwindt.org',
+    siteUrl: 'https://sebastian-schwindt.org',
+    image: "src/images/hycon.png",
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -19,5 +23,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-sass',
+    'gatsby-plugin-sitemap',
   ],
 }
