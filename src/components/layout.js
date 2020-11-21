@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import CookieConsent from "react-cookie-consent";
 
 import '../assets/scss/main.scss'
+
 
 const Layout = ({ children, location }) => {
 
@@ -47,6 +49,18 @@ const Layout = ({ children, location }) => {
           >
             <html lang="en" />
           </Helmet>
+          <CookieConsent
+              location="bottom"
+              buttonText="Accept"
+              style={{ background: "#0e102e" }}
+              enableDeclineButton="True"
+              declineButtonText="Decline"
+              cookieName="gatsby-gdpr-google-analytics"
+              buttonStyle={{ color: "#33ffa5", background: "#09923d"}}
+              declineButtonStyle={{ color: "#33ffa5", background: "#3f0573"}}
+          >
+              This website uses cookies to enhance the user experience.
+          </CookieConsent>
           {content}
         </>
       )}

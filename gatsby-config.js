@@ -3,7 +3,7 @@ module.exports = {
     title: 'Sebastian Schwindt',
     titleTemplate: "%s · Hydro-morphodynamics",
     author: 'Sebastian Schwindt',
-    description: 'Hydraulic, Morphodymnamic and Fluvial Ecosystems Science',
+    description: 'Hydraulics, Morphodymnamics and Fluvial Ecosystems Science',
     url: 'https://www.sebastian-schwindt.org',
     siteUrl: 'https://sebastian-schwindt.org',
     image: "src/images/hycon.png",
@@ -24,5 +24,17 @@ module.exports = {
     },
     'gatsby-plugin-sass',
     'gatsby-plugin-sitemap',
+    {
+      resolve: `gatsby-plugin-gdpr-cookies`,
+      options: {
+        googleAnalytics: {
+          trackingId: "G-LMMG1NJ3C3", // leave empty if you want to disable the tracker
+          cookieName: "gatsby-gdpr-google-analytics", // here can you change the cookie name
+          anonymize: true, // default
+        },
+        // defines the environments where the tracking should be available  - default is ["production"]
+        environments: ["production", "development"],
+      },
+    },
   ],
 }

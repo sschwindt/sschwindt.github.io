@@ -1,9 +1,6 @@
+# Welcome
 
-
-
-# Under construction
-
-We will be back soon. Thank you for your patience.
+This website is build with [Gatsby](https://www.gatsbyjs.com/).
 
 
 ## npm requirements
@@ -13,12 +10,16 @@ npm install --global surge
 npm install gh-pages --save-dev
 
 
-# Deploy 
+# Update / deploy 
 
 
 ## with github pages
 
 [gatsby docs](https://www.gatsbyjs.com/docs/how-gatsby-works-with-github-pages/)
+
+* implement modifications
+
+* locally render the website with `gatsby develop`
 
 * run `npm run deploy` to publish at gh-pages branch
 
@@ -38,7 +39,7 @@ currently used for sschwindt: gh-pages (`package.json`):
 }
 ```
 
-for switching to the amster branch use (`package.json`):
+for switching to the master branch use (`package.json`):
 
 ```
 {
@@ -54,7 +55,7 @@ then run `npm run deploy`
 
 
 1. login to surge
-`surg login`
+`surge login`
 
 1. build website
 `gatsby build`
