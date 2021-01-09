@@ -3,7 +3,7 @@ module.exports = {
     title: 'Sebastian Schwindt',
     titleTemplate: "%s · Hydro-morphodynamics",
     author: 'Sebastian Schwindt',
-    description: 'Hydraulics, Morphodymnamics and Fluvial Ecosystems Science',
+    description: 'Hydraulics, Morphodynamics and Fluvial Ecosystems Science',
     url: 'https://www.sebastian-schwindt.org',
     siteUrl: 'https://sebastian-schwindt.org',
     image: "src/images/hycon.png",
