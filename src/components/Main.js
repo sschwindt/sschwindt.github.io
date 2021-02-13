@@ -30,10 +30,10 @@ class Main extends React.Component {
         >
           <h2 className="major">About</h2>
           <span className="image main">
-            <img src={pic01} alt="" />
+            <img src={pic01} alt="Sebastian Schwindt rivers Python" />
           </span>
           <p>
-          Dr. sc. Sebastian Schwindt is a researcher in the field of fluvial hydraulics and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">see institutional profile</a>). He leads the hydro-morphodynamic modelling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research focuses on numerical analyses, sediment transport, ecohydraulics, and ecosystem design. The focus of his latest research is on efficient data analyses, accuracy of numerical models, and computational methods.
+          Dr. sc. Sebastian Schwindt is a researcher in fluvial hydraulics and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">see institutional profile</a>). He leads the hydro-morphodynamic modelling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research focuses on numerical analyses, sediment transport, ecohydraulics, and ecosystem design. The focus of his latest works is on efficient data analyses, accuracy of numerical models, and computational methods.
           </p>
           <p>
             He completed his Bachelor (2010) and Master (2012) studies at the Technical University of Munich (Germany) in Environmental Engineering. After a short detour into the private sector, Sebastian accomplished his doctorate at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca. His PhD thesis with, entitled <em>Hydro-morphological processes through permeable sediment traps at mountain rivers</em>, sheds light on hazardous morphodynamic processes in mountain rivers (<a href="https://infoscience.epfl.ch/record/231182" target="_blank" rel="noreferrer">download</a>).
@@ -53,7 +53,7 @@ class Main extends React.Component {
         >
           <h2 className="major">Students <span className="icon fa-graduation-cap"></span></h2>
           <span className="image main">
-            <img src={pic02} alt="" />
+            <img src={pic02} alt="study water resources engineering management research" />
           </span>
           <p>
              <b>Teaching</b> - Sebastian offers classes, workshops and courses with respect to the following subjects:
@@ -67,12 +67,12 @@ class Main extends React.Component {
           <p>
             <b>Graduating students: Are you looking for an exciting Bachelor or Master Thesis?</b> Visit our <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">team website</a> to apply for one of our announcements. Currently, the following topics are waiting for motivated students:<br/>
             <ul>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BSc-2021-Ecosystem-analysis-Rhine.pdf" target="_blank" rel="noreferrer">Ecosystem analysis of the Rhine</a></li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_BA_MA_Colmation.pdf" target="_blank" rel="noreferrer">Colmation analysis across scales</a></li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BSc-2021-Ecosystem-analysis-Rhine.pdf" target="_blank" rel="noreferrer">Ecosystem analysis of the Rhine</a> (coed with Maximilian Kunz)</li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2021_BA_MA_discover-openFOAM.pdf" target="_blank" rel="noreferrer">Enable open-source numerical three-dimensional (3D) modelling</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_BA_MA_Colmation.pdf" target="_blank" rel="noreferrer">Colmation analysis across scales</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_mesh_generators.pdf">Comparison of mesh generators for hydro-morphodynamic modelling</a> (coed with Maximilian Kunz)</li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_was_ist_was_map_comparison_20200703_fin.pdf" target="_blank" rel="noreferrer">Psychologie der Präzision: Subjektive Korrelation morphodynamischen Wandels</a> (coed with Beatriz Negreiros)<br/>English title: <em>Cognitive precision: Subjective correlation of morphodynamic change</em></li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_06_25_MA_sediment_replenishments.pdf" target="_blank" rel="noreferrer">Make the Inn sustainable again – 2D Numerical Modelling of Sediment Replenishments in the River Inn</a> (coed with Maximilian Kunz)</li>
             </ul><br/>
             <b>You already have an idea for an innovative research or a practice (applied) project?</b> Contact Sebastian and get your creativity started.
           </p>
@@ -88,13 +88,13 @@ class Main extends React.Component {
         >
           <h2 className="major">Research</h2>
           <span className="image main">
-            <img src={pic03} alt="" />
+            <img src={pic03} alt="river sciences" />
           </span>
           <p>
-            Sebastians research focuses on hyraulic engineering, restoration science, ecohydraulics, and the development of Python algorithms for combined numerical-spatial data analysis. The full record of his scientific papers is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of selected papers:
+            Sebastian focuses on hydraulic engineering, restoration science, ecohydraulics, and the development of Python algorithms for deterministic numerical-spatial data analysis. The full record of his scientific works is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of selected papers:
             <ul>
                 <li><a href="http://dx.doi.org/10.1002/eco.2268" target="_blank" rel="noreferrer">Larrieu, Pasternack, Schwindt, 2020. Automated analysis of lateral river connectivity and fish stranding risks-Part 1: Review, theory and algorithm. Ecohydrology. doi:10.1002/eco.2268</a></li>
-                <li><a href="https://doi.org/10.1016/j.ijsrc.2020.07.007" target="_blank" rel="noreferrer">Moldenhauer-Roth, Piton, Schwindt, Jafarnejad, Schleiss, 2020. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research. doi:10.1016/j.ijsrc.2020.07.007</a></li>
+                <li><a href="https://doi.org/10.1016/j.ijsrc.2020.07.007" target="_blank" rel="noreferrer">Moldenhauer-Roth, Piton, Schwindt, Jafarnejad, Schleiss, 2021. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research. doi:10.1016/j.ijsrc.2020.07.007</a></li>
                 <li><a href="https://doi.org/10.1016/j.softx.2020.100438" target="_blank" rel="noreferrer">Schwindt, Larrieu, Pasternack, Rabone, 2020. River Architect. SoftwareX 11. doi: 10.1016/j.softx.2020.100438</a> | <a href="https://www.sciencedirect.com/science/article/pii/S235271101930281X/pdfft?md5=f9175d220a3b766b6a43a0b70f613e1f&amp;pid=1-s2.0-S235271101930281X-main.pdf" target="_blank" rel="noreferrer">Download (open access)</a></li>
                 <li><a href="http://www.sciencedirect.com/science/article/pii/S0301479718312751" target="_blank" rel="noreferrer">Schwindt, Pasternack, Bratovich, Rabone, Simodynes, 2019. Hydro-morphological parameters generate lifespan maps for stream restoration management. Journal of Environmental Management 232, 475-489. doi: 10.1016/j.jenvman.2018.11.010</a></li>
                 <li><a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.html" target="_blank" rel="noreferrer">Schwindt, Franca, Reffo, Schleiss, 2018. Sediment traps with guiding channel and hybrid check dams improve controlled sediment retention. Natural Hazards and Earth System Science 18, 647-668. doi: 10.5194/nhess-18-647-2018</a> | <a href="https://www.nat-hazards-earth-syst-sci.net/18/647/2018/nhess-18-647-2018.pdf" target="_blank" rel="noreferrer">Download  (open access)</a></li>
