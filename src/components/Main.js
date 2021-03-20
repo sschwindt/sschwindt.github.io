@@ -65,12 +65,11 @@ class Main extends React.Component {
             More details, tutorials (e-textbooks), materials (sample scripts and datasets), and practice-oriented exercises are available at <b><a href="https://hydro-informatics.github.io/" title="hydro-informatics.github.io/" target="_blank" rel="noreferrer">hydro-informatics.github.io</a></b>.
           </p>
           <p>
-            <b>Graduating students: Are you looking for an exciting Bachelor or Master Thesis?</b> Visit our <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">team website</a> to apply for one of our announcements. Currently, the following topics are waiting for motivated students:<br/>
+            <b>Graduating students: Are you looking for an exciting Bachelor or Master Thesis?</b> Visit the <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">IWS team website</a> to apply for one of the announcements. Currently, the following topics are waiting for motivated students:<br/>
             <ul>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_BA_MA_Colmation.pdf" target="_blank" rel="noreferrer">Colmation analysis across scales</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BSc-2021-Ecosystem-analysis-Rhine.pdf" target="_blank" rel="noreferrer">Ecosystem analysis of the Rhine</a> (coed with Maximilian Kunz)</li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2021_BA_MA_discover-openFOAM.pdf" target="_blank" rel="noreferrer">Enable open-source numerical three-dimensional (3D) modelling</a></li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_BA_MA_Colmation.pdf" target="_blank" rel="noreferrer">Colmation analysis across scales</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_mesh_generators.pdf">Comparison of mesh generators for hydro-morphodynamic modelling</a> (coed with Maximilian Kunz)</li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_was_ist_was_map_comparison_20200703_fin.pdf" target="_blank" rel="noreferrer">Psychologie der Präzision: Subjektive Korrelation morphodynamischen Wandels</a> (coed with Beatriz Negreiros)<br/>English title: <em>Cognitive precision: Subjective correlation of morphodynamic change</em></li>
             </ul><br/>
@@ -113,10 +112,17 @@ class Main extends React.Component {
             </ul>
             </p>
             <p>
+            <b>Awards and Distinctions</b><br/>
+            <ul>
+            <li><a href="https://iahr2020.pl/2021/02/22/iahr-gerhard-jirka-award-results/" target="_blank" rel="noreferrer">IAHR Gerhard Jirka Award for the presentation <i>Modelling and Design Automation of Nature-based River Engineering</i> at the IAHR Europe 2020 conference, Warsaw, Poland</a></li>
+            <li><a href="https://connect.agu.org/epsp/spotlight/oct-2019" target="_blank" rel="noreferrer">American Geophysical Union (AGU) – Earth and Planetary Surface Processes’ Early Career Researcher Spotlight (October 2019)</a></li>
+            </ul>
+            </p>
+            <p>
             Sebastian is currently working on the following projects:
             <ul>
             <li><a href="https://econnect.readthedocs.io/en/latest/" target="_blank" rel="noreferrer">Hydro-morphodynamic connectivity and ecosystem design in a changing environment</a> (funded by the <a href="https://www.dfg.de/" target="_blank" rel="noreferrer">DFG</a> and in collaboration with the NSFC).</li>
-            <li>Ecosystem Analysis and Restoration of the Inn River (Bavaria, Germany).</li>
+            <li><a href="https://www.iws.uni-stuttgart.de/en/institute/research/projects/lww/va/20190701/" target="_blank" rel="noreferrer">Ecosystem Analysis and Restoration of the Inn</a> (Bavaria, Germany).</li>
             <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
             </ul>
           </p>
