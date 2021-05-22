@@ -69,8 +69,7 @@ class Main extends React.Component {
             <ul>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_BA_MA_Colmation.pdf" target="_blank" rel="noreferrer">Colmation analysis across scales</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BSc-2021-Ecosystem-analysis-Rhine.pdf" target="_blank" rel="noreferrer">Ecosystem analysis of the Rhine</a> (coed with Maximilian Kunz)</li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2021_BA_MA_discover-openFOAM.pdf" target="_blank" rel="noreferrer">Enable open-source numerical three-dimensional (3D) modelling</a></li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_mesh_generators.pdf">Comparison of mesh generators for hydro-morphodynamic modelling</a> (coed with Maximilian Kunz)</li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2021_BA_MA_discover-openFOAM.pdf" target="_blank" rel="noreferrer">Enable open-source numerical three-dimensional (3d) modelling with OpenFOAM</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_was_ist_was_map_comparison_20200703_fin.pdf" target="_blank" rel="noreferrer">Psychologie der Präzision: Subjektive Korrelation morphodynamischen Wandels</a> (coed with Beatriz Negreiros)<br/>English title: <em>Cognitive precision: Subjective correlation of morphodynamic change</em></li>
             </ul><br/>
             <b>You already have an idea for an innovative research or a practice (applied) project?</b> Contact Sebastian and get your creativity started.
@@ -90,7 +89,7 @@ class Main extends React.Component {
             <img src={pic03} alt="river sciences" />
           </span>
           <p>
-            Sebastian focuses on hydraulic engineering, restoration science, ecohydraulics, and the development of Python algorithms for deterministic numerical-spatial data analysis. The full record of his scientific works is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of selected papers:
+            Sebastian focuses on hydraulic engineering, restoration science, ecohydraulics, and the development of Python algorithms for deterministic numerical-spatial data analysis. The full record of his scientific works is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of <b>selected papers</b>:
             <ul>
                 <li><a href="http://dx.doi.org/10.1002/eco.2268" target="_blank" rel="noreferrer">Larrieu, Pasternack, Schwindt, 2020. Automated analysis of lateral river connectivity and fish stranding risks-Part 1: Review, theory and algorithm. Ecohydrology. doi:10.1002/eco.2268</a></li>
                 <li><a href="https://doi.org/10.1016/j.ijsrc.2020.07.007" target="_blank" rel="noreferrer">Moldenhauer-Roth, Piton, Schwindt, Jafarnejad, Schleiss, 2021. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research. doi:10.1016/j.ijsrc.2020.07.007</a></li>
@@ -102,7 +101,7 @@ class Main extends React.Component {
             </ul>
             </p>
             <p>
-            Codes, research algorithms, and Python packages from Sebastian are hosted on GitHub, along with detailed docs. The following Python packages and programs are available:
+            <b>Codes, research algorithms, and Python</b> packages from Sebastian are hosted on GitHub, along with detailed docs. The following Python packages and programs are available:
             <ul>
             <li><a href="https://flusstools.readthedocs.io/" target="_blank" rel="noreferrer">FlussTools</a>: A Python3 package for river analyses, including geo-spatial analyst functions, numerical model uncertainty assessments (fuzzy set based), lidar data processing tools, and database tweaks for the application of plants in restoration science. Sebastian maintains this repository together with former and current undergrad and grad students.</li>
             <li><a href="https://riverarchitect.github.io/" target="_blank" rel="noreferrer">River Architect</a>: A Python-based back-end tool for river design and habitat enhancement with an extensive <a href="https://riverarchitect.github.io/RA_wiki/main_page" target="_blank" rel="noreferrer">Wiki</a>.</li>
@@ -119,7 +118,7 @@ class Main extends React.Component {
             </ul>
             </p>
             <p>
-            Sebastian is currently working on the following projects:
+            Sebastian is currently working on the following <b>projects</b>:
             <ul>
             <li><a href="https://econnect.readthedocs.io/en/latest/" target="_blank" rel="noreferrer">Hydro-morphodynamic connectivity and ecosystem design in a changing environment</a> (funded by the <a href="https://www.dfg.de/" target="_blank" rel="noreferrer">DFG</a> and in collaboration with the NSFC).</li>
             <li><a href="https://www.iws.uni-stuttgart.de/en/institute/research/projects/lww/va/20190701/" target="_blank" rel="noreferrer">Ecosystem Analysis and Restoration of the Inn</a> (Bavaria, Germany).</li>
