@@ -10,7 +10,7 @@ npm install --global surge
 npm install gh-pages --save-dev
 
 
-# Update / deploy 
+# Update / deploy
 
 
 ## with github pages
@@ -19,7 +19,7 @@ npm install gh-pages --save-dev
 
 * implement modifications
 
-* locally render the website with `gatsby develop`
+* locally render the website with `npx gatsby develop`
 
 * run `npm run deploy` to publish at gh-pages branch
 
@@ -61,13 +61,13 @@ then run `npm run deploy`
 `gatsby build`
 > verify that public folder was created: `ls public`
 
-1. push to custom surge domain 
-`surge pulic/ --domain becreative2134.surge.sh` 
+1. push to custom surge domain
+`surge pulic/ --domain becreative2134.surge.sh`
 
 result:
 
 ```
-   Running as user@host.com 
+   Running as user@host.com
 
         project: public/
          domain: becreative2134.surge.sh
