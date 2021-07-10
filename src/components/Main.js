@@ -62,7 +62,7 @@ class Main extends React.Component {
             <li>Numerical Modelling, Sediment Transport and Morphodynamics for Hydraulic Engineers</li>
             <li>Integrated Flood Protection Management , River Restoration and River Engineering</li>
             </ul>
-            More details, tutorials (e-textbooks), materials (sample scripts and datasets), and practice-oriented exercises are available at <b><a href="https://hydro-informatics.github.io/" title="hydro-informatics.github.io/" target="_blank" rel="noreferrer">hydro-informatics.github.io</a></b>.
+            More details, tutorials (e-textbooks), materials (sample scripts and datasets), and practice-oriented exercises are available at <b><a href="https://hydro-informatics.com/" title="hydro-informatics.com" target="_blank" rel="noreferrer">hydro-informatics.com</a></b>.
           </p>
           <p>
             <b>Graduating students: Are you looking for an exciting Bachelor or Master Thesis?</b> Visit the <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">IWS team website</a> to apply for one of the announcements. Currently, the following topics are waiting for motivated students:<br/>
@@ -72,7 +72,7 @@ class Main extends React.Component {
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2021_BA_MA_discover-openFOAM.pdf" target="_blank" rel="noreferrer">Enable open-source numerical three-dimensional (3d) modelling with OpenFOAM</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/BA_was_ist_was_map_comparison_20200703_fin.pdf" target="_blank" rel="noreferrer">Psychologie der Präzision: Subjektive Korrelation morphodynamischen Wandels</a> (coed with Beatriz Negreiros)<br/>English title: <em>Cognitive precision: Subjective correlation of morphodynamic change</em></li>
             </ul><br/>
-            <b>You already have an idea for an innovative research or a practice (applied) project?</b> Contact Sebastian and get your creativity started.
+            <b>You already have an idea for an innovative research or a practice (applied) project?</b> Contact Sebastian and get your creativity started. <br/>The IWS is currently working on an extension of its computation capacities to broaden the offer for theses related to numerical modelling.
           </p>
           {close}
         </article>
@@ -89,7 +89,7 @@ class Main extends React.Component {
             <img src={pic03} alt="river sciences" />
           </span>
           <p>
-            Sebastian focuses on hydraulic engineering, restoration science, ecohydraulics, and the development of Python algorithms for deterministic numerical-spatial data analysis. The full record of his scientific works is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of <b>selected papers</b>:
+            Sebastian focuses on hydraulic engineering, (river) restoration ecology, ecohydraulics, and the development of Python algorithms for deterministic numerical-spatial data analysis. The full record of his scientific works is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of <b>selected papers</b>:
             <ul>
                 <li><a href="http://dx.doi.org/10.1002/eco.2268" target="_blank" rel="noreferrer">Larrieu, Pasternack, Schwindt, 2020. Automated analysis of lateral river connectivity and fish stranding risks-Part 1: Review, theory and algorithm. Ecohydrology. doi:10.1002/eco.2268</a></li>
                 <li><a href="https://doi.org/10.1016/j.ijsrc.2020.07.007" target="_blank" rel="noreferrer">Moldenhauer-Roth, Piton, Schwindt, Jafarnejad, Schleiss, 2021. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research. doi:10.1016/j.ijsrc.2020.07.007</a></li>
@@ -120,6 +120,7 @@ class Main extends React.Component {
             <p>
             Sebastian is currently working on the following <b>projects</b>:
             <ul>
+            <li><a href="https://misti.mit.edu/germany-seed-funds" target="_blank" rel="noreferrer">The MITs MISTI Germany</a>: A global seed fund targetting the initiation of international collaboration. This project is a collaboration between the <a href="https://nepf.mit.edu/" target="_blank" rel="noreferrer">Nepf lab at MIT</a>, its research affiliate <a href="https://isabellaschalko.com/" target="_blank" rel="noreferrer">Isabella Schalko</a>, and the IWS to leverage healthy hyporheic zones though the introduction of large wood.</li>
             <li><a href="https://econnect.readthedocs.io/en/latest/" target="_blank" rel="noreferrer">Hydro-morphodynamic connectivity and ecosystem design in a changing environment</a> (funded by the <a href="https://www.dfg.de/" target="_blank" rel="noreferrer">DFG</a> and in collaboration with the NSFC).</li>
             <li><a href="https://www.iws.uni-stuttgart.de/en/institute/research/projects/lww/va/20190701/" target="_blank" rel="noreferrer">Ecosystem Analysis and Restoration of the Inn</a> (Bavaria, Germany).</li>
             <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
