@@ -56,7 +56,7 @@ class Main extends React.Component {
             <img src={pic02} alt="study water resources engineering management research" />
           </span>
           <p>
-             <b>Teaching</b> - Sebastian offers classes, workshops, and courses covering the following topics:
+             Sebastian offers classes, workshops, and courses covering the following topics:
             <ul>
             <li>Basics and advanced Python programming (including collaborative code design and documentation) for Water Resources Engineering, Ecohydraulic Research, and Spatial Data Analysis</li>
             <li>Numerical Modelling, Sediment Transport, and Morphodynamics for Hydraulic Engineering</li>
@@ -90,7 +90,7 @@ class Main extends React.Component {
             <img src={pic03} alt="river sciences" />
           </span>
           <p>
-            Sebastian focuses on (river) restoration ecology, ecohydraulics, water resources engineering, and the development of Python algorithms for workflow automatiion and deterministic numerical-spatial data analysis. The full record of his scientific works is available at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a> and here is a list of <b>selected papers</b>:
+            Sebastian focuses on (river) restoration ecology, ecohydraulics, water resources engineering, and the development of Python algorithms for workflow automatiion and deterministic numerical-spatial data analysis. The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
             <ul>
                 <li><a href="http://dx.doi.org/10.1002/eco.2268" target="_blank" rel="noreferrer">Larrieu, Pasternack, Schwindt, 2020. Automated analysis of lateral river connectivity and fish stranding risks-Part 1: Review, theory and algorithm. Ecohydrology. doi:10.1002/eco.2268</a></li>
                 <li><a href="https://doi.org/10.1016/j.ijsrc.2020.07.007" target="_blank" rel="noreferrer">Moldenhauer-Roth, Piton, Schwindt, Jafarnejad, Schleiss, 2021. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research. doi:10.1016/j.ijsrc.2020.07.007</a></li>
@@ -102,7 +102,7 @@ class Main extends React.Component {
             </ul>
             </p>
             <p>
-            <b>Codes, research algorithms, and Python</b> packages from Sebastian are hosted on GitHub, along with detailed docs. The following Python packages and programs are available:
+            <b>Codes, research algorithms, and Python</b> packages from Sebastian are mostly hosted on GitHub along with detailed docs. The following Python packages and programs are available:
             <ul>
             <li><a href="https://flusstools.readthedocs.io/" target="_blank" rel="noreferrer">FlussTools</a>: A Python3 package for river analyses, including geo-spatial analyst functions, numerical model uncertainty assessments (fuzzy set based), lidar data processing tools, and database tweaks for the application of plants in restoration science. Sebastian maintains this repository together with former and current undergrad and grad students.</li>
             <li><a href="https://riverarchitect.github.io/" target="_blank" rel="noreferrer">River Architect</a>: A Python-based back-end tool for river design and habitat enhancement with an extensive <a href="https://riverarchitect.github.io/RA_wiki/main_page" target="_blank" rel="noreferrer">Wiki</a>.</li>
@@ -132,7 +132,7 @@ class Main extends React.Component {
             <li><a href="https://portal.nifa.usda.gov/web/crisprojectpages/1013705-californian-river-assessment-management-and-rehabilitation.html" target="_blank" rel="noreferrer">Best available science analysis of Habitat Enhancement of the lower Yuba River</a> (with University of California, Davis)</li>
             <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland</li>
             <li>Physical modelling optimization of a filter check dam at the Drance, Martigny, VS, Switzerland </li>
-            <li><a href="https://www.rivermanagement.ch/" target="_blank" rel="noreferrer">Rivermanagement</a>: Sediment and habitat dynamics in Switzerland </li>
+            <li><a href="https://www.rivermanagement.ch/" target="_blank" rel="noreferrer">Rivermanagement: Sediment and habitat dynamics in Switzerland</a> </li>
             <li>Restoration of the pumped storage hydro power station Happurg, Germany</li>
             <li>Physical model of the Rhône at Massongex for the installation of a run-of-river hydro power plant</li>
             <li>Preparation of the feasibility study for the Isimba hydro power plant in Uganda</li>

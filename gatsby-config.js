@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: 'Sebastian Schwindt',
-    titleTemplate: "%s · Hydro-morphodynamics",
+    titleTemplate: "%s · River Ecosystem Science",
     author: 'Sebastian Schwindt',
-    description: 'Hydraulics, Morphodynamics and Fluvial Ecosystems Science',
+    description: 'Hydraulics, Morphodynamics, Restoration Ecology, Ecohydraulics, and Python Programming for Workflow Automation in Water Resources Engineering and Research',
     url: 'https://www.sebastian-schwindt.org',
     siteUrl: 'https://sebastian-schwindt.org',
     image: "src/images/hycon.png",
