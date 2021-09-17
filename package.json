@@ -13,11 +13,13 @@
     "gatsby-plugin-react-helmet": "^4.5.0",
     "gatsby-plugin-sass": "^4.5.0",
     "gatsby-plugin-sitemap": "^4.1.0",
+    "meow": "^10.1.1",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-cookie-consent": "^6.1.0",
     "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "trim-fix": "0.0.2"
   },
   "keywords": [
     "gatsby"
@@ -32,9 +34,13 @@
     "upgrade-interactive": "npm-check --update"
   },
   "devDependencies": {
-    "gh-pages": "^3.1.0",
+    "browserslist": "^4.17.0",
+    "gh-pages": "^3.2.3",
     "npm-check": "^5.9.2",
-    "prettier": "^2.3.0"
+    "prettier": "^2.3.0",
+    "trim": "^1.0.1",
+    "trim-newlines": "^4.0.2",
+    "ws": "^8.2.2"
   },
   "repository": {
     "type": "git",
