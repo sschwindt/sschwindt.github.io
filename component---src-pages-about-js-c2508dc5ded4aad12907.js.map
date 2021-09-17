@@ -1,0 +1,1 @@
+{"version":3,"file":"component---src-pages-about-js-c2508dc5ded4aad12907.js","mappings":"oKASA,UANc,kBACZ","sources":["webpack://gatsby-starter-dimension-v2/./src/pages/about.js"],"sourcesContent":["import React from 'react'\n\n\nconst About = () => (\n  <test>\n  text\n  </test>\n)\n\nexport default About\n"],"names":[],"sourceRoot":""}
