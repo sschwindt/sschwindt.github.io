@@ -9,6 +9,7 @@ npm install --global surge
 
 npm install gh-pages --save-dev
 
+npm install
 
 # Update / deploy
 
