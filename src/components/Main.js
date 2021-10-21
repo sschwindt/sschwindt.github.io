@@ -91,7 +91,7 @@ class Main extends React.Component {
           <p>
             Sebastian focuses on sediment transport, (river) restoration ecology, ecohydraulics, water resources engineering, and the development of Python algorithms for workflow automation and numerical model (optimization). The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
             <ul>
-                <li>Negreiros, Schwindt, Haun, Wieprecht, 2021.Fuzzy Map Comparisons Enable Objective Hydro-morphodynamic Model Validation. Under revision with Earth Surface Processes and Landforms (ESPL)</li>
+                <li>Negreiros, Schwindt, Haun, Wieprecht, 2021.Fuzzy Map Comparisons Enable Objective Hydro-morphodynamic Model Validation. Earth Surface Processes and Landforms (accepted manuscript)</li>
                 <li><a href="http://dx.doi.org/10.1002/eco.2268" target="_blank" rel="noreferrer">Larrieu, Pasternack, Schwindt, 2020. Automated analysis of lateral river connectivity and fish stranding risks-Part 1: Review, theory and algorithm. Ecohydrology. doi:10.1002/eco.2268</a></li>
                 <li><a href="https://doi.org/10.1016/j.ijsrc.2020.07.007" target="_blank" rel="noreferrer">Moldenhauer-Roth, Piton, Schwindt, Jafarnejad, Schleiss, 2021. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research. doi:10.1016/j.ijsrc.2020.07.007</a></li>
                 <li><a href="https://doi.org/10.1016/j.softx.2020.100438" target="_blank" rel="noreferrer">Schwindt, Larrieu, Pasternack, Rabone, 2020. River Architect. SoftwareX 11. doi: 10.1016/j.softx.2020.100438</a> | <a href="https://www.sciencedirect.com/science/article/pii/S235271101930281X/pdfft?md5=f9175d220a3b766b6a43a0b70f613e1f&amp;pid=1-s2.0-S235271101930281X-main.pdf" target="_blank" rel="noreferrer">Download (open access)</a></li>
@@ -153,7 +153,7 @@ class Main extends React.Component {
         >
           <h2 className="major">Contact</h2>
           <p>
-          Find tutorials and fascinating videos zooming into rivers and numerical models also on Sebastian&#39;s <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ" target="_blank" rel="noreferrer">@ Hydro-Morphodynamics channel on YouTube.</a>
+          Find tutorials and short videos zooming into rivers and numerical models also on Sebastian&#39;s <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ" target="_blank" rel="noreferrer">@ Hydro-Morphodynamics channel on YouTube.</a>
           </p>
           <form method="post" action="https://formspree.io/f/xnqlreen">
             <div className="field half first">
