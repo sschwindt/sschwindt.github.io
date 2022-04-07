@@ -91,7 +91,8 @@ class Main extends React.Component {
           <p>
             Sebastian focuses on sediment transport, (river) restoration ecology, ecohydraulics, water resources engineering, and the development of Python algorithms for workflow automation and numerical model (optimization). The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
             <ul>
-                <li><a href="https://doi.org/10.1016/j.geomorph.2021.108106" target="_blank" rel="noreferrer">Diaz-Gomez, Pasternack, Guillon, Byrne, <b>Schwindt</b>, Larrieu, Sandoval-Solis, 2022. Mapping subaerial sand-gravel-cobble fluvial sediment facies using airborne lidar and machine learning. Geomorphology (in press). doi: 10.1016/j.geomorph.2021.108106</a></li>
+                <li><a href="http://dx.doi.org/10.1007/s11368-022-03192-1" target="_blank" rel="noreferrer">Mouris, <b>Schwindt</b>, Haun, Wieprecht, 2022. Introducing seasonal snow memory into the RUSLE. Journal of Soils and Sediments. doi: 10.1007/s11368-022-03192-1</a></li>
+                <li><a href="https://doi.org/10.1016/j.geomorph.2021.108106" target="_blank" rel="noreferrer">Diaz-Gomez, Pasternack, Guillon, Byrne, <b>Schwindt</b>, Larrieu, Sandoval-Solis, 2022. Mapping subaerial sand-gravel-cobble fluvial sediment facies using airborne lidar and machine learning. Geomorphology 401, 108106. doi: 10.1016/j.geomorph.2021.108106</a></li>
                 <li><a href="https://onlinelibrary.wiley.com/doi/full/10.1002/esp.5285" target="_blank" rel="noreferrer">Negreiros, <b>Schwindt</b>, Haun, Wieprecht, 2021.Fuzzy Map Comparisons Enable Objective Hydro-morphodynamic Model Validation. Earth Surface Processes and Landforms. doi: 10.1002/esp.5285</a></li>
                 <li><a href="http://dx.doi.org/10.1002/eco.2268" target="_blank" rel="noreferrer">Larrieu, Pasternack, <b>Schwindt</b>, 2020. Automated analysis of lateral river connectivity and fish stranding risks-Part 1: Review, theory and algorithm. Ecohydrology 14(2). doi:10.1002/eco.2268</a></li>
                 <li><a href="https://doi.org/10.1016/j.ijsrc.2020.07.007" target="_blank" rel="noreferrer">Moldenhauer-Roth, Piton, <b>Schwindt</b>, Jafarnejad, Schleiss, 2021. Design of sediment detention basins: scaled model experiments and application. International Journal of Sediment Research. doi:10.1016/j.ijsrc.2020.07.007</a></li>
@@ -155,6 +156,8 @@ class Main extends React.Component {
           <h2 className="major">Contact</h2>
           <p>
           Find tutorials and short videos zooming into rivers and numerical models also on Sebastian&#39;s <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ" target="_blank" rel="noreferrer">@ Hydro-Morphodynamics channel on YouTube.</a>
+          </p>
+          <p>Meet Sebastian at the <a href="https://meetingorganizer.copernicus.org/EGU22/EGU22-9526.html" target="_blank" rel="noreferrer">EGU General Assembly 2022</a> and the <a href="https://iahrworldcongress.org" target="_blank" rel="noreferrer">IAHR World Congress in Granada</a>.
           </p>
           <p>More contact options are available at <a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">iws.uni-stuttgart.de</a>.
           </p>
