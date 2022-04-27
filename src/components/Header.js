@@ -10,7 +10,7 @@ const Header = props => (
               </a>
             </li>
             <li>
-              <a href="https://scholar.google.ch/citations?user=GdmFKPgAAAAJ&hl=de&oi=ao" target="_blank" rel="noreferrer" className="icon fa-google">
+              <a href="https://scholar.google.com/citations?user=246FKewAAAAJ&hl=en&citsig=AMD79oouG1nzUOL85fNl5zk00cmjothoLQ" target="_blank" rel="noreferrer" className="icon fa-google">
                 <span className="label">Google Scholar</span>
               </a>
             </li>
