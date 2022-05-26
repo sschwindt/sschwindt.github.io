@@ -5,28 +5,32 @@ This website is build with [Gatsby](https://www.gatsbyjs.com/).
 
 ## npm requirements
 
+--> outdated explanations: better use yarn
+
+```
 npm install --global surge
-
 npm install gh-pages --save-dev
-
 npm install
+```
 
-# Update / deploy
-
-
-## with github pages
+# Deploy site updates with github pages
 
 [gatsby docs](https://www.gatsbyjs.com/docs/how-gatsby-works-with-github-pages/)
 
 * implement modifications
-
 * locally render the website with `npx gatsby develop`
-
 * run `npm run deploy` to publish at gh-pages branch
-
 * the source files are in the master branch, so do not forget to `git push`
 
 control to what branch the pages is deployed in `package.json` > organization websites cannot use the gh-pages branch!
+
+
+# Update packages and dependencies
+
+Preferably use yarn (npm is buggy for this template):
+
+* remove any existing package-lock.json
+* tap: `yarn upgrade-interactive --latest`
 
 ### detailed explanation
 
@@ -110,3 +114,9 @@ https://www.gatsbyjs.com/dashboard/
   </ul>
 </form>
 ```
+
+
+
+- Install with verbose logging and look for errors: "npm install --ignore-scripts=false --foreground-scripts --verbose sharp"
+ - Install for the current linux-x64 runtime: "npm install --platform=linux --arch=x64 sharp"
+ - Consult the installation documentation: https://sharp.pixelplumbing.com/install

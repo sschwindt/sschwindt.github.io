@@ -33,10 +33,10 @@ class Main extends React.Component {
             <img src={pic01} alt="Sebastian Schwindt rivers Python" />
           </span>
           <p>
-          Dr sc. (PhD) Sebastian Schwindt is a researcher in river ecosystems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphological modeling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses, workflow automation, and optimization with Python, ecohydraulics, and ecosystem design. The focus of his latest works is on the optimization of (geospatial) data analyses, the accuracy of numerical models, and computational methods.
+          Dr sc. (PhD) Sebastian Schwindt is a researcher in river ecosystems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphological modeling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses, workflow automation, and optimization with Python, ecohydraulics, and ecosystem design. The focus of his latest works is on the optimization of (geospatial) data analyses, data-driven calibration of numerical models, and riverbed clogging.
           </p>
           <p>
-            He completed his Bachelor's (2010) and Master's (2012) studies in Environmental Engineering at the Technical University of Munich (Germany). After a short detour into the private hydropower sector, Sebastian accomplished his doctorate at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca. His PhD thesis entitled <em>Hydro-morphological processes through permeable sediment traps at mountain rivers</em> provides new insights into sediment transport for landscape dynamics and flood risk mitigation in Alpine regions (<a href="https://infoscience.epfl.ch/record/231182" target="_blank" rel="noreferrer">download at epfl.ch</a>).
+            He completed his Bachelor's (2010) and Master's (2012) studies in Environmental Engineering at the Technical University of Munich (Germany). After a detour into the private hydropower sector, Sebastian accomplished his doctorate at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca. His PhD thesis entitled <em>Hydro-morphological processes through permeable sediment traps at mountain rivers</em> provides new insights into sediment transport for landscape dynamics and flood risk mitigation in Alpine regions (<a href="https://infoscience.epfl.ch/record/231182" target="_blank" rel="noreferrer">download at epfl.ch</a>).
           </p>
           <p>
             Between 2017 and 2019, Sebastian pursued postdoctoral research at the University of California, Davis (USA), with <a href="http://pasternack.ucdavis.edu/" target="_blank" rel="noreferrer">Prof. Greg Pasternack</a>. The emphasis of his postdoctoral research was on the ecohydraulic enhancement of the Yuba River (California, USA) based on aerial (lidar) imagery and numerical models. Find out more about Sebastian and his scientific career at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a>.
@@ -58,9 +58,9 @@ class Main extends React.Component {
           <p>
              Sebastian offers classes, workshops, and courses covering the following topics:
             <ul>
-            <li>Basics and advanced Python programming (including collaborative code design and documentation) for Water Resources Engineering, Ecohydraulic Research, and Spatial Data Analysis</li>
-            <li>Numerical Modelling, Sediment Transport, and Morphodynamics for Hydraulic Engineering</li>
-            <li>Integrated Flood Protection Management, River Restoration, and River Engineering</li>
+            <li>Basics and advanced Python programming (including collaborative code design and documentation) for water resources engineering, ecohydraulic research, and (geospatial) data analysis</li>
+            <li>Numerical modeling, sediment transport, and morphodynamics for hydraulic engineering</li>
+            <li>Integrated flood protection management, river restoration, and river engineering</li>
             </ul>
             Sebastian also offers tutorials, supplemental materials, and practice-oriented exercises at <b><a href="https://hydro-informatics.com/" title="hydro-informatics.com" target="_blank" rel="noreferrer">hydro-informatics.com</a></b>.
           </p>
@@ -72,7 +72,7 @@ class Main extends React.Component {
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_BA_MA_Colmation.pdf" target="_blank" rel="noreferrer">Ecohydraulics: Colmation analysis across scales</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/MSc-2021-Field-Campaign-Rhine.pdf" target="_blank" rel="noreferrer">Get into the Water: Planning and Evaluation of a Measurement Campaign at the Rhine River</a> (coed with Maximilian Kunz)</li>
             </ul><br/>
-            <b>Do you already have an idea for an innovative research or a practice (applied reasearch) project?</b> Contact Sebastian and get your creativity started. <br/>
+            <b>Do you already have an idea for an innovative research graduation project?</b> Contact Sebastian and get your creativity started. <br/>
           </p>
           {close}
         </article>
@@ -129,7 +129,7 @@ class Main extends React.Component {
             <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
             </ul>
           </p>
-          <p> Accomplished scientific and other projects:
+          <p> Finalized scientific and other projects:
           <ul>
             <li><a href="https://portal.nifa.usda.gov/web/crisprojectpages/1013705-californian-river-assessment-management-and-rehabilitation.html" target="_blank" rel="noreferrer">Best available science analysis of Habitat Enhancement of the lower Yuba River</a> (with University of California, Davis)</li>
             <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland</li>
@@ -157,7 +157,7 @@ class Main extends React.Component {
           <p>
           Find tutorials and short videos zooming into rivers and numerical models also on Sebastian&#39;s <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ" target="_blank" rel="noreferrer">@ Hydro-Morphodynamics channel on YouTube.</a>
           </p>
-          <p>Meet Sebastian at the <a href="https://meetingorganizer.copernicus.org/EGU22/EGU22-9526.html" target="_blank" rel="noreferrer">EGU General Assembly 2022</a> and the <a href="https://iahrworldcongress.org" target="_blank" rel="noreferrer">IAHR World Congress in Granada</a>.
+          <p>Meet Sebastian at the <a href="https://iahrworldcongress.org" target="_blank" rel="noreferrer">IAHR World Congress in Granada</a> on Thursday, June 23 (15h00-16h30, Seminario 1+2, Session 6.5) and Friday, June 24 (15h00-16h30, Sala Andalucía II, Session 2.6).
           </p>
           <p>More contact options are available at <a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">iws.uni-stuttgart.de</a>.
           </p>
