@@ -114,9 +114,3 @@ https://www.gatsbyjs.com/dashboard/
   </ul>
 </form>
 ```
-
-
-
-- Install with verbose logging and look for errors: "npm install --ignore-scripts=false --foreground-scripts --verbose sharp"
- - Install for the current linux-x64 runtime: "npm install --platform=linux --arch=x64 sharp"
- - Consult the installation documentation: https://sharp.pixelplumbing.com/install

@@ -33,7 +33,7 @@ class Main extends React.Component {
             <img src={pic01} alt="Sebastian Schwindt rivers Python" />
           </span>
           <p>
-          Dr sc. (PhD) Sebastian Schwindt is a researcher in river ecosystems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphological modeling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses, workflow automation, and optimization with Python, ecohydraulics, and ecosystem design. The focus of his latest works is on the optimization of (geospatial) data analyses, data-driven calibration of numerical models, and riverbed clogging.
+          Dr sc. (PhD) Sebastian Schwindt (he/him) is a researcher in river ecosystems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphological modeling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses, riverbed clogging, ecohydraulics, and ecosystem design with data-driven techniques.
           </p>
           <p>
             He completed his Bachelor's (2010) and Master's (2012) studies in Environmental Engineering at the Technical University of Munich (Germany). After a detour into the private hydropower sector, Sebastian accomplished his doctorate at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca. His PhD thesis entitled <em>Hydro-morphological processes through permeable sediment traps at mountain rivers</em> provides new insights into sediment transport for landscape dynamics and flood risk mitigation in Alpine regions (<a href="https://infoscience.epfl.ch/record/231182" target="_blank" rel="noreferrer">download at epfl.ch</a>).
@@ -67,10 +67,8 @@ class Main extends React.Component {
           <p>
             <b>Graduating students: Are you looking for an exciting Bachelor or Master Thesis?</b> Visit the <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">IWS team website</a> to apply for one of the announcements. Currently, the following topics are waiting for motivated students:<br/>
             <ul>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2021_BA_MA_Bedload.pdf" target="_blank" rel="noreferrer">Bedload 4.0 - Data-driven re-analysis of sediment transport - is it time to abandon the Shields diagram? (contact Sebastian for more options)</a></li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2021_MA_Proposal_Ering-FS-SSc.pdf" target="_blank" rel="noreferrer">Two-dimensional hydro-morphodynamic numerical modeling of a fish bypass</a> (coed with Federica Scolari)</li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2020_BA_MA_Colmation.pdf" target="_blank" rel="noreferrer">Ecohydraulics: Colmation analysis across scales</a></li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/MSc-2021-Field-Campaign-Rhine.pdf" target="_blank" rel="noreferrer">Get into the Water: Planning and Evaluation of a Measurement Campaign at the Rhine River</a> (coed with Maximilian Kunz)</li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2021_BA_MA_Unreal.pdf" target="_blank" rel="noreferrer">Virtual reality: digital river twins in the Unreal Engine </a></li>
             </ul><br/>
             <b>Do you already have an idea for an innovative research graduation project?</b> Contact Sebastian and get your creativity started. <br/>
           </p>
@@ -157,7 +155,7 @@ class Main extends React.Component {
           <p>
           Find tutorials and short videos zooming into rivers and numerical models also on Sebastian&#39;s <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ" target="_blank" rel="noreferrer">@ Hydro-Morphodynamics channel on YouTube.</a>
           </p>
-          <p>Meet Sebastian at the <a href="https://iahrworldcongress.org" target="_blank" rel="noreferrer">IAHR World Congress in Granada</a> on Thursday, June 23 (15h00-16h30, Seminario 1+2, Session 6.5) and Friday, June 24 (15h00-16h30, Sala Andalucía II, Session 2.6).
+          <p>Meet Sebastian at the <a href="https://iahrworldcongress.org" target="_blank" rel="noreferrer">IAHR World Congress 2023 in Vienna</a>.
           </p>
           <p>More contact options are available at <a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">iws.uni-stuttgart.de</a>.
           </p>
