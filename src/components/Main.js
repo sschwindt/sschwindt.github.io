@@ -30,7 +30,7 @@ class Main extends React.Component {
         >
           <h2 className="major">About</h2>
           <span className="image main">
-            <img src={pic01} alt="Sebastian Schwindt rivers Python" />
+            <img src={pic01} alt="Sebastian Schwindt rivers connectivity Python" />
           </span>
           <p>
           Dr sc. (PhD) Sebastian Schwindt (he/him) is a researcher in river ecosystems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphological modeling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses, riverbed clogging, ecohydraulics, and ecosystem design with data-driven techniques.
@@ -87,7 +87,7 @@ class Main extends React.Component {
             <img src={pic03} alt="river sciences" />
           </span>
           <p>
-            Sebastian focuses on sediment transport, (river) restoration ecology, ecohydraulics, water resources engineering, and the development of Python algorithms for workflow automation and numerical model (optimization). The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
+            Sebastian focuses on the restoration of hydro-logic (i.e., hydraulic and hydrological) ecosystems and their multi-dimensional connectivity using ecohydraulic design principles, riverbed clogging analysis, and data-driven techniques through Python algorithms for landscape analysis and numerical model optimization. The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
             <ul>
                 <li><a href="http://dx.doi.org/10.1007/s11368-022-03192-1" target="_blank" rel="noreferrer">Mouris, <b>Schwindt</b>, Haun, Wieprecht, 2022. Introducing seasonal snow memory into the RUSLE. Journal of Soils and Sediments. doi: 10.1007/s11368-022-03192-1</a></li>
                 <li><a href="https://doi.org/10.1016/j.geomorph.2021.108106" target="_blank" rel="noreferrer">Diaz-Gomez, Pasternack, Guillon, Byrne, <b>Schwindt</b>, Larrieu, Sandoval-Solis, 2022. Mapping subaerial sand-gravel-cobble fluvial sediment facies using airborne lidar and machine learning. Geomorphology 401, 108106. doi: 10.1016/j.geomorph.2021.108106</a></li>
@@ -102,7 +102,7 @@ class Main extends React.Component {
             </ul>
             </p>
             <p>
-            <b>Codes, research algorithms, and Python</b> packages from Sebastian are mostly hosted on GitHub along with detailed docs. The following Python packages and programs are available:
+            <b>Codes, research algorithms, and Python</b> packages from Sebastian are mostly hosted on GitHub along with detailed docs. The following Python packages and programs are available (among others):
             <ul>
             <li><a href="https://flusstools.readthedocs.io/" target="_blank" rel="noreferrer">FlussTools</a>: A Python3 package for river analyses, including geo-spatial analyst functions, numerical model uncertainty assessments (fuzzy set based), lidar data processing tools, and database tweaks for the application of plants in restoration science. Sebastian maintains this repository together with former and current undergrad and grad students.</li>
             <li><a href="https://riverarchitect.github.io/" target="_blank" rel="noreferrer">River Architect</a>: A Python-based back-end tool for river design and habitat enhancement with an extensive <a href="https://riverarchitect.github.io/RA_wiki/main_page" target="_blank" rel="noreferrer">Wiki</a>.</li>
@@ -115,11 +115,11 @@ class Main extends React.Component {
             <b>Awards and Distinctions</b><br/>
             <ul>
             <li><a href="https://iahr2020.pl/2021/02/22/iahr-gerhard-jirka-award-results/" target="_blank" rel="noreferrer">IAHR Gerhard Jirka Award for the presentation <i>Modelling and Design Automation of Nature-based River Engineering</i> at the IAHR Europe 2020 conference, Warsaw, Poland</a></li>
-            <li><a href="https://connect.agu.org/epsp/spotlight/oct-2019" target="_blank" rel="noreferrer">American Geophysical Union (AGU) – Earth and Planetary Surface Processes’ Early Career Researcher Spotlight (October 2019)</a></li>
+            <li><a href="https://connect.agu.org/epsp/spotlight/oct-2019" target="_blank" rel="noreferrer">American Geophysical Union (AGU) – Earth and Planetary Surface Processes&#39; Early Career Researcher Spotlight (October 2019)</a></li>
             </ul>
             </p>
             <p>
-            Sebastian is currently working on the following <b>projects</b>:
+            Sebastian is currently mainly working on the following <b>projects</b>:
             <ul>
             <li><a href="https://misti.mit.edu/germany-seed-funds" target="_blank" rel="noreferrer">The MITs MISTI Germany</a>: A global seed fund targetting the initiation of international collaboration. This project is a collaboration between the <a href="https://nepf.mit.edu/" target="_blank" rel="noreferrer">Nepf lab at MIT</a>, its research affiliate <a href="https://isabellaschalko.com/" target="_blank" rel="noreferrer">Isabella Schalko</a>, and the IWS to leverage healthy hyporheic zones though the introduction of large wood.</li>
             <li><a href="https://econnect.readthedocs.io/en/latest/" target="_blank" rel="noreferrer">Hydro-morphodynamic connectivity and ecosystem design in a changing environment</a> (funded by the <a href="https://www.dfg.de/" target="_blank" rel="noreferrer">DFG</a> and in collaboration with the NSFC).</li>
@@ -127,7 +127,7 @@ class Main extends React.Component {
             <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
             </ul>
           </p>
-          <p> Finalized scientific and other projects:
+          <p> Finalized scientific and other projects (some of them...):
           <ul>
             <li><a href="https://portal.nifa.usda.gov/web/crisprojectpages/1013705-californian-river-assessment-management-and-rehabilitation.html" target="_blank" rel="noreferrer">Best available science analysis of Habitat Enhancement of the lower Yuba River</a> (with University of California, Davis)</li>
             <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland</li>
@@ -153,7 +153,7 @@ class Main extends React.Component {
         >
           <h2 className="major">Contact</h2>
           <p>
-          Find tutorials and short videos zooming into rivers and numerical models also on Sebastian&#39;s <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ" target="_blank" rel="noreferrer">@ Hydro-Morphodynamics channel on YouTube.</a>
+          Find tutorials and short videos zooming into water resources and numerical tools also on Sebastian&#39;s <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ" target="_blank" rel="noreferrer">@ Hydro-Morphodynamics channel on YouTube.</a>
           </p>
           <p>Meet Sebastian at the <a href="https://iahrworldcongress.org" target="_blank" rel="noreferrer">IAHR World Congress 2023 in Vienna</a>.
           </p>

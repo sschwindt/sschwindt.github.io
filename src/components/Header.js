@@ -29,7 +29,7 @@ const Header = props => (
       <div className="inner">
         <h1>Sebastian Schwindt</h1>
         <p>
-          River Ecosystem Science{' '}
+          Hydro-Logical Ecosystem Science{' '}
           <br/>
           {' '}
           <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer"><b>ORCID</b></a>
