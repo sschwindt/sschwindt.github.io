@@ -43,7 +43,7 @@ const Layout = ({ children, location }) => {
           <Helmet
             title={data.site.siteMetadata.title}
             meta={[
-              { name: 'description', content: 'River restoration and hydrological ecosystem science' },
+              { name: 'description', content: 'Sebastian Schwindt - Water Science' },
               { name: 'keywords', content: 'hydraulics, teaching, warem, stuttgart, morphodynamics, python, qgis, numerical modelling, ecohydraulics, yuba, inn, drance, lausanne, davis, sebastian, schwindt' },
             ]}
           >
