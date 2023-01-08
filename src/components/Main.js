@@ -30,7 +30,7 @@ class Main extends React.Component {
         >
           <h2 className="major">About</h2>
           <span className="image main">
-            <img src={pic01} alt="Sebastian Schwindt rivers connectivity Python" />
+            <img src={pic01} alt="Sebastian Schwindt river hydraulics connectivity Python" />
           </span>
           <p>
           Dr sc. (PhD) Sebastian Schwindt (he/him) is a researcher focusing on hydraulic systems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphoynamics modeling group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses with data-driven techniques, four-dimensional connectivity, and ecohydraulic system design.
@@ -67,7 +67,9 @@ class Main extends React.Component {
           <p>
             <b>Graduating students: Are you looking for an exciting Bachelor or Master Thesis?</b> Visit the <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">IWS team website</a> to apply for one of the announcements. Currently, the following topics are waiting for motivated students:<br/>
             <ul>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">Three-dimensional numerical model optimization of a fish bypass</a> (coed with Federica Scolari)</li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2023_MA_from-picture-to-gs.pdf" target="_blank" rel="noreferrer">From picture to depth-explicit grain size characteristics</a> (coed with <a href="https://beatriznegreiros.com/" target="_blank" rel="noreferrer">Beatriz Negreiros</a>)</li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2022_MA_habitat-suitability-model-reanalysis.pdf" target="_blank" rel="noreferrer">Develop an open-source habitat suitability assessment tool</a> (coed with <a href="https://beatriznegreiros.com/" target="_blank" rel="noreferrer">Beatriz Negreiros</a>)</li>
+            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/MA_Banja_Reservoir_T3D_final.pdf" target="_blank" rel="noreferrer">Numerical modeling of sediment transport processes in a large reservoir with Telemac3d</a> (coed with <a href="https://www.iws.uni-stuttgart.de/institut/team/Mouris/" target="_blank" rel="noreferrer">Kilian Mouris</a>)</li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">Virtual reality: digital river twins in the Unreal Engine </a></li>
             </ul><br/>
             <b>Do you already have an idea for an innovative research graduation project?</b> Contact Sebastian and get your creativity started. <br/>
@@ -120,22 +122,23 @@ class Main extends React.Component {
             <p>
             Sebastian is currently mainly working on the following <b>projects</b>:
             <ul>
+            <li><a href="https://www.iws.uni-stuttgart.de/en/lww/research/" target="_blank" rel="noreferrer">Optimization of supervised learning techniques for numerical model calibration</a> (funded by the <a href="https://www.dfg.de/" target="_blank" rel="noreferrer">DFG</a>). This project is a collaboration between the Depts. of <a href="https://www.iws.uni-stuttgart.de/en/lww/" target="_blank" rel="noreferrer">Hydraulic Engineering and Water Resources Management (LWW)</a> and <a href="https://www.iws.uni-stuttgart.de/en/ls3/" target="_blank" rel="noreferrer">Stochastic Simulation and Safety Research for Hydrosystems (LS3)</a>.</li>
             <li><a href="https://misti.mit.edu/germany-seed-funds" target="_blank" rel="noreferrer">The MITs MISTI Germany</a>: A global seed fund targetting the initiation of international collaboration. This project is a collaboration between the <a href="https://nepf.mit.edu/" target="_blank" rel="noreferrer">Nepf lab at MIT</a>, its research affiliate <a href="https://isabellaschalko.com/" target="_blank" rel="noreferrer">Isabella Schalko</a>, and the IWS to promote the vertical connectivity of the hyporheic zone.</li>
             <li><a href="https://econnect.readthedocs.io/en/latest/" target="_blank" rel="noreferrer">Hydro-morphodynamic connectivity in a changing environment</a> (funded by the <a href="https://www.dfg.de/" target="_blank" rel="noreferrer">DFG</a> and in collaboration with the NSFC).</li>
             <li><a href="https://www.iws.uni-stuttgart.de/institut/forschung/projekte/lww/va/20210222_Fischaufstiegsanlage_am_Hachinger_Bach/" target="_blank" rel="noreferrer">Optimization of a technical fish pass with a 3d numerical model and physical experiments</a> (Germany).</li>
-            <li><a href="https://www.verbund.com/de-de/ueber-verbund/kraftwerke/unsere-kraftwerke/toeging-neu" target="_blank" rel="noreferrer">Numerical modeling of a 30-km river stretch bypassing a hydro power plant</a> (Germany).</li>
             <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
             </ul>
           </p>
           <p> Finalized scientific and other projects (some of them...):
           <ul>
-            <li><a href="https://portal.nifa.usda.gov/web/crisprojectpages/1013705-californian-river-assessment-management-and-rehabilitation.html" target="_blank" rel="noreferrer">Best available science analysis of Habitat Enhancement of the lower Yuba River</a> (with University of California, Davis)</li>
+            <li><a href="https://www.verbund.com/de-de/ueber-verbund/kraftwerke/unsere-kraftwerke/toeging-neu" target="_blank" rel="noreferrer">Numerical modeling of a 30-km river stretch bypassing a hydropower plant</a> (Germany).</li>
+            <li><a href="https://portal.nifa.usda.gov/web/crisprojectpages/1013705-californian-river-assessment-management-and-rehabilitation.html" target="_blank" rel="noreferrer">Best available science analysis of Habitat Enhancement of the lower Yuba River</a> (with University of California, Davis, USA)</li>
             <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland</li>
             <li>Physical modelling optimization of a filter check dam at the Drance, Martigny, VS, Switzerland </li>
             <li><a href="https://www.rivermanagement.ch/" target="_blank" rel="noreferrer">Rivermanagement: Sediment and habitat dynamics in Switzerland</a> </li>
-            <li>Restoration of the pumped storage hydro power plant Happurg, Germany</li>
-            <li>Physical model of the Rhône at Massongex for the installation of a run-of-river hydro power plant</li>
-            <li>Preparation of the feasibility study for the Isimba hydro power plant in Uganda</li>
+            <li>Restoration of the pumped storage hydropower plant Happurg, Germany</li>
+            <li>Physical model of the Rhône at Massongex for the installation of a run-of-river hydropower plant</li>
+            <li>Preparation of the feasibility study for the Isimba hydropower plant in Uganda</li>
           </ul>
           </p>
           <b>Get more information or start a new project by sending an inquiry on the Contact form.</b>
@@ -153,7 +156,7 @@ class Main extends React.Component {
         >
           <h2 className="major">Contact</h2>
           <p>
-          Find tutorials and short videos zooming into water resources and numerical tools also on Sebastian&#39;s <a href="https://www.youtube.com/channel/UCGOMSGRrW5eLHiMn5Dfp7WQ" target="_blank" rel="noreferrer">@ Hydro-Morphodynamics channel on YouTube.</a>
+          Find tutorials and short videos zooming into water resources and numerical tools also on Sebastian&#39;s <a href="https://www.youtube.com/@hydroinformatics" target="_blank" rel="noreferrer">@hydroinformatics (Hydro-Morphodynamics) channel on YouTube.</a>
           </p>
           <p>Meet Sebastian at the <a href="https://iahrworldcongress.org" target="_blank" rel="noreferrer">IAHR World Congress 2023 in Vienna</a>.
           </p>
