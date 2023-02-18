@@ -44,7 +44,7 @@ const Layout = ({ children, location }) => {
             title={data.site.siteMetadata.title}
             meta={[
               { name: 'description', content: 'Sebastian Schwindt - Water Science' },
-              { name: 'keywords', content: 'hydraulics, teaching, warem, stuttgart, morphodynamics, python, qgis, numerical modelling, ecohydraulics, yuba, inn, drance, lausanne, davis, sebastian, schwindt' },
+              { name: 'keywords', content: 'hydraulics, engineering, teaching, warem, stuttgart, morphodynamics, python, qgis, numerical modeling, ecohydraulics, yuba, inn, drance, lausanne, davis' },
             ]}
           >
             <html lang="en" />

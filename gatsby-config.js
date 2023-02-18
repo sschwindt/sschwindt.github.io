@@ -1,10 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: 'Sebastian Schwindt',
-    titleTemplate: "%s · Hydro-Logical Ecosystem Science",
+    titleTemplate: "%s · Water Science",
     author: 'Sebastian Schwindt',
-    description: 'Hydro-logical Restoration Ecology, Ecohydraulics, and Python Programming for Workflow Automation in Water Resources Engineering and Research',
-    url: 'https://www.sebastian-schwindt.org',
+    description: 'Hydraulic Engineering, Hydro-logical Restoration Ecology, Ecohydraulics, and Python Programming for Model Optimization',
+    url: 'https://sebastian-schwindt.org',
     siteUrl: 'https://sebastian-schwindt.org',
     image: "src/images/hycon.png",
   },
