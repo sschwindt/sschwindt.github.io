@@ -30,7 +30,7 @@ class Main extends React.Component {
         >
           <h2 className="major">About</h2>
           <span className="image main">
-            <img src={pic01} alt="Sebastian Schwindt river hydraulics connectivity Python" />
+            <img src={pic01} alt="Sebastian Schwindt river hydraulics connectivity Python optimization" />
           </span>
           <p>
           Dr sc. (PhD) Sebastian Schwindt (he/him) is a researcher focusing on hydraulic systems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphodynamics group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses with data-driven techniques, four-dimensional connectivity, and ecohydraulic system design.
@@ -58,8 +58,8 @@ class Main extends React.Component {
           <p>
              Sebastian offers classes, workshops, and courses covering the following topics:
             <ul>
-            <li>Basics and advanced Python programming (including collaborative code design and documentation) for water resources engineering, research, and (geospatial) data analysis</li>
-            <li>Numerical modeling, sediment transport, and morphodynamics for hydraulic engineers</li>
+            <li>Basic and advanced Python programming (including collaborative code design and documentation) for water resources engineering, research, and (geospatial) data analysis</li>
+            <li>Numerical modeling, sediment transport, and morphodynamics for hydraulic engineering</li>
             <li>Integrated flood protection management, river restoration, and river engineering</li>
             </ul>
             Sebastian also offers tutorials, supplemental materials, and practice-oriented exercises at <b><a href="https://hydro-informatics.com/" title="hydro-informatics.com" target="_blank" rel="noreferrer">hydro-informatics.com</a></b>.
@@ -89,9 +89,10 @@ class Main extends React.Component {
             <img src={pic03} alt="river sciences" />
           </span>
           <p>
-            Sebastian focuses on the hybrid modeling of hydraulic systems and their multi-dimensional connectivity with data-driven techniques through Python algorithms, fieldwork, lab experiements, and numerical model optimization. The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
+            Sebastian focuses on the hybrid modeling of hydraulic systems and their multi-dimensional connectivity with data-driven techniques powered by Python algorithms, fieldwork, lab experiements, and numerical model optimization. The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
             <ul>
-                <li><a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022WR033660" target="_blank" rel="noreferrer"><b>Schwindt</b>, Callau, Mouris, Beckers, Haun, Nowak, Wieprecht, Oladyshkin, 2023. Bayesian calibration points to misconceptions in three-dimensional hydrodynamic reservoir modeling. Water Resources Research. ACCEPTED MANUSCRIPT. doi: 10.1029/2022WR033660</a></li>
+                <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/rra.4145" target="_blank" rel="noreferrer">Negreiros, Aybar Galdos, Seitz, Noack, <b>Schwindt</b>, Wieprecht, Haun, 2023. A multi-parameter approach to quantify riverbed clogging and vertical hyporheic connectivity. doi: 10.1002/rra.4145</a></li>
+                <li><a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022WR033660" target="_blank" rel="noreferrer"><b>Schwindt</b>, Callau, Mouris, Beckers, Haun, Nowak, Wieprecht, Oladyshkin, 2023. Bayesian calibration points to misconceptions in three-dimensional hydrodynamic reservoir modeling. Water Resources Research. doi: 10.1029/2022WR033660</a></li>
                 <li><a href="https://link.springer.com/article/10.1007/s40808-023-01712-7" target="_blank" rel="noreferrer">Mouris, Acuna Espinosa, <b>Schwindt</b>, Mohammadi, Haun, Wieprecht, Oladyshkin, 2023. Stability criteria for Bayesian calibration of reservoir sedimentation models.  Modeling Earth Systems and Environment. doi: 10.1007/s40808-023-01712-7</a></li>
                 <li><a href="http://dx.doi.org/10.1007/s11368-022-03192-1" target="_blank" rel="noreferrer">Mouris, <b>Schwindt</b>, Haun, Wieprecht, 2022. Introducing seasonal snow memory into the RUSLE. Journal of Soils and Sediments. doi: 10.1007/s11368-022-03192-1</a></li>
                 <li><a href="https://doi.org/10.1016/j.geomorph.2021.108106" target="_blank" rel="noreferrer">Diaz-Gomez, Pasternack, Guillon, Byrne, <b>Schwindt</b>, Larrieu, Sandoval-Solis, 2022. Mapping subaerial sand-gravel-cobble fluvial sediment facies using airborne lidar and machine learning. Geomorphology 401, 108106. doi: 10.1016/j.geomorph.2021.108106</a></li>
@@ -110,7 +111,6 @@ class Main extends React.Component {
             <ul>
             <li><a href="https://flusstools.readthedocs.io/" target="_blank" rel="noreferrer">FlussTools</a>: A Python3 package for river analyses, including geo-spatial analyst functions, numerical model uncertainty assessments (fuzzy set based), lidar data processing tools, and database tweaks for the application of plants in restoration science. Sebastian maintains this repository together with former and current undergrad and grad students.</li>
             <li><a href="https://riverarchitect.github.io/" target="_blank" rel="noreferrer">River Architect</a>: A Python-based back-end tool for river design and habitat enhancement with an extensive <a href="https://riverarchitect.github.io/RA_wiki/main_page" target="_blank" rel="noreferrer">Wiki</a>.</li>
-            <li><a href="https://sschwindt.github.io/pydroscape/" target="_blank" rel="noreferrer">Pydroscape</a>: Basic Python3 tools primarily for (but not limited to) riverscape, sediment transport, geodata, and hydraulic analyses.</li>
             <li><a href="https://sschwindt.github.io/OpenScience/" target="_blank" rel="noreferrer">Open Science</a>: A repository that links to data and codes of Sebastian s PhD research.</li>
             </ul>
             </p>
@@ -133,7 +133,7 @@ class Main extends React.Component {
           </p>
           <p> Finalized scientific and other projects (some of them...):
           <ul>
-            <li><a href="https://www.verbund.com/de-de/ueber-verbund/kraftwerke/unsere-kraftwerke/toeging-neu" target="_blank" rel="noreferrer">Numerical modeling of a 30-km river stretch bypassing a hydropower plant</a> (Germany).</li>
+            <li><a href="https://www.verbund.com/de-de/ueber-verbund/kraftwerke/unsere-kraftwerke/toeging-neu" target="_blank" rel="noreferrer">Numerical modeling of a 31-km river stretch bypassing a hydropower plant at the Inn River</a> (Germany).</li>
             <li><a href="https://portal.nifa.usda.gov/web/crisprojectpages/1013705-californian-river-assessment-management-and-rehabilitation.html" target="_blank" rel="noreferrer">Best available science analysis of Habitat Enhancement of the lower Yuba River</a> (with University of California, Davis, USA)</li>
             <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland</li>
             <li>Physical modelling optimization of a filter check dam at the Drance, Martigny, VS, Switzerland </li>
