@@ -8,7 +8,7 @@ This website is build with [Gatsby](https://www.gatsbyjs.com/).
 --> outdated explanations: better use yarn
 
 ```
-npm install --global surge
+npm install --location=global surge
 npm install gh-pages --save-dev
 npm install
 ```
