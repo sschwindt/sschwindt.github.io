@@ -2,15 +2,30 @@
 
 This website is build with [Gatsby](https://www.gatsbyjs.com/).
 
+## installation nov-2023
 
-## npm requirements
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install 18
+nvm use 18
+```
 
---> outdated explanations: better use yarn
+Find updates at 
+https://www.gatsbyjs.com/docs/how-to/local-development/gatsby-on-linux/
+
+Next: install npm requirements:
 
 ```
 npm install --location=global surge
 npm install gh-pages --save-dev
 npm install
+```
+
+--> regularly run:
+
+```
+npm update -g
+
 ```
 
 # Deploy site updates with github pages

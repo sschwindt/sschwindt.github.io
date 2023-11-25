@@ -33,7 +33,7 @@ class Main extends React.Component {
             <img src={pic01} alt="Sebastian Schwindt river hydraulics connectivity Python optimization" />
           </span>
           <p>
-          Dr sc. (PhD) Sebastian Schwindt (he/him) is a researcher focusing on hydraulic systems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphodynamics group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses with data-driven techniques, four-dimensional connectivity, and ecohydraulic system design.
+          Dr sc. (PhD) Sebastian Schwindt (he/him) is a researcher focusing on hydraulic systems and morphodynamics at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>). He leads the hydro-morphodynamics group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a>. His research embraces numerical analyses with data-driven techniques, four-dimensional connectivity, and ecohydraulics for river restoration.
           </p>
           <p>
             He completed his Bachelor's (2010) and Master's (2012) studies in Environmental Engineering at the Technical University of Munich (Germany). After a detour into the private hydropower sector, Sebastian accomplished his doctorate in Civil Engineering at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca. His PhD thesis entitled <em>Hydro-morphological processes through permeable sediment traps at mountain rivers</em> provides new insights into fluid-sediment-structure interactions and flood risk mitigation (<a href="https://infoscience.epfl.ch/record/231182" target="_blank" rel="noreferrer">download at epfl.ch</a>).
@@ -59,6 +59,7 @@ class Main extends React.Component {
              Sebastian offers classes, workshops, and courses covering the following topics:
             <ul>
             <li>Basic and advanced Python programming (including collaborative code design and documentation) for water resources engineering, research, and (geospatial) data analysis</li>
+            <li>Geospatial data processing with QGIS and Python</li>
             <li>Numerical modeling, sediment transport, and morphodynamics for hydraulic engineering</li>
             <li>Integrated flood protection management, river restoration, and river engineering</li>
             </ul>
@@ -69,7 +70,7 @@ class Main extends React.Component {
             <ul>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2023_MA_from-picture-to-gs.pdf" target="_blank" rel="noreferrer">From picture to depth-explicit grain size characteristics</a> (coed with <a href="https://beatriznegreiros.com/" target="_blank" rel="noreferrer">Beatriz Negreiros</a>)</li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2022_MA_habitat-suitability-model-reanalysis.pdf" target="_blank" rel="noreferrer">Develop an open-source habitat suitability assessment tool</a> (coed with <a href="https://beatriznegreiros.com/" target="_blank" rel="noreferrer">Beatriz Negreiros</a>)</li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/MA_Banja_Reservoir_T3D_final.pdf" target="_blank" rel="noreferrer">Numerical modeling of sediment transport processes in a large reservoir with Telemac3d</a> (coed with <a href="https://www.iws.uni-stuttgart.de/institut/team/Mouris/" target="_blank" rel="noreferrer">Kilian Mouris</a>)</li>
+            <li> Multiple opportunities for 2d/3d numerical modeling of hydrodynamic and morphodynamic processes (coed with Federica Scolari and Andrés Hidalgo) - email requests welcome.</li>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">Virtual reality: digital river twins in the Unreal Engine </a></li>
             </ul><br/>
             <b>Do you already have an idea for an innovative research graduation project?</b> Contact Sebastian and get your creativity started. <br/>
@@ -91,6 +92,8 @@ class Main extends React.Component {
           <p>
             Sebastian focuses on the hybrid modeling of hydraulic systems and their multi-dimensional connectivity with data-driven techniques powered by Python algorithms, fieldwork, lab experiements, and numerical model optimization. The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
             <ul>
+            	<li><a href="https://www.nature.com/articles/s41598-023-47501-1" target="_blank" rel="noreferrer">Mouris, <b>Schwindt</b>, Pesci, Wieprecht, Haun, 2023. An interdisciplinary model chain quantifies the footprint of global change on reservoir sedimentation. Scientific Reports (Nature Portfolio) 13(1). doi: 10.1038/s41598-023-47501-1</a></li>
+            	<li><a href="https://www.sciencedirect.com/science/article/pii/S1470160X23011871" target="_blank" rel="noreferrer"><b>Schwindt</b>, Negreiros, Ponce, Schalko, Lassar, Barros, Haun, 2023. Fuzzy-logic indicators for riverbed de-clogging suggest ecological benefits of large wood. Ecological Indicators 155. doi: 10.1016/j.ecolind.2023.111045</a></li>            	
                 <li><a href="https://authors.elsevier.com/a/1hAAD_,Oh6okI8" target="_blank" rel="noreferrer"><b>Schwindt</b>, Negreiros, Mudiaga-Ojemu, Hassan, 2023. Meta-analysis of a large bedload transport rate dataset. Geomorphology 435. doi: 10.1016/j.geomorph.2023.108748</a></li>
                 <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/rra.4145" target="_blank" rel="noreferrer">Negreiros, Aybar Galdos, Seitz, Noack, <b>Schwindt</b>, Wieprecht, Haun, 2023. A multi-parameter approach to quantify riverbed clogging and vertical hyporheic connectivity. River Research and Applications. doi: 10.1002/rra.4145</a></li>
                 <li><a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2022WR033660" target="_blank" rel="noreferrer"><b>Schwindt</b>, Callau, Mouris, Beckers, Haun, Nowak, Wieprecht, Oladyshkin, 2023. Bayesian calibration points to misconceptions in three-dimensional hydrodynamic reservoir modeling. Water Resources Research. doi: 10.1029/2022WR033660</a></li>
