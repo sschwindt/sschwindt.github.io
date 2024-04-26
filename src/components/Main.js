@@ -69,9 +69,8 @@ class Main extends React.Component {
             <b>Graduating students: Are you looking for an exciting Bachelor or Master Thesis?</b> Visit the <a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">IWS team website</a> to apply for one of the announcements. Currently, the following topics are waiting for motivated students:<br/>
             <ul>
             <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2023_MA_from-picture-to-gs.pdf" target="_blank" rel="noreferrer">From picture to depth-explicit grain size characteristics</a> (coed with <a href="https://beatriznegreiros.com/" target="_blank" rel="noreferrer">Beatriz Negreiros</a>)</li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/download/2022_MA_habitat-suitability-model-reanalysis.pdf" target="_blank" rel="noreferrer">Develop an open-source habitat suitability assessment tool</a> (coed with <a href="https://beatriznegreiros.com/" target="_blank" rel="noreferrer">Beatriz Negreiros</a>)</li>
-            <li> Multiple opportunities for 2d/3d numerical modeling of hydrodynamic and morphodynamic processes (coed with Federica Scolari and Andrés Hidalgo) - email requests welcome.</li>
-            <li><a href="https://www.iws.uni-stuttgart.de/lww/lehre-und-weiterbildung/" target="_blank" rel="noreferrer">Virtual reality: digital river twins in the Unreal Engine </a></li>
+            <li>Multiple opportunities for combined data-driven 2d/3d numerical modeling of hydrodynamic and morphodynamic processes (coed with Federica Scolari and Andrés Heredia) - email requests welcome.</li>
+            <li>For students who are curious about virtual worlds: Contact Sebastian for topics related to numerical simulations with video engines</li>
             </ul><br/>
             <b>Do you already have an idea for an innovative research graduation project?</b> Contact Sebastian and get your creativity started. <br/>
           </p>
@@ -92,6 +91,7 @@ class Main extends React.Component {
           <p>
             Sebastian focuses on the hybrid modeling of hydraulic systems and their multi-dimensional connectivity with data-driven techniques powered by Python algorithms, fieldwork, lab experiements, and numerical model optimization. The <b>full record</b> of his scientific works is <b><a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">available at ORCID.org</a></b> and here is a list of <b>selected papers</b>:
             <ul>
+            	<li><a href="https://doi.org/10.1016/j.geomorph.2024.109185" target="_blank" rel="noreferrer"><b>Schwindt</b>, Meisinger, Negreiros, Schneider, Nowak, 2024. Transfer learning achieves high recall for object classification in fluvial environments with limited data. Geomorphology 455. doi: 10.1016/j.geomorph.2024.109185</a></li>
             	<li><a href="https://www.nature.com/articles/s41598-023-47501-1" target="_blank" rel="noreferrer">Mouris, <b>Schwindt</b>, Pesci, Wieprecht, Haun, 2023. An interdisciplinary model chain quantifies the footprint of global change on reservoir sedimentation. Scientific Reports (Nature Portfolio) 13(1). doi: 10.1038/s41598-023-47501-1</a></li>
             	<li><a href="https://www.sciencedirect.com/science/article/pii/S1470160X23011871" target="_blank" rel="noreferrer"><b>Schwindt</b>, Negreiros, Ponce, Schalko, Lassar, Barros, Haun, 2023. Fuzzy-logic indicators for riverbed de-clogging suggest ecological benefits of large wood. Ecological Indicators 155. doi: 10.1016/j.ecolind.2023.111045</a></li>            	
                 <li><a href="https://authors.elsevier.com/a/1hAAD_,Oh6okI8" target="_blank" rel="noreferrer"><b>Schwindt</b>, Negreiros, Mudiaga-Ojemu, Hassan, 2023. Meta-analysis of a large bedload transport rate dataset. Geomorphology 435. doi: 10.1016/j.geomorph.2023.108748</a></li>
@@ -121,7 +121,8 @@ class Main extends React.Component {
             <p>
             <b>Awards and Distinctions</b><br/>
             <ul>
-            <li><a href="https://iahr2020.pl/2021/02/22/iahr-gerhard-jirka-award-results/" target="_blank" rel="noreferrer">IAHR Gerhard Jirka Award for the presentation <i>Modelling and Design Automation of Nature-based River Engineering</i> at the IAHR Europe 2020 conference, Warsaw, Poland</a></li>
+            <li><a href="https://ascelibrary.org/journal/jhend8" target="_blank" rel="noreferrer">Best Reviewer Award from the Journal of Hydraulic Engineering (ASCE, 2024)</a></li>
+            <li><a href="https://www.iahr.org/index/dawards/12" target="_blank" rel="noreferrer">IAHR Gerhard Jirka Award for the presentation <i>Modelling and Design Automation of Nature-based River Engineering</i> at the IAHR Europe 2020 conference, Warsaw, Poland</a></li>
             <li><a href="https://connect.agu.org/epsp/spotlight/oct-2019" target="_blank" rel="noreferrer">American Geophysical Union (AGU) – Earth and Planetary Surface Processes&#39; Early Career Researcher Spotlight (October 2019)</a></li>
             </ul>
             </p>
@@ -129,14 +130,14 @@ class Main extends React.Component {
             Sebastian is currently mainly working on the following <b>projects</b>:
             <ul>
             <li><a href="https://www.iws.uni-stuttgart.de/en/lww/research/" target="_blank" rel="noreferrer">Optimization of supervised learning techniques for numerical model calibration</a> (funded by the <a href="https://www.dfg.de/" target="_blank" rel="noreferrer">DFG</a>). This project is a collaboration between the Depts. of <a href="https://www.iws.uni-stuttgart.de/en/lww/" target="_blank" rel="noreferrer">Hydraulic Engineering and Water Resources Management (LWW)</a> and <a href="https://www.iws.uni-stuttgart.de/en/ls3/" target="_blank" rel="noreferrer">Stochastic Simulation and Safety Research for Hydrosystems (LS3)</a>.</li>
-            <li><a href="https://misti.mit.edu/germany-seed-funds" target="_blank" rel="noreferrer">The MITs MISTI Germany</a>: A global seed fund targetting the initiation of international collaboration. This project is a collaboration between the <a href="https://nepf.mit.edu/" target="_blank" rel="noreferrer">Nepf lab at MIT</a>, its research affiliate <a href="https://isabellaschalko.com/" target="_blank" rel="noreferrer">Isabella Schalko</a>, and the IWS to promote the vertical connectivity of the hyporheic zone.</li>
             <li><a href="https://econnect.readthedocs.io/en/latest/" target="_blank" rel="noreferrer">Hydro-morphodynamic connectivity in a changing environment</a> (funded by the <a href="https://www.dfg.de/" target="_blank" rel="noreferrer">DFG</a> and in collaboration with the NSFC).</li>
             <li><a href="https://www.iws.uni-stuttgart.de/institut/forschung/projekte/lww/va/20210222_Fischaufstiegsanlage_am_Hachinger_Bach/" target="_blank" rel="noreferrer">Optimization of a technical fish pass with a 3d numerical model and physical experiments</a> (Germany).</li>
-            <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
             </ul>
           </p>
           <p> Finalized scientific and other projects (some of them...):
           <ul>
+            <li><a href="https://misti.mit.edu/germany-seed-funds" target="_blank" rel="noreferrer">The MITs MISTI Germany</a>: A global seed fund targetting the initiation of international collaboration. This project is a collaboration between the <a href="https://nepf.mit.edu/" target="_blank" rel="noreferrer">Nepf lab at MIT</a>, its research affiliate <a href="https://isabellaschalko.com/" target="_blank" rel="noreferrer">Isabella Schalko</a>, and the IWS to promote the vertical connectivity of the hyporheic zone.</li>
+            <li><a href="https://dirtx-reservoirs4future.eu/" target="_blank" rel="noreferrer">DIRT-X</a>: Delivery Impacts on Reservoirs in changing climaTe and society aCROSS scales and sectors.</li>
             <li><a href="https://www.verbund.com/de-de/ueber-verbund/kraftwerke/unsere-kraftwerke/toeging-neu" target="_blank" rel="noreferrer">Numerical modeling of a 31-km river stretch bypassing a hydropower plant at the Inn River</a> (Germany).</li>
             <li><a href="https://portal.nifa.usda.gov/web/crisprojectpages/1013705-californian-river-assessment-management-and-rehabilitation.html" target="_blank" rel="noreferrer">Best available science analysis of Habitat Enhancement of the lower Yuba River</a> (with University of California, Davis, USA)</li>
             <li>Expertise for the revitalization of the Arbogne River, Fribourg, Switzerland</li>
@@ -164,18 +165,18 @@ class Main extends React.Component {
           <p>
           Find tutorials and short videos zooming into water resources and numerical tools also on Sebastian&#39;s <a href="https://www.youtube.com/@hydroinformatics" target="_blank" rel="noreferrer">@hydroinformatics (Hydro-Morphodynamics) channel on YouTube.</a>
           </p>
-          <p>Meet Sebastian at the <a href="https://iahrworldcongress.org" target="_blank" rel="noreferrer">IAHR World Congress 2023 in Vienna</a>.
+          <p>Meet Sebastian at the <a href="https://www.iahr2024.lnec.pt/" target="_blank" rel="noreferrer">IAHR Europe Congress 2024 in Lisbon</a>.
           </p>
           <p>More contact options are available at <a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">iws.uni-stuttgart.de</a>.
           </p>
           <ul className="icons">
             <li>
-              <a href="http://www.linkedin.com/in/sebastian-schwindt" target="_blank" rel="noreferrer" className="icon fa-linkedin">
+              <a href="https://www.linkedin.com/in/sebastian-schwindt" target="_blank" rel="noreferrer" className="icon fa-linkedin">
                 <span className="label">Linkedin</span>
               </a>
             </li>
             <li>
-              <a href="hhttps://scholar.google.com/citations?user=246FKewAAAAJ&hl=en&citsig=AMD79oouG1nzUOL85fNl5zk00cmjothoLQ" target="_blank" rel="noreferrer" className="icon fa-google">
+              <a href="https://scholar.google.com/citations?user=246FKewAAAAJ&hl=en&citsig=AMD79oouG1nzUOL85fNl5zk00cmjothoLQ" target="_blank" rel="noreferrer" className="icon fa-google">
                 <span className="label">Google Scholar</span>
               </a>
             </li>
