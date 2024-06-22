@@ -68,10 +68,10 @@ const Header = props => (
         <li>
           <button
             onClick={() => {
-              props.onOpenArticle('contact')
+              props.onOpenArticle('outreach')
             }}
           >
-            Contact
+            Outreach
           </button>
         </li>
       </ul>
