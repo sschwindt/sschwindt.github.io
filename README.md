@@ -5,9 +5,9 @@ This website is build with [Gatsby](https://www.gatsbyjs.com/).
 ## installation nov-2023
 
 ```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-nvm install 18
-nvm use 18
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+nvm install node
+
 ```
 
 Find updates at 
@@ -25,6 +25,7 @@ npm install
 
 ```
 npm update -g
+npm install -g gatsby-cli
 
 ```
 
