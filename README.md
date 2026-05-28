@@ -64,7 +64,7 @@ Useful commands:
 ### Short version
 
 ```
-git add -A && git commit -m "…" && git push   # pushes to main, workflow rebuilds
+git add -A && git commit -m "..." && git push   # pushes to main, workflow rebuilds
 ```
 
 ### Background
