@@ -33,13 +33,13 @@ class Main extends React.Component {
             <img src={pic01} alt="Sebastian Schwindt river data ecohydraulics numerical simulations connectivity Python" />
           </span>
           <p>
-          Dr. sc. (PhD) Sebastian Schwindt (he/him) is a researcher focusing on computational and data-driven ecohydraulics. He leads the hydro-morphodynamics group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a> at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>).
+          PD Dr. sc. (PhD) Sebastian Schwindt (he/him) is a researcher specializing in ecohydraulics and hydro-morphodynamics under global change pressure, and earned his habilitation with the venia legendi in ecohydraulics in July 2025. He leads the hydro-morphodynamics group at the <a href="https://www.iws.uni-stuttgart.de/" target="_blank" rel="noreferrer">Institute for Modelling Hydraulic and Environmental Systems (IWS)</a> at the University of Stuttgart (<a href="https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/" target="_blank" rel="noreferrer">visit his institutional profile</a>).
           </p>
           <p>
             He completed his Bachelor's (2010) and Master's (2012) studies in Environmental Engineering at the Technical University of Munich (Germany). After a detour into the private hydropower sector, Sebastian accomplished his doctorate in Civil Engineering at the Ecole Polytechnique fédérale de Lausanne (EPFL, Switzerland) from 2013 to 2017 under the supervision of Prof. Anton J. Schleiss and Prof. Mário Franca.
           </p>
           <p>
-            Later, Sebastian pursued postdoctoral research at the University of California, Davis (USA), with <a href="http://pasternack.ucdavis.edu/" target="_blank" rel="noreferrer">Prof. Greg Pasternack</a>. The emphasis of his postdoctoral research was on the lateral connectivity and ecohydraulic enhancement of the Yuba River (California, USA) based on remote sensing (lidar) imagery and numerical models. Find the full scientific record at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a>.
+            Later, Sebastian pursued postdoctoral research at the University of California, Davis (USA), with <a href="http://pasternack.ucdavis.edu/" target="_blank" rel="noreferrer">Prof. Greg Pasternack</a>. The emphasis of his postdoctoral research was on the flood-safe restoration and ecohydraulic enhancement of the Yuba River (California, USA) based on remote sensing (lidar) imagery and numerical models. Find the full scientific record at <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID.org</a>.
           </p>
           <p>
             Passionate about "black screens," Sebastian helps administer the web presences of the <a href="https://units.fisheries.org/fishpassagejointcommittee/" target="_blank" rel="noreferrer">AFS-BES/ASCE-EWRI Joint Committee on Fisheries Engineering and Science</a> and the Ecohydraulics community (<a href="https://ecohydraulics.org" target="_blank" rel="noreferrer">ecohydraulics.org</a>), where he also regularly contributes blog posts.
@@ -88,8 +88,7 @@ class Main extends React.Component {
             <img src={pic03} alt="river sciences" />
           </span>
           <p>
-          Restoring aquatic ecosystems is increasingly recognized as a critical strategy for addressing the growing biodiversity and climate crises. While many restoration efforts prioritize flagship species, evidence suggests that smaller aquatic organisms play an outsized role in maintaining ecosystem services and regulating greenhouse gas fluxes in rivers. Sebastian's research centers on computational and data-driven analyses to gain fundamental insights into water-driven processes that underpin vital functions, tackling a broad spectrum of ecologically and climatologically urgent questions.
-          Recent investigations span AI-optimized numerical modeling, data-driven ecohydraulic site analysis, and riverbed clogging (also known as "colmation"). By integrating deterministic, high resolution numerical simulations, field data, and remote sensing, Sebastian's group assesses river dynamics, ecological integrity, and flood hazards to support science-backed restoration.
+          Restoring aquatic ecosystems is increasingly recognized as a critical strategy for addressing the growing biodiversity and climate crises. While many restoration efforts prioritize flagship species, evidence suggests that smaller aquatic organisms play an outsized role in maintaining ecosystem services and regulating greenhouse gas fluxes in rivers. Sebastian's research is centered on lab-sizes, field-scale, and numerical analyses to gain insights into water-driven processes that underpin vital functions, tackling a broad spectrum of ecologically and climatologically urgent questions for the broader society. Recent investigations span AI-optimized numerical modeling, data-driven ecohydraulic site analysis, and riverbed clogging (also referred to as "colmation" in Europe).
           </p>
           <p>For a comprehensive list of publications and projects, please visit Sebastian's <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID</a> or <a href="https://scholar.google.com/citations?user=246FKewAAAAJ&hl=en&citsig=AMD79oouG1nzUOL85fNl5zk00cmjothoLQ" target="_blank" rel="noreferrer">Google Scholar</a> profiles.
             </p>
@@ -132,7 +131,7 @@ class Main extends React.Component {
               </a>
             </li>
             <li>
-              <a href="https://scholar.google.com/citations?user=246FKewAAAAJ&hl=en&citsig=AMD79oouG1nzUOL85fNl5zk00cmjothoLQ" target="_blank" rel="noreferrer" className="icon fa-google">
+              <a href="https://scholar.google.com/citations?user=246FKewAAAAJ&hl=en" target="_blank" rel="noreferrer" className="icon fa-google">
                 <span className="label">Google Scholar</span>
               </a>
             </li>
