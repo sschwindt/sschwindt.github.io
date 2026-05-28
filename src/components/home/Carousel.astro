@@ -1,0 +1,235 @@
+---
+import { Icon } from "astro-icon/components";
+
+import type { FeedItem } from "@utils/feeds";
+
+
+interface Props {
+    id: string;
+    title: string;
+    titleIcon?: string;
+    items: FeedItem[];
+    /** Footer call-to-action link */
+    moreLabel?: string;
+    moreUrl?: string;
+    /** Auto-rotate interval in milliseconds; 0 disables. */
+    interval?: number;
+    /** Fallback message when items is empty. */
+    emptyMessage?: string;
+    /** Image used when an item has no thumbnail or its thumbnail fails to load. */
+    fallbackThumbnail?: string;
+}
+
+const {
+    id,
+    title,
+    titleIcon,
+    items,
+    moreLabel,
+    moreUrl,
+    interval = 6000,
+    emptyMessage = "Feed temporarily unavailable. Check back soon.",
+    fallbackThumbnail,
+} = Astro.props;
+
+const hasItems = items.length > 0;
+---
+
+<section
+    class="card-base relative w-full px-5 py-5 md:px-7 md:py-6 onload-animation-up overflow-hidden"
+    data-carousel={id}
+    data-carousel-interval={interval}
+>
+    <header class="flex items-center justify-between mb-4 gap-2">
+        <h2 class="flex items-center gap-2 text-xl md:text-2xl font-bold text-(--primary)">
+            {titleIcon && <Icon name={titleIcon} class="text-2xl md:text-3xl" />}
+            <span>{title}</span>
+        </h2>
+        {moreLabel && moreUrl && (
+            <a
+                href={moreUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="btn-plain rounded-lg px-3 h-9 text-sm font-medium flex items-center gap-1 text-(--primary)"
+            >
+                <span class="hidden sm:inline">{moreLabel}</span>
+                <Icon name="fa6-solid:arrow-up-right-from-square" class="text-xs" />
+            </a>
+        )}
+    </header>
+
+    {hasItems ? (
+        <div class="carousel-wrapper relative">
+            <ul class="carousel-track relative min-h-56 md:min-h-64">
+                {items.map((item, idx) => (
+                    <li
+                        class:list={[
+                            "carousel-slide absolute inset-0 transition-opacity duration-700",
+                            idx === 0 ? "opacity-100 z-10" : "opacity-0 z-0",
+                        ]}
+                        data-slide-index={idx}
+                    >
+                        <a
+                            href={item.link}
+                            target="_blank"
+                            rel="noreferrer"
+                            class="flex flex-col md:flex-row gap-4 h-full w-full group rounded-xl overflow-hidden"
+                        >
+                            {(item.thumbnail || fallbackThumbnail) && (
+                                <div class="md:w-2/5 flex-shrink-0 aspect-video md:aspect-auto overflow-hidden rounded-lg bg-black/10">
+                                    <img
+                                        src={item.thumbnail || fallbackThumbnail}
+                                        data-fallback-src={fallbackThumbnail}
+                                        alt=""
+                                        loading="lazy"
+                                        onerror="if(this.dataset.fallbackSrc && this.src !== new URL(this.dataset.fallbackSrc, location.origin).href){this.src=this.dataset.fallbackSrc;}else{this.style.display='none';}"
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                </div>
+                            )}
+                            <div class="flex-1 flex flex-col">
+                                <h3 class="text-base md:text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-(--primary) transition-colors">
+                                    {item.title}
+                                </h3>
+                                {item.pubDate && (
+                                    <time class="text-xs text-neutral-500 mt-1">
+                                        {new Date(item.pubDate).toLocaleDateString("en-GB", {
+                                            year: "numeric", month: "short", day: "numeric",
+                                        })}
+                                    </time>
+                                )}
+                                {item.description && (
+                                    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-2 line-clamp-4">
+                                        {item.description}
+                                    </p>
+                                )}
+                            </div>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+
+            <div class="flex items-center justify-between gap-2 mt-4">
+                <button
+                    type="button"
+                    aria-label="Previous"
+                    class="carousel-prev btn-regular rounded-lg h-8 w-8 flex items-center justify-center active:scale-90"
+                >
+                    <Icon name="fa6-solid:chevron-left" class="text-sm" />
+                </button>
+                <div class="carousel-dots flex items-center gap-1.5 flex-wrap justify-center">
+                    {items.map((_, idx) => (
+                        <button
+                            type="button"
+                            aria-label={`Go to item ${idx + 1}`}
+                            data-dot-index={idx}
+                            class:list={[
+                                "carousel-dot h-2 rounded-full transition-all duration-300",
+                                idx === 0 ? "w-6 bg-(--primary)" : "w-2 bg-(--primary)/30",
+                            ]}
+                        ></button>
+                    ))}
+                </div>
+                <button
+                    type="button"
+                    aria-label="Next"
+                    class="carousel-next btn-regular rounded-lg h-8 w-8 flex items-center justify-center active:scale-90"
+                >
+                    <Icon name="fa6-solid:chevron-right" class="text-sm" />
+                </button>
+            </div>
+        </div>
+    ) : (
+        <div class="min-h-32 flex items-center justify-center text-neutral-500 text-sm italic">
+            {emptyMessage}
+            {moreUrl && (
+                <a href={moreUrl} target="_blank" rel="noreferrer" class="ml-2 text-(--primary) underline">
+                    Open feed
+                </a>
+            )}
+        </div>
+    )}
+</section>
+
+<style>
+    .line-clamp-4 {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    function initCarousels() {
+        const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
+        carousels.forEach((root) => {
+            if (root.dataset.carouselInited === "1") return;
+            root.dataset.carouselInited = "1";
+
+            const slides = Array.from(root.querySelectorAll<HTMLElement>(".carousel-slide"));
+            const dots = Array.from(root.querySelectorAll<HTMLElement>(".carousel-dot"));
+            const prev = root.querySelector<HTMLButtonElement>(".carousel-prev");
+            const next = root.querySelector<HTMLButtonElement>(".carousel-next");
+            const interval = parseInt(root.dataset.carouselInterval ?? "0", 10);
+
+            if (slides.length === 0) return;
+
+            let current = 0;
+            let timer: number | null = null;
+            let paused = false;
+
+            const show = (idx: number) => {
+                slides.forEach((s, i) => {
+                    const active = i === idx;
+                    s.classList.toggle("opacity-100", active);
+                    s.classList.toggle("z-10", active);
+                    s.classList.toggle("opacity-0", !active);
+                    s.classList.toggle("z-0", !active);
+                });
+                dots.forEach((d, i) => {
+                    const active = i === idx;
+                    d.classList.toggle("w-6", active);
+                    d.classList.toggle("bg-(--primary)", active);
+                    d.classList.toggle("w-2", !active);
+                    d.classList.toggle("bg-(--primary)/30", !active);
+                });
+                current = idx;
+            };
+
+            const go = (delta: number) => show((current + delta + slides.length) % slides.length);
+
+            const start = () => {
+                if (interval > 0 && slides.length > 1 && timer === null && !paused) {
+                    timer = window.setInterval(() => go(1), interval);
+                }
+            };
+            const stop = () => {
+                if (timer !== null) {
+                    window.clearInterval(timer);
+                    timer = null;
+                }
+            };
+
+            prev?.addEventListener("click", () => { stop(); go(-1); start(); });
+            next?.addEventListener("click", () => { stop(); go(1); start(); });
+            dots.forEach((d) => d.addEventListener("click", () => {
+                const idx = parseInt(d.dataset.dotIndex ?? "0", 10);
+                stop(); show(idx); start();
+            }));
+
+            root.addEventListener("mouseenter", () => { paused = true; stop(); });
+            root.addEventListener("mouseleave", () => { paused = false; start(); });
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) stop(); else start();
+            });
+
+            start();
+        });
+    }
+
+    if (document.readyState !== "loading") initCarousels();
+    else document.addEventListener("DOMContentLoaded", initCarousels);
+    document.addEventListener("astro:page-load", initCarousels);
+    document.addEventListener("astro:after-swap", initCarousels);
+</script>

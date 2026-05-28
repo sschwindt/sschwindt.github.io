@@ -1,0 +1,241 @@
+# Site configuration
+site:
+    siteURL: "https://sebastian-schwindt.org/"
+    title: "Ecohydraulics & Climate-Aware Restoration"
+    subtitle: "PD Dr. sc. (PhD) Sebastian Schwindt"
+    lang: "en"
+    translate:
+        enable: false
+        service: "client.edge"
+        showSelectTag: false
+        autoDiscriminate: false
+        ignoreClasses:
+            - "ignore"
+            - "banner-title"
+            - "banner-subtitle"
+        ignoreTags:
+            - "script"
+            - "style"
+            - "code"
+            - "pre"
+    timeZone: 1
+    font: {}
+    themeColor:
+        hue: 200
+    defaultTheme: "dark"
+    wallpaper:
+        mode: "banner"
+        src:
+            desktop:
+                - "/assets/images/rhine1.JPG"
+                - "/assets/images/isar3.JPG"
+                - "/assets/images/devoll1.JPG"
+                - "/assets/images/isar-ftir.jpg"
+                - "/assets/images/fish.jpg"
+                - "/assets/images/rhine4.JPG"
+                - "/assets/images/isar7.jpg"
+                - "/assets/images/devoll2.JPG"
+            mobile:
+                - "/assets/images/rhine2.JPG"
+                - "/assets/images/isar5.JPG"
+                - "/assets/images/devoll2.JPG"
+                - "/assets/images/fish.jpg"
+                - "/assets/images/isar10.jpg"
+        position: "center"
+        carousel:
+            enable: true
+            interval: 6
+            kenBurns: true
+        banner:
+            homeText:
+                enable: true
+                title: "Ecohydraulics & Climate-Aware Restoration"
+                subtitle:
+                    - "PD Dr. sc. (PhD) Sebastian Schwindt"
+                typewriter:
+                    enable: true
+                    speed: 90
+                    deleteSpeed: 50
+                    pauseTime: 4000
+            credit:
+                enable: false
+                text: ""
+                url: ""
+            navbar:
+                transparentMode: "semifull"
+            waves:
+                enable: true
+                performanceMode: false
+        fullscreen:
+            zIndex: -1
+            opacity: 0.9
+            blur: 1
+            navbar:
+                transparentMode: "semi"
+    loadingOverlay:
+        enable: true
+        waitForAllResources: true
+        title:
+            enable: true
+            content: "LOADING"
+            interval: 1.5
+        spinner:
+            enable: true
+            interval: 1.5
+    favicon:
+        - src: "/assets/images/hycon.png"
+    bangumi:
+        userId: ""
+    generateOgImages: false
+
+# Analytics
+analytics:
+    enabled: false
+    platform: "umami"
+    umami:
+        baseUrl: ""
+        apiKey: ""
+        code: ""
+
+# Navbar
+navbar:
+    links:
+        - "Home"
+        - name: "About"
+          url: "/about/"
+          icon: "material-symbols:account-circle"
+          description: "About PD Dr. sc. Sebastian Schwindt"
+        - name: "Teaching"
+          url: "/teaching/"
+          icon: "material-symbols:school"
+          description: "Courses, workshops, and student supervision"
+        - name: "Research"
+          url: "/research/"
+          icon: "material-symbols:settings"
+          description: "Research interests, publications, and projects"
+        - name: "ORCID"
+          url: "https://orcid.org/0000-0002-7206-0542"
+          external: true
+          icon: "fa6-brands:orcid"
+          description: "Full scientific record on ORCID"
+
+# Sidebar
+sidebar:
+    components:
+        left: []
+        right:
+            - type: "profile"
+              position: "top"
+              visibility:
+                  mode: "exclude"
+                  paths: []
+
+# Profile
+profile:
+    avatar: "/assets/images/ssc.png"
+    name: "Sebastian Schwindt"
+    bio: "Ecohydraulics, hydro-morphodynamics, and climate-aware river restoration."
+    links:
+        - name: "LinkedIn"
+          icon: "fa6-brands:linkedin"
+          url: "https://www.linkedin.com/in/sebastian-schwindt"
+        - name: "Google Scholar"
+          icon: "fa6-brands:google-scholar"
+          url: "https://scholar.google.com/citations?user=246FKewAAAAJ&hl=en"
+        - name: "ResearchGate"
+          icon: "fa6-brands:researchgate"
+          url: "https://www.researchgate.net/profile/Sebastian_Schwindt"
+        - name: "GitHub"
+          icon: "fa6-brands:github"
+          url: "https://github.com/sschwindt"
+        - name: "YouTube"
+          icon: "fa6-brands:youtube"
+          url: "https://www.youtube.com/@hydroinformatics"
+
+# Announcement
+announcement:
+    title: "Welcome"
+    content: "Ecohydraulics & climate-aware river restoration — research, teaching, and outreach."
+    closable: true
+    link:
+        enable: true
+        text: "About"
+        url: "/about/"
+        external: false
+
+# Post
+post:
+    card:
+        cover:
+            side: "left"
+            width: "33%"
+            showContent: true
+    showLastModified: false
+    expressiveCode:
+        theme: "github-dark"
+    license:
+        enable: false
+        name: ""
+        url: ""
+    comment:
+        enable: false
+        twikoo:
+            envId: ""
+            lang: "en"
+
+# Footer
+footer:
+    enable: true
+    customHtml: '<div class="text-center text-sm opacity-70">&copy; Sebastian Schwindt &middot; <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID 0000-0002-7206-0542</a></div>'
+
+# Particle effects
+particle:
+    enable: true
+    particleNum: 12
+    limitTimes: -1
+    size:
+        min: 0.3
+        max: 0.9
+    opacity:
+        min: 0.3
+        max: 0.9
+    speed:
+        horizontal:
+            min: -0.9
+            max: 0.9
+        vertical:
+            min: 0.15
+            max: 0.3
+        rotation: 0.12
+        fadeSpeed: 0.12
+    zIndex: 100
+
+# Music player (disabled)
+musicPlayer:
+    enable: false
+    mode: "local"
+    meting:
+        meting_api: ""
+        server: ""
+        type: ""
+        id: ""
+    local:
+        playlist: []
+    autoplay: false
+
+# Pio live2d (disabled)
+pio:
+    enable: false
+    models: []
+    position: "left"
+    width: 280
+    height: 250
+    mode: "draggable"
+    hiddenOnMobile: true
+    dialog:
+        welcome: ""
+        touch: []
+        home: ""
+        skin: []
+        close: ""
+        link: ""

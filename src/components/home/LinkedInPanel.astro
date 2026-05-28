@@ -1,0 +1,119 @@
+---
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
+
+import { Icon } from "astro-icon/components";
+
+
+const linkedinUrl = "https://www.linkedin.com/in/sebastian-schwindt";
+
+const linkedinDir = join(process.cwd(), "public", "assets", "linkedin");
+const fallbacks = [
+    "/assets/images/rhine1.JPG",
+    "/assets/images/isar1.JPG",
+    "/assets/images/devoll1.JPG",
+    "/assets/images/fish.jpg",
+];
+
+// Pick up any image dropped into /public/assets/linkedin/ (jpg|jpeg|png|webp|gif).
+// Fall back to a handful of stock images so the panel is never empty.
+let images: string[] = [];
+try {
+    images = readdirSync(linkedinDir)
+        .filter((f) => /\.(jpe?g|png|webp|gif|avif)$/i.test(f))
+        .sort()
+        .map((f) => `/assets/linkedin/${f}`);
+} catch {
+    /* directory missing – use fallbacks */
+}
+if (images.length === 0) images = fallbacks;
+---
+
+<section
+    class="card-base relative w-full overflow-hidden onload-animation-up"
+    data-linkedin-panel
+    data-linkedin-interval="5000"
+>
+    <div class="relative h-64 md:h-80 w-full">
+        {images.map((src, idx) => (
+            <img
+                src={src}
+                alt=""
+                loading={idx === 0 ? "eager" : "lazy"}
+                class:list={[
+                    "linkedin-slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000",
+                    idx === 0 ? "opacity-100" : "opacity-0",
+                ]}
+                data-slide-index={idx}
+            />
+        ))}
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+        <div class="relative z-10 h-full flex flex-col justify-end p-5 md:p-7 text-white">
+            <div class="flex items-center gap-2 text-sm uppercase tracking-wider opacity-90">
+                <Icon name="fa6-brands:linkedin" class="text-xl" />
+                <span>LinkedIn</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold mt-1">Posts &amp; Updates</h2>
+            <p class="text-sm md:text-base opacity-90 mt-2 max-w-xl">
+                Follow the latest commentary on ecohydraulics, river restoration,
+                and climate-aware water science directly on LinkedIn.
+            </p>
+            <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="self-start mt-4 inline-flex items-center gap-2 rounded-lg bg-(--primary) px-4 py-2 text-sm font-semibold text-white shadow-lg active:scale-95 transition-transform"
+            >
+                <Icon name="fa6-brands:linkedin" class="text-base" />
+                View on LinkedIn
+                <Icon name="fa6-solid:arrow-up-right-from-square" class="text-xs" />
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    function initLinkedInSlideshow() {
+        const root = document.querySelector<HTMLElement>("[data-linkedin-panel]");
+        if (!root || root.dataset.linkedinInited === "1") return;
+        root.dataset.linkedinInited = "1";
+
+        const slides = Array.from(root.querySelectorAll<HTMLImageElement>(".linkedin-slide"));
+        if (slides.length <= 1) return;
+        const interval = parseInt(root.dataset.linkedinInterval ?? "5000", 10);
+
+        let current = 0;
+        let timer: number | null = null;
+
+        const show = (idx: number) => {
+            slides.forEach((s, i) => {
+                s.classList.toggle("opacity-100", i === idx);
+                s.classList.toggle("opacity-0", i !== idx);
+            });
+            current = idx;
+        };
+
+        const tick = () => show((current + 1) % slides.length);
+
+        const start = () => {
+            if (timer === null) timer = window.setInterval(tick, interval);
+        };
+        const stop = () => {
+            if (timer !== null) { window.clearInterval(timer); timer = null; }
+        };
+
+        root.addEventListener("mouseenter", stop);
+        root.addEventListener("mouseleave", start);
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) stop(); else start();
+        });
+
+        start();
+    }
+
+    if (document.readyState !== "loading") initLinkedInSlideshow();
+    else document.addEventListener("DOMContentLoaded", initLinkedInSlideshow);
+    document.addEventListener("astro:page-load", initLinkedInSlideshow);
+    document.addEventListener("astro:after-swap", initLinkedInSlideshow);
+</script>

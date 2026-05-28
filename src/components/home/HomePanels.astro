@@ -1,0 +1,43 @@
+---
+import { fetchYouTubeFeed, fetchRssFeed } from "@utils/feeds";
+import Carousel from "@components/home/Carousel.astro";
+import LinkedInPanel from "@components/home/LinkedInPanel.astro";
+
+
+const YOUTUBE_CHANNEL_ID = "UCGOMSGRrW5eLHiMn5Dfp7WQ"; // @hydroinformatics
+const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@hydroinformatics";
+const ECOHYDRAULICS_FEED = "https://ecohydraulics.org/about/blog/feed/";
+const ECOHYDRAULICS_PAGE = "https://ecohydraulics.org/about/blog/";
+
+// Fetched in parallel at build/dev time. Empty arrays come back on network errors
+// (logged to the build console) and render a graceful fallback.
+const [youtubeItems, blogItems] = await Promise.all([
+    fetchYouTubeFeed(YOUTUBE_CHANNEL_ID, 8),
+    fetchRssFeed(ECOHYDRAULICS_FEED, 8),
+]);
+---
+
+<div class="flex flex-col gap-5 md:gap-6 mb-6">
+    <LinkedInPanel />
+
+    <Carousel
+        id="youtube"
+        title="Latest Videos"
+        titleIcon="fa6-brands:youtube"
+        items={youtubeItems}
+        moreLabel="Open channel"
+        moreUrl={YOUTUBE_CHANNEL_URL}
+        emptyMessage="Could not load the YouTube channel feed."
+    />
+
+    <Carousel
+        id="ecohydraulics"
+        title="Ecohydraulics Blog"
+        titleIcon="material-symbols:newspaper"
+        items={blogItems}
+        moreLabel="All posts"
+        moreUrl={ECOHYDRAULICS_PAGE}
+        emptyMessage="Could not load the Ecohydraulics blog feed."
+        fallbackThumbnail="/assets/images/ecohydraulics.png"
+    />
+</div>
