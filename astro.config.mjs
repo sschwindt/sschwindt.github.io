@@ -126,7 +126,30 @@ export default defineConfig({
         svelte({
             preprocess: vitePreprocess(),
         }),
-        sitemap(),
+        sitemap({
+            // Drop non-content pages — feed listing pages, drafts, paginated
+            // duplicates of the home page, error pages.
+            filter: (page) =>
+                !/\/atom\/?$|\/rss\/?$|\/404\/?$|\/og\//i.test(page),
+            serialize(item) {
+                const path = new URL(item.url).pathname;
+                let priority = 0.5;
+                let changefreq = "monthly";
+                if (path === "/") {
+                    priority = 1.0;
+                    changefreq = "weekly";
+                } else if (/^\/(about|teaching|research)\/?$/.test(path)) {
+                    priority = 0.8;
+                    changefreq = "monthly";
+                }
+                return {
+                    ...item,
+                    priority,
+                    changefreq,
+                    lastmod: new Date().toISOString(),
+                };
+            },
+        }),
     ],
     markdown: {
         remarkPlugins: [
