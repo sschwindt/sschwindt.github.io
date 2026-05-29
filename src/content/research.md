@@ -1,9 +1,9 @@
 ---
 title: Research
-description: Research interests, publications, and projects
+description: "Research on ecohydraulics, hydraulics, morphodynamics, bedload and sediment transport, TELEMAC numerical simulations, particle methods (PIC, FLIP), large wood, fish passage and fishway design under climate change."
 ---
 
-![River sciences](/assets/images/isar-ftir.jpg)
+![HydroBayesCal](/assets/images/hydrobayescal.jpg)
 
 Restoring aquatic ecosystems is increasingly recognized as a critical strategy for addressing the growing biodiversity and climate crises. While many restoration efforts prioritize flagship species, evidence suggests that smaller aquatic organisms play an outsized role in maintaining ecosystem services and regulating greenhouse gas fluxes in rivers.
 

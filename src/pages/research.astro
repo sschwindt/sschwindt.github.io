@@ -8,6 +8,7 @@ import Markdown from "@components/common/markdown.astro";
 import Comment from "@components/comment.astro";
 import GridLayout from "@layouts/grid.astro";
 import BackwardButton from "@components/backwardButton.astro";
+import WebPageJsonLd from "@components/seo/WebPageJsonLd.astro";
 
 
 const researchPost = await getEntry("spec", "research");
@@ -18,9 +19,32 @@ const pageTitle = researchPost.data.title || "Research";
 const pageDescription = researchPost.data.description || "Research interests, publications, and projects";
 
 const { Content, headings } = await render(researchPost);
+
+const topics = [
+    "Ecohydraulics",
+    "Hydraulics",
+    "Hydro-morphodynamics",
+    "Morphodynamics",
+    "TELEMAC numerical simulations",
+    "Particle-in-Cell (PIC)",
+    "Fluid-Implicit-Particle (FLIP)",
+    "Large wood in rivers",
+    "Fish passage",
+    "Fishway design",
+    "Sediment transport",
+    "Bedload transport",
+    "Climate-aware river restoration",
+];
 ---
 
 <GridLayout title={pageTitle} description={pageDescription} headings={headings}>
+    <WebPageJsonLd
+        slot="head"
+        pageTitle={pageTitle}
+        pageUrl={Astro.url.toString()}
+        description={pageDescription}
+        topics={topics}
+    />
     <div class="flex w-full rounded-(--radius-large) overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
             <BackwardButton currentPath={Astro.url.pathname} />

@@ -48,6 +48,26 @@
     }
 }
 
+/* Full-width content on tablet (md→lg).
+   Hides the sidebars and lets the main column span the full grid width,
+   restoring the normal layout from lg upward. */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+    .full-width-md {
+        grid-template-columns: 1fr !important;
+    }
+    .full-width-md > #left-sidebar,
+    .full-width-md > #right-sidebar {
+        display: none !important;
+    }
+    .full-width-md > main {
+        grid-column: 1 / -1 !important;
+        width: 100% !important;
+    }
+    .full-width-md > .footer {
+        grid-column: 1 / -1 !important;
+    }
+}
+
 /* 小屏手机无侧边栏布局优化 */
 @media (max-width: 512px) {/* 修复双侧边栏模式在移动端的布局问题 */
     .mobile-both-sidebar {

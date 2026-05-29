@@ -1,6 +1,6 @@
 ---
 title: About
-description: About PD Dr. sc. Sebastian Schwindt
+description: "PD Dr. sc. (PhD) Sebastian Schwindt — researcher in ecohydraulics, hydro-morphodynamics, sediment transport, large wood and fish passage at the University of Stuttgart (IWS). Habilitation in ecohydraulics, 2025."
 ---
 
 ![Sebastian Schwindt](/assets/images/ssc.png)

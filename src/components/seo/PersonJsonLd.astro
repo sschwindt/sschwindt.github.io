@@ -1,0 +1,70 @@
+---
+import { siteConfig, profileConfig } from "@/config";
+
+
+// Person structured data. Helps search engines (and increasingly LLMs) bind
+// "Sebastian Schwindt" to a stable identity with topic expertise — which is
+// what surfaces the site for queries like "ecohydraulics", "telemac",
+// "fish passage" + name combinations.
+const sameAs = [
+    "https://orcid.org/0000-0002-7206-0542",
+    "https://scholar.google.com/citations?user=246FKewAAAAJ&hl=en",
+    "https://www.iws.uni-stuttgart.de/en/institute/team/Schwindt/",
+    ...(profileConfig.links || []).map((l: { url: string }) => l.url),
+];
+
+const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": new URL("#person", siteConfig.siteURL).toString(),
+    name: "Sebastian Schwindt",
+    alternateName: "PD Dr. sc. (PhD) Sebastian Schwindt",
+    honorificPrefix: "PD Dr. sc. (PhD)",
+    givenName: "Sebastian",
+    familyName: "Schwindt",
+    jobTitle: "Researcher and Group Leader, Hydro-Morphodynamics",
+    description:
+        "Researcher in ecohydraulics and hydro-morphodynamics under global change pressure. Leads the hydro-morphodynamics group at the Institute for Modelling Hydraulic and Environmental Systems (IWS), University of Stuttgart. Habilitation in ecohydraulics, 2025.",
+    url: siteConfig.siteURL,
+    image: new URL("/assets/images/ssc.png", siteConfig.siteURL).toString(),
+    worksFor: {
+        "@type": "CollegeOrUniversity",
+        name: "University of Stuttgart — Institute for Modelling Hydraulic and Environmental Systems (IWS)",
+        url: "https://www.iws.uni-stuttgart.de/",
+    },
+    alumniOf: [
+        { "@type": "CollegeOrUniversity", name: "Technical University of Munich", url: "https://www.tum.de/" },
+        { "@type": "CollegeOrUniversity", name: "École polytechnique fédérale de Lausanne (EPFL)", url: "https://www.epfl.ch/" },
+        { "@type": "CollegeOrUniversity", name: "University of California, Davis", url: "https://www.ucdavis.edu/" },
+    ],
+    sameAs,
+    knowsAbout: [
+        "Ecohydraulics",
+        "Hydraulics",
+        "Hydro-morphodynamics",
+        "Morphodynamics",
+        "TELEMAC",
+        "TELEMAC-MASCARET",
+        "Numerical simulations",
+        "Computational fluid dynamics",
+        "Large wood in rivers",
+        "Wood transport",
+        "Particle-in-Cell (PIC)",
+        "Fluid-Implicit-Particle (FLIP)",
+        "Fish passage",
+        "Fishway",
+        "Fishway design",
+        "Sediment transport",
+        "Bedload transport",
+        "River restoration",
+        "Climate-aware river restoration",
+        "Flood protection planning",
+        "Python programming for water resources",
+        "Hydroinformatics",
+        "Remote sensing for rivers",
+        "Riverbed clogging (colmation)",
+    ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(person)}></script>

@@ -28,6 +28,7 @@ interface Props {
     setOGTypeArticle?: boolean;
     postSlug?: string;
     headings?: MarkdownHeading[];
+    fullWidthAtMd?: boolean;
 }
 
 const {
@@ -38,6 +39,7 @@ const {
     setOGTypeArticle,
     postSlug,
     headings = [],
+    fullWidthAtMd = false,
 } = Astro.props;
 const hasBannerCredit = siteConfig.wallpaper.mode === "banner" && siteConfig.wallpaper.banner?.credit?.enable;
 const hasBannerLink = !!siteConfig.wallpaper.banner?.credit?.url;
@@ -126,7 +128,7 @@ const {
         >
             <div
                 id="main-grid"
-                class={`w-full left-0 right-0 grid ${gridCols} grid-rows-[auto] mx-auto gap-4 px-0 md:px-4 ${!hasAnyComponents ? "mobile-no-sidebar" : ""} ${(hasLeftSidebar || hasRightSidebar) ? "mobile-both-sidebar" : ""}`}
+                class={`w-full left-0 right-0 grid ${gridCols} grid-rows-[auto] mx-auto gap-4 px-0 md:px-4 ${!hasAnyComponents ? "mobile-no-sidebar" : ""} ${(hasLeftSidebar || hasRightSidebar) ? "mobile-both-sidebar" : ""} ${fullWidthAtMd ? "full-width-md" : ""}`}
             >
                 <!-- Banner image credit -->
                 {

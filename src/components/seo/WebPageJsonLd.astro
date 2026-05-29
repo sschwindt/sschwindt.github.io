@@ -1,0 +1,32 @@
+---
+import { siteConfig } from "@/config";
+
+
+interface Props {
+    pageTitle: string;
+    pageUrl: string;
+    description: string;
+    topics?: string[];
+}
+
+const { pageTitle, pageUrl, description, topics = [] } = Astro.props;
+
+const webpage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: pageTitle,
+    url: pageUrl,
+    description,
+    inLanguage: "en",
+    isPartOf: {
+        "@type": "WebSite",
+        name: siteConfig.title,
+        url: siteConfig.siteURL,
+    },
+    about: topics.map((t) => ({ "@type": "Thing", name: t })),
+    author: { "@id": new URL("#person", siteConfig.siteURL).toString() },
+    mainEntity: { "@id": new URL("#person", siteConfig.siteURL).toString() },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(webpage)}></script>
