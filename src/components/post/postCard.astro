@@ -8,6 +8,7 @@ import { postConfig } from "@/config";
 import { i18n } from "@i18n/translation";
 import I18nKey from "@i18n/i18nKey";
 import ImageWrapper from "@components/common/imageWrapper.astro";
+import CoverMedia from "@components/common/coverMedia.astro";
 import PostMetadata from "./postMeta.astro";
 
 
@@ -97,9 +98,9 @@ const defaultCoverGradient = "linear-gradient(135deg, color-mix(in oklch, oklch(
             </Icon>
         </div>
         {hasCover ? (
-            <ImageWrapper src={cover} basePath={imageBaseDir} alt="Cover Image of the Post"
+            <CoverMedia src={cover} basePath={imageBaseDir} alt="Cover Image of the Post"
                 class="w-full h-full">
-            </ImageWrapper>
+            </CoverMedia>
         ) : (
             <div class="w-full h-full flex items-center justify-center p-4 @min-[768px]:p-6"
                 style={`background: ${defaultCoverGradient}`}>

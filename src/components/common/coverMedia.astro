@@ -1,0 +1,89 @@
+---
+import ImageWrapper from "@components/common/imageWrapper.astro";
+import { url } from "@utils/url";
+
+
+interface Props {
+    id?: string;
+    src: string;
+    class?: string;
+    alt?: string;
+    position?: string;
+    basePath?: string;
+    style?: string;
+    loading?: "lazy" | "eager";
+    decoding?: "async" | "auto" | "sync";
+    poster?: string;
+}
+
+const {
+    id,
+    src,
+    alt,
+    position = "center",
+    basePath = "/",
+    style,
+    loading = "lazy",
+    decoding = "async",
+    poster,
+} = Astro.props;
+const className = Astro.props.class;
+
+const videoExt = /\.(mp4|webm|mov|ogv|m4v)(\?.*)?$/i;
+const isVideo = videoExt.test(src);
+
+const isAbsolute =
+    src.startsWith("/") ||
+    src.startsWith("http://") ||
+    src.startsWith("https://") ||
+    src.startsWith("data:");
+const videoHref = isAbsolute && src.startsWith("/") ? url(src) : src;
+
+function mimeFor(s: string): string {
+    const ext = s.split(/[?#]/)[0].split(".").pop()?.toLowerCase();
+    switch (ext) {
+        case "webm":
+            return "video/webm";
+        case "ogv":
+            return "video/ogg";
+        case "mov":
+        case "m4v":
+            return "video/mp4";
+        default:
+            return "video/mp4";
+    }
+}
+---
+
+{
+    isVideo ? (
+        <div id={id} class:list={[className, "overflow-hidden relative"]} style={style}>
+            <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>
+            <video
+                class="w-full h-full object-cover"
+                style={`object-position: ${position}`}
+                autoplay
+                muted
+                loop
+                playsinline
+                preload={loading === "eager" ? "auto" : "metadata"}
+                poster={poster}
+                aria-label={alt}
+            >
+                <source src={videoHref} type={mimeFor(src)} />
+            </video>
+        </div>
+    ) : (
+        <ImageWrapper
+            id={id}
+            src={src}
+            alt={alt}
+            position={position}
+            basePath={basePath}
+            style={style}
+            loading={loading}
+            decoding={decoding}
+            class={className}
+        />
+    )
+}

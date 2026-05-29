@@ -36,11 +36,11 @@ const showPosts = len > 0;
     description="Personal site of PD Dr. sc. (PhD) Sebastian Schwindt — research, teaching, and outreach on ecohydraulics, hydro-morphodynamics, TELEMAC numerical simulations, large wood, fish passage, sediment transport and climate-aware river restoration at the University of Stuttgart (IWS)."
 >
     {isFirstPage && <PersonJsonLd slot="head" />}
-    {showHomePanels && <HomePanels />}
     {showPosts && (
         <>
             <PostPage page={page}></PostPage>
             <Pagination class="mx-auto onload-animation-up" page={page} style={`animation-delay: ${(len)*50}ms`}></Pagination>
         </>
     )}
+    {showHomePanels && <HomePanels />}
 </GridLayout>
