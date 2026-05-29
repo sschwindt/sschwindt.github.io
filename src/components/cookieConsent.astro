@@ -1,0 +1,140 @@
+---
+// Cookie consent banner.
+// The only non-essential tracking on this site is the (optional) analytics
+// integration, which is loaded ONLY after the visitor accepts. A "Reject all"
+// click prevents it from loading and clears any analytics storage it may have
+// left behind. The language-preference cookie set by translate.js is strictly
+// functional and is therefore exempt from consent.
+interface Props {
+    analyticsEnabled?: boolean;
+    analyticsCode?: string;
+}
+
+const { analyticsEnabled = false, analyticsCode } = Astro.props;
+const hasAnalytics = Boolean(analyticsEnabled && analyticsCode);
+---
+
+<div
+    id="cookie-consent"
+    class="hidden fixed bottom-4 left-4 right-4 md:left-auto md:right-6 md:bottom-6 md:max-w-md z-50 card-base shadow-2xl p-5 border border-black/5 dark:border-white/10"
+    role="dialog"
+    aria-modal="false"
+    aria-label="Cookie consent"
+    aria-live="polite"
+>
+    <h2 class="text-lg font-bold mb-2 text-90">Cookies &amp; privacy</h2>
+    <p class="text-sm text-75 mb-4 leading-relaxed">
+        This site uses a functional cookie to remember your language preference.
+        {hasAnalytics && " With your consent, we also load privacy-friendly analytics to understand how the site is used."}
+        You can accept or reject non-essential cookies below.
+    </p>
+    <div class="flex gap-3 flex-col sm:flex-row">
+        <button
+            id="cookie-accept"
+            type="button"
+            class="btn-regular rounded-lg px-4 py-2 text-sm font-medium flex-1"
+        >
+            Accept all
+        </button>
+        <button
+            id="cookie-reject"
+            type="button"
+            class="btn-card rounded-lg px-4 py-2 text-sm font-medium flex-1"
+        >
+            Reject all
+        </button>
+    </div>
+</div>
+
+{
+    hasAnalytics && (
+        <template id="cookie-consent-analytics" set:html={analyticsCode} />
+    )
+}
+
+<script>
+    const CONSENT_KEY = "cookie-consent";
+
+    const banner = document.getElementById("cookie-consent");
+    const acceptBtn = document.getElementById("cookie-accept");
+    const rejectBtn = document.getElementById("cookie-reject");
+
+    // Execute the analytics script(s) stashed in the <template>. Scripts inserted
+    // via innerHTML never run, so we recreate each one as a fresh element.
+    function activateAnalytics() {
+        const template = document.getElementById(
+            "cookie-consent-analytics",
+        ) as HTMLTemplateElement | null;
+        if (!template || document.getElementById("cookie-consent-analytics-active")) {
+            return;
+        }
+        const marker = document.createElement("meta");
+        marker.id = "cookie-consent-analytics-active";
+        document.head.appendChild(marker);
+
+        template.content.querySelectorAll("script").forEach((oldScript) => {
+            const script = document.createElement("script");
+            for (const attr of Array.from(oldScript.attributes)) {
+                script.setAttribute(attr.name, attr.value);
+            }
+            script.textContent = oldScript.textContent;
+            document.head.appendChild(script);
+        });
+    }
+
+    // Best-effort cleanup of analytics storage when the visitor rejects.
+    function clearAnalyticsStorage() {
+        try {
+            Object.keys(localStorage)
+                .filter((k) => k.startsWith("umami."))
+                .forEach((k) => localStorage.removeItem(k));
+        } catch {
+            /* localStorage may be unavailable */
+        }
+    }
+
+    function hideBanner() {
+        banner?.classList.add("hidden");
+    }
+
+    function accept() {
+        try {
+            localStorage.setItem(CONSENT_KEY, "accepted");
+        } catch {
+            /* ignore */
+        }
+        hideBanner();
+        activateAnalytics();
+    }
+
+    function reject() {
+        try {
+            localStorage.setItem(CONSENT_KEY, "rejected");
+        } catch {
+            /* ignore */
+        }
+        hideBanner();
+        clearAnalyticsStorage();
+    }
+
+    function init() {
+        if (!banner) return;
+        let choice: string | null = null;
+        try {
+            choice = localStorage.getItem(CONSENT_KEY);
+        } catch {
+            /* ignore */
+        }
+
+        if (choice === "accepted") {
+            activateAnalytics();
+        } else if (choice !== "rejected") {
+            banner.classList.remove("hidden");
+        }
+
+        acceptBtn?.addEventListener("click", accept);
+        rejectBtn?.addEventListener("click", reject);
+    }
+
+    init();
+</script>
