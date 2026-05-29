@@ -46,11 +46,13 @@ const hasAnalytics = Boolean(analyticsEnabled && analyticsCode);
     </div>
 </div>
 
-{
-    hasAnalytics && (
-        <template id="cookie-consent-analytics" set:html={analyticsCode} />
-    )
-}
+{/* The analytics code is stashed here and only injected into <head> after the
+    visitor accepts (see the script below). NOTE: this <template> must stay
+    UNCONDITIONAL — wrapping a `set:html` element in a `{cond && (...)}`
+    expression triggers an infinite loop in the Astro compiler at build time
+    ("Building static entrypoints" never finishes). When there is no analytics
+    configured, `analyticsCode` is undefined and the template is simply empty. */}
+<template id="cookie-consent-analytics" set:html={analyticsCode}></template>
 
 <script>
     const CONSENT_KEY = "cookie-consent";

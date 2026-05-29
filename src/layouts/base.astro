@@ -234,8 +234,12 @@ const { enabled: analyticsEnabled, code: analyticsCode } = getAnalyticsConfig();
         {shouldShowTopHighlight && <div class="top-gradient-highlight"></div>}
         <!-- 页面内容 -->
         <slot />
-        <!-- Cookie consent (gates analytics until the visitor accepts) -->
-        <CookieConsent analyticsEnabled={analyticsEnabled} analyticsCode={analyticsCode} />
+        <!-- Cookie consent — only shown when there is non-essential tracking
+             (analytics) to consent to. With analytics disabled the site sets
+             no non-essential cookies, so no banner is required. -->
+        {analyticsEnabled && analyticsCode && (
+            <CookieConsent analyticsEnabled={analyticsEnabled} analyticsCode={analyticsCode} />
+        )}
         <!-- Music Player - 仅在启用时加载 -->
         {musicPlayerConfig.enable && <MusicPlayer client:idle />}
         <!-- Pio 看板娘组件 - 如果启用了侧边栏，可能需要调整 z-index -->
