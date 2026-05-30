@@ -600,17 +600,10 @@
 }
 
 @layer utilities {
-    /* 确保平滑滚动并隐藏原生滚动条 */
+    /* Smooth scrolling, with the native scrollbar kept visible. */
     html,
     body {
     scroll-behavior: smooth;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-    }
-
-    html::-webkit-scrollbar,
-    body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
     }
 
     /* 页面顶部渐变高光效果 */
