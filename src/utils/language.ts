@@ -177,12 +177,130 @@ export function initTranslateService(): void {
             "french",
             "calibration=calibration\nCalibration=Calibration\ncalibrations=calibrations\nCalibrations=Calibrations",
         );
+        // Domain glossary terms (French) sourced from hyhome-v2/documentation/glossary.md.
+        // Same conventions as the German block below: case-sensitive substring matching,
+        // lowercase variants only for common-noun terms, longer phrases first.
+        translate.nomenclature.append(
+            "english",
+            "french",
+            "Dimensionless bed shear stress=cisaillement adimensionnel\n" +
+            "dimensionless bed shear stress=cisaillement adimensionnel\n" +
+            "Dirichlet boundary condition=condition aux limites de Dirichlet\n" +
+            "Neumann boundary condition=condition aux limites de Neumann\n" +
+            "Stage-discharge relation=courbe de tarage\n" +
+            "stage-discharge relation=courbe de tarage\n" +
+            "Boussinesq approximation=approximation de Boussinesq\n" +
+            "Shallow water equations=équations de Saint-Venant\n" +
+            "shallow water equations=équations de Saint-Venant\n" +
+            "Navier-Stokes equations=équations de Navier-Stokes\n" +
+            "Saint-Venant equations=équations de Saint-Venant\n" +
+            "Boussinesq hypothesis=hypothèse de Boussinesq\n" +
+            "Continuity equation=équation de continuité\n" +
+            "continuity equation=équation de continuité\n" +
+            "Sediment transport=transport solide\n" +
+            "sediment transport=transport solide\n" +
+            "Operating System=système d'exploitation\n" +
+            "operating system=système d'exploitation\n" +
+            "LU decomposition=décomposition LU\n" +
+            "Reynolds number=nombre de Reynolds\n" +
+            "Sediment yield=apport solide\n" +
+            "sediment yield=apport solide\n" +
+            "Shear velocity=vitesse de frottement\n" +
+            "shear velocity=vitesse de frottement\n" +
+            "Suspended load=transport en suspension\n" +
+            "suspended load=transport en suspension\n" +
+            "Ethohydraulics=éthohydraulique\n" +
+            "ethohydraulics=éthohydraulique\n" +
+            "Exner equation=équation d'Exner\n" +
+            "Froude number=nombre de Froude\n" +
+            "Echo sounder=échosondeur\n" +
+            "echo sounder=échosondeur\n" +
+            "Krylov space=sous-espace de Krylov\n" +
+            "Anabranch=anabranche\n" +
+            "anabranch=anabranche\n" +
+            "Clogging=colmatation\n" +
+            "clogging=colmatation\n" +
+            "Bedload=charriage\n" +
+            "bedload=charriage\n" +
+            "RANS=moyenne de Reynolds\n" +
+            "CFL=nombre de Courant\n" +
+            "CRS=système de coordonnées",
+        );
+        translate.nomenclature.append(
+            "english",
+            "deutsch",
+            "Research Frontier=modernes Forschungsfeld\nResearch Frontiers=moderne Forschungsfelder",
+        );
+        translate.nomenclature.append(
+            "english",
+            "deutsch",
+            // NOTE: the source markdown uses straight quotes ('true'), but Astro's
+            // typographic processor (SmartyPants) rewrites them to curly quotes in
+            // the rendered DOM. The "from" string must match the DOM, so we use the
+            // curly characters “true” (U+201C/U+201D) here, not straight apostrophes.
+            "Hydrodynamic simulations with TELEMAC, OpenFOAM, and their kin are key elements of contemporary river engineering and ecohydraulics. They are also, frankly, hungry: every simulation depends on bulky simplifications, such as roughness, turbulence, or sediment-transport models whose “true” values we can hardly observe directly.=Hydrodynamische Simulationen mit TELEMAC, OpenFOAM und ähnliche Programme sind zentrale Bestandteile der modernen Gewässerplanung. Sie sind allerdings sehr rechenintensiv und Fehleranfällig: Jede Simulation stützt sich auf umfangreiche Vereinfachungen, wie etwa Modelle für Oberflächenrauheit, Turbulenz oder Sedimenttransport, deren „wahre“ Werte wir kaum direkt beobachten können.",
+        );
         translate.nomenclature.append(
             "english",
             "deutsch",
             // Phrase entries first so the adjective is correct ("Bayessche")
             // instead of being machine-translated word-by-word.
-            "Bayesian calibration=Bayessche Kalibrierung\nBayesian Calibration=Bayessche Kalibrierung\ncalibration=Kalibrierung\nCalibration=Kalibrierung\ncalibrations=Kalibrierungen\nCalibrations=Kalibrierungen",
+            "Bayesian calibration=Bayes'sche Kalibrierung\nBayesian Calibration=Bayes'sche Kalibrierung\ncalibration=Kalibrierung\nCalibration=Kalibrierung\ncalibrations=Kalibrierungen\nCalibrations=Kalibrierungen",
+        );
+        // Domain glossary terms sourced from hyhome-v2/documentation/glossary.md.
+        // Matching is case-sensitive substring (translate.js uses indexOf), so we
+        // add a lowercase variant for common-noun terms (used mid-sentence) but not
+        // for proper-noun/acronym-led terms, which are always capitalized in prose.
+        // Longer phrases are listed first so they win over single-word entries.
+        translate.nomenclature.append(
+            "english",
+            "deutsch",
+            "Dimensionless bed shear stress=dimensionslose Schubspannung\n" +
+            "dimensionless bed shear stress=dimensionslose Schubspannung\n" +
+            "Dirichlet boundary condition=Dirichlet-Randbedingung\n" +
+            "Neumann boundary condition=Neumann-Randbedingung\n" +
+            "Stage-discharge relation=Abflusskurve\n" +
+            "stage-discharge relation=Abflusskurve\n" +
+            "Boussinesq approximation=Boussinesq-Approximation\n" +
+            "Shallow water equations=Flachwassergleichungen\n" +
+            "shallow water equations=Flachwassergleichungen\n" +
+            "Navier-Stokes equations=Navier-Stokes-Gleichungen\n" +
+            "Saint-Venant equations=Saint-Venant-Gleichungen\n" +
+            "Boussinesq hypothesis=Boussinesq-Näherung\n" +
+            "Continuity equation=Kontinuitätsgleichung\n" +
+            "continuity equation=Kontinuitätsgleichung\n" +
+            "Sediment transport=Sedimenttransport\n" +
+            "sediment transport=Sedimenttransport\n" +
+            "Operating System=Betriebssystem\n" +
+            "operating system=Betriebssystem\n" +
+            "LU decomposition=LR-Zerlegung\n" +
+            "Reynolds number=Reynolds-Zahl\n" +
+            "Sediment yield=Feststoffeintrag\n" +
+            "sediment yield=Feststoffeintrag\n" +
+            "Shear velocity=Schubspannungsgeschwindigkeit\n" +
+            "shear velocity=Schubspannungsgeschwindigkeit\n" +
+            "Suspended load=Schwebstofftransport\n" +
+            "suspended load=Schwebstofftransport\n" +
+            "Ethohydraulics=Ethohydraulik\n" +
+            "ethohydraulics=Ethohydraulik\n" +
+            "Exner equation=Exner-Gleichung\n" +
+            "Froude number=Froude-Zahl\n" +
+            "Echo sounder=Echolot\n" +
+            "echo sounder=Echolot\n" +
+            "Krylov space=Krylowraum\n" +
+            "Convection=Konvektion\n" +
+            "convection=Konvektion\n" +
+            "Advection=Advektion\n" +
+            "advection=Advektion\n" +
+            "Anabranch=Flussarm\n" +
+            "anabranch=Flussarm\n" +
+            "Clogging=Kolmation\n" +
+            "clogging=Kolmation\n" +
+            "Bedload=Geschiebetransport\n" +
+            "bedload=Geschiebetransport\n" +
+            "RANS=Reynolds-gemittelte Navier-Stokes-Gleichungen\n" +
+            "CFL=CFL-Zahl\n" +
+            "CRS=Koordinatenreferenzsystem",
         );
     }
     // 启动翻译监听
