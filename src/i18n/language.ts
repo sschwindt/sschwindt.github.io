@@ -32,7 +32,9 @@ export const LANGUAGE_CONFIG = {
         icon: "🇫🇷",
     },
     de: {
-        translateCode: "german",
+        // translate.js identifies German as "deutsch" (not "german"); using the
+        // wrong code makes the service silently skip German translation.
+        translateCode: "deutsch",
         displayName: "Deutsch",
         locale: "de-DE",
         icon: "🇩🇪",

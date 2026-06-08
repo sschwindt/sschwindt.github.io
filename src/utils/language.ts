@@ -167,6 +167,22 @@ export function initTranslateService(): void {
         }
         return localStorage.getItem(key);
     };
+    // 自定义术语（glossary）：覆盖机器翻译对专业词汇的默认译法。
+    // 源语言始终是英文 "english"。法语默认会把 "calibration" 译成
+    // "étalonnage"，这里强制保留 "calibration"；德语统一用 "Kalibrierung"。
+    // 必须在 translate.execute() 之前追加。
+    if (translate.nomenclature?.append) {
+        translate.nomenclature.append(
+            "english",
+            "french",
+            "calibration=calibration\nCalibration=Calibration\ncalibrations=calibrations\nCalibrations=Calibrations",
+        );
+        translate.nomenclature.append(
+            "english",
+            "deutsch",
+            "calibration=Kalibrierung\nCalibration=Kalibrierung\ncalibrations=Kalibrierungen\nCalibrations=Kalibrierungen",
+        );
+    }
     // 启动翻译监听
     translate.listener.start();
     (window as any).translateInitialized = true;
