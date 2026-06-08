@@ -24,11 +24,11 @@ const style = Astro.props.style;
     style={style}
 >
     <div>
-        <!-- 公告栏内容 -->
+        <!-- Announcement bar content -->
         <div class="text-neutral-600 dark:text-neutral-300 leading-relaxed mb-3">
             {config.content}
         </div>
-        <!-- 可选链接和关闭按钮 -->
+        <!-- Optional link and close button -->
         <div class="flex items-center justify-between gap-3">
             <div>
                 {config.link && config.link.enable !== false && (

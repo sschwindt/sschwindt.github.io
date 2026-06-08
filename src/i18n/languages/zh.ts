@@ -3,16 +3,16 @@ import type { Translation } from "@i18n/translation";
 
 
 export const zh: Translation = {
-    // 加载遮罩
+    // Loading overlay
     [Key.loading]: "加载中",
 
-    // 导航
+    // Navigation
     [Key.home]: "主页",
     [Key.archive]: "归档",
     [Key.about]: "关于",
     [Key.search]: "搜索",
 
-    // 文章
+    // Posts
     [Key.directory]: "目录",
     [Key.tags]: "标签",
     [Key.categories]: "分类",
@@ -23,13 +23,13 @@ export const zh: Translation = {
     [Key.statistics]: "统计",
     [Key.tableOfContents]: "目录",
 
-    // 统计
+    // Statistics
     [Key.pageViews]: "浏览量",
     [Key.visitors]: "访客",
     [Key.statsLoading]: "统计加载中...",
     [Key.statsError]: "统计不可用",
 
-    // 公告栏
+    // Announcement
     [Key.announcement]: "公告",
     [Key.announcementClose]: "关闭",
 
@@ -64,13 +64,13 @@ export const zh: Translation = {
     [Key.publishedAt]: "发布于",
     [Key.license]: "许可协议",
 
-    // 404页面
+    // 404 page
     [Key.notFound]: "404",
     [Key.notFoundTitle]: "页面未找到",
     [Key.notFoundDescription]: "抱歉，您访问的页面不存在或已被移动。",
     [Key.backToHome]: "返回首页",
 
-    // 项目展示页面
+    // Projects page
     [Key.projects]: "项目展示",
     [Key.projectsSubtitle]: "我的开发项目作品集",
     [Key.projectsAll]: "全部",
@@ -95,7 +95,7 @@ export const zh: Translation = {
     [Key.projectsDemo]: "在线演示",
     [Key.projectsSource]: "源代码",
 
-    // 技能展示页面
+    // Skills page
     [Key.skills]: "技能展示",
     [Key.skillsSubtitle]: "我的技术技能和专业知识",
     [Key.skillsAI]: "AI 开发",
@@ -125,7 +125,7 @@ export const zh: Translation = {
     [Key.skillsByLevel]: "按等级分布",
     [Key.skillsByCategory]: "按分类分布",
 
-    // 时间线页面
+    // Timeline page
     [Key.timeline]: "时间线",
     [Key.timelineSubtitle]: "我的成长历程和重要里程碑",
     [Key.timelineEducation]: "教育经历",
@@ -152,7 +152,7 @@ export const zh: Translation = {
     [Key.timelineEmployed]: "在职",
     [Key.timelineAvailable]: "可入职",
 
-    // 短文页面
+    // Shorts page
     [Key.diary]: "日记",
     [Key.diarySubtitle]: "随时随地，分享生活",
     [Key.diaryCount]: "条短文",
@@ -163,7 +163,7 @@ export const zh: Translation = {
     [Key.diaryHoursAgo]: "小时前",
     [Key.diaryDaysAgo]: "天前",
 
-    // 相册页面
+    // Albums page
     [Key.albums]: "相册",
     [Key.albumsSubtitle]: "记录生活中的美好瞬间",
     [Key.albumsEmpty]: "暂无内容",
@@ -172,7 +172,7 @@ export const zh: Translation = {
     [Key.albumsPhotoCount]: "张照片",
     [Key.albumsPhotosCount]: "张照片",
 
-    // 番剧页面
+    // Anime page
     [Key.anime]: "追番",
     [Key.animeTitle]: "我的追番记录",
     [Key.animeSubtitle]: "记录我的二次元之旅",
@@ -189,10 +189,10 @@ export const zh: Translation = {
     [Key.animeEmpty]: "暂无追番数据",
     [Key.animeEmptyBangumi]: "请检查 Bangumi 配置或网络连接",
 
-    // 友链页面
+    // Friends page
     [Key.friends]: "友链",
 
-    // RSS页面
+    // RSS page
     [Key.rss]: "RSS 订阅",
     [Key.rssDescription]: "订阅获取最新更新",
     [Key.rssSubtitle]: "通过 RSS 订阅，第一时间获取最新文章和动态",
@@ -210,7 +210,7 @@ export const zh: Translation = {
     [Key.rssCopied]: "RSS 链接已复制到剪贴板！",
     [Key.rssCopyFailed]: "复制失败，请手动复制链接",
 
-    //Atom 页面
+    // Atom page
     [Key.atom]: "Atom 订阅",
     [Key.atomDescription]: "订阅获取最新更新",
     [Key.atomSubtitle]: "通过 Atom 订阅，第一时间获取最新文章和动态",
@@ -228,7 +228,7 @@ export const zh: Translation = {
     [Key.atomCopied]: "Atom 链接已复制到剪贴板！",
     [Key.atomCopyFailed]: "复制失败，请手动复制链接",
 
-    // 密码保护
+    // Password protection
     [Key.passwordProtected]: "密码保护",
     [Key.passwordProtectedTitle]: "此内容受密码保护",
     [Key.passwordProtectedDescription]: "请输入密码以查看受保护的内容",
@@ -247,7 +247,7 @@ export const zh: Translation = {
     [Key.autoSyntaxHighlightFailed]: "自动语法高亮也失败:",
     [Key.decryptionError]: "解密过程中发生错误:",
 
-    //最后编辑时间卡片
+    // Last edited time card
     [Key.lastModifiedPrefix]: "距离上次编辑: ",
     [Key.lastModifiedOutdated]: "部分信息可能已经过时",
     [Key.year]: "年",
@@ -257,7 +257,7 @@ export const zh: Translation = {
     [Key.minute]: "分",
     [Key.second]: "秒",
 
-    // 音乐播放器
+    // Music player
     [Key.playlist]: "播放列表",
     [Key.musicEmptyPlaylist]: "本地播放列表为空",
     [Key.musicNoSongsAvailable]: "播放列表中没有可用的歌曲",

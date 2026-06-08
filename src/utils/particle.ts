@@ -4,7 +4,7 @@ import { particleConfig } from "@/config";
 
 const BOUNDARY_OFFSET = 100;
 
-// 粒子对象类
+// Particle object class
 class Particle {
     x: number;
     y: number;
@@ -21,7 +21,7 @@ class Particle {
     img: HTMLImageElement;
     limitArray: number[];
     config: ParticleConfig;
-    // 构造函数
+    // Constructor
     constructor(
         x: number,
         y: number,
@@ -50,7 +50,7 @@ class Particle {
         this.limitArray = limitArray;
         this.config = config;
     }
-    // 绘制粒子
+    // Draw the particle
     draw(cxt: CanvasRenderingContext2D) {
         cxt.save();
         cxt.translate(this.x, this.y);
@@ -59,25 +59,25 @@ class Particle {
         cxt.drawImage(this.img, 0, 0, 40 * this.s, 40 * this.s);
         cxt.restore();
     }
-    // 更新粒子位置和状态
+    // Update the particle's position and state
     update() {
         this.x = this.fn.x(this.x, this.y);
         this.y = this.fn.y(this.y, this.y);
         this.r = this.fn.r(this.r);
         this.a = this.fn.a(this.a);
-        // 如果粒子越界或完全透明，重新调整位置
+        // If the particle goes out of bounds or is fully transparent, reposition it
         if (
             this.x > window.innerWidth ||
             this.x < 0 ||
             this.y > window.innerHeight + BOUNDARY_OFFSET ||
-            this.y < -BOUNDARY_OFFSET || // 从顶部消失
+            this.y < -BOUNDARY_OFFSET || // disappeared off the top
             this.a <= 0
         ) {
-            // 如果粒子不做限制
+            // If the particle is unconstrained
             if (this.limitArray[this.idx] === -1) {
                 this.resetPosition();
             }
-            // 否则粒子有限制
+            // Otherwise the particle is constrained
             else {
                 if (this.limitArray[this.idx] > 0) {
                     this.resetPosition();
@@ -86,12 +86,12 @@ class Particle {
             }
         }
     }
-    // 重置粒子位置
+    // Reset the particle's position
     private resetPosition() {
         this.r = getRandom("fnr", this.config);
         if (Math.random() > 0.4) {
             this.x = getRandom("x", this.config);
-            this.y = window.innerHeight + Math.random() * BOUNDARY_OFFSET; // 从屏幕底部开始
+            this.y = window.innerHeight + Math.random() * BOUNDARY_OFFSET; // start from the bottom of the screen
             this.s = getRandom("s", this.config);
             this.r = getRandom("r", this.config);
             this.a = getRandom('a', this.config);
@@ -105,50 +105,50 @@ class Particle {
     }
 }
 
-// 粒子列表类
+// Particle list class
 class ParticleList {
     list: Particle[];
-    // 构造函数
+    // Constructor
     constructor() {
         this.list = [];
     }
-    // 添加粒子
+    // Add a particle
     push(particle: Particle) {
         this.list.push(particle);
     }
-    // 更新所有粒子
+    // Update all particles
     update() {
         for (let i = 0, len = this.list.length; i < len; i++) {
             this.list[i].update();
         }
     }
-    // 绘制所有粒子
+    // Draw all particles
     draw(cxt: CanvasRenderingContext2D) {
         for (let i = 0, len = this.list.length; i < len; i++) {
             this.list[i].draw(cxt);
         }
     }
-    // 获取指定索引的粒子
+    // Get the particle at a given index
     get(i: number) {
         return this.list[i];
     }
-    // 获取粒子数量
+    // Get the particle count
     size() {
         return this.list.length;
     }
 }
 
-// 获取随机值的函数
+// Function to get a random value
 function getRandom(option: string, config: ParticleConfig): any {
     let ret: any;
     let random: number;
-    // 根据选项获取随机值
+    // Get a random value based on the options
     switch (option) {
         case "x":
             ret = Math.random() * window.innerWidth;
             break;
         case "y":
-            ret = window.innerHeight + Math.random() * BOUNDARY_OFFSET; // 初始位置在屏幕底部
+            ret = window.innerHeight + Math.random() * BOUNDARY_OFFSET; // initial position at the bottom of the screen
             break;
         case "s":
             ret =
@@ -161,13 +161,13 @@ function getRandom(option: string, config: ParticleConfig): any {
             ret = config.opacity.min + Math.random() * (config.opacity.max - config.opacity.min);
             break;
         case "fnx":
-            random = config.speed.horizontal.min + Math.random() * (config.speed.horizontal.max - config.speed.horizontal.min); // x方向保持较小的随机运动
+            random = config.speed.horizontal.min + Math.random() * (config.speed.horizontal.max - config.speed.horizontal.min); // keep a small random motion in the x direction
             ret = function (x: number, y: number) {
                 return x + random;
             };
             break;
         case "fny":
-            random = -(config.speed.vertical.min + Math.random() * (config.speed.vertical.max - config.speed.vertical.min)); // y方向随机向上运动
+            random = -(config.speed.vertical.min + Math.random() * (config.speed.vertical.max - config.speed.vertical.min)); // random upward motion in the y direction
             ret = function (x: number, y: number) {
                 return y + random;
             };
@@ -186,7 +186,7 @@ function getRandom(option: string, config: ParticleConfig): any {
     return ret;
 }
 
-// 粒子管理器类
+// Particle manager class
 export class ParticleManager {
     private config: ParticleConfig;
     private canvas: HTMLCanvasElement | null = null;
@@ -195,19 +195,19 @@ export class ParticleManager {
     private animationId: number | null = null;
     private img: HTMLImageElement | null = null;
     private isRunning = false;
-    // 构造函数
+    // Constructor
     constructor(config: ParticleConfig) {
         this.config = config;
     }
-    // 初始化粒子特效
+    // Initialize the particle effect
     async init(): Promise<void> {
         if (typeof document === "undefined" || !this.config.enable || this.isRunning) {
             return;
         }
-        // 创建图片对象
+        // Create the image object
         this.img = new Image();
-        this.img.src = "/assets/images/particle.png"; // 使用粒子图片
-        // 等待图片加载完成
+        this.img.src = "/assets/images/particle.png"; // use the particle image
+        // Wait for the image to finish loading
         await new Promise<void>((resolve, reject) => {
             if (this.img) {
                 this.img.onload = () => resolve();
@@ -215,16 +215,16 @@ export class ParticleManager {
                     reject(new Error("Failed to load particle image"));
             }
         });
-        // 创建画布
+        // Create the canvas
         this.createCanvas();
-        // 创建粒子列表
+        // Create the particle list
         this.createParticleList();
-        // 启动动画循环
+        // Start the animation loop
         this.startAnimation();
-        // 标记为运行中
+        // Mark it as running
         this.isRunning = true;
     }
-    // 创建画布
+    // Create the canvas
     private createCanvas(): void {
         if (typeof document === "undefined") return;
         this.canvas = document.createElement("canvas");
@@ -237,12 +237,12 @@ export class ParticleManager {
         this.canvas.setAttribute("id", "canvas_particle");
         document.body.appendChild(this.canvas);
         this.ctx = this.canvas.getContext("2d");
-        // 监听窗口大小变化
+        // Listen for window resize
         if (typeof window !== "undefined") {
             window.addEventListener("resize", this.handleResize.bind(this));
         }
     }
-    // 创建粒子列表
+    // Create the particle list
     private createParticleList(): void {
         if (!this.img || !this.ctx) return;
         this.particleList = new ParticleList();
@@ -280,7 +280,7 @@ export class ParticleManager {
             this.particleList.push(particle);
         }
     }
-    // 开始动画
+    // Start the animation
     private startAnimation(): void {
         if (!this.ctx || !this.canvas || !this.particleList) return;
         const animate = () => {
@@ -292,14 +292,14 @@ export class ParticleManager {
         };
         this.animationId = requestAnimationFrame(animate);
     }
-    // 处理窗口大小变化
+    // Handle window resize
     private handleResize(): void {
         if (this.canvas) {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
         }
     }
-    // 停止粒子特效
+    // Stop the particle effect
     stop(): void {
         if (this.animationId && typeof window !== "undefined") {
             cancelAnimationFrame(this.animationId);
@@ -314,7 +314,7 @@ export class ParticleManager {
         }
         this.isRunning = false;
     }
-    // 切换粒子特效
+    // Toggle the particle effect
     toggle(): void {
         if (this.isRunning) {
             this.stop();
@@ -322,7 +322,7 @@ export class ParticleManager {
             this.init();
         }
     }
-    // 更新配置
+    // Update the configuration
     updateConfig(newConfig: ParticleConfig): void {
         const wasRunning = this.isRunning;
         if (wasRunning) {
@@ -333,16 +333,16 @@ export class ParticleManager {
             this.init();
         }
     }
-    // 获取运行状态
+    // Get the running state
     getIsRunning(): boolean {
         return this.isRunning;
     }
 }
 
-// 创建全局粒子管理器实例
+// Create the global particle manager instance
 let globalParticleManager: ParticleManager | null = null;
 
-// 初始化粒子特效
+// Initialize the particle effect
 export function initParticle(config: ParticleConfig): void {
     if (globalParticleManager) {
         globalParticleManager.updateConfig(config);
@@ -354,14 +354,14 @@ export function initParticle(config: ParticleConfig): void {
     }
 }
 
-// 切换粒子特效
+// Toggle the particle effect
 export function toggleParticle(): void {
     if (globalParticleManager) {
         globalParticleManager.toggle();
     }
 }
 
-// 停止粒子特效
+// Stop the particle effect
 export function stopParticle(): void {
     if (globalParticleManager) {
         globalParticleManager.stop();
@@ -369,22 +369,22 @@ export function stopParticle(): void {
     }
 }
 
-// 获取粒子特效运行状态
+// Get the running state of the particle effect
 export function getParticleStatus(): boolean {
     return globalParticleManager ? globalParticleManager.getIsRunning() : false;
 }
 
-// 包含配置检查、重复初始化检查以及页面加载状态处理
+// Includes config checks, duplicate-initialization checks, and page-load-state handling
 export function setupParticleEffects(): void {
     if (typeof window === "undefined") return;
-    // 初始化函数
+    // Initialization function
     const init = () => {
         if (!particleConfig || !particleConfig.enable) return;
         if ((window as any).particleInitialized) return;
         initParticle(particleConfig);
         (window as any).particleInitialized = true;
     };
-    // 处理页面加载状态
+    // Handle the page-load state
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", init);
     } else {

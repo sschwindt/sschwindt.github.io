@@ -17,7 +17,7 @@ import WallpaperSwitch from "@components/navbar/wallpaperSwitch.svelte";
 
 const className = Astro.props.class;
 
-// 获取导航栏透明模式配置 - 根据当前壁纸模式读取正确的配置
+// Get the navbar transparency mode config - read the correct config based on the current wallpaper mode
 const navbarTransparentMode = getNavbarTransparentModeForWallpaperMode(getDefaultWallpaperMode());
 
 let links: NavbarLink[] = navbarConfig.links.map(
@@ -65,7 +65,7 @@ let links: NavbarLink[] = navbarConfig.links.map(
 </div>
 
 <script>
-// 为semifull模式添加滚动检测逻辑
+// Add scroll-detection logic for the semifull mode
 function initSemifullScrollDetection() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
@@ -73,7 +73,7 @@ function initSemifullScrollDetection() {
     const transparentMode = navbar.getAttribute('data-transparent-mode');
     if (transparentMode !== 'semifull') return;
 
-    // 移除之前的滚动事件监听器（如果存在）
+    // Remove the previous scroll event listener (if any)
     if (window.semifullScrollHandler) {
         window.removeEventListener('scroll', window.semifullScrollHandler);
     }
@@ -82,7 +82,7 @@ function initSemifullScrollDetection() {
 
     function updateNavbarState() {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        const threshold = 50; // 滚动阈值
+        const threshold = 50; // scroll threshold
 
         if (scrollTop > threshold) {
             navbar?.classList.add('scrolled');
@@ -100,20 +100,20 @@ function initSemifullScrollDetection() {
         }
     }
 
-    // 保存新的事件处理器引用
+    // Save a reference to the new event handler
     window.semifullScrollHandler = requestTick;
 
-    // 监听滚动事件
+    // Listen for scroll events
     window.addEventListener('scroll', requestTick, { passive: true });
 
-    // 初始化状态
+    // Initialize the state
     updateNavbarState();
 }
 
-// 将函数暴露到全局对象，供页面切换时调用
+// Expose the function on the global object so it can be called on page transitions
 window.initSemifullScrollDetection = initSemifullScrollDetection;
 
-// 页面加载完成后初始化滚动检测
+// Initialize scroll detection after the page finishes loading
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initSemifullScrollDetection);
 } else {

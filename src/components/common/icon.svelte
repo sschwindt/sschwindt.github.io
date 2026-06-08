@@ -1,6 +1,6 @@
 <script lang="ts">
 /**
- * Svelte 图标组件 - 构建时内联 SVG
+ * Svelte icon component - inlines SVG at build time
  */
 import { getIconSvg, hasIcon } from "@utils/icons";
 
@@ -21,7 +21,7 @@ let {
     color,
 }: Props = $props();
 
-// 尺寸映射
+// Size mapping
 const sizeClasses: Record<string, string> = {
     xs: "text-xs",
     sm: "text-sm",
@@ -36,7 +36,7 @@ const colorStyle = $derived(color ? `color: ${color};` : "");
 const combinedStyle = $derived(`${colorStyle}${style}`);
 const combinedClass = $derived(`${sizeClass} ${className}`.trim());
 
-// 获取内联 SVG
+// Get the inline SVG
 const svgContent = $derived(getIconSvg(icon));
 const iconExists = $derived(hasIcon(icon));
 </script>

@@ -11,7 +11,7 @@ const directoryTree = await getDirectoryTree();
 
 const COLLAPSED_HEIGHT = "12rem";
 
-// 使用统一的组件管理器检查是否应该折叠
+// Use the unified component manager to check whether it should be collapsed
 const directoryComponent = getComponentConfig("directory");
 const countNodes = (nodes: any[]): number =>
     nodes.reduce((total, node) => total + 1 + (node.children ? countNodes(node.children) : 0), 0);

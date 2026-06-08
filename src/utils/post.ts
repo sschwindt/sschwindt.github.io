@@ -14,11 +14,11 @@ async function getRawSortedPosts() {
     });
 
     const sorted = allBlogPosts.sort((a, b) => {
-        // 首先按置顶状态排序，置顶文章在前
+        // First sort by pinned status, pinned posts first
         if (a.data.pinned && !b.data.pinned) return -1;
         if (!a.data.pinned && b.data.pinned) return 1;
 
-        // 如果置顶状态相同，则按发布日期排序
+        // If the pinned status is the same, sort by publication date
         const dateA = new Date(a.data.published);
         const dateB = new Date(b.data.published);
         return dateA > dateB ? -1 : 1;

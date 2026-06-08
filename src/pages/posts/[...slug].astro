@@ -30,17 +30,17 @@ export async function getStaticPaths() {
     }[] = [];
 
     for (const entry of blogEntries) {
-        // 将 id 转换为 slug（移除扩展名）以匹配路由参数
+        // Convert the id to a slug (removing the extension) to match the route parameter
         const slug = removeFileExtension(entry.id);
-        // 为每篇文章创建默认的 slug 路径
+        // Create the default slug path for each post
         paths.push({
             params: { slug },
             props: { entry },
         });
-        // 如果文章有自定义固定链接，也创建对应的路径
+        // If the post has a custom permalink, also create the corresponding path
         if (entry.data.routeName) {
-            // 移除开头的斜杠和结尾的斜杠
-            // 同时移除可能的 "posts/" 前缀，避免重复
+            // Remove leading and trailing slashes
+            // Also remove a possible "posts/" prefix to avoid duplication
             let routeName = entry.data.routeName
                 .replace(/^\/+/, "")
                 .replace(/\/+$/, "");
@@ -63,7 +63,7 @@ const { Content, headings } = await render(entry);
 
 const { remarkPluginFrontmatter } = await render(entry);
 
-// 处理加密逻辑
+// Handle encryption logic
 let isEncrypted = !!(entry.data.encrypted && entry.data.password);
 
 dayjs.extend(utc);
@@ -242,7 +242,7 @@ const jsonLd = {
             </PasswordProtection>
         </div>
     </div>
-    <!-- 评论 -->
+    <!-- Comments -->
     <Comment post={entry} />
     {postConfig.showLastModified && (
         <>
@@ -272,13 +272,13 @@ const jsonLd = {
                         const months = Math.floor((days % 365) / 30);
                         const remainingDays = days % 30;
 
-                        // 获取当前语言翻译数据
+                        // Get the current language's translation data
                         const translations = JSON.parse(lastModifiedElement.dataset.translations);
                         const defaultLang = lastModifiedElement.dataset.defaultLang;
-                        // translate.js 在 localStorage 中使用 'selected-language' 存储目标语言
+                        // translate.js stores the target language under 'selected-language' in localStorage
                         const currentLang = localStorage.getItem('selected-language') || defaultLang;
                         
-                        // 获取对应的翻译文本
+                        // Get the corresponding translated text
                         const langTranslations = translations[currentLang] || translations[defaultLang] || Object.values(translations)[0];
 
                         const prefix = langTranslations.lastModifiedPrefix;

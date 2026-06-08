@@ -10,7 +10,7 @@ interface Props {
 
 const { config, class: className  } = Astro.props;
 
-// 获取当前设备类型的图片源
+// Get the image source for the current device type
 const getImageSources = () => {
     const toArray = (src: any) => [src || []].flat();
     const { src } = config;
@@ -25,12 +25,12 @@ const getImageSources = () => {
 
 const imageSources = getImageSources();
 
-// 轮播配置
+// Carousel configuration
 const carouselConfig = config.carousel;
 const isCarouselEnabled = imageSources.desktop.length > 1 || imageSources.mobile.length > 1;
 const carouselInterval = carouselConfig?.interval || 5;
 
-// 样式配置
+// Style configuration
 const zIndex = config.fullscreen?.zIndex || -1;
 const opacity = config.fullscreen?.opacity || 0.8;
 const blur = config.fullscreen?.blur || 0;
@@ -106,18 +106,18 @@ const blur = config.fullscreen?.blur || 0;
 </div>
 
 <script define:vars={{ carouselInterval }}>
-    // 全屏壁纸轮播图初始化函数
+    // Fullscreen wallpaper carousel initialization function
     window.initFullscreenWallpaperCarousel = function() {
         const carousel = document.getElementById('fullscreen-wallpaper-carousel');
         if (!carousel) return;
 
-        // 检查是否是同一个 DOM 元素且定时器正在运行，避免重复初始化导致动画重置
+        // Check whether it is the same DOM element with a running timer, to avoid re-initialization resetting the animation
         if (window.fullscreenWallpaperTimer && window.currentFullscreenWallpaperCarousel === carousel) {
             return;
         }
         window.currentFullscreenWallpaperCarousel = carousel;
 
-        // 初始化全局状态
+        // Initialize global state
         if (!window.fullscreenWallpaperState) {
             window.fullscreenWallpaperState = {
                 currentIndex: 0,
@@ -125,7 +125,7 @@ const blur = config.fullscreen?.blur || 0;
             };
         }
 
-        // 清理旧的定时器，防止重复初始化导致的闪烁
+        // Clear the old timer to prevent flicker caused by re-initialization
         if (window.fullscreenWallpaperTimer) {
             clearTimeout(window.fullscreenWallpaperTimer);
             window.fullscreenWallpaperTimer = null;
@@ -140,7 +140,7 @@ const blur = config.fullscreen?.blur || 0;
         function setupCarousel(items, isEnabled) {
             if (items.length === 0) return null;
 
-            // 如果禁用了轮播但有多张图，则随机显示一张
+            // If the carousel is disabled but there are multiple images, show a random one
             if (items.length > 1 && !isEnabled) {
                 items.forEach(item => {
                     item.classList.add('opacity-0');
@@ -154,9 +154,9 @@ const blur = config.fullscreen?.blur || 0;
             }
 
             if (items.length > 1 && isEnabled) {
-                // 使用全局状态中的索引
+                // Use the index from global state
                 let currentIndex = window.fullscreenWallpaperState.currentIndex;
-                // 确保索引有效
+                // Ensure the index is valid
                 if (currentIndex >= items.length) {
                     currentIndex = 0;
                     window.fullscreenWallpaperState.currentIndex = 0;
@@ -167,27 +167,27 @@ const blur = config.fullscreen?.blur || 0;
                     currentItem.classList.remove('opacity-100');
                     currentItem.classList.add('opacity-0');
                     currentIndex = index;
-                    // 更新全局状态
+                    // Update global state
                     window.fullscreenWallpaperState.currentIndex = index;
                     window.fullscreenWallpaperState.lastSwitchTime = Date.now();
 
                     const nextItem = items[currentIndex];
                     nextItem.classList.add('opacity-100');
                     nextItem.classList.remove('opacity-0');
-                    // 通过切换 is-animating 类来重置下一张图片的动画
+                    // Reset the next image's animation by toggling the is-animating class
                     if (nextItem.classList.contains('ken-burns-enabled')) {
                         nextItem.classList.remove('is-animating');
-                        nextItem.offsetHeight; // 强制重绘
+                        nextItem.offsetHeight; // force reflow
                         nextItem.classList.add('is-animating');
                     }
                 }
 
-                // 初始化：根据当前索引显示图片
+                // Initialization: show the image at the current index
                 items.forEach((item, index) => {
                     if (index === currentIndex) {
                         item.classList.add('opacity-100');
                         item.classList.remove('opacity-0');
-                        // 初始图片开启动画
+                        // Enable animation for the initial image
                         if (item.classList.contains('ken-burns-enabled')) {
                             item.classList.add('is-animating');
                         }
@@ -235,7 +235,7 @@ const blur = config.fullscreen?.blur || 0;
         }
     }
 
-    // 壁纸显示控制函数
+    // Wallpaper visibility control function
     function showFullscreenWallpaper() {
         requestAnimationFrame(() => {
             const wallpaper = document.getElementById('fullscreen-wallpaper');
@@ -254,7 +254,7 @@ const blur = config.fullscreen?.blur || 0;
         });
     }
 
-    // 监听 Astro 页面切换事件
+    // Listen for Astro page-transition events
     document.addEventListener('astro:after-swap', () => {
         showFullscreenWallpaper();
     });

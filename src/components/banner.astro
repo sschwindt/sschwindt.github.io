@@ -13,7 +13,7 @@ interface Props {
 
 const { config, isHomePage, class: className } = Astro.props;
 
-// 获取当前设备类型的图片源
+// Get the image source for the current device type
 const getImageSources = () => {
     const toArray = (src: any) => [src || []].flat();
     const { src } = config;
@@ -28,12 +28,12 @@ const getImageSources = () => {
 
 const imageSources = getImageSources();
 
-// 轮播配置
+// Carousel configuration
 const carouselConfig = config.carousel;
 const isCarouselEnabled = imageSources.desktop.length > 1 || imageSources.mobile.length > 1;
 const carouselInterval = carouselConfig?.interval || 6
 
-// 样式配置
+// Style configuration
 const showHomeText = config.banner?.homeText?.enable && isHomePage;
 const showWaves = config.banner?.waves?.enable;
 const isPerformanceMode = config.banner?.waves?.performanceMode;
@@ -154,7 +154,7 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
                 </defs>
                 <g class="parallax">
                     {isPerformanceMode ? (
-                        // 性能模式：只渲染二个波浪层
+                        // Performance mode: render only two wave layers
                         <use
                             xlink:href="#gentle-wave"
                             x="48"
@@ -168,7 +168,7 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
                             class="opacity-75 fill-(--page-bg)"
                         ></use>
                     ) : (
-                        // 正常模式：渲染四个波浪层
+                        // Normal mode: render four wave layers
                         <>
                             <use
                                 xlink:href="#gentle-wave"
@@ -203,18 +203,18 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
 </div>
 
 <script define:vars={{ carouselInterval }}>
-    // 轮播图初始化函数
+    // Carousel initialization function
     window.initBannerCarousel = function() {
         const carousel = document.getElementById('banner-carousel');
         if (!carousel) return;
 
-        // 检查是否是同一个 DOM 元素且定时器正在运行，避免重复初始化导致动画重置
+        // Check whether it's the same DOM element with a running timer, to avoid re-initialization resetting the animation
         if (window.bannerCarouselTimer && window.currentBannerCarousel === carousel) {
             return;
         }
         window.currentBannerCarousel = carousel;
 
-        // 初始化全局状态 — random starting slide so the banner order feels arbitrary
+        // Initialize global state — random starting slide so the banner order feels arbitrary
         if (!window.bannerCarouselState) {
             const slideCount = Math.max(
                 carousel.querySelectorAll('.carousel-item.desktop-item').length,
@@ -227,7 +227,7 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
             };
         }
 
-        // 清理旧的定时器，防止重复初始化导致的闪烁
+        // Clear the old timer to prevent flicker from re-initialization
         if (window.bannerCarouselTimer) {
             clearTimeout(window.bannerCarouselTimer);
             window.bannerCarouselTimer = null;
@@ -242,7 +242,7 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
         function setupCarousel(items, isEnabled) {
             if (items.length === 0) return null;
 
-            // 如果禁用了轮播但有多张图，则随机显示一张
+            // If the carousel is disabled but there are multiple images, show a random one
             if (items.length > 1 && !isEnabled) {
                 items.forEach(item => {
                     item.classList.add('opacity-0');
@@ -256,9 +256,9 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
             }
 
             if (items.length > 1 && isEnabled) {
-                // 使用全局状态中的索引
+                // Use the index from the global state
                 let currentIndex = window.bannerCarouselState.currentIndex;
-                // 确保索引有效
+                // Ensure the index is valid
                 if (currentIndex >= items.length) {
                     currentIndex = 0;
                     window.bannerCarouselState.currentIndex = 0;
@@ -269,27 +269,27 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
                     currentItem.classList.remove('opacity-100');
                     currentItem.classList.add('opacity-0');
                     currentIndex = index;
-                    // 更新全局状态
+                    // Update the global state
                     window.bannerCarouselState.currentIndex = index;
                     window.bannerCarouselState.lastSwitchTime = Date.now();
 
                     const nextItem = items[currentIndex];
                     nextItem.classList.add('opacity-100');
                     nextItem.classList.remove('opacity-0');
-                    // 通过切换 is-animating 类来重置下一张图片的动画
+                    // Reset the next image's animation by toggling the is-animating class
                     if (nextItem.classList.contains('ken-burns-enabled')) {
                         nextItem.classList.remove('is-animating');
-                        nextItem.offsetHeight; // 强制重绘
+                        nextItem.offsetHeight; // Force a reflow
                         nextItem.classList.add('is-animating');
                     }
                 }
 
-                // 初始化：根据当前索引显示图片
+                // Initialize: show the image based on the current index
                 items.forEach((item, index) => {
                     if (index === currentIndex) {
                         item.classList.add('opacity-100');
                         item.classList.remove('opacity-0');
-                        // 初始图片开启动画
+                        // Start the animation for the initial image
                         if (item.classList.contains('ken-burns-enabled')) {
                             item.classList.add('is-animating');
                         }
@@ -337,7 +337,7 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
         }
     }
 
-    // Banner显示控制函数
+    // Banner display control function
     function showBanner() {
         requestAnimationFrame(() => {
             const banner = document.getElementById('banner');
@@ -356,7 +356,7 @@ const isPerformanceMode = config.banner?.waves?.performanceMode;
         });
     }
 
-    // 监听 Astro 页面切换事件
+    // Listen for Astro page navigation events
     document.addEventListener('astro:after-swap', () => {
         showBanner();
     });

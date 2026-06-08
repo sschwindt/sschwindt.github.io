@@ -1,19 +1,19 @@
 (() => {
-    // 单例模式：检查是否已经初始化过
+    // Singleton pattern: check whether it has already been initialized
     if (window.mermaidInitialized) {
         return;
     }
 
     window.mermaidInitialized = true;
 
-    // 记录当前主题状态，避免不必要的重新渲染
+    // Track the current theme state to avoid unnecessary re-rendering
     let currentTheme = null;
-    let isRendering = false; // 防止并发渲染
+    let isRendering = false; // Prevent concurrent rendering
     let retryCount = 0;
     const MAX_RETRIES = 3;
-    const RETRY_DELAY = 1000; // 1秒
+    const RETRY_DELAY = 1000; // 1 second
 
-    // 检查主题是否真的发生了变化
+    // Check whether the theme actually changed
     function hasThemeChanged() {
         const isDark = document.documentElement.classList.contains("dark");
         const newTheme = isDark ? "dark" : "default";
@@ -25,7 +25,7 @@
         return false;
     }
 
-    // 等待 Mermaid 库加载完成
+    // Wait for the Mermaid library to finish loading
     function waitForMermaid(timeout = 10000) {
         return new Promise((resolve, reject) => {
             const startTime = Date.now();
@@ -44,7 +44,7 @@
         });
     }
 
-    // 设置 MutationObserver 监听 html 元素的 class 属性变化
+    // Set up a MutationObserver to watch class attribute changes on the html element
     function setupMutationObserver() {
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
@@ -52,7 +52,7 @@
                     mutation.type === "attributes" &&
                     mutation.attributeName === "class"
                 ) {
-                    // 检查是否是 dark 类的变化
+                    // Check whether the dark class changed
                     const target = mutation.target;
                     const wasDark = mutation.oldValue
                         ? mutation.oldValue.includes("dark")
@@ -61,7 +61,7 @@
 
                     if (wasDark !== isDark) {
                         if (hasThemeChanged()) {
-                            // 延迟渲染，避免主题切换时的闪烁
+                            // Delay rendering to avoid flicker during theme switches
                             setTimeout(() => renderMermaidDiagrams(), 150);
                         }
                     }
@@ -69,7 +69,7 @@
             });
         });
 
-        // 开始观察 html 元素的 class 属性变化
+        // Start observing class attribute changes on the html element
         observer.observe(document.documentElement, {
             attributes: true,
             attributeFilter: ["class"],
@@ -77,7 +77,7 @@
         });
     }
 
-    // 缩放平移
+    // Zoom and pan
     function attachZoomControls(element, svgElement) {
         if (element.__zoomAttached) return;
         element.__zoomAttached = true;
@@ -130,7 +130,7 @@
 
         element.appendChild(controls);
 
-        // 鼠标滚轮缩放
+        // Mouse-wheel zoom
         element.addEventListener(
             "wheel",
             (ev) => {
@@ -163,7 +163,7 @@
         wrapper.style.touchAction = "none";
 
         wrapper.addEventListener("pointerdown", (ev) => {
-            if (ev.button !== 0) return; // 仅左键
+            if (ev.button !== 0) return; // Left button only
             isPanning = true;
             wrapper.setPointerCapture(ev.pointerId);
             startX = ev.clientX;
@@ -175,7 +175,7 @@
             if (!isPanning) return;
             const dx = ev.clientX - startX;
             const dy = ev.clientY - startY;
-            tx = startTx + dx / scale; // 根据当前缩放调整灵敏度
+            tx = startTx + dx / scale; // Adjust sensitivity based on the current zoom
             ty = startTy + dy / scale;
             applyTransform();
         });
@@ -189,7 +189,7 @@
             isPanning = false;
         });
 
-        // 双击重置
+        // Double-click to reset
         wrapper.addEventListener("dblclick", () => {
             scale = 1;
             tx = 0;
@@ -206,19 +206,19 @@
         });
     }
 
-    // 设置其他事件监听器
+    // Set up other event listeners
     function setupEventListeners() {
-        // 监听页面切换
+        // Listen for page navigation
         document.addEventListener("astro:page-load", () => {
-            // 重新初始化主题状态
+            // Re-initialize the theme state
             currentTheme = null;
-            retryCount = 0; // 重置重试计数
+            retryCount = 0; // Reset the retry counter
             if (hasThemeChanged()) {
                 setTimeout(() => renderMermaidDiagrams(), 100);
             }
         });
 
-        // 监听页面可见性变化，页面重新可见时重新渲染
+        // Listen for page visibility changes; re-render when the page becomes visible again
         document.addEventListener("visibilitychange", () => {
             if (!document.hidden) {
                 setTimeout(() => renderMermaidDiagrams(), 200);
@@ -230,7 +230,7 @@
         try {
             await waitForMermaid();
 
-            // 初始化 Mermaid 配置
+            // Initialize the Mermaid configuration
             window.mermaid.initialize({
                 startOnLoad: false,
                 theme: "default",
@@ -239,16 +239,16 @@
                     fontSize: "16px",
                 },
                 securityLevel: "loose",
-                // 添加错误处理配置
+                // Add error-handling configuration
                 errorLevel: "warn",
                 logLevel: "error",
             });
 
-            // 渲染所有 Mermaid 图表
+            // Render all Mermaid diagrams
             await renderMermaidDiagrams();
         } catch (error) {
             console.error("Failed to initialize Mermaid:", error);
-            // 如果初始化失败，尝试重新加载
+            // If initialization fails, try reloading
             if (retryCount < MAX_RETRIES) {
                 retryCount++;
                 setTimeout(() => initializeMermaid(), RETRY_DELAY * retryCount);
@@ -257,12 +257,12 @@
     }
 
     async function renderMermaidDiagrams() {
-        // 防止并发渲染
+        // Prevent concurrent rendering
         if (isRendering) {
             return;
         }
 
-        // 检查 Mermaid 是否可用
+        // Check whether Mermaid is available
         if (!window.mermaid || typeof window.mermaid.render !== "function") {
             console.warn("Mermaid not available, skipping render");
             return;
@@ -280,21 +280,21 @@
                 return;
             }
 
-            // 延迟检测主题，确保 DOM 已经更新
+            // Delay theme detection to ensure the DOM has updated
             await new Promise((resolve) => setTimeout(resolve, 100));
 
             const htmlElement = document.documentElement;
             const isDark = htmlElement.classList.contains("dark");
             const theme = isDark ? "dark" : "default";
 
-            // 更新 Mermaid 主题（只需要更新一次）
+            // Update the Mermaid theme (only needs to be done once)
             window.mermaid.initialize({
                 startOnLoad: false,
                 theme: theme,
                 themeVariables: {
                     fontFamily: "inherit",
                     fontSize: "16px",
-                    // 强制应用主题变量
+                    // Force-apply the theme variables
                     primaryColor: isDark ? "#ffffff" : "#000000",
                     primaryTextColor: isDark ? "#ffffff" : "#000000",
                     primaryBorderColor: isDark ? "#ffffff" : "#000000",
@@ -307,7 +307,7 @@
                 logLevel: "error",
             });
 
-            // 批量渲染所有图表，添加重试机制
+            // Render all diagrams in batch, with a retry mechanism
             const renderPromises = Array.from(mermaidElements).map(
                 async (element, index) => {
                     let attempts = 0;
@@ -319,7 +319,7 @@
                             if (!code) {
                                 break;
                             }
-                            // 渲染图表
+                            // Render the diagram
                             const { svg } = await window.mermaid.render(
                                 `mermaid-${Date.now()}-${index}-${attempts}`,
                                 code,
@@ -333,16 +333,16 @@
                             element.innerHTML = "";
                             element.__zoomAttached = false;
                             element.appendChild(svgElement);
-                            // 添加响应式支持
+                            // Add responsive support
                             const insertedSvg = element.querySelector("svg");
                             if (insertedSvg) {
                                 insertedSvg.setAttribute("width", "100%");
                                 insertedSvg.removeAttribute("height");
                                 insertedSvg.style.maxWidth = "100%";
                                 insertedSvg.style.height = "auto";
-                                //Todo 需要根据实际情况
+                                //TODO: needs to be adapted to the actual situation
                                 insertedSvg.style.minHeight = "300px";
-                                // 强制应用样式
+                                // Force-apply styles
                                 if (isDark) {
                                     svgElement.style.filter = "brightness(0.9) contrast(1.1)";
                                 } else {
@@ -350,7 +350,7 @@
                                 }
                                 attachZoomControls(element, insertedSvg);
                             }
-                            // 渲染成功，跳出重试循环
+                            // Render succeeded, break out of the retry loop
                             break;
                         } catch (error) {
                             attempts++;
@@ -372,7 +372,7 @@
                                     </div>
                                 `;
                             } else {
-                                // 等待一段时间后重试
+                                // Wait a while before retrying
                                 await new Promise((resolve) =>
                                     setTimeout(resolve, 500 * attempts),
                                 );
@@ -382,13 +382,13 @@
                 },
             );
 
-            // 等待所有渲染完成
+            // Wait for all rendering to complete
             await Promise.all(renderPromises);
-            retryCount = 0; // 重置重试计数
+            retryCount = 0; // Reset the retry counter
         } catch (error) {
             console.error("Error in renderMermaidDiagrams:", error);
 
-            // 如果渲染失败，尝试重新渲染
+            // If rendering fails, try re-rendering
             if (retryCount < MAX_RETRIES) {
                 retryCount++;
                 setTimeout(() => renderMermaidDiagrams(), RETRY_DELAY * retryCount);
@@ -398,13 +398,13 @@
         }
     }
 
-    // 初始化主题状态
+    // Initialize the theme state
     function initializeThemeState() {
         const isDark = document.documentElement.classList.contains("dark");
         currentTheme = isDark ? "dark" : "default";
     }
 
-    // 加载 Mermaid 库
+    // Load the Mermaid library
     async function loadMermaid() {
         if (typeof window.mermaid !== "undefined") {
             return Promise.resolve();
@@ -422,7 +422,7 @@
 
             script.onerror = (error) => {
                 console.error("Failed to load Mermaid library:", error);
-                // 尝试备用 CDN
+                // Try the fallback CDN
                 const fallbackScript = document.createElement("script");
                 fallbackScript.src = "https://unpkg.com/mermaid@11/dist/mermaid.min.js";
 
@@ -446,10 +446,10 @@
         });
     }
 
-    // 主初始化函数
+    // Main initialization function
     async function initialize() {
         try {
-            // 首先检查是否有 Mermaid 图表
+            // First check whether there are any Mermaid diagrams
             const mermaidElements = document.querySelectorAll(
                 ".mermaid[data-mermaid-code]",
             );
@@ -457,14 +457,14 @@
                 return;
             }
 
-            // 设置监听器
+            // Set up listeners
             setupMutationObserver();
             setupEventListeners();
 
-            // 初始化主题状态
+            // Initialize the theme state
             initializeThemeState();
 
-            // 加载并初始化 Mermaid
+            // Load and initialize Mermaid
             await loadMermaid();
             await initializeMermaid();
         } catch (error) {
@@ -472,7 +472,7 @@
         }
     }
 
-    // 启动初始化
+    // Kick off initialization
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initialize);
     } else {

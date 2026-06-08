@@ -60,10 +60,10 @@ const collapseDesktopSearch = () => {
 };
 
 const handleBlur = () => {
-    // 延迟处理以允许搜索结果的点击事件先于折叠逻辑执行
+    // Defer handling so the search result's click event fires before the collapse logic
     setTimeout(() => {
         isDesktopSearchExpanded = false;
-        // 仅隐藏面板并折叠，保留搜索关键词和结果以便下次展开时查看
+        // Only hide and collapse the panel, keeping the search query and results for next time
         setPanelVisibility(false, true);
     }, 200);
 };
@@ -83,7 +83,7 @@ const closeSearchPanel = (): void => {
     if (panel) {
         panel.classList.add("float-panel-closed");
     }
-    // 清空搜索关键词和结果
+    // Clear the search query and results
     keywordDesktop = "";
     keywordMobile = "";
     result = [];

@@ -14,10 +14,10 @@ import {
 // Function to apply theme to document
 export function applyThemeToDocument(theme: LIGHT_DARK_MODE, force = false) {
     if (typeof document === "undefined") return;
-    // 获取当前主题状态的完整信息
+    // Get the full information about the current theme state
     const currentIsDark = document.documentElement.classList.contains("dark");
     const currentTheme = document.documentElement.getAttribute("data-theme");
-    // 计算目标主题状态
+    // Compute the target theme state
     let targetIsDark: boolean;
     switch (theme) {
         case LIGHT_MODE:
@@ -33,21 +33,21 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE, force = false) {
             targetIsDark = currentIsDark; // fallback to current mode if theme is unknown
             break;
     }
-    // 检测是否真的需要主题切换
+    // Detect whether a theme switch is actually needed
     const needsThemeChange = currentIsDark !== targetIsDark;
     const targetTheme = targetIsDark ? "github-dark" : "github-light";
     const needsCodeThemeUpdate = currentTheme !== targetTheme;
-    // 如果既不需要主题切换也不需要代码主题更新且不是强制更新，直接返回
+    // If neither a theme switch nor a code-theme update is needed and it is not a forced update, return early
     if (!force && !needsThemeChange && !needsCodeThemeUpdate) {
         return;
     }
-    // 只在需要主题切换时添加过渡保护
+    // Only add transition protection when a theme switch is needed
     if (needsThemeChange) {
         document.documentElement.classList.add("is-theme-transitioning");
     }
-    // 使用 requestAnimationFrame 确保在下一帧执行，避免闪屏
+    // Use requestAnimationFrame to run on the next frame, avoiding a flash
     requestAnimationFrame(() => {
-        // 应用主题变化
+        // Apply the theme change
         if (needsThemeChange) {
             if (targetIsDark) {
                 document.documentElement.classList.add("dark");
@@ -57,9 +57,9 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE, force = false) {
         }
         // Set the theme for Expressive Code based on current mode
         document.documentElement.setAttribute("data-theme", targetTheme);
-        // 在下一帧快速移除保护类，使用微任务确保DOM更新完成
+        // Remove the protection class quickly on the next frame, using a microtask to ensure the DOM update is complete
         if (needsThemeChange) {
-            // 使用 requestAnimationFrame 确保在下一帧移除过渡保护类
+            // Use requestAnimationFrame to remove the transition-protection class on the next frame
             requestAnimationFrame(() => {
                 document.documentElement.classList.remove("is-theme-transitioning");
             });
@@ -98,7 +98,7 @@ export function initTheme(): void {
     if (typeof window === "undefined") return;
     const storedTheme = getStoredTheme();
     applyThemeToDocument(storedTheme, true);
-    // 监听系统主题变化
+    // Listen for system theme changes
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
         const currentStored = getStoredTheme();
         if (currentStored === SYSTEM_MODE) {

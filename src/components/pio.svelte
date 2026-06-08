@@ -4,7 +4,7 @@ import { onMount, onDestroy } from "svelte";
 import { pioConfig } from "@/config";
 
 
-// 将配置转换为 Pio 插件需要的格式
+// Convert the config into the format the Pio plugin expects
 const pioOptions = {
     mode: pioConfig.mode,
     hidden: pioConfig.hiddenOnMobile,
@@ -12,19 +12,19 @@ const pioOptions = {
     model: pioConfig.models || ["/pio/models/pio/model.json"],
 };
 
-// 全局Pio实例引用
+// Global Pio instance reference
 let pioInstance = $state<any>(null);
 let pioInitialized = $state(false);
 let pioContainer = $state<HTMLElement>();
 let pioCanvas = $state<HTMLCanvasElement>();
 
-// 样式已通过 base.astro 静态引入，无需动态加载
+// Styles are statically imported via base.astro, no dynamic loading needed
 
-// 等待 DOM 加载完成后再初始化 Pio
+// Wait for the DOM to finish loading before initializing Pio
 function initPio() {
     if (typeof window !== "undefined" && typeof (window as any).Paul_Pio !== "undefined") {
         try {
-            // 确保DOM元素存在
+            // Ensure the DOM element exists
             if (pioContainer && pioCanvas && !pioInitialized) {
                 const Paul_Pio = (window as any).Paul_Pio;
                 pioInstance = new Paul_Pio(pioOptions);
@@ -38,18 +38,18 @@ function initPio() {
             console.error("Pio initialization error:", e);
         }
     } else {
-        // 如果 Paul_Pio 还未定义，稍后再试
+        // If Paul_Pio is not defined yet, retry later
         setTimeout(initPio, 100);
     }
 }
 
-// 加载必要的脚本
+// Load the required scripts
 function loadPioAssets() {
     if (typeof window === "undefined") return;
 
-    // 样式已通过 base.astro 静态引入
+    // Styles are statically imported via base.astro
 
-    // 加载JS脚本
+    // Load JS scripts
     const loadScript = (src: string, id: string) => {
         return new Promise<void>((resolve, reject) => {
             if (document.querySelector(`#${id}`)) {
@@ -65,11 +65,11 @@ function loadPioAssets() {
         });
     };
 
-    // 按顺序加载脚本
+    // Load scripts in order
     loadScript("/pio/static/l2d.js", "pio-l2d-script")
         .then(() => loadScript("/pio/static/pio.js", "pio-main-script"))
         .then(() => {
-            // 脚本加载完成后初始化
+            // Initialize after the script finishes loading
             setTimeout(initPio, 100);
         })
         .catch((error) => {
@@ -77,18 +77,18 @@ function loadPioAssets() {
         });
 }
 
-// 样式已通过 base.astro 静态引入，无需页面切换监听
+// Styles are statically imported via base.astro, no page-transition listener needed
 
 onMount(() => {
     if (!pioConfig.enable) return;
 
-    // 加载资源并初始化
+    // Load resources and initialize
     loadPioAssets();
 });
 
 onDestroy(() => {
-    // Svelte 组件销毁时不需要清理 Pio 实例
-    // 因为我们希望它在页面切换时保持状态
+    // No need to clean up the Pio instance when the Svelte component is destroyed
+    // because we want it to keep its state across page transitions
     console.log("Pio Svelte component destroyed (keeping instance alive)");
 });
 </script>
@@ -106,5 +106,5 @@ onDestroy(() => {
 {/if}
 
 <style>
-  /* Pio 相关样式将通过外部CSS文件加载 */
+  /* Pio-related styles are loaded via an external CSS file */
 </style>

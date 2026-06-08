@@ -11,7 +11,7 @@ const categoriesTree = await getCategoryTree();
 
 const COLLAPSED_HEIGHT = "7.5rem";
 
-// 使用统一的组件管理器检查是否应该折叠
+// Use the unified component manager to check whether it should be collapsed
 const categoriesComponent = getComponentConfig("categories");
 const countNodes = (nodes: CategoryTreeItem[]): number =>
     nodes.reduce((total, node) => total + 1 + countNodes(node.children), 0);

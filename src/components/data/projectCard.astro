@@ -33,7 +33,7 @@ const {
     maxTechStack = 4,
 } = Astro.props;
 
-// 状态样式映射
+// Status style mapping
 const getStatusStyle = (status: string) => {
     switch (status) {
         case "completed":
@@ -47,7 +47,7 @@ const getStatusStyle = (status: string) => {
     }
 };
 
-// 状态文本映射
+// Status text mapping
 const getStatusText = (status: string) => {
     switch (status) {
         case "completed":
@@ -61,7 +61,7 @@ const getStatusText = (status: string) => {
     }
 };
 
-// 尺寸样式映射
+// Size style mapping
 const getSizeClasses = (size: string) => {
     switch (size) {
         case "small":
@@ -95,7 +95,7 @@ const sizeClasses = getSizeClasses(size);
 ---
 
 <div class="bg-white dark:bg-gray-800 rounded-lg border border-black/10 dark:border-white/10 overflow-hidden hover:shadow-lg transition-all duration-300 group">
-    <!-- 项目图片 -->
+    <!-- Project image -->
     {showImage && project.image && (
         <div class={`overflow-hidden ${size === 'large' ? 'aspect-video' : 'aspect-4/3'}`}>
             <ImageWrapper
@@ -106,9 +106,9 @@ const sizeClasses = getSizeClasses(size);
             />
         </div>
     )}
-    <!-- 项目内容 -->
+    <!-- Project content -->
     <div class={sizeClasses.container}>
-        <!-- 标题和状态 -->
+        <!-- Title and status -->
         <div class="flex items-start justify-between mb-3">
             <h3 class={`font-semibold text-black/90 dark:text-white/90 ${sizeClasses.title} ${size === 'small' ? 'line-clamp-1' : ''}`}>
                 {project.title}
@@ -117,7 +117,7 @@ const sizeClasses = getSizeClasses(size);
                 {getStatusText(project.status)}
             </span>
         </div>
-        <!-- 分类标签 -->
+        <!-- Category tag -->
         {project.category && (
             <div class="mb-2">
                 <span class="px-2 py-1 text-xs bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 rounded-sm">
@@ -125,11 +125,11 @@ const sizeClasses = getSizeClasses(size);
                 </span>
             </div>
         )}
-        <!-- 项目描述 -->
+        <!-- Project description -->
         <p class={`text-black/60 dark:text-white/60 mb-4 ${sizeClasses.description}`}>
             {project.description}
         </p>
-        <!-- 技术栈 -->
+        <!-- Tech stack -->
         {project.techStack && project.techStack.length > 0 && (
             <div class="flex flex-wrap gap-1 mb-4">
                 {project.techStack.slice(0, maxTechStack).map((tech) => (
@@ -144,7 +144,7 @@ const sizeClasses = getSizeClasses(size);
                 )}
             </div>
         )}
-        <!-- 标签 -->
+        <!-- Tags -->
         {project.tags && project.tags.length > 0 && (
             <div class="flex flex-wrap gap-1 mb-4">
                 {project.tags.map((tag) => (
@@ -154,7 +154,7 @@ const sizeClasses = getSizeClasses(size);
                 ))}
             </div>
         )}
-        <!-- 链接 -->
+        <!-- Links -->
         <div class="flex gap-3">
             {project.demoUrl && (
                 <a

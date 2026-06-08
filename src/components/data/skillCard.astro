@@ -29,7 +29,7 @@ const {
     showIcon = true,
 } = Astro.props;
 
-// 技能等级颜色映射
+// Skill-level color mapping
 const getLevelColor = (level: string) => {
     switch (level) {
         case "expert":
@@ -45,7 +45,7 @@ const getLevelColor = (level: string) => {
     }
 };
 
-// 技能等级文本映射
+// Skill-level text mapping
 const getLevelText = (level: string) => {
     switch (level) {
         case "expert":
@@ -61,7 +61,7 @@ const getLevelText = (level: string) => {
     }
 };
 
-// 技能等级进度条宽度
+// Skill-level progress bar width
 const getLevelWidth = (level: string) => {
     switch (level) {
         case "expert":
@@ -77,7 +77,7 @@ const getLevelWidth = (level: string) => {
     }
 };
 
-// 尺寸样式映射
+// Size style mapping
 const getSizeClasses = (size: string) => {
     switch (size) {
         case "small":
@@ -116,7 +116,7 @@ const getSizeClasses = (size: string) => {
 const sizeClasses = getSizeClasses(size);
 const skillColor = skill.color || "#3B82F6";
 
-// 经验展示文本
+// Experience display text
 const getExperienceText = (experience: Props["skill"]["experience"]) => {
     if (typeof experience === "string") return experience;
     const yearsText = `${experience.years}${i18n(I18nKey.skillYears)}`;
@@ -131,7 +131,7 @@ const getExperienceText = (experience: Props["skill"]["experience"]) => {
 <div class="bg-white dark:bg-slate-800/50 rounded-lg border border-black/10 dark:border-white/10 overflow-hidden hover:shadow-lg transition-all duration-300 group">
     <div class={sizeClasses.container}>
         <div class="flex items-start gap-4">
-            <!-- 技能图标 -->
+            <!-- Skill icon -->
             {showIcon && skill.icon && (
                 <div class={`rounded-lg flex items-center justify-center shrink-0 ${sizeClasses.icon}`} style={`background-color: ${skillColor}20`}>
                     <Icon
@@ -144,7 +144,7 @@ const getExperienceText = (experience: Props["skill"]["experience"]) => {
                 </div>
             )}
             <div class="flex-1 min-w-0">
-                <!-- 技能名称和等级 -->
+                <!-- Skill name and level -->
                 <div class="flex items-center justify-between mb-2">
                     <h3 class={`font-semibold text-black/90 dark:text-white/90 ${sizeClasses.title} ${size === 'small' ? 'truncate' : ''}`}>
                         {skill.name}
@@ -153,7 +153,7 @@ const getExperienceText = (experience: Props["skill"]["experience"]) => {
                         {getLevelText(skill.level)}
                     </span>
                 </div>
-                <!-- 分类标签 -->
+                <!-- Category tag -->
                 {skill.category && (
                     <div class="mb-2">
                         <span class={`px-2 py-1 bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400 rounded-sm ${sizeClasses.badge}`}>
@@ -161,11 +161,11 @@ const getExperienceText = (experience: Props["skill"]["experience"]) => {
                         </span>
                     </div>
                 )}
-                <!-- 技能描述 -->
+                <!-- Skill description -->
                 <p class={`text-black/60 dark:text-white/60 mb-3 ${sizeClasses.description}`}>
                     {skill.description}
                 </p>
-                <!-- 经验和进度条 -->
+                <!-- Experience and progress bar -->
                 {showProgress && (
                     <div class="mb-3">
                         <div class="flex justify-between text-sm mb-1">
@@ -180,7 +180,7 @@ const getExperienceText = (experience: Props["skill"]["experience"]) => {
                         </div>
                     </div>
                 )}
-                <!-- 认证信息 -->
+                <!-- Certification info -->
                 {skill.certifications && skill.certifications.length > 0 && (
                     <div class="mb-3">
                         <div class="flex flex-wrap gap-1">
@@ -192,7 +192,7 @@ const getExperienceText = (experience: Props["skill"]["experience"]) => {
                         </div>
                     </div>
                 )}
-                <!-- 相关项目 -->
+                <!-- Related projects -->
                 {skill.relatedProjects && skill.relatedProjects.length > 0 && (
                     <div class="text-sm text-black/60 dark:text-white/60">
                         {i18n(I18nKey.skillsProjects)}: {skill.relatedProjects.length}
@@ -204,14 +204,14 @@ const getExperienceText = (experience: Props["skill"]["experience"]) => {
 </div>
 
 <script>
-    // 监听图标加载完成事件
+    // Listen for the icon-loaded event
     document.addEventListener('DOMContentLoaded', () => {
         const skillCard = document.currentScript?.parentElement;
         if (skillCard) {
             skillCard.classList.add('skill-card');
-            // 监听图标准备就绪事件
+            // Listen for the icon-ready event
             skillCard.addEventListener('iconify-ready', () => {
-                // 图标加载完成，可以执行额外的初始化逻辑
+                // Icons finished loading; additional initialization logic can run
                 skillCard.classList.add('icons-loaded');
             });
         }

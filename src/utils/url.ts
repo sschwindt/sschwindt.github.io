@@ -21,13 +21,13 @@ export function removeFileExtension(id: string): string {
 }
 
 export function getPostUrlBySlug(slug: string): string {
-    // 移除文件扩展名（如 .md, .mdx 等）
+    // Remove the file extension (e.g. .md, .mdx)
     const slugWithoutExt = removeFileExtension(slug);
     return url(`/posts/${slugWithoutExt}/`);
 }
 
 export function getPostUrlByRouteName(routeName: string): string {
-    // 移除开头的斜杠并确保固定链接在 /posts/ 路径下
+    // Remove the leading slash and ensure the permalink lives under /posts/
     const cleanRouteName = routeName.replace(/^\/+/, "");
     return url(`/posts/${cleanRouteName}/`);
 }
@@ -35,11 +35,11 @@ export function getPostUrlByRouteName(routeName: string): string {
 export function getPostUrl(post: CollectionEntry<"posts">): string;
 export function getPostUrl(post: { id: string; data: { routeName?: string } }): string;
 export function getPostUrl(post: any): string {
-    // 如果文章有自定义固定链接，优先使用固定链接
+    // If the post has a custom permalink, prefer it
     if (post.data.routeName) {
         return getPostUrlByRouteName(post.data.routeName);
     }
-    // 否则使用默认的 slug 路径
+    // Otherwise use the default slug path
     return getPostUrlBySlug(post.id);
 }
 
@@ -61,7 +61,7 @@ export function getTagUrl(tag: string): string {
 }
 
 export function getDir(path: string): string {
-    // 移除文件扩展名
+    // Remove the file extension
     const pathWithoutExt = removeFileExtension(path);
     const lastSlashIndex = pathWithoutExt.lastIndexOf("/");
     if (lastSlashIndex < 0) {

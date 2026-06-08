@@ -37,10 +37,10 @@ export async function GET(context: APIContext) {
     }
 
     // Use the same ordering as site listing (pinned first, then by published desc)
-    // 过滤掉加密文章和草稿文章
+    // Filter out encrypted and draft posts
     const posts = (await getSortedPosts()).filter((post) => !post.data.encrypted && post.data.draft !== true);
 
-    // 创建Atom feed头部
+    // Create the Atom feed header
     let atomFeed = `<?xml version="1.0" encoding="utf-8"?>
         <feed xmlns="http://www.w3.org/2005/Atom">
         <title>${escapeXml(siteConfig.title)}</title>
@@ -108,7 +108,7 @@ export async function GET(context: APIContext) {
             }
         }
 
-        // 添加Atom条目
+        // Add the Atom entry
         const postUrl = new URL(getPostUrl(post), context.site).href;
         const content = sanitizeHtml(html.toString(), {
             allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
@@ -126,7 +126,7 @@ export async function GET(context: APIContext) {
             <author>
                 <name>${escapeXml(profileConfig.name)}</name>
             </author>`;
-        // 添加分类标签
+        // Add category tags
         const categoryParts = getCategoryPathParts(post.data.category);
         if (categoryParts && categoryParts.length > 0) {
             for (let i = 0; i < categoryParts.length; i++) {
@@ -135,7 +135,7 @@ export async function GET(context: APIContext) {
             <category term="${escapeXml(term)}"></category>`;
             }
         }
-        // 添加标签
+        // Add tags
         const postTags = parseTags(post.data.tags);
         if (postTags && postTags.length > 0) {
             for (const tag of postTags) {
@@ -147,7 +147,7 @@ export async function GET(context: APIContext) {
             </entry>`;
     }
 
-    // 关闭Atom feed
+    // Close the Atom feed
     atomFeed += `
         </feed>`;
 

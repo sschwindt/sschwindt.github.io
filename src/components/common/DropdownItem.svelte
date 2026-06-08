@@ -1,7 +1,7 @@
 <script lang="ts">
 /**
- * 公共下拉面板选项组件 (Svelte 5 版本)
- * 用于下拉面板中的选项项
+ * Shared dropdown panel item component (Svelte 5 version)
+ * Used for option items inside a dropdown panel
  */
 import type { Snippet } from "svelte";
 
@@ -26,7 +26,7 @@ let {
 const baseClasses =
 	"flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95";
 
-// 使用 $derived 使类名响应式
+// Use $derived to make the class name reactive
 const allClasses = $derived.by(() => {
 	const spacingClass = isLast ? "" : "mb-0.5";
 	const activeClass = isActive ? "current-theme-btn" : "";

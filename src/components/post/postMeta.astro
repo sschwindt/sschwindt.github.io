@@ -105,7 +105,7 @@ const { enabled: analyticsEnabled, platform, baseUrl, apiKey, websiteId } = getA
             {!(tags && tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
         </div>
     </div>
-    <!-- 访问量（首页不显示，且启用统计时显示） -->
+    <!-- View count (hidden on the home page, shown when analytics are enabled) -->
     {!isHome && analyticsEnabled && finalPostUrl && (
         <div class="flex items-center page-views-container"
             data-page-url={finalPostUrl}
@@ -124,7 +124,7 @@ const { enabled: analyticsEnabled, platform, baseUrl, apiKey, websiteId } = getA
     )}
 </div>
 
-<!-- 只有在非首页且启用统计且有finalPostUrl时才加载脚本 -->
+<!-- Only load the script when not on the home page, analytics are enabled, and finalPostUrl is present -->
 {!isHome && analyticsEnabled && finalPostUrl && (
     <script>
         import { initAnalyticsStats } from "@utils/analytics";

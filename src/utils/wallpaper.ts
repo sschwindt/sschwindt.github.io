@@ -41,7 +41,7 @@ export function getNavbarTransparentModeForWallpaperMode(mode: WALLPAPER_MODE): 
     if (mode === WALLPAPER_BANNER) {
         return siteConfig.wallpaper.banner?.navbar?.transparentMode || "semifull";
     }
-    return "semi"; // 其他情况使用默认的 semi 模式
+    return "semi"; // Use the default semi mode for other cases
 }
 
 // Cache for elements
@@ -101,11 +101,11 @@ function adjustMainContentPosition(mode: WALLPAPER_MODE | 'banner' | 'none' | 'f
 function updateNavbarTransparency(mode: WALLPAPER_MODE) {
     const { navbar } = getElements();
     if (!navbar) return;
-    // 根据当前壁纸模式获取透明模式配置
+    // Get the transparency mode config based on the current wallpaper mode
     const transparentMode = getNavbarTransparentModeForWallpaperMode(mode);
-    // 更新导航栏的透明模式属性
+    // Update the navbar's transparency mode attribute
     navbar.setAttribute('data-transparent-mode', transparentMode);
-    // 重新初始化半透明模式滚动检测（如果需要）
+    // Re-initialize semi-transparent mode scroll detection (if needed)
     if (transparentMode === 'semifull' && typeof window.initSemifullScrollDetection === 'function') {
         if ('requestIdleCallback' in window) {
             requestIdleCallback(() => window.initSemifullScrollDetection!());
@@ -132,37 +132,37 @@ function initBannerElements(banner: HTMLElement | null) {
 // Function to show banner mode wallpaper
 function showBannerMode() {
     const { bannerWrapper, fullscreenContainer, banner } = getElements();
-    // 隐藏全屏壁纸（通过CSS类控制）
+    // Hide the fullscreen wallpaper (controlled via CSS class)
     if (fullscreenContainer) {
         fullscreenContainer.style.opacity = '0';
         runIfMode(WALLPAPER_BANNER, () => {
             fullscreenContainer.classList.add('hidden');
         });
     }
-    // 显示banner
+    // Show the banner
     if (!bannerWrapper) {
         requestAnimationFrame(showBannerMode);
         return;
     }
     const isAlreadyVisible = typeof document !== 'undefined' && !bannerWrapper.classList.contains('hidden') && !document.documentElement.classList.contains('banner-hiding');
     if (!isAlreadyVisible && typeof document !== 'undefined') {
-        // 如果正在隐藏中，先移除隐藏类
+        // If it is currently hiding, remove the hidden class first
         document.documentElement.classList.remove('banner-hiding');
-        // 添加过渡类到 html
+        // Add the transition class to html
         document.documentElement.classList.add('banner-transitioning');
-        // 移除 hidden
+        // Remove hidden
         bannerWrapper.classList.remove('hidden');
-        // 触发重绘
+        // Force a reflow
         void bannerWrapper.offsetHeight;
-        // 移除过渡类
+        // Remove the transition class
         document.documentElement.classList.remove('banner-transitioning');
-        // 添加显示动画类
+        // Add the show animation class
         document.documentElement.classList.add('show-banner-animation');
         setTimeout(() => {
             document.documentElement.classList.remove('show-banner-animation');
         }, 1200);
     }
-    // 确保banner可见
+    // Ensure the banner is visible
     bannerWrapper.classList.remove('opacity-0');
     bannerWrapper.classList.add('opacity-100');
     // Initialize carousel or static banner
@@ -178,7 +178,7 @@ function showBannerMode() {
 // Function to show fullscreen mode wallpaper
 function showFullscreenMode() {
     const { bannerWrapper, fullscreenContainer } = getElements();
-    // 显示全屏
+    // Show fullscreen
     if (!fullscreenContainer) {
         requestAnimationFrame(showFullscreenMode);
         return;
@@ -186,7 +186,7 @@ function showFullscreenMode() {
     fullscreenContainer.classList.remove('hidden');
     void fullscreenContainer.offsetHeight;
     fullscreenContainer.style.opacity = siteConfig.wallpaper.fullscreen?.opacity?.toString() || '0.8';
-    // 隐藏banner
+    // Hide the banner
     if (bannerWrapper) {
         if (typeof document !== 'undefined' && document.documentElement.classList.contains('banner-hiding')) {
             runIfMode(WALLPAPER_FULLSCREEN, () => {
@@ -201,11 +201,11 @@ function showFullscreenMode() {
 // Function to show none mode wallpaper
 function showNoneMode() {
     const { bannerWrapper, fullscreenContainer } = getElements();
-    // 隐藏banner
+    // Hide the banner
     if (bannerWrapper) {
         bannerWrapper.classList.add('hidden');
     }
-    // 隐藏全屏
+    // Hide fullscreen
     if (fullscreenContainer) {
         fullscreenContainer.style.opacity = '0';
         runIfMode(WALLPAPER_NONE, () => {
@@ -226,22 +226,22 @@ function reinitializeComponents(mode: WALLPAPER_MODE) {
 // Function to apply wallpaper mode to document
 export function applyWallpaperModeToDocument(mode: WALLPAPER_MODE, force = false) {
     if (typeof document === 'undefined') return;
-    // 获取当前的壁纸模式
+    // Get the current wallpaper mode
     const currentMode = document.documentElement.getAttribute('data-wallpaper-mode') as WALLPAPER_MODE;
-    // 如果模式没有变化且不是强制更新，直接返回
+    // If the mode hasn't changed and this isn't a forced update, return early
     if (!force && currentMode === mode) {
         return;
     }
-    // 更新数据属性
+    // Update the data attribute
     document.documentElement.setAttribute('data-wallpaper-mode', mode);
     // Handle Banner exit transition
     if (currentMode === WALLPAPER_BANNER && mode !== WALLPAPER_BANNER) {
         document.documentElement.classList.add('banner-hiding');
-        // 主内容区域开始向上滑动
+        // The main content area starts sliding up
         adjustMainContentPosition(mode);
-        // 导航栏也立即更新透明度
+        // The navbar also updates its opacity immediately
         updateNavbarTransparency(mode);
-        // 等待过渡动画完成后再执行实际的模式切换
+        // Wait for the transition to finish before performing the actual mode switch
         setTimeout(() => {
             document.documentElement.classList.remove('banner-hiding');
             executeApply();
@@ -249,7 +249,7 @@ export function applyWallpaperModeToDocument(mode: WALLPAPER_MODE, force = false
         return;
     }
 
-    // 如果是初始加载或强制更新，我们可能需要立即执行一些逻辑，或者等待 DOM 就绪
+    // On initial load or forced update, we may need to run some logic immediately, or wait for the DOM to be ready
     const apply = () => {
         executeApply();
     };
@@ -257,16 +257,16 @@ export function applyWallpaperModeToDocument(mode: WALLPAPER_MODE, force = false
     function executeApply() {
         const body = document.body;
         if (!body) {
-            // 如果 body 还没准备好，稍后再试
+            // If body isn't ready yet, retry later
             requestAnimationFrame(executeApply);
             return;
         }
-        // 添加过渡保护类
+        // Add the transition protection class
         document.documentElement.classList.add('is-wallpaper-transitioning');
-        // 只有当新模式不需要透明效果时，才移除 wallpaper-transparent
+        // Only remove wallpaper-transparent when the new mode doesn't need transparency
         const nextRequiresTransparency = mode === WALLPAPER_BANNER || mode === WALLPAPER_FULLSCREEN;
         if (!nextRequiresTransparency) {
-            // 延迟移除以配合背景过渡动画
+            // Delay removal to match the background transition animation
             setTimeout(() => {
                 const isStillTransitioning = document.documentElement.classList.contains('is-wallpaper-transitioning');
                 const currentDataMode = document.documentElement.getAttribute('data-wallpaper-mode');
@@ -278,14 +278,14 @@ export function applyWallpaperModeToDocument(mode: WALLPAPER_MODE, force = false
         } else {
             body.classList.add('wallpaper-transparent');
         }
-        // 移除 enable-banner，由 showBannerMode 重新添加（如果是切换到 Banner 模式）
-        // 如果是从 Banner 切换走，则在 executeApply 中移除
+        // Remove enable-banner; showBannerMode re-adds it (when switching to Banner mode)
+        // If switching away from Banner, it is removed in executeApply
         if (mode !== WALLPAPER_BANNER) {
             body.classList.remove('enable-banner');
         } else {
             body.classList.add('enable-banner');
         }
-        // 根据模式添加相应的CSS类
+        // Add the appropriate CSS class based on the mode
         switch (mode) {
             case WALLPAPER_BANNER:
                 showBannerMode();
@@ -299,18 +299,18 @@ export function applyWallpaperModeToDocument(mode: WALLPAPER_MODE, force = false
                 adjustMainContentTransparency(false);
                 break;
         }
-        // 调整主内容位置
+        // Adjust the main content position
         adjustMainContentPosition(mode);
-        // 更新导航栏透明模式
+        // Update the navbar transparency mode
         updateNavbarTransparency(mode);
-        // 重新初始化相关组件
+        // Re-initialize related components
         reinitializeComponents(mode);
-        // 等待过渡动画完成后移除过渡保护类
+        // Remove the transition protection class after the transition finishes
         setTimeout(() => {
             document.documentElement.classList.remove('is-wallpaper-transitioning');
         }, 600);
     }
-    // 使用 requestAnimationFrame 确保在下一帧执行，避免闪屏
+    // Use requestAnimationFrame to run on the next frame, avoiding flicker
     requestAnimationFrame(apply);
 }
 

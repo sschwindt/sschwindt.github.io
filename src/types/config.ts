@@ -12,7 +12,7 @@ import type {
  * 
  */
 
-// Analytics 配置
+// Analytics configuration
 export type AnalyticsConfig = {
     enabled: boolean;
     platform: "umami";
@@ -27,7 +27,7 @@ export type AnalyticsConfig = {
  * 
  */
 
-// Favicon 配置
+// Favicon configuration
 export type Favicon = {
     src: string;
     theme?: "light" | "dark";
@@ -35,165 +35,165 @@ export type Favicon = {
 };
 
 
-// 加载页配置
+// Loading page configuration
 export type LoadingOverlayConfig = {
-    // 是否启用加载页
+    // Whether to enable the loading page
     enable: boolean;
-    // 是否等待所有资源加载完成; 若设置为 false，则会在 DOM 解析完成后立即关闭加载页
+    // Whether to wait for all resources to finish loading; if false, the loading page is closed immediately after the DOM is parsed
     waitForAllResources: boolean;
-    // 加载标题配置
+    // Loading title configuration
     title: {
-        // 是否启用加载标题
+        // Whether to enable the loading title
         enable: boolean;
-        // 加载标题文本
+        // Loading title text
         content: string;
-        // 动画周期 (s)
+        // Animation cycle (s)
         interval: number;
     };
-    // 加载动画配置
+    // Loading animation configuration
     spinner: {
-        // 是否启用加载动画
+        // Whether to enable the loading animation
         enable: boolean;
-        // 动画周期 (s)
+        // Animation cycle (s)
         interval: number;
     };
 };
 
 
-// 站点配置
+// Site configuration
 export type SiteConfig = {
-    // 站点 URL (以斜杠结尾) 
+    // Site URL (ending with a slash) 
     siteURL: string;
-    // 站点标题
+    // Site title
     title: string;
-    // 站点副标题
+    // Site subtitle
     subtitle: string;
-    // 站点关键词，用于生成 <meta name="keywords">
+    // Site keywords, used to generate <meta name="keywords">
     keywords?: string[];
-    // 语言配置
+    // Language configuration
     lang: "zh" | "en" | "ko" | "ja" | "es" | "th" | "vi" | "tr" | "id" | "fr" | "de" | "ru" | "ar";
-    // 翻译配置
+    // Translation configuration
     translate?: {
-        // 启用翻译功能
+        // Enable the translation feature
         enable: boolean;
-        // 翻译服务类型，如 'client.edge'
+        // Translation service type, e.g. 'client.edge'
         service?: string;
-        // 显示语言选择下拉框
+        // Show the language selection dropdown
         showSelectTag?: boolean;
-        // 自动识别用户语言
+        // Auto-detect the user's language
         autoDiscriminate?: boolean;
-        // 翻译时忽略的 CSS 类名
+        // CSS class names to ignore when translating
         ignoreClasses?: string[];
-        // 翻译时忽略的 HTML 标签
+        // HTML tags to ignore when translating
         ignoreTags?: string[];
     };
-    // 时区配置
+    // Time zone configuration
     timeZone: -12 | -11 | -10 | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-    // 字体配置
+    // Font configuration
     font: {
         [key: string]: {
-            // 字体源 (字体 CSS 链接 | 字体文件路径)
+            // Font source (font CSS link | font file path)
             src: string;
-            // 字体名 (font-family)
+            // Font name (font-family)
             family: string;
         };
     };
-    // 主题色配置
+    // Theme color configuration
     themeColor: {
-        // 主题色的默认色相 (0-360)
+        // Default hue of the theme color (0-360)
         hue: number;
     };
-    // 默认主题
+    // Default theme
     defaultTheme: "system" | "light" | "dark";
-    // 壁纸配置
+    // Wallpaper configuration
     wallpaper: {
-        // 模式
+        // Mode
         mode: "fullscreen" | "banner" | "none";
-        src: // 图片源配置 (fullscreen 和 banner 模式共享) 
+        src: // Image source config (shared by the fullscreen and banner modes) 
         | string
         | string[]
         | {
             desktop?: string | string[];
             mobile?: string | string[];
         };
-        // 壁纸位置，等同于 object-position
+        // Wallpaper position, equivalent to object-position
         position?: "top" | "center" | "bottom";
-        // 轮播配置 (fullscreen 和 banner 模式共享)
+        // Carousel config (shared by the fullscreen and banner modes)
         carousel?: {
-            // 为多张图片启用轮播，否则随机显示一张图片
+            // Enable the carousel for multiple images, otherwise show a random one
             enable: boolean;
-            // 轮播间隔时间 (s) 
+            // Carousel interval (s) 
             interval: number;
-            // 启用 Ken Burns 效果
+            // Enable the Ken Burns effect
             kenBurns?: boolean;
         };
-        // Banner 模式专属配置
+        // Banner-mode-specific configuration
         banner?: {
             homeText?: {
-                // 在主页显示文本
+                // Show text on the home page
                 enable: boolean;
-                // 主标题
+                // Main title
                 title?: string;
-                // 副标题
-                subtitle?: string | string[]; // 支持单个字符串或字符串数组
-                // 副标题打字机效果
+                // Subtitle
+                subtitle?: string | string[]; // accepts a single string or an array of strings
+                // Subtitle typewriter effect
                 typewriter?: {
-                    // 启用副标题打字机效果
+                    // Enable the subtitle typewriter effect
                     enable: boolean;
-                    // 打字速度 (ms)
+                    // Typing speed (ms)
                     speed: number;
-                    // 删除速度 (ms)
+                    // Deletion speed (ms)
                     deleteSpeed: number;
-                    // 完全显示后的暂停时间 (ms)
+                    // Pause time after fully shown (ms)
                     pauseTime: number;
                 };
             };
-            // 横幅图片来源文本
+            // Banner image source/credit text
             credit?: {
-                // 显示横幅图片来源文本
+                // Show the banner image source text
                 enable: boolean;
-                // 要显示的来源文本
+                // The source text to display
                 text: string;
-                // (可选) 原始艺术品或艺术家页面的 URL 链接
+                // (optional) URL link to the original artwork or artist page
                 url?: string;
             };
-            // 导航栏配置
+            // Navbar configuration
             navbar?: {
-                // 导航栏透明模式
+                // Navbar transparency mode
                 transparentMode?: "semi" | "full" | "semifull";
             };
-            // 水波纹效果配置
+            // Water ripple effect configuration
             waves?: {
-                // 启用水波纹效果
+                // Enable the water ripple effect
                 enable: boolean;
-                // 启用性能模式 (简化波浪效果以提升性能)
+                // Enable performance mode (simplifies the wave effect to improve performance)
                 performanceMode?: boolean;
             };
         };
-        // Fullscreen 模式专属配置
+        // Fullscreen-mode-specific configuration
         fullscreen?: {
-            // 层级
+            // z-index / layer
             zIndex?: number;
-            // 壁纸透明度，0-1 之间
+            // Wallpaper opacity, between 0 and 1
             opacity?: number;
-            // 背景模糊程度 (px)
+            // Background blur amount (px)
             blur?: number;
-            // 导航栏透明模式
+            // Navbar transparency mode
             navbar?: {
                 transparentMode?: "semi" | "full" | "semifull";
             };
         };
     };
-    // 加载页配置
+    // Loading page configuration
     loadingOverlay?: LoadingOverlayConfig;
-    // Favicon 配置
+    // Favicon configuration
     favicon: Favicon[];
-    // bangumi 配置
+    // Bangumi configuration
     bangumi?: {
-        // 用户 ID
+        // User ID
         userId?: string;
     };
-    // OpenGraph 配置
+    // OpenGraph configuration
     generateOgImages: boolean;
 };
 
@@ -231,25 +231,25 @@ export enum LinkPreset {
 
 
 export type NavbarLink = {
-    // 链接名称
+    // Link name
     name: string;
-    // 链接
+    // Link
     url: string;
-    // 是否为外部链接
+    // Whether it is an external link
     external?: boolean;
-    // 链接图标
+    // Link icon
     icon?: string;
-    // 中转页描述
+    // Intermediate-page description
     description?: string;
-    // 子链接，可以是NavbarLink或LinkPreset
+    // Sub-links, can be NavbarLink or LinkPreset
     children?: (NavbarLink | LinkPreset)[];
 };
 
 
-// 导航栏配置
+// Navbar configuration
 export type NavbarConfig = {
-    // 链接配置
-    links: (NavbarLink | LinkPreset)[]; // 支持多级菜单
+    // Link configuration
+    links: (NavbarLink | LinkPreset)[]; // Supports multi-level menus
 };
 
 /**
@@ -268,42 +268,42 @@ export type WidgetComponentType =
 
 
 export type WidgetComponentConfig = {
-    // 组件类型
+    // Component type
     type: WidgetComponentType;
-    // 启用该组件
+    // Enable this component
     enable: boolean;
-    // 组件位置
-    position: "top" | "sticky"; // 顶部固定区域或粘性区域
-    // 自定义内联样式
+    // Component position
+    position: "top" | "sticky"; // Top fixed area or sticky area
+    // Custom inline styles
     style?: string;
-    // 页面可见性配置
+    // Page visibility configuration
     visibility?: {
-        // 匹配模式：'include' (包含), 'exclude' (排除)
+        // Match mode: 'include' or 'exclude'
         mode: "include" | "exclude";
-        // 页面路径匹配规则列表 (支持正则字符串)
+        // List of page-path matching rules (supports regex strings)
         paths: string[];
     };
-    // 响应式配置
+    // Responsive configuration
     responsive?: {
-        // 在指定设备上隐藏
+        // Hide on the specified devices
         hidden?: ("mobile" | "tablet" | "desktop")[];
-        // 折叠阈值
+        // Collapse threshold
         collapseThreshold?: number;
     };
-    // 目录深度 (仅用于 toc 和 categories 组件)
+    // Directory depth (only for the toc and categories components)
     depth?: number;
 };
 
 
-// 资料配置
+// Profile configuration
 export type ProfileConfig = {
-    // 头像配置
+    // Avatar configuration
     avatar?: string;
-    // 信息配置
+    // Info configuration
     name: string;
-    // 简介配置
+    // Bio configuration
     bio?: string;
-    // 链接配置
+    // Links configuration
     links: {
         name: string;
         url: string;
@@ -312,35 +312,35 @@ export type ProfileConfig = {
 };
 
 
-// 公告配置
+// Announcement configuration
 export type AnnouncementConfig = {
-    // 公告标题
+    // Announcement title
     title?: string;
-    // 公告内容
+    // Announcement content
     content: string;
-    // 公告类型
+    // Announcement type
     type?: "info" | "warning" | "success" | "error";
-    // 公告栏图标
+    // Announcement icon
     icon?: string;
-    // 允许用户关闭公告
+    // Allow users to dismiss the announcement
     closable?: boolean;
-    // 链接配置
+    // Links configuration
     link?: {
-        // 启用链接
+        // Enable the link
         enable: boolean;
-        // 链接文本
+        // Link text
         text: string;
-        // 链接 URL
+        // Link URL
         url: string;
-        // 是否外部链接
+        // Whether it's an external link
         external?: boolean;
     };
 };
 
 
-// 侧边栏配置
+// Sidebar configuration
 export type SidebarConfig = {
-    // 侧边栏组件配置列表
+    // List of sidebar component configurations
     components: {
         left: WidgetComponentConfig[];
         right: WidgetComponentConfig[];
@@ -368,47 +368,47 @@ export type BlogPostData = {
 };
 
 
-// 文章配置
+// Post configuration
 export type PostConfig = {
-    // 文章卡片配置
+    // Post card configuration
     card: {
-        // 封面配置
+        // Cover configuration
         cover: {
-            // 封面位置 ("left" | "right")
+            // Cover position ("left" | "right")
             side: "left" | "right";
-            // 封面宽度
+            // Cover width
             width: string;
-            // 封面上是否显示文字（标题、标签、摘要）
+            // Whether to show text on the cover (title, tags, excerpt)
             showContent: boolean;
         };
     };
-    // 显示“上次编辑”卡片
+    // Show the "last edited" card
     showLastModified: boolean;
-    // 代码高亮配置
+    // Code highlighting configuration
     expressiveCode: {
-        // 主题
+        // Theme
         theme: string;
     };
-    // 许可证配置
+    // License configuration
     license: {
-        // 启用许可证
+        // Enable the license
         enable: boolean;
-        // 许可证名称
+        // License name
         name: string;
-        // 许可证链接
+        // License URL
         url: string;
     };
-    // 评论配置
+    // Comment configuration
     comment: {
-        // 启用评论功能
+        // Enable comments
         enable: boolean;
-        // Twikoo 评论系统配置
+        // Twikoo comment system configuration
         twikoo?: {
-            // 环境 ID
+            // Environment ID
             envId: string;
-            // 地域
+            // Region
             region?: string;
-            // 语言
+            // Language
             lang?: string;
         };
     };
@@ -418,11 +418,11 @@ export type PostConfig = {
  * 
  */
 
-// 页脚配置
+// Footer configuration
 export type FooterConfig = {
-    // 是否启用 Footer HTML 注入功能
+    // Whether to enable Footer HTML injection
     enable: boolean;
-    // 自定义 HTML 内容，用于添加备案号等信息
+    // Custom HTML content, used to add things like ICP license numbers
     customHtml?: string;
 };
 
@@ -430,50 +430,50 @@ export type FooterConfig = {
  * 
  */
 
-// 粒子特效配置
+// Particle effect configuration
 export type ParticleConfig = {
-    // 启用粒子特效
+    // Enable the particle effect
     enable: boolean;
-    // 粒子数量
+    // Number of particles
     particleNum: number;
-    // 粒子越界限制次数，-1为无限循环
+    // Particle out-of-bounds limit; -1 means infinite loop
     limitTimes: number;
-    // 粒子尺寸配置
+    // Particle size configuration
     size: {
-        // 粒子最小尺寸倍数
+        // Particle minimum size multiplier
         min: number;
-        // 粒子最大尺寸倍数
+        // Particle maximum size multiplier
         max: number;
     };
-    // 粒子透明度配置
+    // Particle opacity configuration
     opacity: {
-        // 粒子最小不透明度
+        // Particle minimum opacity
         min: number;
-        // 粒子最大不透明度
+        // Particle maximum opacity
         max: number;
     };
-    // 粒子移动速度配置
+    // Particle movement speed configuration
     speed: {
-        // 水平移动速度
+        // Horizontal movement speed
         horizontal: {
-            // 最小值
+            // Minimum value
             min: number;
-            // 最大值
+            // Maximum value
             max: number;
         };
-        // 垂直移动速度
+        // Vertical movement speed
         vertical: {
-            // 最小值
+            // Minimum value
             min: number;
-            // 最大值
+            // Maximum value
             max: number;
         };
-        // 旋转速度
+        // Rotation speed
         rotation: number;
-        // 消失速度
+        // Fade-out speed
         fadeSpeed: number;
     };
-    // 粒子层级
+    // Particle z-index
     zIndex: number;
 };
 
@@ -482,46 +482,46 @@ export type ParticleConfig = {
  */
 
 export type MusicPlayerTrack = {
-    // 序号
+    // Index number
     id: number | string;
-    // 标题
+    // Title
     title: string;
-    // 作者
+    // Author
     artist: string;
-    // 封面
+    // Cover
     cover: string;
-    // 路径
+    // Path
     url: string;
-    // 歌词
+    // Lyrics
     lrc?: string;
-    // 时长
+    // Duration
     duration: number;
 };
 
 
-// 音乐播放器配置
+// Music player configuration
 export type MusicPlayerConfig = {
-    // 启用音乐播放器功能
+    // Enable the music player
     enable: boolean;
-    // 默认模式
+    // Default mode
     mode: "meting" | "local";
-    // meting 模式专属配置
+    // meting mode-specific configuration
     meting: {
-        // Meting API 地址
+        // Meting API URL
         meting_api: string;
-        // 音乐平台
+        // Music platform
         server: "netease" | "tencent" | "kugou" | "baidu" | "kuwo";
-        // 类型
+        // Type
         type: "playlist" | "album" | "artist" | "song" | "search";
-        // 资源 ID
+        // Resource ID
         id: string;
     };
-    // local 模式专属配置
+    // local mode-specific configuration
     local: {
-        // 播放列表
+        // Playlist
         playlist: MusicPlayerTrack[];
     };
-    // 是否自动播放
+    // Whether to autoplay
     autoplay?: boolean;
 };
 
@@ -529,43 +529,43 @@ export type MusicPlayerConfig = {
  * 
  */
 
-// 看板娘配置
+// Mascot (live2d) configuration
 export type PioConfig = {
-    // 启用看板娘
+    // Enable the mascot
     enable: boolean;
-    // 模型文件路径
+    // Model file path
     models?: string[];
-    // 看板娘位置
+    // Mascot position
     position?: "left" | "right";
-    // 看板娘宽度
+    // Mascot width
     width?: number;
-    // 看板娘高度
+    // Mascot height
     height?: number;
-    // 展现模式
+    // Display mode
     mode?: "static" | "fixed" | "draggable";
-    // 是否在移动设备上隐藏
+    // Whether to hide on mobile devices
     hiddenOnMobile?: boolean;
-    // 对话框配置
+    // Dialog configuration
     dialog?: {
-        // 欢迎词
+        // Welcome message
         welcome?: string | string[];
-        // 触摸提示
+        // Touch hint
         touch?: string | string[];
-        // 首页提示
+        // Home page hint
         home?: string;
-        // 换装提示
-        skin?: [string, string]; // [切换前, 切换后]
-        // 关闭提示
+        // Outfit-change hint
+        skin?: [string, string]; // [before switch, after switch]
+        // Close hint
         close?: string;
-        // 关于链接
+        // About link
         link?: string;
-        // 自定义属性
+        // Custom properties
         custom?: Array<{
-            // CSS选择器
+            // CSS selector
             selector: string;
-            // 类型
+            // Type
             type: "read" | "link";
-            // 自定义文本
+            // Custom text
             text?: string;
         }>;
     };

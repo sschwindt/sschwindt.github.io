@@ -50,14 +50,14 @@ const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
 // why doing this in BaseLayout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
 const configHue = siteConfig.themeColor.hue;
 
-// 获取导航栏透明模式配置
+// Get the navbar transparency mode configuration
 const navbarTransparentMode =
     siteConfig.wallpaper.banner?.navbar?.transparentMode || "semi";
-// 判断是否应该显示顶部高光效果（只在full和semifull模式下显示）
+// Determine whether to show the top highlight effect (only in full and semifull modes)
 const shouldShowTopHighlight =
     navbarTransparentMode === "full" || navbarTransparentMode === "semifull";
 
-// 获取默认banner图片的辅助函数
+// Helper function to get the default banner image
 const getDefaultBanner = (): string => {
     const src = siteConfig.wallpaper.src;
     if (typeof src === "string") {
@@ -67,7 +67,7 @@ const getDefaultBanner = (): string => {
         return src[0] || "";
     }
     if (src && typeof src === "object") {
-        // 优先使用desktop，如果没有则使用mobile
+        // Prefer desktop, fall back to mobile if unavailable
         const desktopSrc = src.desktop;
         const mobileSrc = src.mobile;
         if (typeof desktopSrc === "string") {
@@ -224,7 +224,7 @@ const { enabled: analyticsEnabled, code: analyticsCode } = getAnalyticsConfig();
         }}></style>
         <!-- custom head -->
         <slot name="head"></slot>
-        <!-- Pio 看板娘样式 - 仅在启用时加载 -->
+        <!-- Pio mascot styles - loaded only when enabled -->
         {pioConfig.enable && <link rel="stylesheet" href="/pio/static/pio.css" />}
         <!-- rss feed -->
         <link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
@@ -232,13 +232,13 @@ const { enabled: analyticsEnabled, code: analyticsCode } = getAnalyticsConfig();
 
     <body class=" min-h-screen " class:list={[{"is-home": isHomePage, "enable-banner": enableBanner}]}
     >
-        <!-- 页面加载动画 -->
+        <!-- Page loading animation -->
         <LoadingOverlay />
-        <!-- 全局配置载体 -->
+        <!-- Global config carrier -->
         <ConfigCarrier />
-        <!-- 页面顶部渐变高光效果 - 只在full和semifull模式下显示 -->
+        <!-- Page-top gradient highlight effect - shown only in full and semifull modes -->
         {shouldShowTopHighlight && <div class="top-gradient-highlight"></div>}
-        <!-- 页面内容 -->
+        <!-- Page content -->
         <slot />
         <!-- Cookie consent — only shown when there is non-essential tracking
              (analytics) to consent to. With analytics disabled the site sets
@@ -246,9 +246,9 @@ const { enabled: analyticsEnabled, code: analyticsCode } = getAnalyticsConfig();
         {analyticsEnabled && analyticsCode && (
             <CookieConsent analyticsEnabled={analyticsEnabled} analyticsCode={analyticsCode} />
         )}
-        <!-- Music Player - 仅在启用时加载 -->
+        <!-- Music Player - loaded only when enabled -->
         {musicPlayerConfig.enable && <MusicPlayer client:idle />}
-        <!-- Pio 看板娘组件 - 如果启用了侧边栏，可能需要调整 z-index -->
+        <!-- Pio mascot component - z-index may need adjusting if the sidebar is enabled -->
         {pioConfig.enable && <Pio client:visible />}
         <!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
         <div id="page-height-extend" class="hidden h-[300vh]"></div>
@@ -332,7 +332,7 @@ import { loadAndInitTranslate } from "@utils/language";
 import { setupParticleEffects } from "@/utils/particle";
 
 
-// 初始化Swup
+// Initialize Swup
 const setup = () => {
     let pausedElementIds = new Set();
     window.swup.hooks.on('content:replace', () => {
@@ -410,7 +410,7 @@ const setup = () => {
                 const elementId = config.type === "toc" ? `toc-wrapper-${side}` : `${config.type}-${side}`;
                 const el = document.getElementById(elementId);
                 if (el && el.hasAttribute('data-swup-persist')) {
-                    if (config.type !== "toc" && isVisibleNow && isVisibleNext && !layoutShifted) { // TOC 特殊处理：由于内容总是变化，不建议暂停动画
+                    if (config.type !== "toc" && isVisibleNow && isVisibleNext && !layoutShifted) { // TOC special case: since its content always changes, pausing the animation is not recommended
                         el.classList.add('pause-swup-transition');
                         pausedElementIds.add(el.id);
                     } else {
@@ -465,9 +465,9 @@ if (window?.swup?.hooks) {
     document.addEventListener('swup:enable', setup)
 }
 
-// 初始化返回顶部按钮元素，用于控制返回顶部按钮的显示与隐藏
+// Initialize the back-to-top button element, used to control its show/hide
 let backToTopBtn = document.getElementById('back-to-top-btn');
-// 节流函数
+// Throttle function
 function throttle(func: (...args: any[]) => void, limit: number) {
     let inThrottle: boolean;
     return function(this: any, ...args: any[]) {
@@ -478,11 +478,11 @@ function throttle(func: (...args: any[]) => void, limit: number) {
         }
     }
 }
-// 滚动事件处理函数，用于控制返回顶部按钮和banner隐藏
+// Scroll event handler, controls the back-to-top button and banner hiding
 function scrollFunction() {
     const scrollTop = document.documentElement.scrollTop;
     const bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100);
-    // 批量处理DOM操作
+    // Batch DOM operations
     requestAnimationFrame(() => {
         if (backToTopBtn) {
             if (scrollTop > bannerHeight) {
@@ -493,9 +493,9 @@ function scrollFunction() {
         }
     });
 }
-// 使用节流优化滚动性能
-window.onscroll = throttle(scrollFunction, 16); // 约60fps
-// 监听窗口 resize 事件，用于更新 banner 高度相关的 CSS 变量
+// Use throttling to optimize scroll performance
+window.onscroll = throttle(scrollFunction, 16); // ~60fps
+// Listen for window resize events to update banner-height-related CSS variables
 window.onresize = () => {
     // calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
     let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
@@ -512,7 +512,7 @@ initHue();
 // Initialize wallpaper mode
 initWallpaperMode();
 
-// 初始化 Markdown 相关操作以防止因 Swup 无刷新跳转的机制限制而导致操作失效
+// Initialize Markdown-related operations to prevent them breaking under Swup's no-refresh navigation
 initMarkdownActions();
 
 // Initialize translate.js
@@ -526,21 +526,21 @@ if (typeof window !== 'undefined') {
     const onPageLoaded = () => {
         const overlay = document.getElementById('loading-overlay');
         const enableBanner = document.body.classList.contains('enable-banner');
-        // 触发 LoadingOverlay 淡出
+        // Trigger the LoadingOverlay fade-out
         if (overlay) {
             overlay.classList.add('fade-out');
         }
-        // 等待 LoadingOverlay 淡出（600ms）
+        // Wait for the LoadingOverlay fade-out (600ms)
         setTimeout(() => {
             if (overlay) {
                 overlay.style.display = 'none';
             }
             if (enableBanner) {
-                // banner 开始恢复过渡：添加 banner-restoring 类（解除 CSS 中的 height: 0）
+                // Banner begins its restore transition: add the banner-restoring class (releases height: 0 in CSS)
                 document.documentElement.classList.add('banner-restoring');
-                // 等待 banner 恢复过渡完成（600ms）
+                // Wait for the banner restore transition to finish (600ms)
                 setTimeout(() => {
-                    // 触发各容器淡入动画
+                    // Trigger the fade-in animation for each container
                     document.documentElement.classList.remove('is-loading');
                     document.documentElement.classList.add('show-initial-animation');
                     setTimeout(() => {
@@ -549,7 +549,7 @@ if (typeof window !== 'undefined') {
                     }, 1200);
                 }, 600);
             } else {
-                // 非 banner 模式，直接触发淡入
+                // Non-banner mode: trigger fade-in directly
                 document.documentElement.classList.remove('is-loading');
                 document.documentElement.classList.add('show-initial-animation');
                 setTimeout(() => {

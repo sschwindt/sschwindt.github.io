@@ -3,16 +3,16 @@ import type { Translation } from "@i18n/translation";
 
 
 export const ja: Translation = {
-    // 加載遮罩
+    // Loading overlay
     [Key.loading]: "読み込み中",
 
-    // ナビゲーション
+    // Navigation
     [Key.home]: "ホーム",
     [Key.archive]: "アーカイブ",
     [Key.about]: "について",
     [Key.search]: "検索",
 
-    // 投稿
+    // Posts
     [Key.directory]: "ディレクトリ",
     [Key.tags]: "タグ",
     [Key.categories]: "カテゴリ",
@@ -23,13 +23,13 @@ export const ja: Translation = {
     [Key.statistics]: "統計",
     [Key.tableOfContents]: "目次",
 
-    // 統計
+    // Statistics
     [Key.pageViews]: "閲覧数",
     [Key.visitors]: "訪問者",
     [Key.statsLoading]: "統計を読み込み中...",
     [Key.statsError]: "統計を利用できません",
 
-    // お知らせ
+    // Announcement
     [Key.announcement]: "お知らせ",
     [Key.announcementClose]: "閉じる",
 
@@ -64,13 +64,13 @@ export const ja: Translation = {
     [Key.publishedAt]: "公開日",
     [Key.license]: "ライセンス",
 
-    // 404ページ
+    // 404 page
     [Key.notFound]: "404",
     [Key.notFoundTitle]: "ページが見つかりません",
     [Key.notFoundDescription]: "申し訳ありませんが、アクセスしたページは存在しないか、移動されています。",
     [Key.backToHome]: "ホームに戻る",
 
-    // プロジェクトページ
+    // Projects page
     [Key.projects]: "プロジェクト",
     [Key.projectsSubtitle]: "私の開発プロジェクトポートフォリオ",
     [Key.projectsAll]: "すべて",
@@ -95,7 +95,7 @@ export const ja: Translation = {
     [Key.projectsDemo]: "ライブデモ",
     [Key.projectsSource]: "ソースコード",
 
-    // スキルページ
+    // Skills page
     [Key.skills]: "スキル",
     [Key.skillsSubtitle]: "私の技術スキルと専門知識",
     [Key.skillsAI]: "AI開発",
@@ -125,7 +125,7 @@ export const ja: Translation = {
     [Key.skillsByLevel]: "レベル別分布",
     [Key.skillsByCategory]: "カテゴリ別分布",
 
-    // タイムラインページ
+    // Timeline page
     [Key.timeline]: "タイムライン",
     [Key.timelineSubtitle]: "私の成長の旅と重要なマイルストーン",
     [Key.timelineEducation]: "教育",
@@ -152,7 +152,7 @@ export const ja: Translation = {
     [Key.timelineEmployed]: "在職中",
     [Key.timelineAvailable]: "入社可能",
 
-    // 日記ページ
+    // Shorts page
     [Key.diary]: "日記",
     [Key.diarySubtitle]: "いつでもどこでも、生活を共有する",
     [Key.diaryCount]: "日記エントリ",
@@ -163,7 +163,7 @@ export const ja: Translation = {
     [Key.diaryHoursAgo]: "時間前",
     [Key.diaryDaysAgo]: "日前",
 
-    // アルバムページ
+    // Albums page
     [Key.albums]: "アルバム",
     [Key.albumsSubtitle]: "生活の美しい瞬間を記録する",
     [Key.albumsEmpty]: "コンテンツなし",
@@ -172,7 +172,7 @@ export const ja: Translation = {
     [Key.albumsPhotoCount]: "写真",
     [Key.albumsPhotosCount]: "写真",
 
-    // アニメページ
+    // Anime page
     [Key.anime]: "アニメ",
     [Key.animeTitle]: "私のアニメリスト",
     [Key.animeSubtitle]: "私の二次元の旅を記録する",
@@ -189,10 +189,10 @@ export const ja: Translation = {
     [Key.animeEmpty]: "アニメデータなし",
     [Key.animeEmptyBangumi]: "Bangumiの設定またはネットワーク接続を確認してください",
 
-    // 友達ページ
+    // Friends page
     [Key.friends]: "友達",
 
-    // RSSページ
+    // RSS page
     [Key.rss]: "RSSフィード",
     [Key.rssDescription]: "最新の更新を購読する",
     [Key.rssSubtitle]: "RSSで購読して、最新の記事と更新を第一时间で取得する",
@@ -210,7 +210,7 @@ export const ja: Translation = {
     [Key.rssCopied]: "RSSリンクがクリップボードにコピーされました！",
     [Key.rssCopyFailed]: "コピーに失敗しました。手動でリンクをコピーしてください",
 
-    // Atomページ
+    // Atom page
     [Key.atom]: "Atomフィード",
     [Key.atomDescription]: "最新の更新を購読する",
     [Key.atomSubtitle]: "Atomで購読して、最新の記事と更新を第一时间で取得する",
@@ -228,7 +228,7 @@ export const ja: Translation = {
     [Key.atomCopied]: "Atomリンクがクリップボードにコピーされました！",
     [Key.atomCopyFailed]: "コピーに失敗しました。手動でリンクをコピーしてください",
 
-    // パスワード保護
+    // Password protection
     [Key.passwordProtected]: "パスワード保護",
     [Key.passwordProtectedTitle]: "このコンテンツはパスワードで保護されています",
     [Key.passwordProtectedDescription]: "保護されたコンテンツを表示するにはパスワードを入力してください",
@@ -247,7 +247,7 @@ export const ja: Translation = {
     [Key.autoSyntaxHighlightFailed]: "自動構文ハイライトにも失敗しました：",
     [Key.decryptionError]: "復号化中にエラーが発生しました：",
 
-    // 最終更新時間カード
+    // Last edited time card
     [Key.lastModifiedPrefix]: "最終編集からの時間：",
     [Key.lastModifiedOutdated]: "一部の情報は古くなっている可能性があります",
     [Key.year]: "年",
@@ -257,7 +257,7 @@ export const ja: Translation = {
     [Key.minute]: "分",
     [Key.second]: "秒",
 
-    // 音楽プレイヤー
+    // Music player
     [Key.playlist]: "プレイリスト",
     [Key.musicEmptyPlaylist]: "ローカルプレイリストが空です",
     [Key.musicNoSongsAvailable]: "プレイリストに利用可能な曲がありません",

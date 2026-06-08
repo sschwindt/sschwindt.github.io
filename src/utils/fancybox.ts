@@ -1,31 +1,31 @@
 let fancyboxSelectors: string[] = [];
 let Fancybox: any;
 
-// 图片灯箱按需加载
+// Lazy-load the image lightbox on demand
 export async function initFancybox() {
     if (typeof document === "undefined") return;
-    // 相册图片选择器 (只绑定不在 a 标签内的图片，避免与链接绑定冲突)
+    // Album image selector (only binds images not inside an <a> tag, to avoid conflicting with link bindings)
     const albumImagesSelector = ".custom-md img:not(a *), #post-cover img:not(a *), .moment-images img:not(a *), .photo-gallery img:not(a *)";
-    // 相册链接选择器
+    // Album link selector
     const albumLinksSelector = ".moment-images a[data-fancybox], .photo-gallery a[data-fancybox]";
-    // 单张图片选择器
+    // Single image selector
     const singleFancyboxSelector = "[data-fancybox]:not(.moment-images a):not(.photo-gallery a)";
-    // 检查是否有图片需要绑定
+    // Check whether there are images to bind
     const hasImages =
         document.querySelector(albumImagesSelector) ||
         document.querySelector(albumLinksSelector) ||
         document.querySelector(singleFancyboxSelector);
     if (!hasImages) return;
-    // 检查是否已初始化 Fancybox
+    // Check whether Fancybox is already initialized
     if (!Fancybox) {
         const mod = await import("@fancyapps/ui");
         Fancybox = mod.Fancybox;
         await import("@fancyapps/ui/dist/fancybox/fancybox.css");
     }
     if (fancyboxSelectors.length > 0) {
-        return; // 已经初始化，直接返回
+        return; // already initialized, return early
     }
-    // 公共配置
+    // Shared configuration
     const commonConfig = {
         Thumbs: {
             autoStart: true,
@@ -68,7 +68,7 @@ export async function initFancybox() {
         },
         caption: false,
     };
-    // 绑定相册/文章图片
+    // Bind album/post images
     Fancybox.bind(albumImagesSelector, {
         ...commonConfig,
         groupAll: true,
@@ -78,7 +78,7 @@ export async function initFancybox() {
         },
     });
     fancyboxSelectors.push(albumImagesSelector);
-    // 绑定相册链接
+    // Bind album links
     Fancybox.bind(albumLinksSelector, {
         ...commonConfig,
         source: (el: any) => {
@@ -86,14 +86,14 @@ export async function initFancybox() {
         },
     });
     fancyboxSelectors.push(albumLinksSelector);
-    // 绑定单独的 fancybox 图片
+    // Bind standalone fancybox images
     Fancybox.bind(singleFancyboxSelector, commonConfig);
     fancyboxSelectors.push(singleFancyboxSelector);
 }
 
-// 清理 Fancybox 实例
+// Clean up the Fancybox instance
 export function cleanupFancybox() {
-    if (!Fancybox) return; // 如果从未加载过，无需清理
+    if (!Fancybox) return; // if never loaded, nothing to clean up
     fancyboxSelectors.forEach((selector) => {
         Fancybox.unbind(selector);
     });

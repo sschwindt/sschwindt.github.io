@@ -2,7 +2,7 @@
 import { onDestroy, onMount } from "svelte";
 
 import { BREAKPOINT_LG } from "@constants/breakpoints";
-import { getTranslateLanguageFromConfig, getSiteLanguage, setStoredLanguage, getDefaultLanguage } from "@/utils/language";
+import { getTranslateLanguageFromConfig, getSiteLanguage, setStoredLanguage, getDefaultLanguage, updateTranslationNotice } from "@/utils/language";
 import { onClickOutside } from "@utils/widget";
 import { siteConfig } from "@/config";
 import { getSupportedTranslateLanguages } from "@/i18n/language";
@@ -15,10 +15,10 @@ let isOpen = $state(false);
 let translatePanel: HTMLElement | undefined = $state();
 let currentLanguage = $state("");
 
-// 从统一配置动态获取支持的语言列表
+// Dynamically get the list of supported languages from the unified config
 const languages = getSupportedTranslateLanguages();
 
-// 根据配置文件的语言设置获取源语言
+// Get the source language from the config file's language setting
 const sourceLanguage = getTranslateLanguageFromConfig(
     getDefaultLanguage(),
 );
@@ -37,35 +37,37 @@ function closePanel() {
 
 async function changeLanguage(languageCode: string) {
     try {
-        // 如果翻译脚本未加载，先加载
+        // If the translation script is not loaded yet, load it first
         if (!(window as any).translateScriptLoaded && typeof (window as any).loadTranslateScript === "function") {
             await (window as any).loadTranslateScript();
         }
-        // 确认翻译脚本已加载
+        // Confirm the translation script is loaded
         if (!(window as any).translate) {
             console.warn("translate.js is not loaded");
             return;
         }
-        // 获取翻译实例
+        // Get the translation instance
         const translate = (window as any).translate;
-        // 检查是否切换回源语言
+        // Check whether we are switching back to the source language
         const localLang = translate.language.getLocal();
-        // 统一使用 changeLanguage 方法
+        // Use the changeLanguage method consistently
         translate.changeLanguage(languageCode);
-        // 如果是切换回源语言，额外执行一次 reset 以确保在不刷新的情况下也能还原
+        // If switching back to the source language, run an extra reset so it restores even without a reload
         if (languageCode === localLang) {
             translate.reset();
         }
-        // 同步保存到我们的缓存中
+        // Sync it to our own cache
         setStoredLanguage(languageCode);
-        // 更新当前 UI 状态
+        // Update the current UI state
         currentLanguage = languageCode;
+        // Refresh the machine-translation notice (shown when switching to French/German, hidden when switching back to English)
+        updateTranslationNotice();
     } catch (error) {
         console.error("Failed to execute translation:", error);
     }
 }
 
-// 点击外部关闭面板
+// Close the panel when clicking outside
 function handleClickOutside(event: MouseEvent) {
     if (!isOpen) return;
     onClickOutside(event, "translate-panel", "translate-switch", () => {
@@ -73,10 +75,10 @@ function handleClickOutside(event: MouseEvent) {
     });
 }
 
-// 组件挂载时添加事件监听和初始化默认语言
+// On component mount, add the event listener and initialize the default language
 onMount(() => {
     document.addEventListener("click", handleClickOutside);
-    // 初始化当前语言为站点语言（优先缓存）
+    // Initialize the current language to the site language (cache first)
     currentLanguage = getSiteLanguage();
 });
 
@@ -89,7 +91,7 @@ onDestroy(() => {
 
 {#if siteConfig.translate?.enable}
 <div class="relative z-50" onmouseleave={closePanel}>
-    <!-- 翻译按钮 -->
+    <!-- Translation button -->
     <button
         aria-label="Language Translation"
         class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90 flex items-center justify-center"
@@ -99,7 +101,7 @@ onDestroy(() => {
     >
         <Icon icon="material-symbols:translate" class="text-[1.25rem] transition" />
     </button>
-    <!-- 翻译面板 -->
+    <!-- Translation panel -->
     <div id="translate-panel-wrapper" class="fixed top-14.5 pt-5 right-4 w-[calc(100vw-2rem)] max-w-64 md:absolute md:top-11 md:right-0 md:w-64 md:pt-5 transition-all z-50" class:float-panel-closed={!isOpen}>
         <DropdownPanel
             bind:element={translatePanel}
@@ -131,7 +133,7 @@ onDestroy(() => {
 {/if}
 
 <style>
-/* 滚动条样式 */
+/* Scrollbar styles */
 .overflow-y-auto::-webkit-scrollbar {
     width: 4px;
 }

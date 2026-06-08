@@ -1,29 +1,29 @@
 ---
-// 全局Iconify加载器组件
-// 在页面头部加载，确保图标库尽早可用
+// Global Iconify loader component
+// Loaded in the page head to make the icon library available as early as possible
 
 export interface Props {
-    preloadIcons?: string[]; // 需要预加载的图标列表
-    timeout?: number; // 加载超时时间
-    retryCount?: number; // 重试次数
+    preloadIcons?: string[]; // list of icons to preload
+    timeout?: number; // load timeout
+    retryCount?: number; // number of retries
 }
 
 const { preloadIcons = [], timeout = 10000, retryCount = 3 } = Astro.props;
 ---
 
-<!-- Iconify图标库加载器 -->
+<!-- Iconify icon library loader -->
 <script define:vars={{ preloadIcons, timeout, retryCount }}>
-    // 全局图标加载逻辑
+    // Global icon loading logic
     (function() {
         'use strict';
 
-        // 避免重复加载
+        // Avoid duplicate loading
         if (window.__iconifyLoaderInitialized) {
             return;
         }
         window.__iconifyLoaderInitialized = true;
 
-        // 图标加载器类
+        // Icon loader class
         class IconifyLoader {
             constructor() {
                 this.isLoaded = false;
@@ -77,7 +77,7 @@ const { preloadIcons = [], timeout = 10000, retryCount = 3 } = Astro.props;
 
             loadScript(timeout) {
                 return new Promise((resolve, reject) => {
-                    // 检查是否已经存在
+                    // Check whether it already exists
                     if (this.isIconifyReady()) {
                         resolve();
                         return;
@@ -216,7 +216,7 @@ const { preloadIcons = [], timeout = 10000, retryCount = 3 } = Astro.props;
                         document.body.appendChild(tempIcon);
                     });
 
-                    // 设置超时清理
+                    // Set up a timeout cleanup
                     setTimeout(() => {
                         cleanup();
                         resolve();
@@ -225,25 +225,25 @@ const { preloadIcons = [], timeout = 10000, retryCount = 3 } = Astro.props;
             }
         }
 
-        // 创建全局实例
+        // Create the global instance
         window.__iconifyLoader = new IconifyLoader();
 
-        // 立即开始加载
+        // Start loading immediately
         window.__iconifyLoader.load().catch(error => {
             console.error('Failed to initialize Iconify:', error);
         });
 
-        // 如果有预加载图标，添加到队列
+        // If there are preload icons, add them to the queue
         if (preloadIcons && preloadIcons.length > 0) {
             window.__iconifyLoader.addToPreloadQueue(preloadIcons);
         }
 
-        // 导出便捷函数到全局
+        // Export convenience functions to the global scope
         window.loadIconify = () => window.__iconifyLoader.load();
         window.preloadIcons = (icons) => window.__iconifyLoader.addToPreloadQueue(icons);
         window.onIconifyReady = (callback) => window.__iconifyLoader.onLoad(callback);
 
-        // 页面可见性变化时重新检查
+        // Re-check when page visibility changes
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden && !window.__iconifyLoader.isLoaded) {
                 window.__iconifyLoader.load().catch(console.error);
@@ -253,7 +253,7 @@ const { preloadIcons = [], timeout = 10000, retryCount = 3 } = Astro.props;
     })();
 </script>
 
-<!-- 为不支持JavaScript的情况提供备用方案 -->
+<!-- Provide a fallback for when JavaScript is not supported -->
 <noscript>
     <style>
         iconify-icon {

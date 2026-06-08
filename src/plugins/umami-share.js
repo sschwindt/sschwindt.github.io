@@ -3,14 +3,14 @@
     const cacheTTL = 3600_000; // 1h
 
     /**
-     * 获取网站统计数据
-     * @param {string} baseUrl - Umami Cloud API基础URL
-     * @param {string} apiKey - API密钥
-     * @param {string} websiteId - 网站ID
-     * @returns {Promise<object>} 网站统计数据
+     * Fetch website analytics data
+     * @param {string} baseUrl - Umami Cloud API base URL
+     * @param {string} apiKey - API key
+     * @param {string} websiteId - Website ID
+     * @returns {Promise<object>} Website analytics data
      */
     async function fetchWebsiteStats(baseUrl, apiKey, websiteId) {
-        // 检查缓存
+        // Check the cache
         const cached = localStorage.getItem(cacheKey);
         if (cached) {
             try {
@@ -34,12 +34,12 @@
         });
 
         if (!res.ok) {
-            throw new Error('获取网站统计数据失败');
+            throw new Error('Failed to fetch website analytics data');
         }
 
         const stats = await res.json();
 
-        // 处理 V3 响应格式
+        // Handle the V3 response format
         const normalizedStats = {
             pageviews: typeof stats.pageviews === 'object' ? stats.pageviews.value : (stats.pageviews || 0),
             visitors: typeof stats.visitors === 'object' ? stats.visitors.value : (stats.visitors || 0),
@@ -48,21 +48,21 @@
             totaltime: typeof stats.totaltime === 'object' ? stats.totaltime.value : (stats.totaltime || 0)
         };
 
-        // 缓存结果
+        // Cache the result
         localStorage.setItem(cacheKey, JSON.stringify({ timestamp: Date.now(), value: normalizedStats }));
 
         return normalizedStats;
     }
 
     /**
-     * 获取特定页面的统计数据
-     * @param {string} baseUrl - Umami Cloud API基础URL
-     * @param {string} apiKey - API密钥
-     * @param {string} websiteId - 网站ID
-     * @param {string} urlPath - 页面路径
-     * @param {number} startAt - 开始时间戳
-     * @param {number} endAt - 结束时间戳
-     * @returns {Promise<object>} 页面统计数据
+     * Fetch analytics data for a specific page
+     * @param {string} baseUrl - Umami Cloud API base URL
+     * @param {string} apiKey - API key
+     * @param {string} websiteId - Website ID
+     * @param {string} urlPath - Page path
+     * @param {number} startAt - Start timestamp
+     * @param {number} endAt - End timestamp
+     * @returns {Promise<object>} Page analytics data
      */
     async function fetchPageStats(baseUrl, apiKey, websiteId, urlPath, startAt = 0, endAt = Date.now()) {
         const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
@@ -75,12 +75,12 @@
         });
 
         if (!res.ok) {
-            throw new Error('获取页面统计数据失败');
+            throw new Error('Failed to fetch page analytics data');
         }
 
         const stats = await res.json();
         
-        // 处理 V3 响应格式，可能是 { pageviews: { value: 123 }, visitors: { value: 45 } } 或者是 { pageviews: 123, visitors: 45 }
+        // Handle the V3 response format, which may be { pageviews: { value: 123 }, visitors: { value: 45 } } or { pageviews: 123, visitors: 45 }
         return {
             pageviews: typeof stats.pageviews === 'object' ? stats.pageviews.value : (stats.pageviews || 0),
             visitors: typeof stats.visitors === 'object' ? stats.visitors.value : (stats.visitors || 0),
@@ -91,35 +91,35 @@
     }
 
     /**
-     * 获取 Umami 网站统计数据
-     * @param {string} baseUrl - Umami Cloud API基础URL
-     * @param {string} apiKey - API密钥
-     * @param {string} websiteId - 网站ID
-     * @returns {Promise<object>} 网站统计数据
+     * Fetch Umami website analytics data
+     * @param {string} baseUrl - Umami Cloud API base URL
+     * @param {string} apiKey - API key
+     * @param {string} websiteId - Website ID
+     * @returns {Promise<object>} Website analytics data
      */
     global.getUmamiWebsiteStats = async function (baseUrl, apiKey, websiteId) {
         try {
             return await fetchWebsiteStats(baseUrl, apiKey, websiteId);
         } catch (err) {
-            throw new Error(`获取Umami统计数据失败: ${err.message}`);
+            throw new Error(`Failed to fetch Umami analytics data: ${err.message}`);
         }
     };
 
     /**
-     * 获取特定页面的 Umami 统计数据
-     * @param {string} baseUrl - Umami Cloud API基础URL
-     * @param {string} apiKey - API密钥
-     * @param {string} websiteId - 网站ID
-     * @param {string} urlPath - 页面路径
-     * @param {number} startAt - 开始时间戳（可选）
-     * @param {number} endAt - 结束时间戳（可选）
-     * @returns {Promise<object>} 页面统计数据
+     * Fetch Umami analytics data for a specific page
+     * @param {string} baseUrl - Umami Cloud API base URL
+     * @param {string} apiKey - API key
+     * @param {string} websiteId - Website ID
+     * @param {string} urlPath - Page path
+     * @param {number} startAt - Start timestamp (optional)
+     * @param {number} endAt - End timestamp (optional)
+     * @returns {Promise<object>} Page analytics data
      */
     global.getUmamiPageStats = async function (baseUrl, apiKey, websiteId, urlPath, startAt, endAt) {
         try {
             return await fetchPageStats(baseUrl, apiKey, websiteId, urlPath, startAt, endAt);
         } catch (err) {
-            throw new Error(`获取Umami页面统计数据失败: ${err.message}`);
+            throw new Error(`Failed to fetch Umami page analytics data: ${err.message}`);
         }
     };
 

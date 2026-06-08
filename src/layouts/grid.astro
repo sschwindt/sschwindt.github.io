@@ -44,20 +44,20 @@ const {
 const hasBannerCredit = siteConfig.wallpaper.mode === "banner" && siteConfig.wallpaper.banner?.credit?.enable;
 const hasBannerLink = !!siteConfig.wallpaper.banner?.credit?.url;
 
-// 检查是否为首页
+// Check whether this is the home page
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
 
-// 检查是否应该启用半透明效果
+// Check whether the semi-transparent effect should be enabled
 const shouldEnableTransparency = siteConfig.wallpaper.mode === "banner" || siteConfig.wallpaper.mode === "fullscreen";
 
-// 为组件添加半透明效果的CSS类
+// Add the semi-transparent effect CSS class to the component
 const transparentClass = shouldEnableTransparency ? "wallpaper-transparent" : "";
 
 /**
  * Sidebar
  */
 
-// 检查侧边栏是否启用，动态调整网格布局
+// Check whether the sidebar is enabled and adjust the grid layout dynamically
 const {
     hasLeftSidebar,
     hasRightSidebar,
@@ -79,7 +79,7 @@ const {
     setOGTypeArticle={setOGTypeArticle}
     postSlug={postSlug}
 >
-    <!-- 全局图标加载器 -->
+    <!-- Global icon loader -->
     <IconifyLoader />
 
     <!-- Navbar -->
@@ -96,13 +96,13 @@ const {
         </div>
     </div>
 
-    <!-- 全屏壁纸 - 总是渲染但通过CSS控制可见性 -->
+    <!-- Fullscreen wallpaper - always rendered, visibility controlled via CSS -->
     <FullscreenWallpaper
         config={siteConfig.wallpaper}
         class={siteConfig.wallpaper.mode === "fullscreen" ? "" : "hidden"}
     />
 
-    <!-- 为全屏壁纸模式添加body类 -->
+    <!-- Add body class for fullscreen wallpaper mode -->
     {
         shouldEnableTransparency && (
             <script>
@@ -111,7 +111,7 @@ const {
         )
     }
 
-    <!-- Banner - 总是渲染但通过CSS控制可见性 -->
+    <!-- Banner - always rendered, visibility controlled via CSS -->
     <Banner
         config={siteConfig.wallpaper}
         isHomePage={isHomePage}

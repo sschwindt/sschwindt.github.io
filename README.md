@@ -10,6 +10,55 @@ Pictures live in `/public/assets/images/`.
 
 ---
 
+## ⚠️ Translations — read this BEFORE publishing a blog post
+
+The site is **written in English** and auto-translated to French/German in the
+browser by `translate.js` (xnx3) using the **free Argos backend, whose output is
+poor**. Good translations are therefore supplied as manual overrides in
+[`src/utils/language.ts`](src/utils/language.ts) via `translate.nomenclature.append(...)`.
+
+**Workflow for every new post (do not skip):**
+
+1. Build/deploy the post in English first.
+2. From the **deployed** page (not a local `dist/`), copy each rendered text run
+   and paste it into `language.ts` as an **identity entry** for each target
+   language, i.e. `english text=english text`:
+
+   ```js
+   translate.nomenclature.append(
+       "english",
+       "deutsch", // and a second block for "french"
+       "First sentence of the post.=First sentence of the post.\n" +
+       "Next run of text.=Next run of text.\n" +
+       // ...one line per text node, the whole post...
+   );
+   ```
+
+3. Run the **right-hand sides** through a better translator (DeepL, a capable
+   LLM, etc.) and replace the English with the real translation. The left-hand
+   (key) side **must stay exactly equal to the rendered English**.
+
+**Non-negotiable rules (or the override silently does nothing):**
+
+- **Key off DOM text nodes, not sentences.** Inline `**bold**`, `*italic*` and
+  `[links]` split a sentence into several text nodes; each node is its own entry,
+  in order. Proper nouns (names, `TELEMAC`, `HydroBayesCal`, …) stay as
+  `english=english` so they are kept verbatim.
+- **Match the deployed DOM byte-for-byte.** Astro's SmartyPants rewrites
+  punctuation: straight quotes become curly `‘ ’ “ ”`, apostrophes become `’`,
+  `--` becomes `—`, ranges become `–`. A stale local `dist/` can render these
+  differently than production — always verify against the live HTML.
+- **No `=`, `"` or newlines inside a key or value.** `append` splits each line on
+  `=` and the block on `\n`; an entry with a stray `=` is dropped without warning.
+  Use typographic quotes `„ … “` in values, never ASCII `"`.
+- Ordering is handled automatically (longest key wins), so paste in reading order.
+- This is intentionally **fragile**: editing the English later breaks that node's
+  override and it falls back to Argos — re-copy the changed run from the live page.
+
+See the existing `hydrobayescal` block in `language.ts` for a complete example.
+
+---
+
 ## Prerequisites
 
 - **Node.js** 24.x (current LTS).

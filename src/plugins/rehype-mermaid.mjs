@@ -15,7 +15,7 @@ export function rehypeMermaid() {
                 const mermaidCode = node.properties["data-mermaid-code"] || "";
                 const mermaidId = `mermaid-${Math.random().toString(36).slice(-6)}`;
 
-                // 创建 Mermaid 容器
+                // Create the Mermaid container
                 const mermaidContainer = h(
                     "div",
                     {
@@ -34,7 +34,7 @@ export function rehypeMermaid() {
                     ],
                 );
 
-                // 创建客户端渲染脚本
+                // Create the client-side rendering script
                 const renderScript = h(
                     "script",
                     {
@@ -43,7 +43,7 @@ export function rehypeMermaid() {
                     mermaidRenderScript,
                 );
 
-                // 替换原始节点
+                // Replace the original node
                 node.tagName = "div";
                 node.properties = { class: "mermaid-diagram-container" };
                 node.children = [mermaidContainer, renderScript];

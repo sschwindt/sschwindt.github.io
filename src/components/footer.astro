@@ -8,14 +8,14 @@ import { url } from "@utils/url";
 
 const currentYear = new Date().getFullYear();
 
-// HTML 内容获取逻辑
+// HTML content retrieval logic
 let customFooterHtml = "";
 if (footerConfig.enable) {
-    // 优先使用 customHtml，如果为空则使用 FooterConfig.html 文件内容
+    // Prefer customHtml; if empty, use the contents of the FooterConfig.html file
     if (footerConfig.customHtml && footerConfig.customHtml.trim() !== "") {
         customFooterHtml = footerConfig.customHtml.trim();
     } else {
-        // customHtml 为空时，读取 FooterConfig.html 文件内容
+        // When customHtml is empty, read the contents of the FooterConfig.html file
         try {
             const footerConfigPath = path.join(
                 process.cwd(),
@@ -23,10 +23,10 @@ if (footerConfig.enable) {
                 "FooterConfig.html",
             );
             customFooterHtml = fs.readFileSync(footerConfigPath, "utf-8");
-            // 移除HTML注释
+            // Remove HTML comments
             customFooterHtml = customFooterHtml.replace(/<!--[\s\S]*?-->/g, "").trim();
         } catch (error) {
-            console.warn("FooterConfig.html文件读取失败:", error.message);
+            console.warn("Failed to read the FooterConfig.html file:", error.message);
         }
     }
 }

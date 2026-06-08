@@ -18,7 +18,7 @@ function togglePanel() {
     isOpen = !isOpen;
 }
 
-// 点击外部关闭面板
+// Close the panel when clicking outside
 function handleClickOutside(event: MouseEvent) {
     if (!isOpen) return;
     onClickOutside(event, "nav-menu-panel", "nav-menu-switch", () => {

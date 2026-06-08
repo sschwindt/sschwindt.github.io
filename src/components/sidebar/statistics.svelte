@@ -91,7 +91,7 @@
             return;
         }
 
-        // 动态导入 ECharts 及其组件，启用 Tree Shaking
+        // Dynamically import ECharts and its components, enabling tree shaking
         const echartsCore = await import('echarts/core');
         const { LineChart, RadarChart } = await import('echarts/charts');
         const {
@@ -102,7 +102,7 @@
         } = await import('echarts/components');
         const { SVGRenderer } = await import('echarts/renderers');
 
-        // 注册组件
+        // Register the components
         echartsCore.use([
             LineChart,
             RadarChart,
@@ -122,7 +122,7 @@
     const initCharts = async () => {
         if (isInitialized) return;
         isInitialized = true;
-        // 依次初始化图表
+        // Initialize the charts one by one
         await initActivityChart();
         if (isDesktop) {
             await initCategoriesChart();
@@ -135,10 +135,10 @@
         if (!heatmapContainer || !echarts) return;
         if (!isUpdate && !isGlobalInitialized) isHeatmapLoading = true;
 
-        // 模拟加载延迟以测试效果
+        // Simulate a loading delay to test the effect
         //if (!isUpdate) await new Promise(resolve => setTimeout(resolve, 300));
 
-        // 尝试获取现有实例以支持 Swup 持久化
+        // Try to get an existing instance to support Swup persistence
         const existingChart = echarts.getInstanceByDom(heatmapContainer);
         const isNew = !existingChart;
         if (existingChart) {
@@ -365,12 +365,12 @@
         const runInit = async () => {
             await loadECharts();
 
-            // 检查是否处于初始加载动画阶段
+            // Check whether we are in the initial loading-animation phase
             const hasInitialAnimation = document.documentElement.classList.contains('show-initial-animation') ||
                                        document.documentElement.classList.contains('is-loading');
 
             if (hasInitialAnimation) {
-                // 查找带有动画类的侧边栏容器
+                // Find the sidebar container with the animation class
                 const sidebar = container?.closest('.onload-animation-up');
 
                 const startInit = () => {
@@ -378,7 +378,7 @@
                 };
 
                 if (sidebar) {
-                    // 监听侧边栏淡入动画开始
+                    // Listen for the start of the sidebar's fade-in animation
                     sidebar.addEventListener('animationstart', (e) => {
                         if ((e as AnimationEvent).animationName === 'fade-in-up') {
                             startInit();
@@ -386,11 +386,11 @@
                     }, { once: true });
                 }
 
-                // 使用 MutationObserver 监听 html 的 class 变化，作为更可靠的保底机制
+                // Use a MutationObserver to watch html's class changes as a more reliable fallback
                 const htmlObserver = new MutationObserver(() => {
                     const isStillLoading = document.documentElement.classList.contains('is-loading');
 
-                    // 一旦 loading 结束（进入动画播放阶段），就开始绘制图表
+                    // Once loading ends (entering the animation phase), start drawing the charts
                     if (!isStillLoading) {
                         startInit();
                         htmlObserver.disconnect();
@@ -398,14 +398,14 @@
                 });
                 htmlObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
-                // 较长的保底时间（3秒），防止所有监听机制意外失效
+                // A longer fallback timeout (3 seconds) in case all the listeners unexpectedly fail
                 setTimeout(() => {
                     startInit();
                     htmlObserver.disconnect();
                 }, 3000);
 
             } else {
-                // 无动画状态，直接加载
+                // No animation; load directly
                 initCharts();
             }
         };
@@ -431,7 +431,7 @@
                     categoriesChart?.resize();
                     tagsChart?.resize();
                 } else {
-                    // 从移动端切换到桌面端，需要初始化雷达图，延迟一帧确保 DOM 已更新（{#if isDesktop} 生效）
+                    // Switching from mobile to desktop requires initializing the radar chart; delay one frame to ensure the DOM has updated ({#if isDesktop} takes effect)
                     setTimeout(() => {
                         initRadarCharts();
                     }, 0);

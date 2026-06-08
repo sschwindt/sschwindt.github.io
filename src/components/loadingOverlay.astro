@@ -79,13 +79,13 @@ const titleInterval = config?.title?.interval ?? 1.5;
         animation: text-glow var(--titleInterval) ease-in-out infinite;
     }
 
-    /* 手动触发淡出类 */
+    /* Class to manually trigger fade-out */
     #loading-overlay.fade-out {
         opacity: 0;
         pointer-events: none;
     }
 
-    /* 当 html 移除 is-loading 类时，确保 overlay 隐藏 */
+    /* When html removes the is-loading class, ensure the overlay is hidden */
     :global(html:not(.is-loading)) #loading-overlay {
         opacity: 0;
         pointer-events: none;

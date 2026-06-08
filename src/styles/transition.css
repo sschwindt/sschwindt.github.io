@@ -1,13 +1,13 @@
 /* Page transition animations with Swup - Enhanced version inspired by yukina */
 
-/* 主要内容区域的过渡动画 - 参考yukina的侧滑效果 */
+/* Main content area transition - inspired by yukina's side-slide effect */
 .transition-main {
     transition:
         opacity 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
         translate 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* 离开动画 - 内容向右上滑出并淡出 */
+/* Leave animation - content slides out to the upper right and fades out */
 .transition-leaving {
     transition:
         translate 300ms cubic-bezier(0.55, 0.055, 0.675, 0.19),
@@ -26,19 +26,19 @@ html.is-leaving .transition-main {
         translate 300ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
 
-/* 进入动画 - 从右下角轻微滑入，模仿yukina效果 */
+/* Enter animation - slides in slightly from the bottom right, mimicking yukina */
 html.is-animating .transition-main {
     opacity: 0;
     translate: 0.5rem 1.5rem;
 }
 
-/* 离开动画 - 向左上角滑出 */
+/* Leave animation - slides out to the upper left */
 html.is-animating.is-leaving .transition-leaving {
     translate: -0.5rem -1rem;
     opacity: 0;
 }
 
-/* Swup fade 动画 - 保持兼容性 */
+/* Swup fade animation - kept for compatibility */
 html.is-changing .transition-swup-fade {
     transition: all 300ms ease-out;
 }
@@ -48,19 +48,19 @@ html.is-animating .transition-swup-fade:not(.pause-swup-transition) {
     translate: 0 1.5rem;
 }
 
-/* 暂停 Swup 过渡动画，用于特定页面切换场景 */
+/* Pause Swup transitions, for specific page-navigation scenarios */
 .pause-swup-transition {
     transition: none !important;
     opacity: 1 !important;
     translate: 0 0 !important;
 }
 
-/* Loading 状态下禁止滚动 */
+/* Disable scrolling while in the loading state */
 html.is-loading {
     overflow: hidden;
 }
 
-/* 淡入动画 */
+/* Fade-in animation */
 @keyframes fade-in-up {
     from {
         opacity: 0;
@@ -81,7 +81,7 @@ html.is-loading {
         translate: 0 0;
     }
 }
-/* 淡出动画 */
+/* Fade-out animation */
 @keyframes fade-out-down {
     from {
         opacity: 1;
@@ -93,29 +93,29 @@ html.is-loading {
     }
 }
 
-/* 隐藏页面加载动画 */
+/* Hide the page loading animation */
 .onload-animation-up, .onload-animation-down {
     opacity: 0;
 }
-/* 动画结束后或在非加载/非初始动画状态下保持可见 */
+/* Stay visible after the animation ends, or when not in a loading/initial-animation state */
 html:not(.is-loading):not(.show-initial-animation) :is(.onload-animation-up, .onload-animation-down) {
     opacity: 1;
 }
-/* 初始加载动画，仅在 .show-initial-animation 存在时触发以避免与 Swup 自身的过渡动画冲突 */
+/* Initial load animation, triggered only when .show-initial-animation is present to avoid conflicting with Swup's own transitions */
 .show-initial-animation .onload-animation-up {
     animation: fade-in-up 600ms ease-out forwards;
 }
 .show-initial-animation .onload-animation-down {
     animation: fade-in-down 600ms ease-out forwards;
 }
-/* 渐进式动画延迟 - 仅在初始加载时应用 */
+/* Progressive animation delay - applied only on initial load */
 .show-initial-animation :is(.onload-animation-up, .onload-animation-down):nth-child(1) { animation-delay: 0ms; }
 .show-initial-animation :is(.onload-animation-up, .onload-animation-down):nth-child(2) { animation-delay: 150ms; }
 .show-initial-animation :is(.onload-animation-up, .onload-animation-down):nth-child(3) { animation-delay: 300ms; }
 .show-initial-animation :is(.onload-animation-up, .onload-animation-down):nth-child(4) { animation-delay: 450ms; }
 .show-initial-animation :is(.onload-animation-up, .onload-animation-down):nth-child(5) { animation-delay: 600ms; }
 
-/* 特殊元素的动画 */
+/* Animations for special elements */
 .transition-slide-in {
     opacity: 0;
     translate: 8px 20px;
@@ -126,7 +126,7 @@ html:not(.is-loading):not(.show-initial-animation) :is(.onload-animation-up, .on
     translate: 0 0;
 }
 
-/* 卡片动画 */
+/* Card animation */
 .card-animation {
     opacity: 0;
     translate: 10px 30px;
@@ -139,7 +139,7 @@ html:not(.is-loading):not(.show-initial-animation) :is(.onload-animation-up, .on
     scale: 1;
 }
 
-/* 导航动画 */
+/* Navigation animation */
 .nav-animation {
     opacity: 0;
     translate: -20px 0;
@@ -150,7 +150,7 @@ html:not(.is-loading):not(.show-initial-animation) :is(.onload-animation-up, .on
     translate: 0 0;
 }
 
-/* 性能优化 */
+/* Performance optimization */
 .transition-main,
 .transition-leaving,
 .onload-animation-up,
@@ -161,7 +161,7 @@ html:not(.is-loading):not(.show-initial-animation) :is(.onload-animation-up, .on
     -webkit-font-smoothing: antialiased;
 }
 
-/* 响应式调整 */
+/* Responsive adjustments */
 @media (max-width: 768px) {
     html.is-animating .transition-main {
         translate: 0.3rem 1rem;
@@ -181,7 +181,7 @@ html:not(.is-loading):not(.show-initial-animation) :is(.onload-animation-up, .on
     }
 }
 
-/* 减少动画的用户偏好设置 */
+/* Reduced-motion user preference */
 @media (prefers-reduced-motion: reduce) {
     .transition-main,
     .transition-leaving,

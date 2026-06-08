@@ -5,7 +5,7 @@ export function remarkMermaid() {
     return (tree) => {
         visit(tree, "code", (node) => {
             if (node.lang === "mermaid") {
-                // 将 mermaid 代码块转换为自定义节点类型
+                // Convert mermaid code blocks into a custom node type
                 node.type = "mermaid";
                 node.data = {
                     hName: "div",

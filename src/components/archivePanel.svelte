@@ -95,7 +95,7 @@ let groups = $derived.by(() => {
         filteredPosts = filteredPosts.filter((post) => !getCategoryPathLabel(post.data.category));
     }
 
-    // 按发布时间倒序排序，确保不受置顶影响
+    // Sort by publish time descending, independent of pinned status
     filteredPosts = filteredPosts.slice().sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
 
     const grouped = filteredPosts.reduce(

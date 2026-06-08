@@ -19,20 +19,20 @@ import Key from "@i18n/i18nKey";
 import "@styles/musicplayer.css";
 
 
-// 音乐播放器模式，可选 "local" 或 "meting"
+// Music player mode, either "local" or "meting"
 let mode = $state(musicPlayerConfig.mode ?? "meting");
-// Meting API 地址，从配置中获取或使用默认值
+// Meting API URL, taken from the config or using the default value
 let meting_api = musicPlayerConfig.meting?.meting_api ?? "https://meting.spr-aachen.com/api";
-// Meting API 的数据源，从配置中获取或使用默认值
+// Meting API data source, taken from the config or using the default value
 let meting_server = musicPlayerConfig.meting?.server ?? "netease";
-// Meting API 的类型，从配置中获取或使用默认值
+// Meting API type, taken from the config or using the default value
 let meting_type = musicPlayerConfig.meting?.type ?? "playlist";
-// Meting API 的 ID，从配置中获取或使用默认值
+// Meting API ID, taken from the config or using the default value
 let meting_id = musicPlayerConfig.meting?.id ?? "2161912966";
-// 是否启用自动播放，从配置中获取或使用默认值
+// Whether autoplay is enabled, taken from the config or using the default value
 let isAutoplayEnabled = $state(musicPlayerConfig.autoplay ?? false);
 
-// 当前歌曲信息
+// Current song info
 let currentSong: MusicPlayerTrack = $state({
     id: 0,
     title: "Music",
@@ -47,37 +47,37 @@ let audio: HTMLAudioElement | undefined = $state();
 let progressBar: HTMLElement | undefined = $state();
 let volumeBar: HTMLElement | undefined = $state();
 
-// 是否正在播放
+// Whether playback is active
 let isPlaying = $state(false);
-// 是否应该播放（用于切换歌曲时的自动播放）
+// Whether it should play (used for autoplay when switching songs)
 let shouldPlay = $state(false);
-// 是否折叠播放器
+// Whether the player is collapsed
 let isCollapsed = $state(true);
-// 是否显示播放列表
+// Whether the playlist is shown
 let showPlaylist = $state(false);
-// 当前播放时间
+// Current playback time
 let currentTime = $state(0);
-// 歌曲总时长
+// Total song duration
 let duration = $state(0);
-// 音量
+// Volume
 let volume = $state(0.75);
-// 是否静音
+// Whether muted
 let isMuted = $state(false);
-// 是否正在加载
+// Whether loading
 let isLoading = $state(false);
-// 是否随机播放
+// Whether shuffle is on
 let isShuffled = $state(false);
-// 循环模式，0: 不循环, 1: 单曲循环, 2: 列表循环
+// Loop mode, 0: no loop, 1: single-track loop, 2: playlist loop
 let isRepeating = $state(0);
-// 待恢复的进度
+// Progress pending restoration
 let pendingProgress = $state(0);
-// 上次保存进度的时间，用于节流
+// Timestamp of the last saved progress, used for throttling
 let lastSaveTime = 0;
-// 错误信息
+// Error message
 let errorMessage = $state("");
-// 是否显示错误信息
+// Whether to show the error message
 let showError = $state(false);
-// 音量过渡间隔
+// Volume transition interval
 let fadeInterval: number | null = null;
 
 // Lyrics State
@@ -180,13 +180,13 @@ function restoreLastSong() {
     if (typeof localStorage !== 'undefined') {
         const lastId = localStorage.getItem(STORAGE_KEYS.LAST_SONG_ID);
         let index = -1;
-        // 优先通过 ID 匹配
+        // Match by ID first
         if (lastId) {
             index = playlist.findIndex(s => s.id !== undefined && String(s.id) === String(lastId));
         }
         if (index !== -1) {
             currentIndex = index;
-            // 获取保存的进度
+            // Get the saved progress
             const savedProgress = localStorage.getItem(STORAGE_KEYS.LAST_SONG_PROGRESS);
             if (savedProgress) {
                 pendingProgress = parseFloat(savedProgress);
@@ -195,7 +195,7 @@ function restoreLastSong() {
             return;
         }
     }
-    // 如果没有找到上次播放的歌曲，或者没有记录，加载第一首
+    // If the last played song is not found, or there is no record, load the first one
     currentIndex = 0;
     loadSong(playlist[0]);
 }
@@ -219,7 +219,7 @@ async function fetchMetingPlaylist() {
             meting_id
         );
         if (playlist.length > 0) {
-            // 使用 setTimeout 确保 Svelte 响应式变量已更新
+            // Use setTimeout to ensure the Svelte reactive variables have updated
             setTimeout(() => {
                 restoreLastSong();
             }, 0);
@@ -342,24 +342,24 @@ function nextSong() {
 function playSong(index: number) {
     if (index < 0 || index >= playlist.length) return;
     currentIndex = index;
-    // 用户手动选择歌曲（或自动切换），标记为应该播放
+    // User manually selected a song (or it switched automatically); mark it as should-play
     shouldPlay = true;
-    // 用户手动选择歌曲，清除暂停偏好和待恢复进度
+    // User manually selected a song; clear the pause preference and pending progress
      if (typeof localStorage !== 'undefined') {
         localStorage.setItem(STORAGE_KEYS.USER_PAUSED, "false");
     }
     pendingProgress = 0;
-    // 加载歌曲
+    // Load the song
     loadSong(playlist[currentIndex]);
 }
 
 function loadSong(song: MusicPlayerTrack) {
     if (!song || !audio) return;
     currentSong = { ...song };
-    // 记录最后播放的歌曲 ID (排除初始化的占位符 ID 0)
+    // Record the last played song ID (excluding the placeholder ID 0 from initialization)
     if (typeof localStorage !== 'undefined' && song.id !== undefined && song.id !== 0) {
         localStorage.setItem(STORAGE_KEYS.LAST_SONG_ID, String(song.id));
-        // 如果不是恢复进度的情况，重置保存的进度
+        // If this is not a progress-restore case, reset the saved progress
         if (pendingProgress <= 0) {
             localStorage.setItem(STORAGE_KEYS.LAST_SONG_PROGRESS, "0");
         }
@@ -367,7 +367,7 @@ function loadSong(song: MusicPlayerTrack) {
     if (song.url) {
         isLoading = true;
         loadLyrics(song);
-        // 如果有待恢复的进度，先不要重置为 0，以免进度条跳变
+        // If there is progress pending restoration, do not reset it to 0 yet, to avoid the progress bar jumping
         if (pendingProgress > 0) {
             currentTime = pendingProgress;
         } else {
@@ -397,28 +397,28 @@ function handleLoadSuccess() {
         if (playlist[currentIndex]) playlist[currentIndex].duration = duration;
         currentSong.duration = duration;
     }
-    // 恢复进度
+    // Restore progress
     if (pendingProgress > 0 && audio) {
-        // 确保进度不超出总时长
+        // Ensure the progress does not exceed the total duration
         const targetTime = Math.min(pendingProgress, duration > 0 ? duration : Infinity);
         audio.currentTime = targetTime;
         currentTime = targetTime;
-        pendingProgress = 0; // 恢复后清除
+        pendingProgress = 0; // clear after restoring
     }
-    // 如果是自动播放模式，或者当前处于播放状态（如切换歌曲），则尝试播放
+    // If in autoplay mode, or currently playing (e.g. switching songs), try to play
     if (isAutoplayEnabled || isPlaying || shouldPlay) {
         const playPromise = audio?.play();
         if (playPromise !== undefined) {
             playPromise.then(() => {
                 fadeInVolume(volume);
-                // 播放成功后，关闭自动播放标记，后续由用户控制
+                // After playback starts, clear the autoplay flag; from then on the user controls it
                 isAutoplayEnabled = false;
                 autoplayFailed = false;
                 shouldPlay = false;
             }).catch((error) => {
                 showErrorMessage(i18n(Key.musicAutoplayBlocked));
                 autoplayFailed = true;
-                // 确保 UI 状态为暂停
+                // Ensure the UI state shows paused
                 isPlaying = false;
                 shouldPlay = false;
             });
@@ -427,7 +427,7 @@ function handleLoadSuccess() {
 }
 
 function handleUserInteraction() {
-    // 如果自动播放失败且尚未开始播放，则在用户交互时尝试播放
+    // If autoplay fails and playback has not started, try to play on user interaction
     if (autoplayFailed && audio && !isPlaying) {
         const playPromise = audio.play();
         if (playPromise !== undefined) {
@@ -534,13 +534,13 @@ function handleAudioEvents() {
     });
     audio.addEventListener("pause", () => {
         isPlaying = false;
-        // 注意：这里不自动设置 userPaused 为 true，因为音频结束或切换也可能触发 pause。（只在 togglePlay 中显式记录用户的暂停操作。）
+        // Note: do not set userPaused to true here, because the audio ending or switching can also trigger pause. (Only togglePlay explicitly records the user's pause action.)
     });
     audio.addEventListener("timeupdate", () => {
         if (!audio) return;
         currentTime = audio.currentTime;
         updateLyrics(currentTime);
-        // 每 2.1 秒保存一次进度，或者在歌曲接近结束时（虽然结束时可能不需要记忆，但为了保险）
+        // Save progress every 2.1 seconds, or when the song is near the end (the end may not need to be remembered, but just in case)
         const now = Date.now();
         if (now - lastSaveTime > 2100) {
             if (typeof localStorage !== 'undefined' && currentSong.id !== 0) {
@@ -551,11 +551,11 @@ function handleAudioEvents() {
     });
     audio.addEventListener("ended", () => {
         if (!audio) return;
-        // 歌曲结束，重置保存的进度
+        // Song ended; reset the saved progress
         if (typeof localStorage !== 'undefined') {
             localStorage.setItem(STORAGE_KEYS.LAST_SONG_PROGRESS, "0");
         }
-        // 单曲循环时，重置进度到开始
+        // On single-track loop, reset the progress to the start
         if (isRepeating === 1) {
             audio.currentTime = 0;
             audio.play().then(() => {
@@ -581,7 +581,7 @@ function handleAudioEvents() {
 const interactionEvents = ['click', 'keydown', 'touchstart'];
 
 onMount(() => {
-    // 从缓存中读取用户偏好
+    // Read the user's preferences from the cache
     if (typeof localStorage !== 'undefined') {
         const userPaused = localStorage.getItem(STORAGE_KEYS.USER_PAUSED) === "true";
         if (userPaused) {
@@ -613,7 +613,7 @@ onMount(() => {
     if (mode === "meting") {
         fetchMetingPlaylist();
     } else {
-        // 使用本地播放列表，不发送任何API请求
+        // Use the local playlist, do not send any API requests
         playlist = [...(musicPlayerConfig.local?.playlist ?? [])];
         if (playlist.length > 0) {
             setTimeout(() => {
@@ -700,7 +700,7 @@ onDestroy(() => {
                         }}
                         role="button"
                         tabindex="0"
-                        aria-label="播放 {song.title} - {song.artist}">
+                        aria-label="Play {song.title} - {song.artist}">
                         <div class="w-6 h-6 flex items-center justify-center">
                             {#if index === currentIndex && isPlaying}
                                 <Icon icon="material-symbols:graphic-eq" class="text-(--primary) animate-pulse" />
@@ -710,7 +710,7 @@ onDestroy(() => {
                                 <span class="text-sm text-(--content-meta)">{index + 1}</span>
                             {/if}
                         </div>
-                        <!-- 歌单列表内封面仍为圆角矩形 -->
+                        <!-- The cover inside the playlist remains a rounded rectangle -->
                         <div class="w-10 h-10 rounded-lg overflow-hidden shrink-0 shadow-sm">
                             <img src={getAssetPath(song.cover)} alt={song.title} class="w-full h-full object-cover" />
                         </div>
@@ -727,7 +727,7 @@ onDestroy(() => {
             </div>
         </div>
     {/if}
-    <!-- 折叠状态的小圆球 -->
+    <!-- Small ball in the collapsed state -->
     <div class="orb-player w-12 h-12 bg-(--primary) rounded-full shadow-lg cursor-pointer transition-all duration-500 ease-in-out flex items-center justify-center hover:scale-110 active:scale-95"
          class:opacity-0={!isCollapsed}
          class:scale-0={!isCollapsed}
@@ -755,7 +755,7 @@ onDestroy(() => {
             <Icon icon="material-symbols:music-note" class="text-white text-lg" />
         {/if}
     </div>
-    <!-- 展开状态的完整播放器（封面圆形） -->
+    <!-- Full player in the expanded state (circular cover) -->
     <div class="expanded-player card-base bg-(--float-panel-bg) shadow-xl rounded-2xl p-4 transition-all duration-500 ease-in-out"
          class:opacity-0={isCollapsed}
          class:scale-95={isCollapsed}
@@ -763,7 +763,7 @@ onDestroy(() => {
          class:pointer-events-none={isCollapsed}>
         <div class="flex items-center gap-4 mb-4">
             <div class="cover-container relative w-16 h-16 rounded-full overflow-hidden shrink-0">
-                <img src={getAssetPath(currentSong.cover)} alt="封面"
+                <img src={getAssetPath(currentSong.cover)} alt="Cover"
                      class="w-full h-full object-cover transition-transform duration-300"
                      class:spinning={isPlaying && !isLoading}
                      class:animate-pulse={isLoading} />
@@ -796,11 +796,11 @@ onDestroy(() => {
                  onscroll={handleLrcScroll}>
                 {#if noLyrics}
                     <div class="h-full flex items-center justify-center text-sm text-30">
-                        暂无歌词
+                        No lyrics
                     </div>
                 {:else if lyrics.length === 0}
                      <div class="h-full flex items-center justify-center text-sm text-30">
-                        加载歌词中...
+                        Loading lyrics...
                     </div>
                 {:else}
                     <div class="py-8">
@@ -812,7 +812,7 @@ onDestroy(() => {
                                class:scale-105={index === currentLrcIndex}
                                class:text-50={index !== currentLrcIndex}
                                class:opacity-60={index !== currentLrcIndex}
-                               title="跳转至此句">
+                               title="Jump to this line">
                                 {line.text}
                             </button>
                         {/each}
@@ -851,7 +851,7 @@ onDestroy(() => {
             </div>
         </div>
         <div class="controls flex items-center justify-center gap-2 mb-4">
-            <!-- 播放模式切换按钮 -->
+            <!-- Playback mode toggle button -->
             <button class="w-10 h-10 rounded-lg btn-plain"
                     onclick={togglePlaybackMode}
                     title={isRepeating === 1 ? i18n(Key.musicRepeatOne) : (isShuffled ? i18n(Key.musicShuffle) : i18n(Key.musicRepeatAll))}>
@@ -883,10 +883,10 @@ onDestroy(() => {
                     disabled={playlist.length <= 1}>
                 <Icon icon="material-symbols:skip-next" class="text-xl" />
             </button>
-            <!-- 歌词显示切换按钮 -->
+            <!-- Lyrics display toggle button -->
             <button class="w-10 h-10 rounded-lg btn-plain"
                     onclick={toggleLyrics}
-                    title="切换歌词显示">
+                    title="Toggle lyrics display">
                 <Icon icon="material-symbols:lyrics" class="text-lg {showLyrics ? 'text-(--primary)' : 'opacity-90'}" />
             </button>
         </div>

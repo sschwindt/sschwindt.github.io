@@ -10,21 +10,21 @@ import {
 } from "@/config";
 
 
-// 重新导出以保持向后兼容
+// Re-export to maintain backward compatibility
 export { SUPPORTED_LANGUAGES, type SupportedLanguage, langToTranslateMap, translateToLangMap };
 
 
-// 语言存储键
+// Language storage key
 const LANG_STORAGE_KEY = "selected-language";
 
-// 存储语言设置
+// Store the language setting
 export function setStoredLanguage(lang: string): void {
     if (typeof localStorage !== "undefined") {
         localStorage.setItem(LANG_STORAGE_KEY, lang);
     }
 }
 
-// 获取存储的语言设置
+// Get the stored language setting
 export function getStoredLanguage(): string | null {
     if (typeof localStorage !== "undefined") {
         return localStorage.getItem(LANG_STORAGE_KEY);
@@ -32,7 +32,7 @@ export function getStoredLanguage(): string | null {
     return null;
 }
 
-// 获取默认语言配置
+// Get the default language configuration
 export function getDefaultLanguage(): string {
     const fallback = siteConfig.lang;
     if (typeof document !== "undefined") {
@@ -42,103 +42,103 @@ export function getDefaultLanguage(): string {
     return fallback;
 }
 
-// 将配置文件的语言代码转换为翻译服务的语言代码
+// Convert the config file's language code into the translation service's language code
 export function getTranslateLanguageFromConfig(configLang: string): string {
     return langToTranslateMap[configLang] || "english";
 }
 
-// 获取解析后的站点语言代码
+// Get the resolved site language code
 export function getResolvedSiteLang(): SupportedLanguage {
     const configLang = getDefaultLanguage() as any;
     if (SUPPORTED_LANGUAGES.includes(configLang)) {
         return configLang as SupportedLanguage;
     }
-    // 如果 siteConfig.lang 不合规，则使用浏览器检测到的语言
+    // If siteConfig.lang is invalid, fall back to the browser-detected language
     return detectBrowserLanguage();
 }
 
-// 将翻译服务的语言代码转换为配置文件的语言代码
+// Convert the translation service's language code into the config file's language code
 export function getConfigLanguageFromTranslate(translateLang: string): string {
     return translateToLangMap[translateLang] || "en";
 }
 
-// 获取语言的显示名称
+// Get the language's display name
 export function getLanguageDisplayName(langCode: string): string {
-    // 先尝试作为配置语言代码查找
+    // First try looking it up as a config language code
     if (langCode in LANGUAGE_CONFIG) {
         return LANGUAGE_CONFIG[langCode as SupportedLanguage].displayName;
     }
-    // 尝试作为翻译服务代码查找
+    // Try looking it up as a translation service code
     const configLang = translateToLangMap[langCode];
     if (configLang && configLang in LANGUAGE_CONFIG) {
         return LANGUAGE_CONFIG[configLang as SupportedLanguage].displayName;
     }
-    // 如果都找不到，返回原始代码
+    // If neither is found, return the original code
     return langCode;
 }
 
-// 检测浏览器语言并返回支持的语言代码
+// Detect the browser language and return a supported language code
 export function detectBrowserLanguage(fallbackLang: SupportedLanguage = "en"): SupportedLanguage {
-    // 服务端渲染时返回备用语言
+    // Return the fallback language during server-side rendering
     if (typeof window === "undefined" || typeof navigator === "undefined") {
         return fallbackLang;
     }
-    // 获取浏览器语言列表
+    // Get the browser's language list
     const browserLangs = navigator.languages || [navigator.language];
-    // 遍历浏览器语言列表，找到第一个支持的语言
+    // Iterate over the browser language list and find the first supported language
     for (const browserLang of browserLangs) {
-        // 提取主语言代码（例如：'zh-CN' -> 'zh', 'en-US' -> 'en'）
+        // Extract the primary language subtag (e.g. 'zh-CN' -> 'zh', 'en-US' -> 'en')
         const langCode = browserLang.toLowerCase().split("-")[0];
-        // 检查是否在支持的语言列表中
+        // Check whether it is in the list of supported languages
         if (SUPPORTED_LANGUAGES.includes(langCode as SupportedLanguage)) {
             return langCode as SupportedLanguage;
         }
     }
-    // 如果没有找到支持的语言，返回备用语言
+    // If no supported language is found, return the fallback language
     return fallbackLang;
 }
 
-// 获取当前站点语言（优先使用缓存，否则自动检测浏览器语言，回退到 en-US）
+// Get the current site language (prefer the cache, otherwise auto-detect the browser language, falling back to en-US)
 //
-// 站点本身以英文渲染（source language = English）。访客首次到访且没有
-// 手动选择过语言时，按浏览器语言自动决定翻译目标：任意法语变体
-// （fr-FR / fr-CA / fr-BE / fr-CH 等）→ 法语，任意德语变体
-// （de-DE / de-AT / de-CH 等）→ 德语，其余一律回退到 en-US。
+// The site itself renders in English (source language = English). When a visitor arrives for the first time and has
+// not manually chosen a language, the translation target is decided automatically from the browser language: any French variant
+// (fr-FR / fr-CA / fr-BE / fr-CH, etc.) -> French, any German variant
+// (de-DE / de-AT / de-CH, etc.) -> German, everything else falls back to en-US.
 export function getSiteLanguage(_configLang?: string): string {
-    // 1. 访客之前手动选择过的语言优先
+    // 1. A language the visitor manually chose before takes priority
     const storedLang = getStoredLanguage();
     if (storedLang) return storedLang;
-    // 2. 否则根据浏览器语言自动检测（detectBrowserLanguage 会把主语言子标签
-    //    与支持的语言列表匹配，未命中时回退到 "en"）
+    // 2. Otherwise auto-detect from the browser language (detectBrowserLanguage matches the primary
+    //    language subtag against the supported language list, falling back to "en" on a miss)
     const browserLang = detectBrowserLanguage();
     return langToTranslateMap[browserLang];
 }
 
-// 初始化翻译功能
+// Initialize the translation feature
 export function initTranslateService(): void {
     if (typeof window === "undefined" || !siteConfig.translate?.enable) return;
-    // 检查 translate.js 是否已加载
+    // Check whether translate.js is already loaded
     const translate = (window as any).translate;
     if (!translate || (window as any).translateInitialized) return;
-    // 配置 translate.js
+    // Configure translate.js
     if (siteConfig.translate.service) {
         translate.service.use(siteConfig.translate.service);
     }
-    // 设置源语言（始终是网站渲染的语言）
+    // Set the source language (always the language the site renders in)
     const resolvedLang = getResolvedSiteLang();
     const sourceLang = getTranslateLanguageFromConfig(resolvedLang);
     translate.language.setLocal(sourceLang);
-    // 获取目标语言（缓存 -> 配置 -> 浏览器）
+    // Get the target language (cache -> config -> browser)
     const targetLang = getSiteLanguage(resolvedLang);
-    // 如果目标语言不同于源语言，则设置目标语言
+    // If the target language differs from the source language, set the target language
     if (targetLang && targetLang !== sourceLang) {
         translate.to = targetLang;
     }
-    // 自动识别语言
+    // Auto-detect the language
     if (siteConfig.translate.autoDiscriminate) {
         translate.setAutoDiscriminateLocalLanguage();
     }
-    // 设置忽略项
+    // Set the ignore rules
     if (siteConfig.translate.ignoreClasses) {
         siteConfig.translate.ignoreClasses.forEach((className: string) => {
             translate.ignore.class.push(className);
@@ -149,13 +149,13 @@ export function initTranslateService(): void {
             translate.ignore.tag.push(tagName);
         });
     }
-    // UI 配置
+    // UI configuration
     if (siteConfig.translate.showSelectTag === false) {
         translate.selectLanguageTag.show = false;
     }
-    // 接管存储逻辑：使用自定义缓存并同步到 translate.js
+    // Take over the storage logic: use a custom cache and sync it to translate.js
     translate.storage.set = function (key: string, value: string) {
-        if (key === "to") { // translate.js 使用 "to" 存储目标语言
+        if (key === "to") { // translate.js uses "to" to store the target language
             setStoredLanguage(value);
         } else {
             localStorage.setItem(key, value);
@@ -167,10 +167,10 @@ export function initTranslateService(): void {
         }
         return localStorage.getItem(key);
     };
-    // 自定义术语（glossary）：覆盖机器翻译对专业词汇的默认译法。
-    // 源语言始终是英文 "english"。法语默认会把 "calibration" 译成
-    // "étalonnage"，这里强制保留 "calibration"；德语统一用 "Kalibrierung"。
-    // 必须在 translate.execute() 之前追加。
+    // Custom glossary terms: override the machine translation's defaults for domain vocabulary.
+    // The source language is always "english". French by default translates "calibration" to
+    // "étalonnage"; here we force "calibration" to stay, and German consistently uses "Kalibrierung".
+    // Must be appended before translate.execute().
     if (translate.nomenclature?.append) {
         translate.nomenclature.append(
             "english",
@@ -348,45 +348,185 @@ export function initTranslateService(): void {
             "CRS=Koordinatenreferenzsystem",
         );
     }
-    // 启动翻译监听
+    // Start the translation listener
     translate.listener.start();
     (window as any).translateInitialized = true;
-    // 如果目标语言存在且不是源语言，执行翻译
-    // 强制执行一次 execute 以确保初始化时应用翻译
+    // If a target language is set and differs from the source language, run the translation
+    // Force one execute call to ensure the translation is applied on initialization
     if (translate.to && translate.to !== translate.language.getLocal()) {
-        // 延迟一小段时间执行，确保 DOM 完全就绪
+        // Delay execution briefly to ensure the DOM is fully ready
         setTimeout(() => {
             translate.execute();
         }, 10);
     } else if (translate.to === translate.language.getLocal()) {
-        // 如果目标语言就是源语言，确保处于未翻译状态
-        // 有时插件可能会残留之前的翻译状态
+        // If the target language equals the source language, ensure it is in an untranslated state
+        // sometimes the plugin may retain a previous translation state
         translate.reset();
     }
+    // If the visitor is reading a machine-translated version (French/German), show the notice banner
+    updateTranslationNotice();
 }
 
-// 加载并初始化翻译功能
+// Load and initialize the translation feature
 export async function loadAndInitTranslate(): Promise<void> {
     if (typeof window === "undefined" || !siteConfig.translate?.enable) return;
     try {
-        // 检查是否已经加载
+        // Check whether it is already loaded
         if (!(window as any).translate) {
-            // 使用动态导入，Vite 会自动处理代码分割
+            // Use dynamic import; Vite handles code splitting automatically
             await import("@/plugins/translate");
             (window as any).translateScriptLoaded = true;
         }
-        // 初始化服务
+        // Initialize the service
         initTranslateService();
     } catch (error) {
         console.error('Failed to load or init translate.js:', error);
     }
 }
 
-// 切换语言
+// Switch the language
 export function toggleLanguage(langCode: string): void {
     const translate = (window as any).translate;
     if (!translate) return;
-    // 切换语言
+    // Switch the language
     translate.changeLanguage(langCode);
     setStoredLanguage(langCode);
+    // Refresh the machine-translation notice after switching
+    updateTranslationNotice();
+}
+
+// ---------------------------------------------------------------------------
+// Machine-translation notice banner
+//
+// The site renders in English; the French/German versions are generated in the browser by translate.js
+// via the free Argos backend, which is of limited quality. When a visitor is reading a translated version, show a dismissible banner
+// that tells them, in the language they are reading, that "this is an automatic machine translation and may contain errors".
+// ---------------------------------------------------------------------------
+
+const TRANSLATION_NOTICE_ID = "machine-translation-notice";
+
+// Notice text per target language (written in the language the reader is reading). The key is translate.js's language code.
+const TRANSLATION_NOTICE_TEXT: Record<string, { message: string; dismiss: string }> = {
+    french: {
+        message:
+            "Vous lisez une traduction automatique : elle peut contenir des erreurs ou des tournures maladroites.",
+        dismiss: "Fermer",
+    },
+    deutsch: {
+        message:
+            "Sie lesen eine automatische Maschinenübersetzung – sie kann Fehler oder holprige Formulierungen enthalten.",
+        dismiss: "Schließen",
+    },
+};
+
+// Languages dismissed during this session (sessionStorage), to avoid repeatedly bothering the visitor.
+function translationNoticeDismissKey(lang: string): string {
+    return `${TRANSLATION_NOTICE_ID}:dismissed:${lang}`;
+}
+
+function isTranslationNoticeDismissed(lang: string): boolean {
+    try {
+        return sessionStorage.getItem(translationNoticeDismissKey(lang)) === "1";
+    } catch {
+        return false;
+    }
+}
+
+function dismissTranslationNotice(lang: string): void {
+    try {
+        sessionStorage.setItem(translationNoticeDismissKey(lang), "1");
+    } catch {
+        /* Silently ignore when sessionStorage is unavailable */
+    }
+}
+
+// Lazily create the notice banner DOM (with one-time injected styles) and return the element.
+function ensureTranslationNoticeEl(): HTMLElement | null {
+    if (typeof document === "undefined") return null;
+    const existing = document.getElementById(TRANSLATION_NOTICE_ID);
+    if (existing) return existing;
+
+    if (!document.getElementById(`${TRANSLATION_NOTICE_ID}-style`)) {
+        const style = document.createElement("style");
+        style.id = `${TRANSLATION_NOTICE_ID}-style`;
+        style.textContent = `
+#${TRANSLATION_NOTICE_ID} {
+    position: fixed; left: 1rem; bottom: 1rem; z-index: 60;
+    display: none; align-items: flex-start; gap: 0.6rem;
+    max-width: min(26rem, calc(100vw - 2rem));
+    padding: 0.7rem 0.85rem; border-radius: 0.75rem;
+    background: var(--float-panel-bg, var(--card-bg, #fff));
+    border: 1px solid color-mix(in srgb, var(--primary) 32%, transparent);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.20);
+    font-size: 0.8125rem; line-height: 1.4;
+    opacity: 0; transform: translateY(0.5rem);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+#${TRANSLATION_NOTICE_ID}.is-visible { opacity: 1; transform: translateY(0); }
+#${TRANSLATION_NOTICE_ID} .mtn-icon { flex: 0 0 auto; margin-top: 1px; color: var(--primary); }
+#${TRANSLATION_NOTICE_ID} .mtn-msg { flex: 1 1 auto; }
+#${TRANSLATION_NOTICE_ID} .mtn-close {
+    flex: 0 0 auto; cursor: pointer; border: 0; background: transparent; color: inherit;
+    opacity: 0.55; font-size: 1.1rem; line-height: 1; padding: 0 0.15rem; border-radius: 0.4rem;
+}
+#${TRANSLATION_NOTICE_ID} .mtn-close:hover { opacity: 1; background: color-mix(in srgb, var(--primary) 16%, transparent); }
+@media (prefers-reduced-motion: reduce) { #${TRANSLATION_NOTICE_ID} { transition: none; } }
+`;
+        document.head.appendChild(style);
+    }
+
+    const el = document.createElement("div");
+    el.id = TRANSLATION_NOTICE_ID;
+    el.setAttribute("role", "status");
+    el.setAttribute("aria-live", "polite");
+    el.innerHTML =
+        '<svg class="mtn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>' +
+        '<span class="mtn-msg"></span>' +
+        '<button class="mtn-close" type="button">&times;</button>';
+    document.body.appendChild(el);
+
+    el.querySelector(".mtn-close")?.addEventListener("click", () => {
+        const lang = el.dataset.lang || "";
+        if (lang) dismissTranslationNotice(lang);
+        hideTranslationNotice(el);
+    });
+    return el;
+}
+
+function hideTranslationNotice(el: HTMLElement): void {
+    el.classList.remove("is-visible");
+    // Wait for the transition to finish before setting display:none, to avoid an abrupt disappearance
+    setTimeout(() => {
+        if (!el.classList.contains("is-visible")) el.style.display = "none";
+    }, 250);
+}
+
+// Show/hide the machine-translation notice based on the current target language. Safe to call multiple times.
+export function updateTranslationNotice(): void {
+    if (typeof window === "undefined" || !siteConfig.translate?.enable) return;
+    const translate = (window as any).translate;
+    const sourceLang = getTranslateLanguageFromConfig(getResolvedSiteLang());
+    // Current target language: prefer translate.to, then the cache, finally fall back to the source language
+    const target = (translate && translate.to) || getStoredLanguage() || sourceLang;
+    const text = TRANSLATION_NOTICE_TEXT[target];
+    const isTranslated = !!target && target !== sourceLang && !!text;
+
+    const el = ensureTranslationNoticeEl();
+    if (!el) return;
+
+    if (!isTranslated || isTranslationNoticeDismissed(target)) {
+        hideTranslationNotice(el);
+        return;
+    }
+
+    el.dataset.lang = target;
+    const msg = el.querySelector(".mtn-msg") as HTMLElement | null;
+    const close = el.querySelector(".mtn-close") as HTMLElement | null;
+    if (msg) msg.textContent = text.message;
+    if (close) close.setAttribute("aria-label", text.dismiss);
+
+    el.style.display = "flex";
+    // Add the visible class on the next frame to trigger the fade-in transition
+    requestAnimationFrame(() => el.classList.add("is-visible"));
 }
