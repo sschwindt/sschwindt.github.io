@@ -234,11 +234,13 @@ export function initTranslateService(): void {
         translate.nomenclature.append(
             "english",
             "deutsch",
-            // NOTE: the source markdown uses straight quotes ('true'), but Astro's
-            // typographic processor (SmartyPants) rewrites them to curly quotes in
-            // the rendered DOM. The "from" string must match the DOM, so we use the
-            // curly characters “true” (U+201C/U+201D) here, not straight apostrophes.
-            "Hydrodynamic simulations with TELEMAC, OpenFOAM, and their kin are key elements of contemporary river engineering and ecohydraulics. They are also, frankly, hungry: every simulation depends on bulky simplifications, such as roughness, turbulence, or sediment-transport models whose “true” values we can hardly observe directly.=Hydrodynamische Simulationen mit TELEMAC, OpenFOAM und ähnliche Programme sind zentrale Bestandteile der modernen Gewässerplanung. Sie sind allerdings sehr rechenintensiv und Fehleranfällig: Jede Simulation stützt sich auf umfangreiche Vereinfachungen, wie etwa Modelle für Oberflächenrauheit, Turbulenz oder Sedimenttransport, deren „wahre“ Werte wir kaum direkt beobachten können.",
+            // NOTE: the source markdown uses straight single quotes ('true'), but
+            // Astro's typographic processor (SmartyPants) rewrites them to curly
+            // single quotes in the rendered DOM. The "from" string must match the
+            // DOM, so we use the curly characters ‘true’ (U+2018/U+2019) here, not
+            // straight apostrophes. (Do not trust a stale local dist/ build for the
+            // exact glyph — verify against the deployed HTML.)
+            "Hydrodynamic simulations with TELEMAC, OpenFOAM, and their kin are key elements of contemporary river engineering and ecohydraulics. They are also, frankly, hungry: every simulation depends on bulky simplifications, such as roughness, turbulence, or sediment-transport models whose ‘true’ values we can hardly observe directly.=Hydrodynamische Simulationen mit TELEMAC, OpenFOAM und ähnliche Programme sind zentrale Bestandteile der modernen Gewässerplanung. Sie sind allerdings sehr rechenintensiv und Fehleranfällig: Jede Simulation stützt sich auf umfangreiche Vereinfachungen, wie etwa Modelle für Oberflächenrauheit, Turbulenz oder Sedimenttransport, deren „wahre“ Werte wir kaum direkt beobachten können.",
         );
         translate.nomenclature.append(
             "english",
