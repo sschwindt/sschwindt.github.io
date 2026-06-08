@@ -107,7 +107,7 @@ onDestroy(() => {
             class="p-4 w-full"
         >
             <div class="text-sm font-medium text-(--primary) mb-3 px-1">
-                选择语言 / Select Language
+                Select Language / Langue / Sprache
             </div>
             <div class="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto">
                 {#each languages as lang}

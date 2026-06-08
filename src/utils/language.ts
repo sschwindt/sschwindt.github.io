@@ -44,7 +44,7 @@ export function getDefaultLanguage(): string {
 
 // 将配置文件的语言代码转换为翻译服务的语言代码
 export function getTranslateLanguageFromConfig(configLang: string): string {
-    return langToTranslateMap[configLang] || "chinese_simplified";
+    return langToTranslateMap[configLang] || "english";
 }
 
 // 获取解析后的站点语言代码
@@ -59,7 +59,7 @@ export function getResolvedSiteLang(): SupportedLanguage {
 
 // 将翻译服务的语言代码转换为配置文件的语言代码
 export function getConfigLanguageFromTranslate(translateLang: string): string {
-    return translateToLangMap[translateLang] || "zh";
+    return translateToLangMap[translateLang] || "en";
 }
 
 // 获取语言的显示名称
@@ -98,17 +98,18 @@ export function detectBrowserLanguage(fallbackLang: SupportedLanguage = "en"): S
     return fallbackLang;
 }
 
-// 获取当前站点语言（优先使用缓存，其次是配置语言，最后是浏览器检测）
-export function getSiteLanguage(configLang?: string): string {
-    // 优先从缓存读取
+// 获取当前站点语言（优先使用缓存，否则自动检测浏览器语言，回退到 en-US）
+//
+// 站点本身以英文渲染（source language = English）。访客首次到访且没有
+// 手动选择过语言时，按浏览器语言自动决定翻译目标：任意法语变体
+// （fr-FR / fr-CA / fr-BE / fr-CH 等）→ 法语，任意德语变体
+// （de-DE / de-AT / de-CH 等）→ 德语，其余一律回退到 en-US。
+export function getSiteLanguage(_configLang?: string): string {
+    // 1. 访客之前手动选择过的语言优先
     const storedLang = getStoredLanguage();
     if (storedLang) return storedLang;
-    // 其次使用传入的配置语言或从 carrier 获取的默认语言
-    const defaultLang = configLang || getDefaultLanguage();
-    if (SUPPORTED_LANGUAGES.includes(defaultLang as SupportedLanguage)) {
-        return langToTranslateMap[defaultLang];
-    }
-    // 最后自动检测浏览器语言并转换为翻译服务代码
+    // 2. 否则根据浏览器语言自动检测（detectBrowserLanguage 会把主语言子标签
+    //    与支持的语言列表匹配，未命中时回退到 "en"）
     const browserLang = detectBrowserLanguage();
     return langToTranslateMap[browserLang];
 }

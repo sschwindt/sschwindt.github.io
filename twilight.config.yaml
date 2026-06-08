@@ -31,7 +31,7 @@ site:
         - "IWS"
     lang: "en"
     translate:
-        enable: false
+        enable: true
         service: "client.edge"
         showSelectTag: false
         autoDiscriminate: false
