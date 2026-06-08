@@ -100,6 +100,12 @@ if (title) {
         : siteConfig.title;
 }
 
+// Browser tab/window title: always the author's name and identical in every
+// language (a proper name is left untranslated by translate.js). The landing
+// page banner title/subtitle and the descriptive og:title/description below
+// keep using pageTitle.
+const browserTitle = profileConfig.name;
+
 let ogImageUrl: string | undefined;
 if (siteConfig.generateOgImages && postSlug) {
     ogImageUrl = new URL(`/og/${postSlug}.png`, Astro.site).toString();
@@ -137,7 +143,7 @@ const { enabled: analyticsEnabled, code: analyticsCode } = getAnalyticsConfig();
         <!-- Font Loader -->
         <FontLoader />
         <!-- title -->
-        <title>{pageTitle}</title>
+        <title>{browserTitle}</title>
         <!-- description -->
         <meta name="description" content={description || pageTitle}>
         <!-- keywords -->

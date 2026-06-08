@@ -180,7 +180,9 @@ export function initTranslateService(): void {
         translate.nomenclature.append(
             "english",
             "deutsch",
-            "calibration=Kalibrierung\nCalibration=Kalibrierung\ncalibrations=Kalibrierungen\nCalibrations=Kalibrierungen",
+            // Phrase entries first so the adjective is correct ("Bayessche")
+            // instead of being machine-translated word-by-word.
+            "Bayesian calibration=Bayessche Kalibrierung\nBayesian Calibration=Bayessche Kalibrierung\ncalibration=Kalibrierung\nCalibration=Kalibrierung\ncalibrations=Kalibrierungen\nCalibrations=Kalibrierungen",
         );
     }
     // 启动翻译监听
