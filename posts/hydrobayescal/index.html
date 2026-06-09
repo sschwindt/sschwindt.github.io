@@ -1,0 +1,739 @@
+<!DOCTYPE html><html lang="en" class="bg-(--page-bg) text-[14px] md:text-[16px] is-loading" data-astro-cid-tnnyocjb style="--configHue: 200;--page-width: 90rem;--navbar-height: 4.5rem;--navbar-gap: 1.25rem;--navbar-follow-distance: 0rem;--main-panel-overlaps-banner-height: 0rem;--sidebar-top: 1rem;--sidebar-spacing: 1rem;--bannerOffset: 18vh;--banner-height-home: 66vh;--banner-height: 30vh;"> <head><meta charset="UTF-8"><!-- Resource Preconnect --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://code.iconify.design"><!-- Font Loader --><!-- Font Loading --><!-- Apply Global Font Family --><style is:global>
+    :root {
+        --font-family-fallback: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        --global-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    /* Apply to body as default */
+    body {
+        font-family: var(--global-font-family);
+    }
+
+    /* Generate specific classes for each font*/
+    
+</style><!-- title --><title>Sebastian Schwindt</title><!-- description --><meta name="description" content="How HydroBayesCal brings Bayesian Active Learning to hydrodynamic model calibration, with TELEMAC bindings (Andres Heredia) and OpenFOAM bindings (Federica Scolari) being developed at the IWS hydro-morphodynamics group."><!-- keywords --><meta name="keywords" content="Sebastian Schwindt, ecohydraulics, hydraulics, hydro-morphodynamics, morphodynamics, TELEMAC, numerical simulations, computational hydraulics, large wood, wood transport in rivers, PIC, FLIP, particle-in-cell, fluid-implicit-particle, fish passage, fishway, fishway design, sediment transport, bedload, river restoration, climate-aware restoration, Python for water resources, hydroinformatics, University of Stuttgart, IWS"><!-- author --><meta name="author" content="Sebastian Schwindt"><!-- Open Graph --><meta property="og:site_name" content="Ecohydraulics &amp; Climate-Aware Restoration"><meta property="og:url" content="https://sebastian-schwindt.org/posts/hydrobayescal/"><meta property="og:title" content="HydroBayesCal: Bayesian Calibration as a Research Frontier in Hydrodynamic Modeling - Ecohydraulics &amp; Climate-Aware Restoration"><meta property="og:description" content="How HydroBayesCal brings Bayesian Active Learning to hydrodynamic model calibration, with TELEMAC bindings (Andres Heredia) and OpenFOAM bindings (Federica Scolari) being developed at the IWS hydro-morphodynamics group."><meta property="og:type" content="article"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://sebastian-schwindt.org/posts/hydrobayescal/"><meta name="twitter:title" content="HydroBayesCal: Bayesian Calibration as a Research Frontier in Hydrodynamic Modeling - Ecohydraulics &amp; Climate-Aware Restoration"><meta name="twitter:description" content="How HydroBayesCal brings Bayesian Active Learning to hydrodynamic model calibration, with TELEMAC bindings (Andres Heredia) and OpenFOAM bindings (Federica Scolari) being developed at the IWS hydro-morphodynamics group."><!-- viewport --><meta name="viewport" content="width=device-width"><!-- generator --><meta name="generator" content="Astro v6.4.1"><!-- favicons --><link rel="icon" href="/assets/images/hycon.png"><!-- Set the theme before the page is rendered to avoid a flash --><script>(function(){const LIGHT_MODE = "light";
+const DARK_MODE = "dark";
+const SYSTEM_MODE = "system";
+const BANNER_HEIGHT_EXTEND = 36;
+const PAGE_WIDTH = 90;
+const NAVBAR_HEIGHT = 72;
+const configHue = 200;
+const defaultTheme = "dark";
+
+            // Load the theme from local storage
+            const theme = localStorage.getItem('theme') || defaultTheme;
+            // Apply the theme to the document
+            let isDark = false;
+            switch (theme) {
+                case LIGHT_MODE:
+                    document.documentElement.classList.remove('dark');
+                    isDark = false;
+                    break
+                case DARK_MODE:
+                    document.documentElement.classList.add('dark');
+                    isDark = true;
+                    break
+                case SYSTEM_MODE:
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.classList.add('dark');
+                        isDark = true;
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        isDark = false;
+                    }
+            }
+            const expressiveTheme = isDark ? "github-dark" : "github-light";
+            document.documentElement.setAttribute("data-theme", expressiveTheme);
+            // Load the hue from local storage
+            const hue = localStorage.getItem('hue') || configHue;
+            // Apply the hue to the document
+            document.documentElement.style.setProperty('--hue', hue);
+            // calculate the --banner-height-extend, which needs to be a multiple of 4 to avoid blurry text
+            let offset = Math.floor(window.innerHeight * (BANNER_HEIGHT_EXTEND / 100));
+            offset = offset - offset % 4;
+            document.documentElement.style.setProperty('--banner-height-extend', `${offset}px`);
+        })();</script><!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why --><!-- custom head --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"HydroBayesCal: Bayesian Calibration as a Research Frontier in Hydrodynamic Modeling","description":"How HydroBayesCal brings Bayesian Active Learning to hydrodynamic model calibration, with TELEMAC bindings (Andres Heredia) and OpenFOAM bindings (Federica Scolari) being developed at the IWS hydro-morphodynamics group.","keywords":["Bayesian calibration","Bayesian Active Learning","HydroBayesCal","TELEMAC","OpenFOAM","hydrodynamic modelling","uncertainty quantification","ecohydraulics"],"author":{"@type":"Person","name":"Sebastian Schwindt","url":"https://sebastian-schwindt.org/"},"datePublished":"2026-05-29","inLanguage":"en"}</script><!-- Pio mascot styles - loaded only when enabled --><!-- rss feed --><link rel="alternate" type="application/rss+xml" title="Sebastian Schwindt" href="https://sebastian-schwindt.org/rss.xml"><link rel="stylesheet" href="/_astro/fancybox.y3Ble-Pa.css">
+<style>.password-protection[data-astro-cid-isrenuqs]{display:flex;justify-content:center;align-items:center;min-height:40vh;padding:2rem}.password-container[data-astro-cid-isrenuqs]{text-align:center;max-width:400px;width:100%;padding:2.5rem;border-radius:1rem;background:var(--card-bg);border:1px solid var(--line-divider);box-shadow:0 10px 25px -5px #0000001a,0 8px 10px -6px #0000001a}.lock-icon[data-astro-cid-isrenuqs]{margin-bottom:1.5rem;color:var(--primary);display:flex;justify-content:center}.password-container[data-astro-cid-isrenuqs] h2[data-astro-cid-isrenuqs]{margin-bottom:.75rem;font-size:1.5rem;font-weight:700}.password-container[data-astro-cid-isrenuqs] p[data-astro-cid-isrenuqs]{margin-bottom:2rem;font-size:.95rem;line-height:1.5}.password-input-group[data-astro-cid-isrenuqs]{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem}.password-input-wrapper[data-astro-cid-isrenuqs]{position:relative;width:100%}.password-input[data-astro-cid-isrenuqs]{width:100%;padding:.75rem 3rem .75rem 1rem;border:1px solid var(--line-divider);border-radius:.5rem;background:var(--card-bg);font-size:1rem;transition:all .2s ease}.password-input[data-astro-cid-isrenuqs]::-ms-reveal,.password-input[data-astro-cid-isrenuqs]::-ms-clear{display:none}.toggle-password-btn[data-astro-cid-isrenuqs]{position:absolute;right:.75rem;top:50%;translate:0 -50%;background:none;border:none;padding:.25rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s ease}.toggle-password-btn[data-astro-cid-isrenuqs]:hover{color:var(--primary)}.password-input[data-astro-cid-isrenuqs]::placeholder{color:var(--content-meta);opacity:.7}.password-input[data-astro-cid-isrenuqs]:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-light)}.unlock-button[data-astro-cid-isrenuqs]{width:100%;padding:.75rem 1.5rem;background:var(--primary);color:#fff;border:none;border-radius:.5rem;font-size:1rem;font-weight:600;cursor:pointer;transition:all .2s ease}.unlock-button[data-astro-cid-isrenuqs]:hover{background:var(--primary-hover);translate:0 -1px}.unlock-button[data-astro-cid-isrenuqs]:active{translate:0 0}.error-message[data-astro-cid-isrenuqs]{color:#ef4444;font-size:.875rem;margin-top:.75rem;font-weight:500}.decrypted-content[data-astro-cid-isrenuqs]{animation:fadeIn .5s ease-out}@keyframes fadeIn{0%{opacity:0;translate:0 10px}to{opacity:1;translate:0 0}}@media(max-width:768px){.password-protection[data-astro-cid-isrenuqs]{padding:1rem;min-height:30vh}.password-container[data-astro-cid-isrenuqs]{padding:1.5rem}}
+.inline-icon svg{width:1em;height:1em;fill:currentColor}
+</style>
+<link rel="stylesheet" href="/_astro/grid.CFbsRCe3.css">
+<style>.card-base[data-astro-cid-zetdm5md]{animation:fadeInUp .6s ease-out}@keyframes fadeInUp{0%{opacity:0;translate:0 30px}to{opacity:1;translate:0 0}}a[data-astro-cid-zetdm5md]:hover{translate:0 -2px;box-shadow:0 4px 12px rgba(var(--primary-rgb),.3)}
+</style>
+<link rel="stylesheet" href="/_astro/markdown.CLMvY_Mt.css">
+<style>.menu-card[data-astro-cid-la6idv53]{cursor:pointer;background-color:none;border-color:var(--line-divider)}.icon-wrapper[data-astro-cid-la6idv53]{background-color:color-mix(in oklch,var(--primary),transparent 85%);color:var(--primary)}.menu-card[data-astro-cid-la6idv53]:hover{background-color:color-mix(in oklch,var(--primary),transparent 95%);border-color:var(--primary);box-shadow:0 0 20px color-mix(in oklch,var(--primary),transparent 80%);translate:0 -4px}.menu-card[data-astro-cid-la6idv53]:hover .icon-wrapper[data-astro-cid-la6idv53]{background-color:var(--primary);color:#fff;box-shadow:0 0 15px color-mix(in oklch,var(--primary),transparent 50%)}
+.line-clamp-4[data-astro-cid-536opclp]{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.album-card{transition:all .3s cubic-bezier(.4,0,.2,1)}.album-card:hover{translate:0 -4px}.photo-gallery{animation:fadeInUp .6s ease-out}.photo-item{transition:all .3s ease}.masonry-layout .photo-item{page-break-inside:avoid;break-inside:avoid}.photo-container{position:relative;overflow:hidden;border-radius:.5rem}.photo-image{transition:transform .3s ease;width:100%;height:100%;object-fit:cover}.photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),transparent);opacity:0;transition:opacity .3s ease}.photo-item:hover .photo-overlay{opacity:1}.photo-info{translate:0 100%;transition:transform .3s ease}.photo-item:hover .photo-info{translate:0 0}.lightbox{backdrop-filter:blur(8px);z-index:9999}.lightbox-content{max-width:95vw;max-height:95vh}.lightbox-image-container{min-height:60vh}#lightbox-image{max-width:100%;max-height:80vh;object-fit:contain;border-radius:.5rem}.lightbox button{backdrop-filter:blur(4px);transition:all .2s ease}.lightbox button:hover{background-color:#000000b3;scale:1.05}#lightbox-info{backdrop-filter:blur(8px);border-radius:.5rem;max-height:30vh;overflow-y:auto}@media(max-width:768px){.albums-grid{grid-template-columns:1fr}.masonry-layout{columns:1}.photo-gallery[data-columns="3"],.photo-gallery[data-columns="4"]{grid-template-columns:repeat(2,1fr)}.lightbox-content{padding:1rem}#lightbox-prev,#lightbox-next{width:2.5rem;height:2.5rem}#lightbox-info{position:static;margin-top:1rem}}@media(max-width:512px){.photo-gallery{grid-template-columns:1fr!important}.masonry-layout{columns:1}}@keyframes fadeInUp{0%{opacity:0;translate:0 30px}to{opacity:1;translate:0 0}}.photo-image[loading=lazy]{background:linear-gradient(90deg,#f0f0f0 25%,#e0e0e0,#f0f0f0 75%);background-size:200% 100%;animation:loading 1.5s infinite}@keyframes loading{0%{background-position:200% 0}to{background-position:-200% 0}}@media(prefers-color-scheme:dark){.photo-image[loading=lazy]{background:linear-gradient(90deg,#2a2a2a 25%,#1a1a1a,#2a2a2a 75%);background-size:200% 100%}}.album-filter-tag{position:relative;overflow:hidden}.album-filter-tag:before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s}.album-filter-tag:hover:before{left:100%}.album-card .p-4{display:flex;flex-direction:column;height:100%}.album-card h3{flex-grow:1}@media print{.lightbox,.album-filter-tag,button{display:none!important}.photo-gallery{display:block!important;columns:2;column-gap:1rem}.photo-item{break-inside:avoid;margin-bottom:1rem}}
+</style>
+<link rel="stylesheet" href="/_astro/anime.DIZgBDvI.css">
+<style>@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-shadow:0 0 #0000;--tw-shadow-color:initial;--tw-shadow-alpha:100%;--tw-inset-shadow:0 0 #0000;--tw-inset-shadow-color:initial;--tw-inset-shadow-alpha:100%;--tw-ring-color:initial;--tw-ring-shadow:0 0 #0000;--tw-inset-ring-color:initial;--tw-inset-ring-shadow:0 0 #0000;--tw-ring-inset:initial;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-offset-shadow:0 0 #0000}}}.expressive-code .frame{--tw-shadow:0 0 #0000!important;box-shadow:var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)!important}.expressive-code .title{font-family:JetBrains Mono Variable,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}@property --tw-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-shadow-color{syntax:"*";inherits:false}@property --tw-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-inset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-shadow-color{syntax:"*";inherits:false}@property --tw-inset-shadow-alpha{syntax:"<percentage>";inherits:false;initial-value:100%}@property --tw-ring-color{syntax:"*";inherits:false}@property --tw-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-inset-ring-color{syntax:"*";inherits:false}@property --tw-inset-ring-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}@property --tw-ring-inset{syntax:"*";inherits:false}@property --tw-ring-offset-width{syntax:"<length>";inherits:false;initial-value:0}@property --tw-ring-offset-color{syntax:"*";inherits:false;initial-value:#fff}@property --tw-ring-offset-shadow{syntax:"*";inherits:false;initial-value:0 0 #0000}
+</style>
+<link rel="stylesheet" href="/_astro/main.D3__GEjn.css">
+<link rel="stylesheet" href="/_astro/markdown-extend.CMzrorRU.css">
+<link rel="stylesheet" href="/_astro/markdown.CvvjmCMN.css">
+<style>.transition-main{transition:opacity .3s cubic-bezier(.25,.46,.45,.94),translate .3s cubic-bezier(.25,.46,.45,.94)}.transition-leaving{transition:translate .3s cubic-bezier(.55,.055,.675,.19),opacity .3s cubic-bezier(.55,.055,.675,.19)}html.is-changing .transition-main{transition:opacity .3s cubic-bezier(.25,.46,.45,.94),translate .3s cubic-bezier(.25,.46,.45,.94)}html.is-leaving .transition-main{transition:opacity .3s cubic-bezier(.55,.055,.675,.19),translate .3s cubic-bezier(.55,.055,.675,.19)}html.is-animating .transition-main{opacity:0;translate:.5rem 1.5rem}html.is-animating.is-leaving .transition-leaving{translate:-.5rem -1rem;opacity:0}html.is-changing .transition-swup-fade{transition:all .3s ease-out}html.is-animating .transition-swup-fade:not(.pause-swup-transition){opacity:0;translate:0 1.5rem}.pause-swup-transition{transition:none!important;opacity:1!important;translate:0 0!important}html.is-loading{overflow:hidden}@keyframes fade-in-up{0%{opacity:0;translate:0 1.5rem}to{opacity:1;translate:0 0}}@keyframes fade-in-down{0%{opacity:0;translate:0 -1.5rem}to{opacity:1;translate:0 0}}@keyframes fade-out-down{0%{opacity:1;translate:0 0}to{opacity:0;translate:0 -1.5rem}}.onload-animation-up,.onload-animation-down{opacity:0}html:not(.is-loading):not(.show-initial-animation) :is(.onload-animation-up,.onload-animation-down){opacity:1}.show-initial-animation .onload-animation-up{animation:fade-in-up .6s ease-out forwards}.show-initial-animation .onload-animation-down{animation:fade-in-down .6s ease-out forwards}.show-initial-animation :is(.onload-animation-up,.onload-animation-down):nth-child(1){animation-delay:0ms}.show-initial-animation :is(.onload-animation-up,.onload-animation-down):nth-child(2){animation-delay:.15s}.show-initial-animation :is(.onload-animation-up,.onload-animation-down):nth-child(3){animation-delay:.3s}.show-initial-animation :is(.onload-animation-up,.onload-animation-down):nth-child(4){animation-delay:.45s}.show-initial-animation :is(.onload-animation-up,.onload-animation-down):nth-child(5){animation-delay:.6s}.transition-slide-in{opacity:0;translate:8px 20px;transition:all .3s cubic-bezier(.25,.46,.45,.94)}.transition-slide-in.active{opacity:1;translate:0 0}.card-animation{opacity:0;translate:10px 30px;scale:.98;transition:all .3s cubic-bezier(.25,.46,.45,.94)}.card-animation.visible{opacity:1;translate:0 0;scale:1}.nav-animation{opacity:0;translate:-20px 0;transition:all .3s cubic-bezier(.25,.46,.45,.94)}.nav-animation.loaded{opacity:1;translate:0 0}.transition-main,.transition-leaving,.onload-animation-up,.onload-animation-down,.transition-slide-in,.card-animation{backface-visibility:hidden;-webkit-font-smoothing:antialiased}@media(max-width:768px){html.is-animating .transition-main{translate:.3rem 1rem}html.is-animating.is-leaving .transition-leaving{translate:-.3rem -.8rem}.transition-slide-in{translate:5px 15px}.card-animation{translate:6px 20px;scale:.99}}@media(prefers-reduced-motion:reduce){.transition-main,.transition-leaving,.onload-animation-up,.onload-animation-down,.transition-slide-in,.card-animation,.nav-animation{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+<link rel="stylesheet" href="/_astro/variables.B6rVjYIP.css">
+<style>.inline-icon.svelte-1klr2zv svg{width:1em;height:1em;display:inline-block;vertical-align:middle;fill:currentColor}
+</style><script type="module" src="/_astro/page.DD6OuL0z.js"></script></head> <body class=" min-h-screen  enable-banner" data-astro-cid-tnnyocjb style="--configHue: 200;--page-width: 90rem;--navbar-height: 4.5rem;--navbar-gap: 1.25rem;--navbar-follow-distance: 0rem;--main-panel-overlaps-banner-height: 0rem;--sidebar-top: 1rem;--sidebar-spacing: 1rem;--bannerOffset: 18vh;--banner-height-home: 66vh;--banner-height: 30vh;"> <!-- Page loading animation --> <div id="loading-overlay" class="fixed inset-0 z-100 flex items-center justify-center bg-(--page-bg) transition-opacity duration-600" data-astro-cid-zwfdok6v style="--spinnerInterval: 1.5s;--titleInterval: 1.5s;"><div class="flex flex-col items-center" data-astro-cid-zwfdok6v style="--spinnerInterval: 1.5s;--titleInterval: 1.5s;"><!-- loading icon --><div class="loading-spinner mb-4" data-astro-cid-zwfdok6v style="--spinnerInterval: 1.5s;--titleInterval: 1.5s;"></div><!-- loading title --><div class="loading-title text-(--primary) font-medium tracking-widest" data-astro-cid-zwfdok6v style="--spinnerInterval: 1.5s;--titleInterval: 1.5s;">LOADING</div></div></div> <!-- Global config carrier --> <!-- Global config carrier --><div id="config-carrier" data-hue="200" data-lang="en" data-theme="dark" data-wallpaper-mode="banner" data-wait-for-all-resources="true"></div> <!-- Page-top gradient highlight effect - shown only in full and semifull modes --> <div class="top-gradient-highlight" data-astro-cid-tnnyocjb style="--configHue: 200;--page-width: 90rem;--navbar-height: 4.5rem;--navbar-gap: 1.25rem;--navbar-follow-distance: 0rem;--main-panel-overlaps-banner-height: 0rem;--sidebar-top: 1rem;--sidebar-spacing: 1rem;--bannerOffset: 18vh;--banner-height-home: 66vh;--banner-height: 30vh;"></div> <!-- Page content -->   <!-- Iconify icon library loader --><script>(function(){const preloadIcons = [];
+const timeout = 10000;
+const retryCount = 3;
+
+    // Global icon loading logic
+    (function() {
+        'use strict';
+
+        // Avoid duplicate loading
+        if (window.__iconifyLoaderInitialized) {
+            return;
+        }
+        window.__iconifyLoaderInitialized = true;
+
+        // Icon loader class
+        class IconifyLoader {
+            constructor() {
+                this.isLoaded = false;
+                this.isLoading = false;
+                this.loadPromise = null;
+                this.observers = new Set();
+                this.preloadQueue = new Set();
+            }
+
+            async load(options = {}) {
+                const { timeout: loadTimeout = timeout, retryCount: maxRetries = retryCount } = options;
+
+                if (this.isLoaded) {
+                    return Promise.resolve();
+                }
+
+                if (this.isLoading && this.loadPromise) {
+                    return this.loadPromise;
+                }
+
+                this.isLoading = true;
+                this.loadPromise = this.loadWithRetry(loadTimeout, maxRetries);
+
+                try {
+                    await this.loadPromise;
+                    this.isLoaded = true;
+                    this.notifyObservers();
+                    await this.processPreloadQueue();
+                } catch (error) {
+                    console.error('Failed to load Iconify:', error);
+                    throw error;
+                } finally {
+                    this.isLoading = false;
+                }
+            }
+
+            async loadWithRetry(timeout, retryCount) {
+                for (let attempt = 1; attempt <= retryCount; attempt++) {
+                    try {
+                        await this.loadScript(timeout);
+                        return;
+                    } catch (error) {
+                        console.warn(`Iconify load attempt ${attempt} failed:`, error);
+                        if (attempt === retryCount) {
+                            throw new Error(`Failed to load Iconify after ${retryCount} attempts`);
+                        }
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                    }
+                }
+            }
+
+            loadScript(timeout) {
+                return new Promise((resolve, reject) => {
+                    // Check whether it already exists
+                    if (this.isIconifyReady()) {
+                        resolve();
+                        return;
+                    }
+
+                    const existingScript = document.querySelector('script[src*="iconify-icon"]');
+                    if (existingScript) {
+                        this.waitForIconifyReady().then(resolve).catch(reject);
+                        return;
+                    }
+
+                    const script = document.createElement('script');
+                    script.src = 'https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js';
+                    script.async = true;
+                    script.crossOrigin = 'anonymous';
+
+                    const timeoutId = setTimeout(() => {
+                        script.remove();
+                        reject(new Error('Script load timeout'));
+                    }, timeout);
+
+                    script.onload = () => {
+                        clearTimeout(timeoutId);
+                        this.waitForIconifyReady().then(resolve).catch(reject);
+                    };
+
+                    script.onerror = () => {
+                        clearTimeout(timeoutId);
+                        script.remove();
+                        reject(new Error('Script load error'));
+                    };
+
+                    document.head.appendChild(script);
+                });
+            }
+
+            waitForIconifyReady(maxWait = 5000) {
+                return new Promise((resolve, reject) => {
+                    const startTime = Date.now();
+
+                    const checkReady = () => {
+                        if (this.isIconifyReady()) {
+                            resolve();
+                            return;
+                        }
+
+                        if (Date.now() - startTime > maxWait) {
+                            reject(new Error('Iconify initialization timeout'));
+                            return;
+                        }
+
+                        setTimeout(checkReady, 50);
+                    };
+
+                    checkReady();
+                });
+            }
+
+            isIconifyReady() {
+                return typeof window !== 'undefined' && 'customElements' in window && customElements.get('iconify-icon') !== undefined;
+            }
+
+            onLoad(callback) {
+                if (this.isLoaded) {
+                    callback();
+                } else {
+                    this.observers.add(callback);
+                }
+            }
+
+            notifyObservers() {
+                this.observers.forEach(callback => {
+                    try {
+                        callback();
+                    } catch (error) {
+                        console.error('Error in icon load observer:', error);
+                    }
+                });
+                this.observers.clear();
+            }
+
+            addToPreloadQueue(icons) {
+                if (Array.isArray(icons)) {
+                    icons.forEach(icon => this.preloadQueue.add(icon));
+                } else {
+                    this.preloadQueue.add(icons);
+                }
+
+                if (this.isLoaded) {
+                    this.processPreloadQueue();
+                }
+            }
+
+            async processPreloadQueue() {
+                if (this.preloadQueue.size === 0) return;
+
+                const iconsToLoad = Array.from(this.preloadQueue);
+                this.preloadQueue.clear();
+
+                await this.preloadIcons(iconsToLoad);
+            }
+
+            async preloadIcons(icons) {
+                if (!this.isLoaded || icons.length === 0) return;
+
+                return new Promise((resolve) => {
+                    let loadedCount = 0;
+                    const totalIcons = icons.length;
+                    const tempElements = [];
+
+                    const cleanup = () => {
+                        tempElements.forEach(el => {
+                            if (el.parentNode) {
+                                el.parentNode.removeChild(el);
+                            }
+                        });
+                    };
+
+                    const checkComplete = () => {
+                        loadedCount++;
+                        if (loadedCount >= totalIcons) {
+                            cleanup();
+                            resolve();
+                        }
+                    };
+
+                    icons.forEach(icon => {
+                        const tempIcon = document.createElement('iconify-icon');
+                        tempIcon.setAttribute('icon', icon);
+                        tempIcon.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;';
+
+                        tempIcon.addEventListener('load', checkComplete);
+                        tempIcon.addEventListener('error', checkComplete);
+
+                        tempElements.push(tempIcon);
+                        document.body.appendChild(tempIcon);
+                    });
+
+                    // Set up a timeout cleanup
+                    setTimeout(() => {
+                        cleanup();
+                        resolve();
+                    }, 3000);
+                });
+            }
+        }
+
+        // Create the global instance
+        window.__iconifyLoader = new IconifyLoader();
+
+        // Start loading immediately
+        window.__iconifyLoader.load().catch(error => {
+            console.error('Failed to initialize Iconify:', error);
+        });
+
+        // If there are preload icons, add them to the queue
+        if (preloadIcons && preloadIcons.length > 0) {
+            window.__iconifyLoader.addToPreloadQueue(preloadIcons);
+        }
+
+        // Export convenience functions to the global scope
+        window.loadIconify = () => window.__iconifyLoader.load();
+        window.preloadIcons = (icons) => window.__iconifyLoader.addToPreloadQueue(icons);
+        window.onIconifyReady = (callback) => window.__iconifyLoader.onLoad(callback);
+
+        // Re-check when page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && !window.__iconifyLoader.isLoaded) {
+                window.__iconifyLoader.load().catch(console.error);
+            }
+        });
+
+    })();
+})();</script> <!-- Provide a fallback for when JavaScript is not supported --><noscript><style>
+        iconify-icon {
+            display: none;
+        }
+        .icon-fallback {
+            display: inline-block;
+        }
+    </style></noscript>   <div id="top-row" class="z-50 pointer-events-none relative transition-all duration-600 max-w-(--page-width) px-0 md:px-4 mx-auto h-(--top-row-height)"> <div id="navbar-wrapper" class="pointer-events-auto sticky top-0 transition-all"> <div id="navbar" class="z-50 onload-animation-down px-3 sm:px-6 md:px-0" data-transparent-mode="semifull"> <div class="absolute h-8 left-0 right-0 -top-8 bg-(--card-bg) transition"></div> <!-- used for onload animation --> <div class="overflow-visible! max-w-(--page-width) h-18 mx-auto flex items-center justify-between md:px-4"> <div class="flex items-center gap-0.5 md:gap-1 px-1 md:px-2 navbar-social"> <a rel="me" aria-label="LinkedIn" href="https://www.linkedin.com/in/sebastian-schwindt" target="_blank" class="btn-plain scale-animation rounded-lg h-10 w-10 flex items-center justify-center active:scale-90"> <svg width="0.88em" height="1em" viewBox="0 0 448 512" class="text-[1.35rem] text-(--primary)" data-icon="fa6-brands:linkedin">   <use href="#ai:fa6-brands:linkedin"></use>  </svg> </a><a rel="me" aria-label="Google Scholar" href="https://scholar.google.com/citations?user=246FKewAAAAJ&amp;hl=en" target="_blank" class="btn-plain scale-animation rounded-lg h-10 w-10 flex items-center justify-center active:scale-90"> <svg width="1em" height="1em" viewBox="0 0 512 512" class="text-[1.35rem] text-(--primary)" data-icon="fa6-brands:google-scholar">   <use href="#ai:fa6-brands:google-scholar"></use>  </svg> </a><a rel="me" aria-label="ResearchGate" href="https://www.researchgate.net/profile/Sebastian_Schwindt" target="_blank" class="btn-plain scale-animation rounded-lg h-10 w-10 flex items-center justify-center active:scale-90"> <svg width="0.88em" height="1em" viewBox="0 0 448 512" class="text-[1.35rem] text-(--primary)" data-icon="fa6-brands:researchgate">   <use href="#ai:fa6-brands:researchgate"></use>  </svg> </a><a rel="me" aria-label="GitHub" href="https://github.com/sschwindt" target="_blank" class="btn-plain scale-animation rounded-lg h-10 w-10 flex items-center justify-center active:scale-90"> <svg width="0.97em" height="1em" viewBox="0 0 496 512" class="text-[1.35rem] text-(--primary)" data-icon="fa6-brands:github">   <use href="#ai:fa6-brands:github"></use>  </svg> </a><a rel="me" aria-label="YouTube" href="https://www.youtube.com/@hydroinformatics" target="_blank" class="btn-plain scale-animation rounded-lg h-10 w-10 flex items-center justify-center active:scale-90"> <svg width="1.13em" height="1em" viewBox="0 0 576 512" class="text-[1.35rem] text-(--primary)" data-icon="fa6-brands:youtube">   <use href="#ai:fa6-brands:youtube"></use>  </svg> </a> </div> <div class="hidden lg:flex items-center navbar-nav-links"> <div class="nav-link-container"> <a aria-label="Home" href="/" class="btn-plain scale-animation rounded-lg h-11 font-bold px-3 active:scale-95 nav-link-item" data-link-name="Home"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] nav-link-icon" data-icon="material-symbols:home">   <symbol id="ai:material-symbols:home" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z"/></symbol><use href="#ai:material-symbols:home"></use>  </svg> <span class="nav-link-text ml-2 hidden lg:inline">Home</span>  </div> </a> </div><div class="nav-link-container"> <a aria-label="About" href="/about/" class="btn-plain scale-animation rounded-lg h-11 font-bold px-3 active:scale-95 nav-link-item" data-link-name="About"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] nav-link-icon" data-icon="material-symbols:account-circle">   <symbol id="ai:material-symbols:account-circle" viewBox="0 0 24 24"><path fill="currentColor" d="M5.85 17.1q1.275-.975 2.85-1.537T12 15t3.3.563t2.85 1.537q.875-1.025 1.363-2.325T20 12q0-3.325-2.337-5.663T12 4T6.337 6.338T4 12q0 1.475.488 2.775T5.85 17.1m3.663-5.113Q8.5 10.976 8.5 9.5t1.013-2.488T12 6t2.488 1.013T15.5 9.5t-1.012 2.488T12 13t-2.488-1.012M12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22"/></symbol><use href="#ai:material-symbols:account-circle"></use>  </svg> <span class="nav-link-text ml-2 hidden lg:inline">About</span>  </div> </a> </div><div class="nav-link-container"> <a aria-label="Teaching" href="/teaching/" class="btn-plain scale-animation rounded-lg h-11 font-bold px-3 active:scale-95 nav-link-item" data-link-name="Teaching"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] nav-link-icon" data-icon="material-symbols:school">   <symbol id="ai:material-symbols:school" viewBox="0 0 24 24"><path fill="currentColor" d="M21 17v-6.9L12 15L1 9l11-6l11 6v8zm-9 4l-7-3.8v-5l7 3.8l7-3.8v5z"/></symbol><use href="#ai:material-symbols:school"></use>  </svg> <span class="nav-link-text ml-2 hidden lg:inline">Teaching</span>  </div> </a> </div><div class="nav-link-container"> <a aria-label="Research" href="/research/" class="btn-plain scale-animation rounded-lg h-11 font-bold px-3 active:scale-95 nav-link-item" data-link-name="Research"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] nav-link-icon" data-icon="material-symbols:settings">   <symbol id="ai:material-symbols:settings" viewBox="0 0 24 24"><path fill="currentColor" d="m9.25 22l-.4-3.2q-.325-.125-.612-.3t-.563-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.338v-.675q0-.163.025-.338L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375t.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3t.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.338v.674q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375t-.6.3l-.4 3.2zm2.8-6.5q1.45 0 2.475-1.025T15.55 12t-1.025-2.475T12.05 8.5q-1.475 0-2.488 1.025T8.55 12t1.013 2.475T12.05 15.5"/></symbol><use href="#ai:material-symbols:settings"></use>  </svg> <span class="nav-link-text ml-2 hidden lg:inline">Research</span>  </div> </a> </div><div class="nav-link-container"> <a aria-label="ORCID" href="https://orcid.org/0000-0002-7206-0542" target="_blank" class="btn-plain scale-animation rounded-lg h-11 font-bold px-3 active:scale-95 nav-link-item" data-link-name="ORCID"> <div class="flex items-center"> <svg width="1em" height="1em" class="text-[1.1rem] nav-link-icon" data-icon="fa6-brands:orcid">   <symbol id="ai:fa6-brands:orcid" viewBox="0 0 512 512"><path fill="currentColor" d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91c0-41.64-26.54-76.9-84.67-76.9M256 8C119 8 8 119 8 256s111 248 248 248s248-111 248-248S393 8 256 8m-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57a19.64 19.64 0 0 1-19.57 19.57M300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369"/></symbol><use href="#ai:fa6-brands:orcid"></use>  </svg> <span class="nav-link-text ml-2 hidden lg:inline">ORCID</span> <svg width="1em" height="1em" class="text-[0.875rem] transition -translate-y-px ml-1 text-black/20 dark:text-white/20" data-icon="fa6-solid:arrow-up-right-from-square">   <symbol id="ai:fa6-solid:arrow-up-right-from-square" viewBox="0 0 512 512"><path fill="currentColor" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32zM80 32C35.8 32 0 67.8 0 112v320c0 44.2 35.8 80 80 80h320c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v112c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16h112c17.7 0 32-14.3 32-32s-14.3-32-32-32z"/></symbol><use href="#ai:fa6-solid:arrow-up-right-from-square"></use>  </svg> </div> </a> </div> </div> <div class="flex items-center navbar-buttons" id="navbar-buttons"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var l=(n,t)=>{let i=async()=>{await(await n())()},e=typeof t.value=="object"?t.value:void 0,s={timeout:e==null?void 0:e.timeout};"requestIdleCallback"in window?window.requestIdleCallback(i,s):setTimeout(i,s.timeout||200)};(self.Astro||(self.Astro={})).idle=l;window.dispatchEvent(new Event("astro:idle"));})();</script><script>(()=>{var g=Object.defineProperty;var w=(c,s,d)=>s in c?g(c,s,{enumerable:!0,configurable:!0,writable:!0,value:d}):c[s]=d;var l=(c,s,d)=>w(c,typeof s!="symbol"?s+"":s,d);var E=new Set(["__proto__","constructor","prototype"]);{let c={0:t=>y(t),1:t=>d(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(d(t)),5:t=>new Set(d(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},s=t=>{let[p,e]=t;return p in c?c[p](e):void 0},d=t=>t.map(s),y=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([p,e])=>[p,s(e)]));class f extends HTMLElement{constructor(){super(...arguments);l(this,"Component");l(this,"hydrator");l(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},i=this.querySelectorAll("template[data-astro-template]");for(let o of i){let a=o.closest(this.tagName);a!=null&&a.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let a=o.closest(this.tagName);a!=null&&a.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let u;try{u=this.hasAttribute("props")?y(JSON.parse(this.getAttribute("props"))):{}}catch(o){let a=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(a+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${a}`,this.getAttribute("props"),o),o}let h;await this.hydrator(this)(this.Component,u,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});l(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}getRetryImportUrl(e){let n=new URL(e,document.baseURI),r=`astro-retry=${Date.now()}`,i=n.hash.replace(/^#/,"");return n.hash=i?`${i}&${r}`:r,n.toString()}async importWithRetry(e){try{return await import(e)}catch(n){return await new Promise(r=>setTimeout(r,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let n=this.getAttribute("component-url"),r=new CustomEvent("astro:hydration-error",{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:n}});this.dispatchEvent(r)&&console.error(`[astro-island] Error hydrating ${n}`,e)}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url");try{let[i,{default:u}]=await Promise.all([this.importWithRetry(this.getAttribute("component-url")),r?this.importWithRetry(r):Promise.resolve({default:()=>()=>{}})]),h=this.getAttribute("component-export")||"default";if(h.includes(".")){this.Component=i;for(let m of h.split(".")){if(E.has(m)||!this.Component||typeof this.Component!="object"&&typeof this.Component!="function"||!Object.hasOwn(this.Component,m))throw new Error(`Invalid component export path: ${h}`);this.Component=this.Component[m]}}else{if(E.has(h))throw new Error(`Invalid component export path: ${h}`);this.Component=i[h]}return this.hydrator=u,this.hydrate}catch(i){return this.handleHydrationError(i),()=>{}}},e,this)}catch(r){this.handleHydrationError(r)}}attributeChangedCallback(){this.hydrate()}}l(f,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",f)}})();</script><astro-island uid="PDSYR" component-url="/_astro/search.DULM41Oi.js" component-export="default" renderer-url="/_astro/client.svelte.DeUPW9R7.js" props="{}" ssr client="idle" opts="{&quot;name&quot;:&quot;Search&quot;,&quot;value&quot;:true}" await-children><!--[--><div id="search-bar" class="hidden lg:flex transition-all items-center h-11 rounded-lg btn-plain scale-animation active:scale-90 w-11" role="button" tabindex="0" aria-label="Search"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base absolute text-[1.25rem] pointer-events-none left-1/2 -translate-x-1/2 transition my-auto svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14"/></svg><!----></span><!--]--><!----> <input id="search-input-desktop" placeholder="Search" value="" class="transition-all pl-10 text-sm bg-transparent outline-0 h-full w-0 text-black/50 dark:text-white/50 svelte-acx8g7"/></div> <button aria-label="Search Panel" id="search-switch" class="btn-plain scale-animation lg:hidden! rounded-lg w-11 h-11 active:scale-90 flex items-center justify-center"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14"/></svg><!----></span><!--]--><!----></button> <div id="search-panel" class="card-base float-panel p-2 float-panel-closed absolute md:w-120 top-20 left-4 md:left-[unset] right-4 z-50 search-panel"><!--[0--><div id="search-bar-inside" class="flex relative lg:hidden transition-all items-center h-11 rounded-xl bg-black/4 hover:bg-black/6 focus-within:bg-black/6 dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base absolute text-[1.25rem] pointer-events-none ml-3 transition my-auto text-black/30 dark:text-white/30 svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5t1.888-4.612T9.5 3t4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5t-1.312-3.187T9.5 5T6.313 6.313T5 9.5t1.313 3.188T9.5 14"/></svg><!----></span><!--]--><!----> <input placeholder="Search" value="" class="pl-10 absolute inset-0 text-sm bg-transparent outline-0 focus:w-60 text-black/50 dark:text-white/50 svelte-acx8g7"/></div> <!--[--><!--]--><!----><!--]--></div><!----><!--]--><!--astro:end--></astro-island> <astro-island uid="Z1wt39G" component-url="/_astro/translator.CghfErgy.js" component-export="default" renderer-url="/_astro/client.svelte.DeUPW9R7.js" props="{}" ssr client="idle" opts="{&quot;name&quot;:&quot;Translator&quot;,&quot;value&quot;:true}" await-children><!--[--><!--[0--><div class="relative z-50"><button aria-label="Language Translation" class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90 flex items-center justify-center" id="translate-switch"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] transition svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="m11.9 22l4.55-12h2.1l4.55 12H21l-1.075-3.05h-4.85L14 22zM4 19l-1.4-1.4l5.05-5.05q-.875-.875-1.588-2T4.75 8h2.1q.5.975 1 1.7t1.2 1.45q.825-.825 1.713-2.313T12.1 6H1V4h7V2h2v2h7v2h-2.9q-.525 1.8-1.575 3.7t-2.075 2.9l2.4 2.45l-.75 2.05l-3.05-3.125zm11.7-1.8h3.6l-1.8-5.1z"/></svg><!----></span><!--]--><!----></button> <div id="translate-panel-wrapper" class="fixed top-14.5 pt-5 right-4 w-[calc(100vw-2rem)] max-w-64 md:absolute md:top-11 md:right-0 md:w-64 md:pt-5 transition-all z-50 float-panel-closed"><div id="translate-panel" class="card-base float-panel p-2 p-4 w-full ignore"><!--[0--><div class="text-sm font-medium text-(--primary) mb-3 px-1">Select Language / Langue / Sprache</div> <div class="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto svelte-oywurh"><!--[--><button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5  gap-3 p-2! h-auto!"><!--[0--><span class="text-lg transition">🇺🇸</span> <span class="text-sm transition grow text-left">English</span> <!--[-1--><!--]--><!----><!--]--></button><button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5  gap-3 p-2! h-auto!"><!--[0--><span class="text-lg transition">🇫🇷</span> <span class="text-sm transition grow text-left">Français</span> <!--[-1--><!--]--><!----><!--]--></button><button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5  gap-3 p-2! h-auto!"><!--[0--><span class="text-lg transition">🇩🇪</span> <span class="text-sm transition grow text-left">Deutsch</span> <!--[-1--><!--]--><!----><!--]--></button><!--]--></div><!----><!--]--></div><!----></div></div><!--]--><!--]--><!--astro:end--></astro-island> <astro-island uid="Z2fVt63" component-url="/_astro/displaySettings.CXI6_GJO.js" component-export="default" renderer-url="/_astro/client.svelte.DeUPW9R7.js" props="{}" ssr client="idle" opts="{&quot;name&quot;:&quot;DisplaySettings&quot;,&quot;value&quot;:true}" await-children><!--[--><div class="relative z-50"><button aria-label="Display Settings" class="btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90 flex items-center justify-center" id="display-settings-switch"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12 22q-2.05 0-3.875-.788t-3.187-2.15t-2.15-3.187T2 12q0-2.075.813-3.9t2.2-3.175T8.25 2.788T12.2 2q2 0 3.775.688t3.113 1.9t2.125 2.875T22 11.05q0 2.875-1.75 4.413T16 17h-1.85q-.225 0-.312.125t-.088.275q0 .3.375.863t.375 1.287q0 1.25-.687 1.85T12 22m-4.425-9.425Q8 12.15 8 11.5t-.425-1.075T6.5 10t-1.075.425T5 11.5t.425 1.075T6.5 13t1.075-.425m3-4Q11 8.15 11 7.5t-.425-1.075T9.5 6t-1.075.425T8 7.5t.425 1.075T9.5 9t1.075-.425m5 0Q16 8.15 16 7.5t-.425-1.075T14.5 6t-1.075.425T13 7.5t.425 1.075T14.5 9t1.075-.425m3 4Q19 12.15 19 11.5t-.425-1.075T17.5 10t-1.075.425T16 11.5t.425 1.075T17.5 13t1.075-.425M12 20q.225 0 .363-.125t.137-.325q0-.35-.375-.825T11.75 17.3q0-1.05.725-1.675T14.25 15H16q1.65 0 2.825-.962T20 11.05q0-3.025-2.312-5.038T12.2 4Q8.8 4 6.4 6.325T4 12q0 3.325 2.338 5.663T12 20"/></svg><!----></span><!--]--><!----></button> <div id="display-setting-wrapper" class="fixed top-14.5 pt-5 right-4 w-[calc(100vw-2rem)] max-w-80 md:absolute md:top-11 md:right-0 md:w-80 md:pt-5 transition-all z-50 float-panel-closed"><div id="display-setting" class="card-base float-panel px-4 py-4 w-full svelte-19ehqli"><div class="flex flex-row gap-2 mb-3 items-center justify-between"><div class="flex gap-2 font-bold text-lg text-neutral-900 dark:text-neutral-100 transition relative ml-3 before:w-1 before:h-4 before:rounded-md before:bg-(--primary) before:absolute before:-left-3 before:top-[0.33rem]">Theme Color <button aria-label="Reset to Default" class="btn-regular w-7 h-7 rounded-md active:scale-90 flex items-center justify-center opacity-0 pointer-events-none"><div class="text-(--btn-content) flex items-center justify-center"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[0.875rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512" fill="currentColor"><path fill="currentColor" d="M125.7 160H176c17.7 0 32 14.3 32 32s-14.3 32-32 32H48c-17.7 0-32-14.3-32-32V64c0-17.7 14.3-32 32-32s32 14.3 32 32v51.2l17.6-17.6c87.5-87.5 229.3-87.5 316.8 0s87.5 229.3 0 316.8s-229.3 87.5-316.8 0c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0c62.5 62.5 163.8 62.5 226.3 0s62.5-163.8 0-226.3s-163.8-62.5-226.3 0z"/></svg><!----></span><!--]--><!----></div></button></div> <div class="flex gap-1"><div id="hueValue" class="transition bg-(--btn-regular-bg) w-10 h-7 rounded-md flex justify-center font-bold text-sm items-center text-(--btn-content)">200</div></div></div> <div class="w-full h-6 px-1 bg-[oklch(0.80_0.10_0)] dark:bg-[oklch(0.70_0.10_0)] rounded-sm select-none"><input aria-label="Theme Color" type="range" min="0" max="360" value="200" class="slider svelte-19ehqli" id="colorSlider" step="5" style="width: 100%"/></div></div></div></div><!--]--><!--astro:end--></astro-island> <astro-island uid="1sVqFG" component-url="/_astro/lightDarkSwitch.z-pbv1-R.js" component-export="default" renderer-url="/_astro/client.svelte.DeUPW9R7.js" props="{}" ssr client="idle" opts="{&quot;name&quot;:&quot;LightDarkSwitch&quot;,&quot;value&quot;:true}" await-children><!--[--><div class="relative z-50" role="menu" tabindex="-1"><button aria-label="Light/Dark/System Mode" role="menuitem" class="relative btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90 flex items-center justify-center" id="scheme-switch"><div class="absolute inset-0 flex items-center justify-center opacity-0"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M11 3V2q0-.425.288-.712T12 1t.713.288T13 2v1q0 .425-.288.713T12 4t-.712-.288T11 3m0 19v-1q0-.425.288-.712T12 20t.713.288T13 21v1q0 .425-.288.713T12 23t-.712-.288T11 22m11-9h-1q-.425 0-.712-.288T20 12t.288-.712T21 11h1q.425 0 .713.288T23 12t-.288.713T22 13M3 13H2q-.425 0-.712-.288T1 12t.288-.712T2 11h1q.425 0 .713.288T4 12t-.288.713T3 13m16.75-7.325l-.35.35q-.275.275-.687.275T18 6q-.275-.275-.288-.687t.263-.713l.375-.375q.275-.3.7-.3t.725.3t.288.725t-.313.725M6.025 19.4l-.375.375q-.275.3-.7.3t-.725-.3t-.288-.725t.313-.725l.35-.35q.275-.275.688-.275T6 18q.275.275.288.688t-.263.712m12.3.35l-.35-.35q-.275-.275-.275-.687T18 18q.275-.275.688-.287t.712.262l.375.375q.3.275.3.7t-.3.725t-.725.288t-.725-.313M4.6 6.025l-.375-.375q-.3-.275-.3-.7t.3-.725t.725-.288t.725.313l.35.35q.275.275.275.688T6 6q-.275.275-.687.288T4.6 6.025M7.75 16.25Q6 14.5 6 12t1.75-4.25T12 6t4.25 1.75T18 12t-1.75 4.25T12 18t-4.25-1.75m7.088-1.412Q16 13.675 16 12t-1.162-2.838T12 8T9.162 9.163T8 12t1.163 2.838T12 16t2.838-1.162M12 12"/></svg><!----></span><!--]--><!----></div> <div class="absolute inset-0 flex items-center justify-center"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12 21q-3.775 0-6.387-2.613T3 12q0-3.45 2.25-5.988T11 3.05q.325-.05.575.088t.4.362t.163.525t-.188.575q-.425.65-.638 1.375T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q.775 0 1.538-.225t1.362-.625q.275-.175.563-.162t.512.137q.25.125.388.375t.087.6q-.35 3.45-2.937 5.725T12 21m0-2q2.2 0 3.95-1.213t2.55-3.162q-.5.125-1 .2t-1 .075q-3.075 0-5.238-2.163T9.1 7.5q0-.5.075-1t.2-1q-1.95.8-3.163 2.55T5 12q0 2.9 2.05 4.95T12 19m-.25-6.75"/></svg><!----></span><!--]--><!----></div> <div class="absolute inset-0 flex items-center justify-center opacity-0"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12 17V7Q9.925 7 8.463 8.463T7 12t1.463 3.538T12 17m0 5q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></svg><!----></span><!--]--><!----></div></button> <div id="light-dark-panel" class="absolute transition top-11 -right-2 pt-5 float-panel-closed"><div class="card-base float-panel p-2"><!--[0--><button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"><!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] mr-3 svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M11 3V2q0-.425.288-.712T12 1t.713.288T13 2v1q0 .425-.288.713T12 4t-.712-.288T11 3m0 19v-1q0-.425.288-.712T12 20t.713.288T13 21v1q0 .425-.288.713T12 23t-.712-.288T11 22m11-9h-1q-.425 0-.712-.288T20 12t.288-.712T21 11h1q.425 0 .713.288T23 12t-.288.713T22 13M3 13H2q-.425 0-.712-.288T1 12t.288-.712T2 11h1q.425 0 .713.288T4 12t-.288.713T3 13m16.75-7.325l-.35.35q-.275.275-.687.275T18 6q-.275-.275-.288-.687t.263-.713l.375-.375q.275-.3.7-.3t.725.3t.288.725t-.313.725M6.025 19.4l-.375.375q-.275.3-.7.3t-.725-.3t-.288-.725t.313-.725l.35-.35q.275-.275.688-.275T6 18q.275.275.288.688t-.263.712m12.3.35l-.35-.35q-.275-.275-.275-.687T18 18q.275-.275.688-.287t.712.262l.375.375q.3.275.3.7t-.3.725t-.725.288t-.725-.313M4.6 6.025l-.375-.375q-.3-.275-.3-.7t.3-.725t.725-.288t.725.313l.35.35q.275.275.275.688T6 6q-.275.275-.687.288T4.6 6.025M7.75 16.25Q6 14.5 6 12t1.75-4.25T12 6t4.25 1.75T18 12t-1.75 4.25T12 18t-4.25-1.75m7.088-1.412Q16 13.675 16 12t-1.162-2.838T12 8T9.162 9.163T8 12t1.163 2.838T12 16t2.838-1.162M12 12"/></svg><!----></span><!--]--><!----> Light<!----><!--]--></button><!----> <button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5 current-theme-btn"><!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] mr-3 svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12 21q-3.775 0-6.387-2.613T3 12q0-3.45 2.25-5.988T11 3.05q.325-.05.575.088t.4.362t.163.525t-.188.575q-.425.65-.638 1.375T11.1 7.5q0 2.25 1.575 3.825T16.5 12.9q.775 0 1.538-.225t1.362-.625q.275-.175.563-.162t.512.137q.25.125.388.375t.087.6q-.35 3.45-2.937 5.725T12 21m0-2q2.2 0 3.95-1.213t2.55-3.162q-.5.125-1 .2t-1 .075q-3.075 0-5.238-2.163T9.1 7.5q0-.5.075-1t.2-1q-1.95.8-3.163 2.55T5 12q0 2.9 2.05 4.95T12 19m-.25-6.75"/></svg><!----></span><!--]--><!----> Dark<!----><!--]--></button><!----> <button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95"><!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] mr-3 svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12 17V7Q9.925 7 8.463 8.463T7 12t1.463 3.538T12 17m0 5q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8"/></svg><!----></span><!--]--><!----> System<!----><!--]--></button><!----><!----><!--]--></div><!----></div></div><!--]--><!--astro:end--></astro-island> <astro-island uid="1XWHdQ" component-url="/_astro/wallpaperSwitch.DOPMhqQH.js" component-export="default" renderer-url="/_astro/client.svelte.DeUPW9R7.js" props="{}" ssr client="idle" opts="{&quot;name&quot;:&quot;WallpaperSwitch&quot;,&quot;value&quot;:true}" await-children><!--[--><div class="relative z-50" role="menu" tabindex="-1"><button aria-label="Wallpaper Mode" role="menuitem" class="relative btn-plain scale-animation rounded-lg h-11 w-11 active:scale-90 flex items-center justify-center" id="wallpaper-mode-switch"><div class="absolute inset-0 flex items-center justify-center"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm0-2h14V5H5zm1-2h12l-3.75-5l-3 4L9 13zm-1 2V5z"/></svg><!----></span><!--]--><!----></div> <div class="absolute inset-0 flex items-center justify-center opacity-0"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19v-6h2v6h6v2zm8 0v-2h6v-6h2v6q0 .825-.587 1.413T19 21zm-7-4l3-4l2.25 3l3-4L18 17zm-3-6V5q0-.825.588-1.412T5 3h6v2H5v6zm16 0V5h-6V3h6q.825 0 1.413.588T21 5v6zm-4.575-1.425Q14 9.15 14 8.5t.425-1.075T15.5 7t1.075.425T17 8.5t-.425 1.075T15.5 10t-1.075-.425"/></svg><!----></span><!--]--><!----></div> <div class="absolute inset-0 flex items-center justify-center opacity-0"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="m21 18.15l-2-2V5H7.85l-2-2H19q.825 0 1.413.588T21 5zm-1.2 4.45L18.2 21H5q-.825 0-1.412-.587T3 19V5.8L1.4 4.2l1.4-1.4l18.4 18.4zM6 17l3-4l2.25 3l.825-1.1L5 7.825V19h11.175l-2-2zm4.6-3.6"/></svg><!----></span><!--]--><!----></div></button> <div id="wallpaper-mode-panel" class="absolute transition top-11 -right-2 pt-5 float-panel-closed"><div class="card-base float-panel p-2"><!--[0--><button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5 current-theme-btn"><!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] mr-3 svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21zm0-2h14V5H5zm1-2h12l-3.75-5l-3 4L9 13zm-1 2V5z"/></svg><!----></span><!--]--><!----> Banner<!----><!--]--></button><!----> <button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95 mb-0.5"><!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] mr-3 svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19v-6h2v6h6v2zm8 0v-2h6v-6h2v6q0 .825-.587 1.413T19 21zm-7-4l3-4l2.25 3l3-4L18 17zm-3-6V5q0-.825.588-1.412T5 3h6v2H5v6zm16 0V5h-6V3h6q.825 0 1.413.588T21 5v6zm-4.575-1.425Q14 9.15 14 8.5t.425-1.075T15.5 7t1.075.425T17 8.5t-.425 1.075T15.5 10t-1.075-.425"/></svg><!----></span><!--]--><!----> Fullscreen<!----><!--]--></button><!----> <button class="flex transition whitespace-nowrap items-center justify-start! w-full btn-plain scale-animation rounded-lg h-9 px-3 font-medium active:scale-95"><!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] mr-3 svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="m21 18.15l-2-2V5H7.85l-2-2H19q.825 0 1.413.588T21 5zm-1.2 4.45L18.2 21H5q-.825 0-1.412-.587T3 19V5.8L1.4 4.2l1.4-1.4l18.4 18.4zM6 17l3-4l2.25 3l.825-1.1L5 7.825V19h11.175l-2-2zm4.6-3.6"/></svg><!----></span><!--]--><!----> None<!----><!--]--></button><!----><!----><!--]--></div><!----></div></div><!--]--><!--astro:end--></astro-island> <astro-island uid="1yk9Id" component-url="/_astro/navMenu.BBkUL1Qm.js" component-export="default" renderer-url="/_astro/client.svelte.DeUPW9R7.js" props="{&quot;links&quot;:[1,[[0,{&quot;name&quot;:[0,&quot;Home&quot;],&quot;url&quot;:[0,&quot;/&quot;],&quot;icon&quot;:[0,&quot;material-symbols:home&quot;],&quot;description&quot;:[0,&quot;Twilight - A simple, clean, and beautiful blog theme.&quot;]}],[0,{&quot;name&quot;:[0,&quot;About&quot;],&quot;url&quot;:[0,&quot;/about/&quot;],&quot;icon&quot;:[0,&quot;material-symbols:account-circle&quot;],&quot;description&quot;:[0,&quot;About PD Dr. sc. Sebastian Schwindt&quot;]}],[0,{&quot;name&quot;:[0,&quot;Teaching&quot;],&quot;url&quot;:[0,&quot;/teaching/&quot;],&quot;icon&quot;:[0,&quot;material-symbols:school&quot;],&quot;description&quot;:[0,&quot;Courses, workshops, and student supervision&quot;]}],[0,{&quot;name&quot;:[0,&quot;Research&quot;],&quot;url&quot;:[0,&quot;/research/&quot;],&quot;icon&quot;:[0,&quot;material-symbols:settings&quot;],&quot;description&quot;:[0,&quot;Research interests, publications, and projects&quot;]}],[0,{&quot;name&quot;:[0,&quot;ORCID&quot;],&quot;url&quot;:[0,&quot;https://orcid.org/0000-0002-7206-0542&quot;],&quot;external&quot;:[0,true],&quot;icon&quot;:[0,&quot;fa6-brands:orcid&quot;],&quot;description&quot;:[0,&quot;Full scientific record on ORCID&quot;]}]]]}" ssr client="idle" opts="{&quot;name&quot;:&quot;NavMenu&quot;,&quot;value&quot;:true}" await-children><!--[--><div class="relative lg:hidden"><button aria-label="Menu" name="Nav Menu" class="btn-plain scale-animation rounded-lg w-11 h-11 active:scale-90" id="nav-menu-switch"><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.25rem] svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h16q.425 0 .713.288T21 17t-.288.713T20 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"/></svg><!----></span><!--]--><!----></button> <div id="nav-menu-panel" class="float-panel fixed transition-all right-4 px-2 py-2 max-h-[80vh] overflow-y-auto float-panel-closed"><!--[--><div class="mobile-menu-item"><a href="/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-(--btn-plain-bg-hover) active:bg-(--btn-plain-bg-active) transition"><div class="flex items-center transition text-black/75 dark:text-white/75 font-bold group-hover:text-(--primary) group-active:text-(--primary)"><!--[0--><!--[-1--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.1rem] mr-2 svelte-1klr2zv" aria-hidden="true" title="Icon not found: material-symbols:home"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"></circle></svg></span><!--]--><!--]--> Home</div> <!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base transition text-[1.25rem] text-(--primary) svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z"/></svg><!----></span><!--]--><!--]--></a></div><div class="mobile-menu-item"><a href="/about/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-(--btn-plain-bg-hover) active:bg-(--btn-plain-bg-active) transition"><div class="flex items-center transition text-black/75 dark:text-white/75 font-bold group-hover:text-(--primary) group-active:text-(--primary)"><!--[0--><!--[-1--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.1rem] mr-2 svelte-1klr2zv" aria-hidden="true" title="Icon not found: material-symbols:account-circle"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"></circle></svg></span><!--]--><!--]--> About</div> <!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base transition text-[1.25rem] text-(--primary) svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z"/></svg><!----></span><!--]--><!--]--></a></div><div class="mobile-menu-item"><a href="/teaching/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-(--btn-plain-bg-hover) active:bg-(--btn-plain-bg-active) transition"><div class="flex items-center transition text-black/75 dark:text-white/75 font-bold group-hover:text-(--primary) group-active:text-(--primary)"><!--[0--><!--[-1--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.1rem] mr-2 svelte-1klr2zv" aria-hidden="true" title="Icon not found: material-symbols:school"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"></circle></svg></span><!--]--><!--]--> Teaching</div> <!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base transition text-[1.25rem] text-(--primary) svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z"/></svg><!----></span><!--]--><!--]--></a></div><div class="mobile-menu-item"><a href="/research/" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-(--btn-plain-bg-hover) active:bg-(--btn-plain-bg-active) transition"><div class="flex items-center transition text-black/75 dark:text-white/75 font-bold group-hover:text-(--primary) group-active:text-(--primary)"><!--[0--><!--[-1--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.1rem] mr-2 svelte-1klr2zv" aria-hidden="true" title="Icon not found: material-symbols:settings"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"></circle></svg></span><!--]--><!--]--> Research</div> <!--[0--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base transition text-[1.25rem] text-(--primary) svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor"><path fill="currentColor" d="M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z"/></svg><!----></span><!--]--><!--]--></a></div><div class="mobile-menu-item"><a href="https://orcid.org/0000-0002-7206-0542" class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-(--btn-plain-bg-hover) active:bg-(--btn-plain-bg-active) transition" target="_blank"><div class="flex items-center transition text-black/75 dark:text-white/75 font-bold group-hover:text-(--primary) group-active:text-(--primary)"><!--[0--><!--[-1--><span class="inline-icon inline-flex items-center justify-center text-base text-[1.1rem] mr-2 svelte-1klr2zv" aria-hidden="true" title="Icon not found: fa6-brands:orcid"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"></circle></svg></span><!--]--><!--]--> ORCID</div> <!--[-1--><!--[0--><span class="inline-icon inline-flex items-center justify-center text-base transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1 svelte-1klr2zv" aria-hidden="true"><!----><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512" fill="currentColor"><path fill="currentColor" d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32zM80 32C35.8 32 0 67.8 0 112v320c0 44.2 35.8 80 80 80h320c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v112c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16h112c17.7 0 32-14.3 32-32s-14.3-32-32-32z"/></svg><!----></span><!--]--><!--]--></a></div><!--]--></div></div><!--]--><!--astro:end--></astro-island> </div> </div> </div> <script type="module">function l(){const e=document.getElementById("navbar");if(!e||e.getAttribute("data-transparent-mode")!=="semifull")return;window.semifullScrollHandler&&window.removeEventListener("scroll",window.semifullScrollHandler);let t=!1;function n(){(window.scrollY||document.documentElement.scrollTop)>50?e?.classList.add("scrolled"):e?.classList.remove("scrolled"),t=!1}function o(){t||(requestAnimationFrame(n),t=!0)}window.semifullScrollHandler=o,window.addEventListener("scroll",o,{passive:!0}),n()}window.initSemifullScrollDetection=l;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",l):l();</script> <script>(function(){const scriptUrl = "/pagefind/pagefind.js";
+
+async function loadPagefind() {
+    try {
+        const response = await fetch(scriptUrl, { method: 'HEAD' });
+        if (!response.ok) {
+            throw new Error(`Pagefind script not found: ${response.status}`);
+        }
+
+        const pagefind = await import(scriptUrl);
+
+        await pagefind.options({
+            excerptLength: 20
+        });
+
+        window.pagefind = pagefind;
+
+        document.dispatchEvent(new CustomEvent('pagefindready'));
+        console.log('Pagefind loaded and initialized successfully, event dispatched.');
+    } catch (error) {
+        console.error('Failed to load Pagefind:', error);
+        window.pagefind = {
+            search: () => Promise.resolve({ results: [] }),
+            options: () => Promise.resolve(),
+        };
+        document.dispatchEvent(new CustomEvent('pagefindloaderror'));
+        console.log('Pagefind load error, event dispatched.');
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', loadPagefind);
+} else {
+    loadPagefind();
+}
+})();</script> </div> </div>  <div id="fullscreen-wallpaper-wrapper" class="fixed inset-0 w-full h-full overflow-hidden pointer-events-none transition-opacity duration-600 hidden" style="z-index: -1; opacity: 0.9;" data-fullscreen-wallpaper> <div id="fullscreen-wallpaper-carousel" class="relative h-full w-full" data-carousel-config="{&quot;enable&quot;:true,&quot;interval&quot;:6,&quot;kenBurns&quot;:true}"> <ul class="carousel-list h-full w-full"> <li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-100 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/rhine1.JPG" alt="Desktop wallpaper 1" class="w-full h-full object-cover" style="object-position: center" loading="eager" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar3.JPG" alt="Desktop wallpaper 2" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/devoll1.JPG" alt="Desktop wallpaper 3" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar-ftir.jpg" alt="Desktop wallpaper 4" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/fish.jpg" alt="Desktop wallpaper 5" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/rhine4.JPG" alt="Desktop wallpaper 6" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar7.jpg" alt="Desktop wallpaper 7" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/devoll2.JPG" alt="Desktop wallpaper 8" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li> <li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-100 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/rhine2.JPG" alt="Mobile wallpaper 1" class="w-full h-full object-cover" style="object-position: center" loading="eager" decoding="async"> </div> </li><li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar5.JPG" alt="Mobile wallpaper 2" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/devoll2.JPG" alt="Mobile wallpaper 3" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/fish.jpg" alt="Mobile wallpaper 4" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative" style="filter: blur(1px);"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar10.jpg" alt="Mobile wallpaper 5" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li> </ul> </div> </div> <script>(function(){const carouselInterval = 6;
+
+    // Fullscreen wallpaper carousel initialization function
+    window.initFullscreenWallpaperCarousel = function() {
+        const carousel = document.getElementById('fullscreen-wallpaper-carousel');
+        if (!carousel) return;
+
+        // Check whether it is the same DOM element with a running timer, to avoid re-initialization resetting the animation
+        if (window.fullscreenWallpaperTimer && window.currentFullscreenWallpaperCarousel === carousel) {
+            return;
+        }
+        window.currentFullscreenWallpaperCarousel = carousel;
+
+        // Initialize global state
+        if (!window.fullscreenWallpaperState) {
+            window.fullscreenWallpaperState = {
+                currentIndex: 0,
+                lastSwitchTime: Date.now()
+            };
+        }
+
+        // Clear the old timer to prevent flicker caused by re-initialization
+        if (window.fullscreenWallpaperTimer) {
+            clearTimeout(window.fullscreenWallpaperTimer);
+            window.fullscreenWallpaperTimer = null;
+        }
+
+        const carouselConfigData = carousel.getAttribute('data-carousel-config');
+        const carouselConfig = carouselConfigData ? JSON.parse(carouselConfigData) : {};
+
+        const desktopItems = carousel.querySelectorAll('.carousel-item.desktop-item');
+        const mobileItems = carousel.querySelectorAll('.carousel-item.mobile-item');
+
+        function setupCarousel(items, isEnabled) {
+            if (items.length === 0) return null;
+
+            // If the carousel is disabled but there are multiple images, show a random one
+            if (items.length > 1 && !isEnabled) {
+                items.forEach(item => {
+                    item.classList.add('opacity-0');
+                    item.classList.remove('opacity-100');
+                });
+                const randomIndex = Math.floor(Math.random() * items.length);
+                const randomItem = items[randomIndex];
+                randomItem.classList.add('opacity-100');
+                randomItem.classList.remove('opacity-0');
+                return null;
+            }
+
+            if (items.length > 1 && isEnabled) {
+                // Use the index from global state
+                let currentIndex = window.fullscreenWallpaperState.currentIndex;
+                // Ensure the index is valid
+                if (currentIndex >= items.length) {
+                    currentIndex = 0;
+                    window.fullscreenWallpaperState.currentIndex = 0;
+                }
+                
+                function switchToSlide(index) {
+                    const currentItem = items[currentIndex];
+                    currentItem.classList.remove('opacity-100');
+                    currentItem.classList.add('opacity-0');
+                    currentIndex = index;
+                    // Update global state
+                    window.fullscreenWallpaperState.currentIndex = index;
+                    window.fullscreenWallpaperState.lastSwitchTime = Date.now();
+
+                    const nextItem = items[currentIndex];
+                    nextItem.classList.add('opacity-100');
+                    nextItem.classList.remove('opacity-0');
+                    // Reset the next image's animation by toggling the is-animating class
+                    if (nextItem.classList.contains('ken-burns-enabled')) {
+                        nextItem.classList.remove('is-animating');
+                        nextItem.offsetHeight; // force reflow
+                        nextItem.classList.add('is-animating');
+                    }
+                }
+
+                // Initialization: show the image at the current index
+                items.forEach((item, index) => {
+                    if (index === currentIndex) {
+                        item.classList.add('opacity-100');
+                        item.classList.remove('opacity-0');
+                        // Enable animation for the initial image
+                        if (item.classList.contains('ken-burns-enabled')) {
+                            item.classList.add('is-animating');
+                        }
+                    } else {
+                        item.classList.add('opacity-0');
+                        item.classList.remove('opacity-100');
+                        item.classList.remove('is-animating');
+                    }
+                });
+
+                return {
+                    next: () => switchToSlide((currentIndex + 1) % items.length),
+                    prev: () => switchToSlide((currentIndex - 1 + items.length) % items.length),
+                };
+            }
+            return null;
+        }
+
+        const desktopCtrl = setupCarousel(desktopItems, carouselConfig?.enable);
+        const mobileCtrl = setupCarousel(mobileItems, carouselConfig?.enable);
+
+        if (carouselConfig?.enable && (desktopCtrl || mobileCtrl)) {
+            function startCarousel() {
+                if (window.fullscreenWallpaperTimer) clearTimeout(window.fullscreenWallpaperTimer);
+                
+                const runLoop = () => {
+                    const now = Date.now();
+                    const intervalMs = carouselInterval * 1000;
+                    const elapsed = now - window.fullscreenWallpaperState.lastSwitchTime;
+                    let delay = intervalMs - elapsed;
+                    
+                    if (delay < 0) delay = 0;
+
+                    window.fullscreenWallpaperTimer = setTimeout(() => {
+                        desktopCtrl?.next();
+                        mobileCtrl?.next();
+                        runLoop();
+                    }, delay);
+                };
+
+                runLoop();
+            }
+
+            startCarousel();
+        }
+    }
+
+    // Wallpaper visibility control function
+    function showFullscreenWallpaper() {
+        requestAnimationFrame(() => {
+            const wallpaper = document.getElementById('fullscreen-wallpaper');
+            if (wallpaper) {
+                wallpaper.classList.remove('opacity-0');
+            }
+            const mobileWallpaper = document.querySelector('.block.md\\:hidden[alt="Mobile wallpaper"]');
+            if (mobileWallpaper && !document.getElementById('fullscreen-wallpaper-carousel')) {
+                mobileWallpaper.classList.remove('opacity-0');
+                mobileWallpaper.classList.add('opacity-100');
+            }
+            const carousel = document.getElementById('fullscreen-wallpaper-carousel');
+            if (carousel) {
+                window.initFullscreenWallpaperCarousel();
+            }
+        });
+    }
+
+    // Listen for Astro page-transition events
+    document.addEventListener('astro:after-swap', () => {
+        showFullscreenWallpaper();
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', showFullscreenWallpaper);
+    } else {
+        showFullscreenWallpaper();
+    }
+})();</script>  <script type="module">document.body.classList.add("wallpaper-transparent");</script> <!-- Banner Wrapper --><div id="banner-wrapper" class="absolute z-10 w-full transition-all duration-600 overflow-hidden" style="top: -36vh"> <div id="banner-carousel" class="relative h-full w-full" data-carousel-config="{&quot;enable&quot;:true,&quot;interval&quot;:6,&quot;kenBurns&quot;:true}"> <ul class="carousel-list h-full w-full"> <li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-100 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/rhine1.JPG" alt="Desktop banner 1" class="w-full h-full object-cover" style="object-position: center" loading="eager" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar3.JPG" alt="Desktop banner 2" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/devoll1.JPG" alt="Desktop banner 3" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar-ftir.jpg" alt="Desktop banner 4" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/fish.jpg" alt="Desktop banner 5" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/rhine4.JPG" alt="Desktop banner 6" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar7.jpg" alt="Desktop banner 7" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item desktop-item hidden md:block absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/devoll2.JPG" alt="Desktop banner 8" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li> <li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-100 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/rhine2.JPG" alt="Mobile banner 1" class="w-full h-full object-cover" style="object-position: center" loading="eager" decoding="async"> </div> </li><li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar5.JPG" alt="Mobile banner 2" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/devoll2.JPG" alt="Mobile banner 3" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/fish.jpg" alt="Mobile banner 4" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li><li class="carousel-item mobile-item block md:hidden absolute inset-0 transition-opacity duration-1200 opacity-0 ken-burns-enabled"> <div class="object-cover h-full w-full overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/isar10.jpg" alt="Mobile banner 5" class="w-full h-full object-cover" style="object-position: center" loading="lazy" decoding="async"> </div> </li> </ul> </div> <!-- Home page text overlay --> <div class="banner-text-overlay absolute inset-0 z-20 flex items-center justify-center hidden"> <div class="w-4/5 lg:w-3/4 text-center mb-0"> <div class="flex flex-col"> <h1 class="banner-title text-6xl lg:text-8xl text-white mb-2 lg:mb-4"> Ecohydraulics &amp; Climate-Aware Restoration </h1> <h2 class="banner-subtitle text-xl lg:text-3xl text-white/90"> <span class="typewriter " data-text="[&quot;PD Dr. sc. (PhD) Sebastian Schwindt&quot;]" data-speed="90" data-delete-speed="50" data-pause-time="4000" data-astro-cid-jxgbxomk></span> <script type="module">class n{element;texts;currentTextIndex=0;speed;deleteSpeed;pauseTime;currentIndex=0;isDeleting=!1;timeoutId=null;constructor(t){this.element=t;const e=t.dataset.text||"";try{const i=JSON.parse(e);this.texts=Array.isArray(i)?i:[e]}catch{this.texts=[e]}this.speed=parseInt(t.dataset.speed||"100"),this.deleteSpeed=parseInt(t.dataset.deleteSpeed||"50"),this.pauseTime=parseInt(t.dataset.pauseTime||"2000"),this.texts.length>1&&!this.isTypewriterEnabled()?this.showRandomText():this.start()}isTypewriterEnabled(){return this.element.dataset.speed!==void 0||this.element.dataset.deleteSpeed!==void 0||this.element.dataset.pauseTime!==void 0}showRandomText(){const t=Math.floor(Math.random()*this.texts.length);this.element.textContent=this.texts[t]}start(){this.texts.length!==0&&this.type()}getCurrentText(){return this.texts[this.currentTextIndex]||""}type(){const t=this.getCurrentText();this.isDeleting?this.currentIndex>0?(this.currentIndex--,this.element.textContent=t.substring(0,this.currentIndex),this.timeoutId=window.setTimeout(()=>this.type(),this.deleteSpeed)):(this.isDeleting=!1,this.currentTextIndex=(this.currentTextIndex+1)%this.texts.length,this.timeoutId=window.setTimeout(()=>this.type(),this.speed)):this.currentIndex<t.length?(this.currentIndex++,this.element.textContent=t.substring(0,this.currentIndex),this.timeoutId=window.setTimeout(()=>this.type(),this.speed)):this.texts.length>1&&(this.isDeleting=!0,this.timeoutId=window.setTimeout(()=>this.type(),this.pauseTime))}destroy(){this.timeoutId&&clearTimeout(this.timeoutId)}}document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".typewriter").forEach(t=>{new n(t)})});document.addEventListener("swup:contentReplaced",()=>{document.querySelectorAll(".typewriter").forEach(t=>{new n(t)})});</script> </h2> </div> </div> </div> <!-- Water waves effect --> <div class="waves-container absolute -bottom-px h-[10vh] max-h-37.5 min-h-12.5 w-full md:h-[15vh]" id="header-waves"> <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 21 150 30" preserveAspectRatio="none" shape-rendering="geometricPrecision"> <defs> <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v48h-352z"></path> </defs> <g class="parallax">  <use xlink:href="#gentle-wave" x="48" y="0" class="opacity-25 fill-(--page-bg)"></use> <use xlink:href="#gentle-wave" x="48" y="3" class="opacity-50 fill-(--page-bg)"></use> <use xlink:href="#gentle-wave" x="48" y="5" class="opacity-75 fill-(--page-bg)"></use> <use xlink:href="#gentle-wave" x="48" y="7" class="fill-(--page-bg)"></use>  </g> </svg> </div> </div> <script>(function(){const carouselInterval = 6;
+
+    // Carousel initialization function
+    window.initBannerCarousel = function() {
+        const carousel = document.getElementById('banner-carousel');
+        if (!carousel) return;
+
+        // Check whether it's the same DOM element with a running timer, to avoid re-initialization resetting the animation
+        if (window.bannerCarouselTimer && window.currentBannerCarousel === carousel) {
+            return;
+        }
+        window.currentBannerCarousel = carousel;
+
+        // Initialize global state — random starting slide so the banner order feels arbitrary
+        if (!window.bannerCarouselState) {
+            const slideCount = Math.max(
+                carousel.querySelectorAll('.carousel-item.desktop-item').length,
+                carousel.querySelectorAll('.carousel-item.mobile-item').length,
+                1
+            );
+            window.bannerCarouselState = {
+                currentIndex: Math.floor(Math.random() * slideCount),
+                lastSwitchTime: Date.now()
+            };
+        }
+
+        // Clear the old timer to prevent flicker from re-initialization
+        if (window.bannerCarouselTimer) {
+            clearTimeout(window.bannerCarouselTimer);
+            window.bannerCarouselTimer = null;
+        }
+
+        const carouselConfigData = carousel.getAttribute('data-carousel-config');
+        const carouselConfig = carouselConfigData ? JSON.parse(carouselConfigData) : {};
+
+        const desktopItems = carousel.querySelectorAll('.carousel-item.desktop-item');
+        const mobileItems = carousel.querySelectorAll('.carousel-item.mobile-item');
+
+        function setupCarousel(items, isEnabled) {
+            if (items.length === 0) return null;
+
+            // If the carousel is disabled but there are multiple images, show a random one
+            if (items.length > 1 && !isEnabled) {
+                items.forEach(item => {
+                    item.classList.add('opacity-0');
+                    item.classList.remove('opacity-100');
+                });
+                const randomIndex = Math.floor(Math.random() * items.length);
+                const randomItem = items[randomIndex];
+                randomItem.classList.add('opacity-100');
+                randomItem.classList.remove('opacity-0');
+                return null;
+            }
+
+            if (items.length > 1 && isEnabled) {
+                // Use the index from the global state
+                let currentIndex = window.bannerCarouselState.currentIndex;
+                // Ensure the index is valid
+                if (currentIndex >= items.length) {
+                    currentIndex = 0;
+                    window.bannerCarouselState.currentIndex = 0;
+                }
+                
+                function switchToSlide(index) {
+                    const currentItem = items[currentIndex];
+                    currentItem.classList.remove('opacity-100');
+                    currentItem.classList.add('opacity-0');
+                    currentIndex = index;
+                    // Update the global state
+                    window.bannerCarouselState.currentIndex = index;
+                    window.bannerCarouselState.lastSwitchTime = Date.now();
+
+                    const nextItem = items[currentIndex];
+                    nextItem.classList.add('opacity-100');
+                    nextItem.classList.remove('opacity-0');
+                    // Reset the next image's animation by toggling the is-animating class
+                    if (nextItem.classList.contains('ken-burns-enabled')) {
+                        nextItem.classList.remove('is-animating');
+                        nextItem.offsetHeight; // Force a reflow
+                        nextItem.classList.add('is-animating');
+                    }
+                }
+
+                // Initialize: show the image based on the current index
+                items.forEach((item, index) => {
+                    if (index === currentIndex) {
+                        item.classList.add('opacity-100');
+                        item.classList.remove('opacity-0');
+                        // Start the animation for the initial image
+                        if (item.classList.contains('ken-burns-enabled')) {
+                            item.classList.add('is-animating');
+                        }
+                    } else {
+                        item.classList.add('opacity-0');
+                        item.classList.remove('opacity-100');
+                        item.classList.remove('is-animating');
+                    }
+                });
+
+                return {
+                    next: () => switchToSlide((currentIndex + 1) % items.length),
+                    prev: () => switchToSlide((currentIndex - 1 + items.length) % items.length),
+                };
+            }
+            return null;
+        }
+
+        const desktopCtrl = setupCarousel(desktopItems, carouselConfig?.enable);
+        const mobileCtrl = setupCarousel(mobileItems, carouselConfig?.enable);
+
+        if (carouselConfig?.enable && (desktopCtrl || mobileCtrl)) {
+            function startCarousel() {
+                if (window.bannerCarouselTimer) clearTimeout(window.bannerCarouselTimer);
+                
+                const runLoop = () => {
+                    const now = Date.now();
+                    const intervalMs = carouselInterval * 1000;
+                    const elapsed = now - window.bannerCarouselState.lastSwitchTime;
+                    let delay = intervalMs - elapsed;
+                    
+                    if (delay < 0) delay = 0;
+
+                    window.bannerCarouselTimer = setTimeout(() => {
+                        desktopCtrl?.next();
+                        mobileCtrl?.next();
+                        runLoop();
+                    }, delay);
+                };
+
+                runLoop();
+            }
+
+            startCarousel();
+        }
+    }
+
+    // Banner display control function
+    function showBanner() {
+        requestAnimationFrame(() => {
+            const banner = document.getElementById('banner');
+            if (banner) {
+                banner.classList.remove('opacity-0');
+            }
+            const mobileBanner = document.querySelector('.block.lg\\:hidden[alt="Mobile banner"]');
+            if (mobileBanner && !document.getElementById('banner-carousel')) {
+                mobileBanner.classList.remove('opacity-0');
+                mobileBanner.classList.add('opacity-100');
+            }
+            const carousel = document.getElementById('banner-carousel');
+            if (carousel) {
+                window.initBannerCarousel();
+            }
+        });
+    }
+
+    // Listen for Astro page navigation events
+    document.addEventListener('astro:after-swap', () => {
+        showBanner();
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', showBanner);
+    } else {
+        showBanner();
+    }
+})();</script>  <div class="absolute w-full z-30 pointer-events-none transition-transform duration-600 top-0 min-h-[calc(100vh-var(--main-content-top))]  wallpaper-transparent" style="transform: translateY(var(--main-content-top))"> <div class="relative max-w-(--page-width) mx-auto pointer-events-auto"> <div id="main-grid" class="w-full left-0 right-0 grid grid-cols-1 md:grid-cols-[17.5rem_1fr] lg:grid-cols-[1fr_17.5rem] grid-rows-[auto] mx-auto gap-4 px-0 md:px-4  mobile-both-sidebar "> <!-- Banner image credit -->  <div class="sidebar-stack contents lg:contents md:flex md:flex-col md:col-start-1 md:row-start-1 md:gap-4"> <div id="left-sidebar" class="hidden"></div> <div id="right-sidebar" data-side="right" class="mb-0 col-span-1 hidden min-w-0 md:hidden lg:flex lg:flex-col lg:max-w-70 lg:col-start-2 lg:col-end-3 lg:row-start-1 lg:row-end-2 wallpaper-transparent onload-animation-up flex flex-col w-full h-full gap-(--sidebar-spacing)"> <!-- Top fixed component area --> <div id="profile-right" data-swup-persist="profile-right" class="card-base p-3  transition-swup-fade"> <a aria-label="Go to About Page" href="/about/" class="group block relative mx-auto mt-1 lg:mx-0 lg:mt-0 mb-3
+       max-w-48 lg:max-w-none overflow-hidden rounded-xl active:scale-95"> <div class="absolute transition pointer-events-none group-hover:bg-black/30 group-active:bg-black/50
+        w-full h-full z-50 flex items-center justify-center"> <svg width="1.13em" height="1em" class="transition opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100 text-white text-5xl" data-icon="fa6-regular:address-card">   <symbol id="ai:fa6-regular:address-card" viewBox="0 0 576 512"><path fill="currentColor" d="M512 80c8.8 0 16 7.2 16 16v320c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16zM64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zm144 224a64 64 0 1 0 0-128a64 64 0 1 0 0 128m-32 32c-44.2 0-80 35.8-80 80c0 8.8 7.2 16 16 16h192c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80zm200-144c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24h80c13.3 0 24-10.7 24-24s-10.7-24-24-24z"/></symbol><use href="#ai:fa6-regular:address-card"></use>  </svg> </div> <div class="mx-auto lg:w-full h-full lg:mt-0 overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/ssc.png" alt="Profile Image of the Author" class="w-full h-full object-cover" style="object-position: center" loading="eager" decoding="async"> </div> </a> <div class="px-2"> <div class="font-bold text-xl text-center mb-1 dark:text-neutral-50 transition">Sebastian Schwindt</div> <div class="h-1 w-5 bg-(--primary) mx-auto rounded-full mb-2 transition"></div> <div class="text-center text-neutral-400 mb-2.5 transition">Ecohydraulics, hydro-morphodynamics, and climate-aware river restoration.</div> <div class="flex gap-2 justify-center mb-1"> <a rel="me" aria-label="LinkedIn" href="https://www.linkedin.com/in/sebastian-schwindt" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="0.88em" height="1em" class="text-[1.5rem]" data-icon="fa6-brands:linkedin">   <symbol id="ai:fa6-brands:linkedin" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5c0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7c-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5c67.2 0 79.7 44.3 79.7 101.9z"/></symbol><use href="#ai:fa6-brands:linkedin"></use>  </svg> </a><a rel="me" aria-label="Google Scholar" href="https://scholar.google.com/citations?user=246FKewAAAAJ&amp;hl=en" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="1em" height="1em" class="text-[1.5rem]" data-icon="fa6-brands:google-scholar">   <symbol id="ai:fa6-brands:google-scholar" viewBox="0 0 512 512"><path fill="currentColor" d="M390.9 298.5s0 .1.1.1c9.2 19.4 14.4 41.1 14.4 64C405.3 445.1 338.5 512 256 512s-149.3-66.9-149.3-149.3c0-22.9 5.2-44.6 14.4-64c1.7-3.6 3.6-7.2 5.6-10.7q6.6-11.4 15-21.3c27.4-32.6 68.5-53.3 114.4-53.3c33.6 0 64.6 11.1 89.6 29.9c9.1 6.9 17.4 14.7 24.8 23.5c5.6 6.6 10.6 13.8 15 21.3c2 3.4 3.8 7 5.5 10.5zm26.4-18.8c-30.1-58.4-91-98.4-161.3-98.4s-131.2 40-161.3 98.4L0 202.7L256 0l256 202.7l-94.7 77.1z"/></symbol><use href="#ai:fa6-brands:google-scholar"></use>  </svg> </a><a rel="me" aria-label="ResearchGate" href="https://www.researchgate.net/profile/Sebastian_Schwindt" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="0.88em" height="1em" class="text-[1.5rem]" data-icon="fa6-brands:researchgate">   <symbol id="ai:fa6-brands:researchgate" viewBox="0 0 448 512"><path fill="currentColor" d="M0 32v448h448V32zm262.2 334.4c-6.6 3-33.2 6-50-14.2c-9.2-10.6-25.3-33.3-42.2-63.6c-8.9 0-14.7 0-21.4-.6v46.4c0 23.5 6 21.2 25.8 23.9v8.1c-6.9-.3-23.1-.8-35.6-.8c-13.1 0-26.1.6-33.6.8v-8.1c15.5-2.9 22-1.3 22-23.9V225c0-22.6-6.4-21-22-23.9V193c25.8 1 53.1-.6 70.9-.6c31.7 0 55.9 14.4 55.9 45.6c0 21.1-16.7 42.2-39.2 47.5c13.6 24.2 30 45.6 42.2 58.9c7.2 7.8 17.2 14.7 27.2 14.7zm22.9-135c-23.3 0-32.2-15.7-32.2-32.2V167c0-12.2 8.8-30.4 34-30.4s30.4 17.9 30.4 17.9l-10.7 7.2s-5.5-12.5-19.7-12.5c-7.9 0-19.7 7.3-19.7 19.7v26.8c0 13.4 6.6 23.3 17.9 23.3c14.1 0 21.5-10.9 21.5-26.8h-17.9v-10.7h30.4c0 20.5 4.7 49.9-34 49.9m-116.5 44.7c-9.4 0-13.6-.3-20-.8v-69.7c6.4-.6 15-.6 22.5-.6c23.3 0 37.2 12.2 37.2 34.5c0 21.9-15 36.6-39.7 36.6"/></symbol><use href="#ai:fa6-brands:researchgate"></use>  </svg> </a><a rel="me" aria-label="GitHub" href="https://github.com/sschwindt" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="0.97em" height="1em" class="text-[1.5rem]" data-icon="fa6-brands:github">   <symbol id="ai:fa6-brands:github" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6c-3.3.3-5.6-1.3-5.6-3.6c0-2 2.3-3.6 5.2-3.6c3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9c2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9c.3 2 2.9 3.3 5.9 2.6c2.9-.7 4.9-2.6 4.6-4.6c-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2c12.8 2.3 17.3-5.6 17.3-12.1c0-6.2-.3-40.4-.3-61.4c0 0-70 15-84.7-29.8c0 0-11.4-29.1-27.8-36.6c0 0-22.9-15.7 1.6-15.4c0 0 24.9 2 38.6 25.8c21.9 38.6 58.6 27.5 72.9 20.9c2.3-16 8.8-27.1 16-33.7c-55.9-6.2-112.3-14.3-112.3-110.5c0-27.5 7.6-41.3 23.6-58.9c-2.6-6.5-11.1-33.3 2.6-67.9c20.9-6.5 69 27 69 27c20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27c13.7 34.7 5.2 61.4 2.6 67.9c16 17.7 25.8 31.5 25.8 58.9c0 96.5-58.9 104.2-114.8 110.5c9.2 7.9 17 22.9 17 46.4c0 33.7-.3 75.4-.3 83.6c0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252C496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2c1.6 1.6 3.9 2.3 5.2 1c1.3-1 1-3.3-.7-5.2c-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9c1.6 1 3.6.7 4.3-.7c.7-1.3-.3-2.9-2.3-3.9c-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2c2.3 2.3 5.2 2.6 6.5 1c1.3-1.3.7-4.3-1.3-6.2c-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2c-1.4-2.3-4-3.3-5.6-2"/></symbol><use href="#ai:fa6-brands:github"></use>  </svg> </a><a rel="me" aria-label="YouTube" href="https://www.youtube.com/@hydroinformatics" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="1.13em" height="1em" class="text-[1.5rem]" data-icon="fa6-brands:youtube">   <symbol id="ai:fa6-brands:youtube" viewBox="0 0 576 512"><path fill="currentColor" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597c-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821c11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></symbol><use href="#ai:fa6-brands:youtube"></use>  </svg> </a>  </div>  </div> </div>  <!-- Sticky component area -->  </div> </div> <main id="swup-container" class="overflow-hidden w-full col-span-1 row-start-1 row-end-2 md:col-start-2 md:col-end-3 md:row-start-1 md:row-end-2 lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 transition-swup-fade"> <div id="grid-class-carrier" data-grid-class="grid-cols-1 md:grid-cols-[17.5rem_1fr] lg:grid-cols-[1fr_17.5rem]" class="hidden"></div> <div id="content-wrapper" class="onload-animation-up transition-leaving">   <div class="flex w-full rounded-(--radius-large) overflow-hidden relative mb-4"> <div id="post-container" class="card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full "> <!-- word count and reading time --> <div class="flex flex-row text-black/30 dark:text-white/30 gap-5 mb-3 transition onload-animation-up"> <div class="flex flex-row items-center"> <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"> <svg width="1em" height="1em" data-icon="material-symbols:notes-rounded">   <symbol id="ai:material-symbols:notes-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h10q.425 0 .713.288T15 17t-.288.713T14 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"/></symbol><use href="#ai:material-symbols:notes-rounded"></use>  </svg> </div> <div class="text-sm"> 549  words </div> </div> <div class="flex flex-row items-center"> <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2"> <svg width="1em" height="1em" data-icon="material-symbols:schedule-outline-rounded">   <symbol id="ai:material-symbols:schedule-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M13 11.6V8q0-.425-.288-.712T12 7t-.712.288T11 8v3.975q0 .2.075.388t.225.337l3.3 3.3q.275.275.7.275T16 16t.275-.7t-.275-.7zM12 22q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.325 0 5.663-2.337T20 12t-2.337-5.663T12 4T6.337 6.338T4 12t2.338 5.663T12 20"/></symbol><use href="#ai:material-symbols:schedule-outline-rounded"></use>  </svg> </div> <div class="text-sm"> 3  minutes </div> </div> </div> <!-- title --> <div class="relative onload-animation-up"> <div data-pagefind-body data-pagefind-weight="10" data-pagefind-meta="title" class="transition w-full block font-bold mb-3
+                    text-3xl md:text-[2.25rem]/[2.75rem]
+                    text-black/90 dark:text-white/90
+                    md:before:w-1 before:h-5 before:rounded-md before:bg-(--primary)
+                    before:absolute before:top-3 before:-left-4.5"> HydroBayesCal: Bayesian Calibration as a Research Frontier in Hydrodynamic Modeling </div> </div> <!-- metadata --> <div class="onload-animation-up"> <div class="flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-x-4 gap-y-2 mb-5"> <!-- publish date --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:calendar-today-outline-rounded">   <symbol id="ai:material-symbols:calendar-today-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2t.713.288T8 3v1h8V3q0-.425.288-.712T17 2t.713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.587 1.413T19 22zm0-2h14V10H5zM5 8h14V6H5zm0 0V6z"/></symbol><use href="#ai:material-symbols:calendar-today-outline-rounded"></use>  </svg> </div> <span class="text-50 text-sm font-medium">2026-05-29</span> </div> <!-- update date -->  <!-- categories --> <div class="flex items-center"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:book-2-outline-rounded">   <symbol id="ai:material-symbols:book-2-outline-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M6 15.325q.35-.175.725-.25T7.5 15H8V4h-.5q-.625 0-1.062.438T6 5.5zM10 15h8V4h-8zm-4 .325V4zM7.5 22q-1.45 0-2.475-1.025T4 18.5v-13q0-1.45 1.025-2.475T7.5 2H18q.825 0 1.413.587T20 4v12.525q0 .2-.162.363t-.588.362q-.35.175-.55.5t-.2.75t.2.763t.55.487t.55.413t.2.562v.25q0 .425-.288.725T19 22zm0-2h9.325q-.15-.35-.237-.712T16.5 18.5q0-.4.075-.775t.25-.725H7.5q-.65 0-1.075.438T6 18.5q0 .65.425 1.075T7.5 20"/></symbol><use href="#ai:material-symbols:book-2-outline-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <a href="/archive/?category=Research" aria-label="View all posts in the Research category" class="link-lg transition text-50 text-sm font-medium
+                                        hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> Research </a>  </div> </div> <!-- tags --> <div class="items-center flex"> <div class="meta-icon"> <svg width="1em" height="1em" class="text-xl" data-icon="material-symbols:tag-rounded">   <symbol id="ai:material-symbols:tag-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m9 16l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T6.3 18.8L7 16H4.275q-.5 0-.8-.387T3.3 14.75q.075-.35.35-.55t.625-.2H7.5l1-4H5.775q-.5 0-.8-.387T4.8 8.75q.075-.35.35-.55t.625-.2H9l.825-3.275Q9.9 4.4 10.15 4.2t.6-.2q.475 0 .775.375t.175.825L11 8h4l.825-3.275q.075-.325.325-.525t.6-.2q.475 0 .775.375t.175.825L17 8h2.725q.5 0 .8.387t.175.863q-.075.35-.35.55t-.625.2H16.5l-1 4h2.725q.5 0 .8.388t.175.862q-.075.35-.35.55t-.625.2H15l-.825 3.275q-.075.325-.325.525t-.6.2q-.475 0-.775-.375T12.3 18.8L13 16zm.5-2h4l1-4h-4z"/></symbol><use href="#ai:material-symbols:tag-rounded"></use>  </svg> </div> <div class="flex flex-row flex-nowrap items-center"> <div class="hidden mx-1.5 text-(--meta-divider) text-sm">/</div>
+                <a href="/archive/?tag=Bayesian%20calibration" aria-label="View all posts with the Bayesian calibration tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> Bayesian calibration </a><div class="mx-1.5 text-(--meta-divider) text-sm">/</div>
+                <a href="/archive/?tag=Bayesian%20Active%20Learning" aria-label="View all posts with the Bayesian Active Learning tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> Bayesian Active Learning </a><div class="mx-1.5 text-(--meta-divider) text-sm">/</div>
+                <a href="/archive/?tag=HydroBayesCal" aria-label="View all posts with the HydroBayesCal tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> HydroBayesCal </a><div class="mx-1.5 text-(--meta-divider) text-sm">/</div>
+                <a href="/archive/?tag=TELEMAC" aria-label="View all posts with the TELEMAC tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> TELEMAC </a><div class="mx-1.5 text-(--meta-divider) text-sm">/</div>
+                <a href="/archive/?tag=OpenFOAM" aria-label="View all posts with the OpenFOAM tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> OpenFOAM </a><div class="mx-1.5 text-(--meta-divider) text-sm">/</div>
+                <a href="/archive/?tag=hydrodynamic%20modelling" aria-label="View all posts with the hydrodynamic modelling tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> hydrodynamic modelling </a><div class="mx-1.5 text-(--meta-divider) text-sm">/</div>
+                <a href="/archive/?tag=uncertainty%20quantification" aria-label="View all posts with the uncertainty quantification tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> uncertainty quantification </a><div class="mx-1.5 text-(--meta-divider) text-sm">/</div>
+                <a href="/archive/?tag=ecohydraulics" aria-label="View all posts with the ecohydraulics tag" class="link-lg transition text-50 text-sm font-medium
+                                hover:text-(--primary) dark:hover:text-(--primary) whitespace-nowrap"> ecohydraulics </a>  </div> </div> <!-- View count (hidden on the home page, shown when analytics are enabled) -->  </div> <!-- Only load the script when not on the home page, analytics are enabled, and finalPostUrl is present -->  <div class="mt-4 border-(--line-divider) border-dashed border-b mb-5"></div> </div> <!-- always show cover as long as it has one -->   <div data-pagefind-body class="prose dark:prose-invert prose-base max-w-none! custom-md mb-6 markdown-content onload-animation-up"> <!--<div class="prose dark:prose-invert max-w-none custom-md">--> <!--<div class="max-w-none custom-md">-->  <p>Hydrodynamic simulations with TELEMAC, OpenFOAM, and their kin are key elements of contemporary river engineering and ecohydraulics. They are also, frankly, hungry: every simulation depends on bulky simplifications, such as roughness, turbulence, or sediment-transport models whose ‘true’ values we can hardly observe directly. This is why we depend on model calibration, which practically is implemented through sweeping a parameter, eyeballing a fit, repeating; this practice is slow, undocumented, and gives poor answers to the question one eventually asks: <em>how confident are you in this parameter?</em></p>
+<p>This is where <strong>Bayesian calibration</strong> changes the game. Instead of returning a single ‘best’ parameter set, it returns a posterior distribution: a full picture of which parameters are consistent with the data, how strongly they are constrained, and how they trade off against each other. The catch has always been cost. Tens of thousands of forward runs of a 2d/3d hydrodynamic solver is a nogo on any realistic project budget.</p>
+<section><h2 id="hydrobayescal">HydroBayesCal</h2><p><a href="https://hydrobayescal.readthedocs.io/"><strong>HydroBayesCal</strong></a> is <em>a Bayesian calibration tool for hydrodynamic models</em>; we are building this framework in the hydro-morphodynamics group at <a href="https://www.iws.uni-stuttgart.de">IWS at the University of Stuttgart</a> to make this tractable. The core idea is <strong>Bayesian Active Learning (BAL)</strong>: rather than blindly sampling the parameter space, we train a cheap surrogate (aka <em>metamodel</em>) of the solver, use Bayesian information criteria to decide <em>where the next expensive simulation will buy us the most information</em>, run only that one, update the surrogate, and iterate. The net effect is a posterior built from dozens, not thousands, of full deterministic runs.</p><p>What I find most exciting about this direction is that it shifts calibration from craft to quantified science. A posterior is something you can publish, propagate into design decisions, and compare across studies. It also opens the door to honest uncertainty bands on derived quantities like fish-passage performance, sediment fluxes, or wood-mobility thresholds — the kind of outputs that decision-makers actually act on.</p></section>
+<section><h2 id="solver-bindings-a-community-effort">Solver bindings: a community effort</h2><p>A Bayesian framework is only useful when it can communicate with your solver. Two of our PhD candidates at IWS are pushing this forward in parallel:</p><ul>
+<li><a href="https://www.iws.uni-stuttgart.de/en/institute/team/Heredia-Hidalgo/"><strong>Andres Heredia</strong></a> is developing the <strong>TELEMAC</strong> bindings by automating run setup, restarts and result extraction for the open-source TELEMAC suite so that HydroBayesCal can iterate over hydrodynamic and morphodynamic configurations without manual intervention.</li>
+<li><a href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/"><strong>Federica Scolari</strong></a> is developing the <strong>OpenFOAM</strong> bindings to bring the same active-learning loop to general-purpose CFD, where 3d detail (free-surface flows, sediment–structure interaction, fishway hydraulics) matters.</li>
+</ul><p>Both software bindings share a common API on the HydroBayesCal side, which is the point: a user-facing workflow that doesn’t change when you swap solvers.</p></section>
+<section><h2 id="whats-next">What’s next</h2><p>We are working on two fronts in parallel. First, <strong>community release</strong>, that is, improving the package, writing tutorials, and making sure that a graduate students and engineers outside our research environment can install HydroBayesCal, point it at a TELEMAC or OpenFOAM case, and get a defensible posterior in an afternoon. Second, <strong>peer-reviewed papers</strong>, that is, several manuscripts on the BAL method and on solver-specific bindings are in preparation, with case studies drawn from ongoing projects on ecohydraulic restoration, sediment dynamics, and fish-passage assessment.</p><p>If you are working on calibration of hydrodynamic, morphodynamic or sediment-transport models and would like to test-drive HydroBayesCal on your own case, please reach out: that is exactly the kind of external use case that helps us make the tool robust before the public release.</p><p>Read more: <a href="https://hydrobayescal.readthedocs.io/">https://hydrobayescal.readthedocs.io/</a></p></section>  </div>  </div> </div>   <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full"> <a href="#" class="w-full font-bold overflow-hidden active:scale-95 pointer-events-none">  </a> <a href="/posts/ise2026/" class="w-full font-bold overflow-hidden active:scale-95"> <div class="btn-card rounded-2xl w-full h-15 max-w-full px-4 flex items-center justify-end! gap-4"> <div class="overflow-hidden transition text-ellipsis whitespace-nowrap max-w-[calc(100%-3rem)] text-black/75 dark:text-white/75"> See you at ISE 2026 in Lausanne </div> <svg width="1em" height="1em" class="text-[2rem] text-(--primary)" data-icon="material-symbols:chevron-right-rounded">   <symbol id="ai:material-symbols:chevron-right-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M12.6 12L8.7 8.1q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l4.6 4.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.6 4.6q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7z"/></symbol><use href="#ai:material-symbols:chevron-right-rounded"></use>  </svg> </div> </a> </div>  <div class="footer col-span-2 onload-animation-up hidden lg:block transition-swup-fade"> <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="transition text-50 text-sm text-center leading-6"> <div class="mb-2"><div class="text-center text-sm opacity-70">&copy; Sebastian Schwindt &middot; <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID 0000-0002-7206-0542</a></div></div>
+&copy; <span id="copyright-year">2026</span> Sebastian Schwindt. All Rights Reserved. /
+<a class="transition link text-(--primary) font-medium" href="/rss/" onclick="event.preventDefault(); navigateToPage('/rss/')">RSS</a> /
+<a class="transition link text-(--primary) font-medium" href="/atom/" onclick="event.preventDefault(); navigateToPage('/atom/')">Atom</a> /
+<a class="transition link text-(--primary) font-medium" target="_blank" href="/sitemap-index.xml">Sitemap</a><br>
+Powered by
+<a class="transition link text-(--primary) font-medium" target="_blank" href="https://astro.build">Astro</a> &
+<a class="transition link text-(--primary) font-medium" target="_blank" href="https://github.com/Spr-Aachen/Twilight">Twilight</a>&nbsp; Version <a class="transition link text-(--primary) font-medium" target="_blank" href="https://github.com/Spr-Aachen/Twilight/releases">1.0</a><br> </div> </div> </div> </div> </main> <div class="min-w-0 col-span-1 flex flex-col md:hidden"> <div id="middle-sidebar" data-side="middle" class="wallpaper-transparent onload-animation-up flex flex-col w-full h-full gap-(--sidebar-spacing)"> <!-- Top fixed component area --> <div id="profile-middle" data-swup-persist="profile-middle" class="card-base p-3  transition-swup-fade"> <a aria-label="Go to About Page" href="/about/" class="group block relative mx-auto mt-1 lg:mx-0 lg:mt-0 mb-3
+       max-w-48 lg:max-w-none overflow-hidden rounded-xl active:scale-95"> <div class="absolute transition pointer-events-none group-hover:bg-black/30 group-active:bg-black/50
+        w-full h-full z-50 flex items-center justify-center"> <svg width="1.13em" height="1em" viewBox="0 0 576 512" class="transition opacity-0 scale-90 group-hover:scale-100 group-hover:opacity-100 text-white text-5xl" data-icon="fa6-regular:address-card">   <use href="#ai:fa6-regular:address-card"></use>  </svg> </div> <div class="mx-auto lg:w-full h-full lg:mt-0 overflow-hidden relative"> <div class="transition absolute inset-0 bg-black/3 dark:bg-black/9 pointer-events-none"></div>  <img src="/assets/images/ssc.png" alt="Profile Image of the Author" class="w-full h-full object-cover" style="object-position: center" loading="eager" decoding="async"> </div> </a> <div class="px-2"> <div class="font-bold text-xl text-center mb-1 dark:text-neutral-50 transition">Sebastian Schwindt</div> <div class="h-1 w-5 bg-(--primary) mx-auto rounded-full mb-2 transition"></div> <div class="text-center text-neutral-400 mb-2.5 transition">Ecohydraulics, hydro-morphodynamics, and climate-aware river restoration.</div> <div class="flex gap-2 justify-center mb-1"> <a rel="me" aria-label="LinkedIn" href="https://www.linkedin.com/in/sebastian-schwindt" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="0.88em" height="1em" viewBox="0 0 448 512" class="text-[1.5rem]" data-icon="fa6-brands:linkedin">   <use href="#ai:fa6-brands:linkedin"></use>  </svg> </a><a rel="me" aria-label="Google Scholar" href="https://scholar.google.com/citations?user=246FKewAAAAJ&amp;hl=en" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="1em" height="1em" viewBox="0 0 512 512" class="text-[1.5rem]" data-icon="fa6-brands:google-scholar">   <use href="#ai:fa6-brands:google-scholar"></use>  </svg> </a><a rel="me" aria-label="ResearchGate" href="https://www.researchgate.net/profile/Sebastian_Schwindt" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="0.88em" height="1em" viewBox="0 0 448 512" class="text-[1.5rem]" data-icon="fa6-brands:researchgate">   <use href="#ai:fa6-brands:researchgate"></use>  </svg> </a><a rel="me" aria-label="GitHub" href="https://github.com/sschwindt" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="0.97em" height="1em" viewBox="0 0 496 512" class="text-[1.5rem]" data-icon="fa6-brands:github">   <use href="#ai:fa6-brands:github"></use>  </svg> </a><a rel="me" aria-label="YouTube" href="https://www.youtube.com/@hydroinformatics" target="_blank" class="btn-regular rounded-lg h-10 w-10 active:scale-90"> <svg width="1.13em" height="1em" viewBox="0 0 576 512" class="text-[1.5rem]" data-icon="fa6-brands:youtube">   <use href="#ai:fa6-brands:youtube"></use>  </svg> </a>  </div>  </div> </div>  <!-- Sticky component area -->  </div> </div> <div class="footer col-span-1 onload-animation-up block lg:hidden transition-swup-fade md:col-span-2"> <div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div> <div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6"> <div class="transition text-50 text-sm text-center leading-6"> <div class="mb-2"><div class="text-center text-sm opacity-70">&copy; Sebastian Schwindt &middot; <a href="https://orcid.org/0000-0002-7206-0542" target="_blank" rel="noreferrer">ORCID 0000-0002-7206-0542</a></div></div>
+&copy; <span id="copyright-year">2026</span> Sebastian Schwindt. All Rights Reserved. /
+<a class="transition link text-(--primary) font-medium" href="/rss/" onclick="event.preventDefault(); navigateToPage('/rss/')">RSS</a> /
+<a class="transition link text-(--primary) font-medium" href="/atom/" onclick="event.preventDefault(); navigateToPage('/atom/')">Atom</a> /
+<a class="transition link text-(--primary) font-medium" target="_blank" href="/sitemap-index.xml">Sitemap</a><br>
+Powered by
+<a class="transition link text-(--primary) font-medium" target="_blank" href="https://astro.build">Astro</a> &
+<a class="transition link text-(--primary) font-medium" target="_blank" href="https://github.com/Spr-Aachen/Twilight">Twilight</a>&nbsp; Version <a class="transition link text-(--primary) font-medium" target="_blank" href="https://github.com/Spr-Aachen/Twilight/releases">1.0</a><br> </div> </div> </div> </div> </div> </div> <table-of-contents data-is-floating="true" data-navbar-height="72" data-astro-cid-isfta2rr="true"> <div class="toc-floating-container" data-astro-cid-isfta2rr> <div class="toc-floating-btn-wrapper rounded-2xl overflow-hidden transition" data-astro-cid-isfta2rr> <button class="toc-floating-btn btn-card rounded-2xl p-0 flex items-center justify-center" aria-label="Table of Contents" data-astro-cid-isfta2rr> <svg width="24" height="24" data-astro-cid-isfta2rr="true" data-icon="material-symbols:format-list-bulleted-rounded">   <symbol id="ai:material-symbols:format-list-bulleted-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="M10 19q-.425 0-.712-.288T9 18t.288-.712T10 17h10q.425 0 .713.288T21 18t-.288.713T20 19zm0-6q-.425 0-.712-.288T9 12t.288-.712T10 11h10q.425 0 .713.288T21 12t-.288.713T20 13zm0-6q-.425 0-.712-.288T9 6t.288-.712T10 5h10q.425 0 .713.288T21 6t-.288.713T20 7zM5 20q-.825 0-1.412-.587T3 18t.588-1.412T5 16t1.413.588T7 18t-.587 1.413T5 20m0-6q-.825 0-1.412-.587T3 12t.588-1.412T5 10t1.413.588T7 12t-.587 1.413T5 14M3.588 7.413Q3 6.825 3 6t.588-1.412T5 4t1.413.588T7 6t-.587 1.413T5 8t-1.412-.587"/></symbol><use href="#ai:material-symbols:format-list-bulleted-rounded"></use>  </svg> </button> </div> <div class="toc-floating-panel hidden opacity-0 translate-y-4 pointer-events-none" data-astro-cid-isfta2rr> <div class="toc-panel-header" data-astro-cid-isfta2rr> <svg width="20" height="20" viewBox="0 0 24 24" class="text-(--primary)" data-astro-cid-isfta2rr="true" data-icon="material-symbols:format-list-bulleted-rounded">   <use href="#ai:material-symbols:format-list-bulleted-rounded"></use>  </svg> <span class="text-sm font-bold text-75" data-astro-cid-isfta2rr>Table of Contents</span> </div> <div class="toc-inner-content relative" data-astro-cid-isfta2rr></div> </div> </div> </table-of-contents> <script type="module" src="/_astro/tocButton.astro_astro_type_script_index_0_lang.Db64jF2d.js"></script> <!-- There can't be a filter on parent element, or it will break `fixed` --><div class="back-to-top-wrapper block" data-astro-cid-zdqm26mj> <div id="back-to-top-btn" class="back-to-top-btn z-100 hide flex items-center rounded-2xl overflow-hidden transition" onclick="backToTop()" data-astro-cid-zdqm26mj> <button aria-label="Back to Top" class="btn-card h-full w-full" data-astro-cid-zdqm26mj> <svg width="1em" height="1em" class="mx-auto" data-astro-cid-zdqm26mj="true" data-icon="material-symbols:keyboard-arrow-up-rounded">   <symbol id="ai:material-symbols:keyboard-arrow-up-rounded" viewBox="0 0 24 24"><path fill="currentColor" d="m12 10.8l-3.9 3.9q-.275.275-.7.275t-.7-.275t-.275-.7t.275-.7l4.6-4.6q.3-.3.7-.3t.7.3l4.6 4.6q.275.275.275.7t-.275.7t-.7.275t-.7-.275z"/></symbol><use href="#ai:material-symbols:keyboard-arrow-up-rounded"></use>  </svg> </button> </div> </div>  <script>
+function backToTop() {
+    // Use native scrolling directly to avoid conflicts with OverlayScrollbars
+    window.scroll({ top: 0, behavior: 'smooth' });
+}
+</script>  <!-- Cookie consent — only shown when there is non-essential tracking
+             (analytics) to consent to. With analytics disabled the site sets
+             no non-essential cookies, so no banner is required. -->  <!-- Music Player - loaded only when enabled -->  <!-- Pio mascot component - z-index may need adjusting if the sidebar is enabled -->  <!-- increase the page height during page transition to prevent the scrolling animation from jumping --> <div id="page-height-extend" class="hidden h-[300vh]" data-astro-cid-tnnyocjb style="--configHue: 200;--page-width: 90rem;--navbar-height: 4.5rem;--navbar-gap: 1.25rem;--navbar-follow-distance: 0rem;--main-panel-overlaps-banner-height: 0rem;--sidebar-top: 1rem;--sidebar-spacing: 1rem;--bannerOffset: 18vh;--banner-height-home: 66vh;--banner-height: 30vh;"></div>  <script type="module" src="/_astro/base.astro_astro_type_script_index_0_lang.BJXsb7pf.js"></script></body></html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+        <feed xmlns="http://www.w3.org/2005/Atom">
+        <title>Ecohydraulics &amp; Climate-Aware Restoration</title>
+        <subtitle>PD Dr. sc. (PhD) Sebastian Schwindt</subtitle>
+        <link href="https://sebastian-schwindt.org/" rel="alternate" type="text/html"/>
+        <link href="https://sebastian-schwindt.org/atom.xml" rel="self" type="application/atom+xml"/>
+        <id>https://sebastian-schwindt.org/</id>
+        <updated>2026-06-09T10:51:16.876Z</updated>
+        <language>en</language>
+        <entry>
+            <title>HydroBayesCal: Bayesian Calibration as a Research Frontier in Hydrodynamic Modeling</title>
+            <link href="https://sebastian-schwindt.org/posts/hydrobayescal/" rel="alternate" type="text/html"/>
+            <id>https://sebastian-schwindt.org/posts/hydrobayescal/</id>
+            <published>2026-05-29T00:00:00.000Z</published>
+            <updated>2026-05-29T00:00:00.000Z</updated>
+            <summary>How HydroBayesCal brings Bayesian Active Learning to hydrodynamic model calibration, with TELEMAC bindings (Andres Heredia) and OpenFOAM bindings (Federica Scolari) being developed at the IWS hydro-morphodynamics group.</summary>
+            <content type="html"><![CDATA[<p>Hydrodynamic simulations with TELEMAC, OpenFOAM, and their kin are key elements of contemporary river engineering and ecohydraulics. They are also, frankly, hungry: every simulation depends on bulky simplifications, such as roughness, turbulence, or sediment-transport models whose 'true' values we can hardly observe directly. This is why we depend on model calibration, which practically is implemented through sweeping a parameter, eyeballing a fit, repeating; this practice is slow, undocumented, and gives poor answers to the question one eventually asks: <em>how confident are you in this parameter?</em></p>
+<p>This is where <strong>Bayesian calibration</strong> changes the game. Instead of returning a single 'best' parameter set, it returns a posterior distribution: a full picture of which parameters are consistent with the data, how strongly they are constrained, and how they trade off against each other. The catch has always been cost. Tens of thousands of forward runs of a 2d/3d hydrodynamic solver is a nogo on any realistic project budget.</p>
+<h2>HydroBayesCal</h2>
+<p><a href="https://hydrobayescal.readthedocs.io/"><strong>HydroBayesCal</strong></a> is <em>a Bayesian calibration tool for hydrodynamic models</em>; we are building this framework in the hydro-morphodynamics group at <a href="https://www.iws.uni-stuttgart.de">IWS at the University of Stuttgart</a> to make this tractable. The core idea is <strong>Bayesian Active Learning (BAL)</strong>: rather than blindly sampling the parameter space, we train a cheap surrogate (aka <em>metamodel</em>) of the solver, use Bayesian information criteria to decide <em>where the next expensive simulation will buy us the most information</em>, run only that one, update the surrogate, and iterate. The net effect is a posterior built from dozens, not thousands, of full deterministic runs.</p>
+<p>What I find most exciting about this direction is that it shifts calibration from craft to quantified science. A posterior is something you can publish, propagate into design decisions, and compare across studies. It also opens the door to honest uncertainty bands on derived quantities like fish-passage performance, sediment fluxes, or wood-mobility thresholds -- the kind of outputs that decision-makers actually act on.</p>
+<h2>Solver bindings: a community effort</h2>
+<p>A Bayesian framework is only useful when it can communicate with your solver. Two of our PhD candidates at IWS are pushing this forward in parallel:</p>
+<ul>
+<li><a href="https://www.iws.uni-stuttgart.de/en/institute/team/Heredia-Hidalgo/"><strong>Andres Heredia</strong></a> is developing the <strong>TELEMAC</strong> bindings by automating run setup, restarts and result extraction for the open-source TELEMAC suite so that HydroBayesCal can iterate over hydrodynamic and morphodynamic configurations without manual intervention.</li>
+<li><a href="https://www.iws.uni-stuttgart.de/institut/team/Scolari/"><strong>Federica Scolari</strong></a> is developing the <strong>OpenFOAM</strong> bindings to bring the same active-learning loop to general-purpose CFD, where 3d detail (free-surface flows, sediment–structure interaction, fishway hydraulics) matters.</li>
+</ul>
+<p>Both software bindings share a common API on the HydroBayesCal side, which is the point: a user-facing workflow that doesn't change when you swap solvers.</p>
+<h2>What's next</h2>
+<p>We are working on two fronts in parallel. First, <strong>community release</strong>, that is, improving the package, writing tutorials, and making sure that a graduate students and engineers outside our research environment can install HydroBayesCal, point it at a TELEMAC or OpenFOAM case, and get a defensible posterior in an afternoon. Second, <strong>peer-reviewed papers</strong>, that is, several manuscripts on the BAL method and on solver-specific bindings are in preparation, with case studies drawn from ongoing projects on ecohydraulic restoration, sediment dynamics, and fish-passage assessment.</p>
+<p>If you are working on calibration of hydrodynamic, morphodynamic or sediment-transport models and would like to test-drive HydroBayesCal on your own case, please reach out: that is exactly the kind of external use case that helps us make the tool robust before the public release.</p>
+<p>Read more: <a href="https://hydrobayescal.readthedocs.io/">https://hydrobayescal.readthedocs.io/</a></p>
+]]></content>
+            <author>
+                <name>Sebastian Schwindt</name>
+            </author>
+            <category term="Research"></category>
+            <category term="Bayesian calibration" label="Bayesian calibration"></category>
+            <category term="Bayesian Active Learning" label="Bayesian Active Learning"></category>
+            <category term="HydroBayesCal" label="HydroBayesCal"></category>
+            <category term="TELEMAC" label="TELEMAC"></category>
+            <category term="OpenFOAM" label="OpenFOAM"></category>
+            <category term="hydrodynamic modelling" label="hydrodynamic modelling"></category>
+            <category term="uncertainty quantification" label="uncertainty quantification"></category>
+            <category term="ecohydraulics" label="ecohydraulics"></category>
+            </entry>
+        <entry>
+            <title>See you at ISE 2026 in Lausanne</title>
+            <link href="https://sebastian-schwindt.org/posts/ise2026/" rel="alternate" type="text/html"/>
+            <id>https://sebastian-schwindt.org/posts/ise2026/</id>
+            <published>2026-05-29T00:00:00.000Z</published>
+            <updated>2026-05-29T00:00:00.000Z</updated>
+            <summary>XVI International Symposium on Ecohydraulics (16--20 August 2026, EPFL Lausanne)</summary>
+            <content type="html"><![CDATA[<p>I'll be joining the ecohydraulics community in <strong>Lausanne, Switzerland,</strong> this summer for the <a href="https://ise2026.epfl.ch/"><strong>XVI International Symposium on Ecohydraulics (ISE 2026)</strong></a>, hosted by PL-LCH / EPFL at the Swisstech Convention Center from <strong>16--20 August 2026</strong>. ISE is the natural meeting point for everyone working at the interface of hydraulics, ecology and river management, and I am very much looking forward to catching up with old collaborators, meeting new ones, and seeing where the field has moved since the last edition.</p>
+<p>I will give a talk titled:</p>
+<blockquote>
+<p><strong>The evolution of computational methods in ecohydraulics: from cross-section averaging to immersive agent-based models</strong></p>
+</blockquote>
+<p>This talk will be a walk through where we started, how the toolbox grew through 2d and 3d hydrodraulics into VR-augmented workflows, which is where I think things are heading next as immersive, agent-based representations of organisms move from research curiosity to practical design tool.</p>
+<p>If you'll be in Lausanne and would like to chat about ecohydraulic modelling, Bayesian calibration, fish passage, restoration -- or just compare notes -- please come find me. See you there!</p>
+<p>Conference link: <a href="https://ise2026.epfl.ch/">https://ise2026.epfl.ch/</a></p>
+]]></content>
+            <author>
+                <name>Sebastian Schwindt</name>
+            </author>
+            <category term="Outreach"></category>
+            <category term="ecohydraulics" label="ecohydraulics"></category>
+            <category term="conferences" label="conferences"></category>
+            <category term="ISE 2026" label="ISE 2026"></category>
+            <category term="EPFL" label="EPFL"></category>
+            <category term="community" label="community"></category>
+            </entry>
+        </feed>
