@@ -106,7 +106,7 @@ onDestroy(() => {
         <DropdownPanel
             bind:element={translatePanel}
             id="translate-panel"
-            class="p-4 w-full"
+            class="p-4 w-full ignore"
         >
             <div class="text-sm font-medium text-(--primary) mb-3 px-1">
                 Select Language / Langue / Sprache
