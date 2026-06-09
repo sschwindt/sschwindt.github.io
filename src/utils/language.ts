@@ -250,7 +250,7 @@ export function initTranslateService(): void {
         translate.nomenclature.append(
             "english",
             "deutsch",
-            "Hydrodynamic simulations with TELEMAC, OpenFOAM, and their kin are key elements of contemporary river engineering and ecohydraulics. They are also, frankly, hungry: every simulation depends on bulky simplifications, such as roughness, turbulence, or sediment-transport models whose ‘true’ values we can hardly observe directly. This is why we depend on model calibration, which practically is implemented through sweeping a parameter, eyeballing a fit, repeating; this practice is slow, undocumented, and gives poor answers to the question one eventually asks:=Hydrodynamische Simulationen mit TELEMAC, OpenFOAM und ähnliche Programme sind zentrale Bestandteile der modernen Gewässerplanung. Sie sind allerdings sehr rechenintensiv und Fehleranfällig: Jede Simulation stützt sich auf umfangreiche Vereinfachungen, wie etwa Modelle für Oberflächenrauheit, Turbulenz oder Sedimenttransport, deren „wahre“ Werte wir kaum direkt beobachten können. Deshalb sind wir auf Modellkalibrierung angewiesen, die in der Praxis durch das Durchprobieren von Parameterwerten nach Augenmaß umgesetzt wird; dieses Vorgehen ist müßig, fehleranfällig und liefert schlechte Antworten auf die Frage, die man sich letztlich stellt:\n" +
+            "Hydrodynamic simulations with TELEMAC, OpenFOAM, and their kin are key elements of contemporary river engineering and ecohydraulics. They are also, frankly, hungry: every simulation depends on bulky simplifications, such as roughness, turbulence, or sediment-transport models whose ‘true’ values we can hardly observe directly. This is why we depend on model calibration, which practically is implemented through sweeping a parameter, eyeballing a fit, repeating; this practice is slow, undocumented, and gives poor answers to the question one eventually asks:=Hydrodynamische Simulationen mit TELEMAC, OpenFOAM und ähnliche Programme sind zentrale Bestandteile des modernen Flussbaus. Sie sind allerdings sehr rechenintensiv und Fehleranfällig: Jede Simulation stützt sich auf umfangreiche Vereinfachungen, wie etwa Modelle für Oberflächenrauheit, Turbulenz oder Sedimenttransport, deren „wahre“ Werte wir kaum direkt beobachten können. Deshalb sind wir auf Modellkalibrierung angewiesen, die in der Praxis durch das Durchprobieren von Parameterwerten nach Augenmaß umgesetzt wird; dieses Vorgehen ist müßig, fehleranfällig und liefert schlechte Antworten auf die Frage, die man sich letztlich stellt:\n" +
             "how confident are you in this parameter?=wie sicher bist du dir bei diesem Parameter?\n" +
             "This is where=Hier kommt\n" +
             "changes the game. Instead of returning a single ‘best’ parameter set, it returns a posterior distribution: a full picture of which parameters are consistent with the data, how strongly they are constrained, and how they trade off against each other. The catch has always been cost. Tens of thousands of forward runs of a 2d/3d hydrodynamic solver is a nogo on any realistic project budget.=ins Spiel. Statt einen einzelnen „besten“ (subjektiven) Parameterschätzwert zu liefern, erzielt Bayes'sche Kalibrierung eine a-posteriori Verteilung, d.h. ein Bild davon, welche Parameter mit den Daten wahrscheinlichkeitsbasiert vereinbar sind. Ein Haken der Bayes'schen Kalbirierung war lange Zeit der große Aufwand, da tausende Vorwärtsläufe eines 2D/3D-hydrodynamischen Lösers notwendig sind, um robuste a-posteriori Verteilungen zu erzielen, was bei keinem Projektbudget realistischen machbar ist.\n" +
@@ -266,7 +266,7 @@ export function initTranslateService(): void {
             "where the next expensive simulation will buy us the most information=wo die nächste rechenintensive, deterministische 2D/3D Simulation den größten Informationsgewinn bringt\n" +
             ", run only that one, update the surrogate, and iterate. The net effect is a posterior built from dozens, not thousands, of full deterministic runs.= und aktualisieren das Surrogatmodell. Das Ergebnis ist eine Posteriori-Verteilung, die aus Dutzenden statt Tausenden vollständiger deterministischer Läufe entsteht.\n" +
             "What I find most exciting about this direction is that it shifts calibration from craft to quantified science. A posterior is something you can publish, propagate into design decisions, and compare across studies. It also opens the door to honest uncertainty bands on derived quantities like fish-passage performance, sediment fluxes, or wood-mobility thresholds — the kind of outputs that decision-makers actually act on.=Was mich an dieser Technik am meisten begeistert, ist, dass sie die Kalibrierungsherausforderung zu einer quantifizierbaren Optimierungsaufgabe macht. Geometrische Merkmale der a-posteriori-Verteilung können in Entwurfsentscheidungen einfließen und generalisierbar angewendet werden. Bayes'sche Kalibrierung öffnet außerdem die Tür zu wertvollen Unsicherheitsabschätzungen, um tatsächliche hydraulische-morphologische Variabilitäten quantitativ zu betrachten.\n" +
-            "Solver bindings: a community effort=Solver-Anbindungen: ein Gemeinschaftsprojekt\n" +
+            "Solver bindings: a community effort=Solver-Anbindungen: ein Community-Projekt\n" +
             "A Bayesian framework is only useful when it can communicate with your solver. Two of our PhD candidates at IWS are pushing this forward in parallel:=Bayes'sche Kalibrierungsalgorithmen sind allerdings nur dann nützlich, wenn sie mit der Modellierungssoftware kommunizieren können. Zwei unserer Doktorand*innen am IWS implementieren deshalb parallel Softwarekopplungen:\n" +
             "Andres Heredia=Andres Heredia\n" +
             "is developing the=entwickelt\n" +
@@ -281,7 +281,7 @@ export function initTranslateService(): void {
             "community release=die Veröffentlichung für die Community\n" +
             ", that is, improving the package, writing tutorials, and making sure that a graduate students and engineers outside our research environment can install HydroBayesCal, point it at a TELEMAC or OpenFOAM case, and get a defensible posterior in an afternoon. Second,=, das heißt, die HydroBayesCal-Bibliothel nutzerfreundlich aufzuarbeiten, versehen mit Tutorials, damit Studierende sowie Ingenieurinnen und Ingenieure außerhalb des IWS-Umfelds HydroBayesCal anwenden können. Zweitens,\n" +
             "peer-reviewed papers=arbeiten wir an begutachteten Fachartikeln\n" +
-            ", that is, several manuscripts on the BAL method and on solver-specific bindings are in preparation, with case studies drawn from ongoing projects on ecohydraulic restoration, sediment dynamics, and fish-passage assessment.=, um Bayes'sche Kalibrierung und Software-spezifische Kopplungen besser zu erklären anhand von Fallstudien über ökohydraulisch orientierte Renaturierungen, Sedimentdynamik und Fischpassstudien.\n" +
+            ", that is, several manuscripts on the BAL method and on solver-specific bindings are in preparation, with case studies drawn from ongoing projects on ecohydraulic restoration, sediment dynamics, and fish-passage assessment.=, um Bayes'sche Kalibrierung und Software-spezifische Kopplungen besser zu erklären anhand von Fallstudien über ökologisch orientierte Renaturierungen, Sedimentdynamik und Fischpassstudien.\n" +
             "If you are working on calibration of hydrodynamic, morphodynamic or sediment-transport models and would like to test-drive HydroBayesCal on your own case, please reach out: that is exactly the kind of external use case that helps us make the tool robust before the public release.=Wenn ihr an der Kalibrierung hydrodynamischer, morphodynamischer oder Sedimenttransport-Modelle arbeitet und HydroBayesCal selbst ausprobieren wollt, meldet euch gerne - auch für Feedback (ihr findet uns über eure Lieblingssuchmaschine).\n" +
             "Read more:=Mehr erfahren:",
         );
@@ -346,6 +346,73 @@ export function initTranslateService(): void {
             "RANS=Reynolds-gemittelte Navier-Stokes-Gleichungen\n" +
             "CFL=CFL-Zahl\n" +
             "CRS=Koordinatenreferenzsystem",
+        );
+
+        // Brand/keyword terms that must NEVER be translated: "ecohydraulics" and "community"
+        // are kept verbatim in every target language by mapping each key to itself. Longer
+        // keys are listed first so phrase variants win over the bare word (objSort is
+        // longest-first). NOTE: the full-sentence hydrobayescal overrides above already keep
+        // these words in English where they occur in that post; these short rules cover all
+        // other content and the French side (which has no full-post override).
+        const KEEP_VERBATIM =
+            "Ecohydraulics=Ecohydraulics\n" +
+            "ecohydraulics=ecohydraulics\n" +
+            "Ecohydraulic=Ecohydraulic\n" +
+            "ecohydraulic=ecohydraulic\n" +
+            "Community=Community\n" +
+            "community=community";
+        translate.nomenclature.append("english", "french", KEEP_VERBATIM);
+        translate.nomenclature.append("english", "deutsch", KEEP_VERBATIM);
+
+        // Gender-neutral terms for people. The site renders in English; these force the
+        // French/German output into inclusive forms instead of the default masculine that
+        // the Argos backend produces. French uses the median point (·), German the gender
+        // star (*) — matching the conventions already used in the hand-written post above.
+        // Plural keys precede singular keys, and capitalized variants are added because
+        // translate.js matches case-sensitively (sentence-initial occurrences).
+        translate.nomenclature.append(
+            "english",
+            "french",
+            "PhD candidates=doctorant·es\n" +
+            "PhD candidate=doctorant·e\n" +
+            "doctoral candidates=doctorant·es\n" +
+            "doctoral candidate=doctorant·e\n" +
+            "decision-makers=décideur·euses\n" +
+            "decision-maker=décideur·euse\n" +
+            "Researchers=chercheur·euses\n" +
+            "researchers=chercheur·euses\n" +
+            "Researcher=chercheur·euse\n" +
+            "researcher=chercheur·euse\n" +
+            "Engineers=ingénieur·es\n" +
+            "engineers=ingénieur·es\n" +
+            "Engineer=ingénieur·e\n" +
+            "engineer=ingénieur·e\n" +
+            "Students=étudiant·es\n" +
+            "students=étudiant·es\n" +
+            "Student=étudiant·e\n" +
+            "student=étudiant·e",
+        );
+        translate.nomenclature.append(
+            "english",
+            "deutsch",
+            "PhD candidates=Doktorand*innen\n" +
+            "PhD candidate=Doktorand*in\n" +
+            "doctoral candidates=Doktorand*innen\n" +
+            "doctoral candidate=Doktorand*in\n" +
+            "decision-makers=Entscheidungsträger*innen\n" +
+            "decision-maker=Entscheidungsträger*in\n" +
+            "Researchers=Forscher*innen\n" +
+            "researchers=Forscher*innen\n" +
+            "Researcher=Forscher*in\n" +
+            "researcher=Forscher*in\n" +
+            "Engineers=Ingenieur*innen\n" +
+            "engineers=Ingenieur*innen\n" +
+            "Engineer=Ingenieur*in\n" +
+            "engineer=Ingenieur*in\n" +
+            "Students=Studierende\n" +
+            "students=Studierende\n" +
+            "Student=Studierende*r\n" +
+            "student=Studierende*r",
         );
     }
     // Start the translation listener
@@ -477,6 +544,11 @@ function ensureTranslationNoticeEl(): HTMLElement | null {
 
     const el = document.createElement("div");
     el.id = TRANSLATION_NOTICE_ID;
+    // The notice text is already written in the target language (French/German). It must NOT be run
+    // through translate.js again, otherwise the engine treats it as English source, fails, and leaves
+    // the banner empty. The "ignore" class is registered in siteConfig.translate.ignoreClasses, so
+    // tagging the banner root (and its whole subtree) keeps translate.js from touching it.
+    el.classList.add("ignore");
     el.setAttribute("role", "status");
     el.setAttribute("aria-live", "polite");
     el.innerHTML =
