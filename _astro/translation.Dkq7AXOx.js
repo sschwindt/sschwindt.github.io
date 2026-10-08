@@ -1,0 +1,1 @@
+import{g as s}from"./language.BEcWUmrN.js";import{j as t,z as e,e as n}from"./zh.IVCllpVI.js";const r=n,i={en:n,en_us:n,en_gb:n,en_au:n,zh:e,zh_cn:e,ja:t,ja_jp:t};function u(a){return i[a.toLowerCase()]||r}function f(a){const o=s();return u(o)[a]}export{f as i};
